@@ -10,9 +10,23 @@
     "language": "EN"
   },
   "footer": {
+    "navigation": "Professionals",
+    "areas": "Practice Areas",
+    "content": "Content",
     "contact": "Contact",
-    "navigation": "Navigation",
     "follow_us": "Follow us on social media",
     "rights": "All rights reserved."
+  },
+  "whyus": {
+    "title": "Why Choose Us",
+    "subtitle": "We are a law firm with over 20 years of experience providing comprehensive legal solutions. We are known for our commitment to excellence, professional ethics, and personalized approach for each client.",
+    "expertise": "Legal Expertise",
+    "expertise_desc": "Our partners lead teams in key areas of corporate and civil law.",
+    "personalized": "Personalized Service",
+    "personalized_desc": "Each client receives direct attention and tailored solutions.",
+    "international": "International Reach",
+    "international_desc": "We are part of global legal networks like LexMundi.",
+    "trust": "Trust and Experience",
+    "trust_desc": "Decades of practice support our commitment to excellence."
   }
 }

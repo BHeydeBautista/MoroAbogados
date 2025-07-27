@@ -1,17 +1,34 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
-import { useLanguage } from '@/context/LanguageContext';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { FaSearch } from 'react-icons/fa';
+import { usePathname } from 'next/navigation';
 
 import es from '@/locales/es.json';
 import en from '@/locales/en.json';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
   const { language, toggleLanguage } = useLanguage();
-
   const t = language === 'es' ? es.navbar : en.navbar;
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isDark = !scrolled && isHome;
+  const bgStyle = isDark
+    ? 'bg-[#0F1C2E]/40 backdrop-blur-md shadow-none'
+    : 'bg-white shadow-md transition-colors duration-300';
+  const textColor = isDark ? 'text-[#D4A75D]' : 'text-black';
+  const hoverColor = 'hover:text-gray-400';
 
   const navLinks = [
     { name: t.profesionales, href: '#profesionales' },
@@ -19,53 +36,53 @@ const Navbar = () => {
     { name: t.contenido, href: '#contenido' },
     { name: t.nosotros, href: '#nosotros' },
     { name: t.carrera, href: '#carrera' },
-    { name: t.contacto, href: '#contact' },
+    { name: t.contacto, href: '/contact' },
   ];
 
   return (
-    <header className="fixed w-full z-50 bg-[#0F1C2E]/90 backdrop-blur-md text-white">
-      <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
-        <Link href="/" className="text-2xl font-bold tracking-tight">Moro & Asociados</Link>
+    <motion.nav
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 w-full z-50 ${bgStyle}`}
+      aria-label="Main navigation"
+    >
+      <div className="w-full px-6 lg:px-24 flex items-center justify-between h-16 lg:h-20">
+        <Link href="/" aria-label="Ir a inicio">
+          <Image
+            src="/img/logo.png"
+            alt="Logo Moro & Asociados"
+            width={64}
+            height={64}
+            className="rounded-md border border-[#D4A75D] bg-[#0F1C2E] p-1 drop-shadow-xl"
+            priority
+          />
+        </Link>
 
-        <nav className="hidden md:flex gap-8 items-center">
+        <nav className="flex space-x-8" aria-label="Secciones principales">
           {navLinks.map(({ name, href }) => (
-            <Link key={name} href={href} className="hover:text-yellow-500 transition-colors">
+            <Link
+              key={name}
+              href={href}
+              className={`text-lg lg:text-xl font-medium ${textColor} ${hoverColor} transition`}
+            >
               {name}
             </Link>
           ))}
-          <button
-            onClick={toggleLanguage}
-            className="ml-6 px-3 py-1 border border-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition"
-            aria-label="Cambiar idioma"
-          >
-            {t.language}
-          </button>
         </nav>
 
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
-          {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-        </button>
-      </div>
-
-      {isOpen && (
-        <div className="md:hidden bg-[#0F1C2E] text-white px-6 pb-4 space-y-4">
-          {navLinks.map(({ name, href }) => (
-            <Link key={name} href={href} className="block" onClick={() => setIsOpen(false)}>
-              {name}
-            </Link>
-          ))}
+        <div className="flex items-center space-x-6">
+          <FaSearch className={`text-lg ${textColor} cursor-pointer`} aria-label="Buscar" />
           <button
-            onClick={() => {
-              toggleLanguage();
-              setIsOpen(false);
-            }}
-            className="px-3 py-1 border border-yellow-400 rounded hover:bg-yellow-400 hover:text-black transition"
+            onClick={toggleLanguage}
+            className={`text-lg ${textColor} font-medium ${hoverColor} transition`}
+            aria-label="Cambiar idioma"
           >
-            {t.language}
+            {t.language} <span className="text-gray-400">{language === 'es' ? '| EN' : '| ES'}</span>
           </button>
         </div>
-      )}
-    </header>
+      </div>
+    </motion.nav>
   );
 };
 

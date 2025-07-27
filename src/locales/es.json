@@ -1,0 +1,18 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "profesionales": "Profesionales",
+    "areas": "Áreas de Práctica",
+    "contenido": "Contenido",
+    "nosotros": "Nosotros",
+    "carrera": "Carrera",
+    "contacto": "Contacto",
+    "language": "ES"
+  },
+  "footer": {
+    "contact": "Contacto",
+    "navigation": "Navegación",
+    "follow_us": "Seguinos en nuestras redes",
+    "rights": "Todos los derechos reservados."
+  }
+}

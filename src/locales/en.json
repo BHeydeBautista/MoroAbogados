@@ -28,5 +28,22 @@
     "international_desc": "We are part of global legal networks like LexMundi.",
     "trust": "Trust and Experience",
     "trust_desc": "Decades of practice support our commitment to excellence."
+  },
+  "areas": {
+    "title": "Áreas de Práctica",
+    "societario": "Derecho Societario",
+    "societario_desc": "Asesoramiento integral a empresas nacionales e internacionales.",
+    "contencioso": "Asuntos Contenciosos",
+    "contencioso_desc": "Representación legal en conflictos judiciales y extrajudiciales.",
+    "mercantil": "Mercantil y Empresarial General",
+    "mercantil_desc": "Protección y gestión de marcas, patentes y derechos de autor.",
+    "concursal": "Concursal",
+    "concursal_desc": "Gestión estratégica de situaciones de insolvencia y procesos concursales.",
+    "civil": "Civil",
+    "civil_desc": "Responsabilidad civil, daños, sucesiones y relaciones jurídicas privadas.",
+    "laboral": "Derecho Laboral de Empresas",
+    "laboral_desc": "Asesoramiento en relaciones laborales, conflictos sindicales y normativa vigente.",
+    "administrativo": "Administrativo-Constitucional Económico",
+    "administrativo_desc": "Defensa ante organismos públicos, licitaciones, recursos y constitucionalidad."
   }
 }

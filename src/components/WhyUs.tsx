@@ -50,7 +50,7 @@ const WhyUs = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="px-6 lg:px-24 py-20 bg-[#FDFBF8] text-[#0F1C2E]"
+      className="px-6 lg:px-24 py-24 bg-white text-[#0F1C2E]"
       aria-label={t.title}
     >
       <div className="max-w-7xl mx-auto text-center">
@@ -58,14 +58,14 @@ const WhyUs = () => {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl lg:text-5xl font-serif font-semibold text-[#D4A75D] tracking-tight drop-shadow-md"
+          className="text-4xl lg:text-5xl font-serif font-semibold text-[#0F1C2E] tracking-tight drop-shadow-md"
         >
           {t.title}
         </motion.h2>
 
         <div className="w-14 h-1 bg-[#D4A75D] mx-auto my-6 rounded" />
 
-        <p className="text-base lg:text-lg text-gray-700 max-w-3xl mx-auto mb-14 leading-relaxed">
+        <p className="text-base lg:text-lg text-gray/70 max-w-3xl mx-auto mb-14 leading-relaxed">
           {t.subtitle}
         </p>
 
@@ -78,13 +78,13 @@ const WhyUs = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow hover:shadow-md transition flex flex-col items-center text-center space-y-4"
+                className="bg-white/5 border border-white/10 rounded-xl p-6 shadow flex flex-col items-center text-center space-y-4 hover:shadow-md transition"
               >
-                <div className="bg-[#D4A75D]/20 p-3 rounded-full text-[#D4A75D]">
+                <div className="bg-[#D4A75D]/30 p-3 rounded-full text-[#D4A75D]">
                   <Icon size={28} />
                 </div>
-                <h3 className="font-serif text-lg font-semibold">{r.title}</h3>
-                <p className="text-sm text-gray-700 leading-normal">{r.description}</p>
+                <h3 className="font-serif text-lg font-semibold text-[#0F1C2E]">{r.title}</h3>
+                <p className="text-sm text-grey/80 leading-normal">{r.description}</p>
               </motion.div>
             );
           })}

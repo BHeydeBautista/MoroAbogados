@@ -1,4 +1,5 @@
 import HeroCarousel from "@/components/hero/HeroCarousel";
+import PracticeAreas from "@/components/PracticeAreas";
 import WhyUs from "@/components/WhyUs";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <main>
       <HeroCarousel />
       <WhyUs />
+      <PracticeAreas />
     </main>
   );
 }

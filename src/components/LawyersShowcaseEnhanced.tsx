@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 const lawyers = [
   {
@@ -44,8 +45,9 @@ const LawyersShowcaseEnhanced = () => {
     const unsubscribe = scrollYProgress.onChange((value) => {
       if (value <= 0.3) setActiveIndex(-1);
       else if (value < 0.5) setActiveIndex(0);
-      else if (value < 0.7) setActiveIndex(1);
-      else if (value < 0.88) setActiveIndex(2);
+      else if (value < 0.65) setActiveIndex(1);
+      else if (value < 0.8) setActiveIndex(2);
+      else setActiveIndex(3); // última card correctamente manejada
     });
 
     return () => unsubscribe();
@@ -55,7 +57,7 @@ const LawyersShowcaseEnhanced = () => {
     const updateHeight = () => {
       if (ref.current) {
         const viewportHeight = window.innerHeight;
-        const optimalHeight = viewportHeight * 5.2;
+        const optimalHeight = viewportHeight * 6; // más espacio para 4 cards
         (ref.current as HTMLElement).style.height = `${optimalHeight}px`;
       }
     };
@@ -90,18 +92,17 @@ const LawyersShowcaseEnhanced = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5 }}
-                  className={`w-full max-w-5xl mx-auto ${
-                    activeIndex === lawyers.length - 1 ? "pb-40" : ""
-                  }`}
+                  className="w-full max-w-5xl mx-auto"
                 >
                   <div className="flex flex-col md:flex-row bg-gradient-to-r from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60">
                     <div className="md:w-2/5 lg:w-1/2">
-                      <img
+                      <Image
                         src={lawyers[activeIndex].image}
                         alt={lawyers[activeIndex].name}
                         className="w-full h-full object-cover object-center"
                       />
                     </div>
+                    
                     <div className="md:w-3/5 lg:w-1/2 p-6 md:p-10 flex flex-col justify-center">
                       <p className="text-lg md:text-xl font-light leading-relaxed text-white drop-shadow mb-6">
                         {lawyers[activeIndex].description}

@@ -43,8 +43,8 @@ const LawyersShowcaseEnhanced = () => {
     const unsubscribe = scrollYProgress.onChange((value) => {
       if (value <= 0.3) setActiveIndex(-1);
       else if (value < 0.5) setActiveIndex(0);
-      else if (value < 0.7) setActiveIndex(1);
-      else if (value < 0.95) setActiveIndex(2);
+      else if (value < 0.85) setActiveIndex(2);
+      else setActiveIndex(2);
     });
 
     return () => unsubscribe();
@@ -54,7 +54,7 @@ const LawyersShowcaseEnhanced = () => {
     const updateHeight = () => {
       if (ref.current) {
         const viewportHeight = window.innerHeight;
-        const optimalHeight = viewportHeight * 4.2;
+        const optimalHeight = viewportHeight * 4.5;
         (ref.current as HTMLElement).style.height = `${optimalHeight}px`;
       }
     };
@@ -64,25 +64,10 @@ const LawyersShowcaseEnhanced = () => {
     return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((value) => {
-      if (value > 0.95) {
-        document.body.style.overflow = "auto";
-      } else {
-        document.body.style.overflow = "hidden";
-      }
-    });
-
-    return () => {
-      document.body.style.overflow = "auto";
-      unsubscribe();
-    };
-  }, [scrollYProgress]);
-
   return (
     <section ref={ref} className="relative">
       <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-[#0F1C2E] to-black z-0" />
-      <div className="sticky top-0 left-0 w-full h-[100dvh] flex items-center justify-center z-10 overflow-hidden">
+      <div className="sticky top-0 left-0 w-full h-[100dvh] py-12 flex items-center justify-center z-10 overflow-hidden">
         <div className="flex flex-col items-center justify-center w-full h-full">
           <motion.h2
             style={{ scale: titleScale, opacity: titleOpacity }}
@@ -104,7 +89,7 @@ const LawyersShowcaseEnhanced = () => {
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5 }}
                   className={`w-full max-w-5xl mx-auto ${
-                    activeIndex === lawyers.length - 1 ? "pb-24" : ""
+                    activeIndex === lawyers.length - 1 ? "pb-40" : ""
                   }`}
                 >
                   <div className="flex flex-col md:flex-row bg-gradient-to-r from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60">

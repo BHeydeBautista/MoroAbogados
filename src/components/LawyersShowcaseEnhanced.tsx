@@ -51,7 +51,7 @@ const LawyersShowcaseEnhanced = () => {
       else if (value < 0.5) setActiveIndex(0);
       else if (value < 0.65) setActiveIndex(1);
       else if (value < 0.8) setActiveIndex(2);
-      else setActiveIndex(3); // última card correctamente manejada
+      else setActiveIndex(2); 
     });
 
     return () => unsubscribe();
@@ -100,16 +100,17 @@ const LawyersShowcaseEnhanced = () => {
                 >
                   <div className="flex flex-col md:flex-row bg-gradient-to-r from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60">
                     <div className="md:w-2/5 lg:w-1/2 w-full">
-                      <Image
-                        src={lawyers[activeIndex]?.image}
-                        alt={lawyers[activeIndex]?.name || "Lawyer photo"}
-                        layout="responsive"
-                        width={4}
-                        height={5}
-                        className="object-cover object-center rounded-lg"
-                        sizes="(min-width: 1024px) 50vw, (min-width: 768px) 40vw, 100vw"
-                        priority
-                      />
+                      {lawyers[activeIndex] && (
+                        <Image
+                          src={lawyers[activeIndex].image}
+                          alt={lawyers[activeIndex].name}
+                          width={600}
+                          height={800}
+                          className="w-full h-auto object-cover object-center rounded-lg"
+                          sizes="(min-width: 1024px) 50vw, (min-width: 768px) 40vw, 100vw"
+                          priority
+                        />
+                      )}
                     </div>
 
                     <div className="md:w-3/5 lg:w-1/2 p-6 md:p-10 flex flex-col justify-center">

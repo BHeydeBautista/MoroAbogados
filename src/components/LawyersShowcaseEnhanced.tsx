@@ -38,7 +38,11 @@ const LawyersShowcaseEnhanced = () => {
 
   const titleScale = useTransform(scrollYProgress, [0, 0.2], [1, 1.3]);
   const titleOpacity = useTransform(scrollYProgress, [0.2, 0.3], [1, 0]);
-  const cardsContainerOpacity = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]);
+  const cardsContainerOpacity = useTransform(
+    scrollYProgress,
+    [0.3, 0.4],
+    [0, 1]
+  );
   const cardsContainerY = useTransform(scrollYProgress, [0.3, 0.4], [50, 0]);
 
   useEffect(() => {
@@ -95,14 +99,19 @@ const LawyersShowcaseEnhanced = () => {
                   className="w-full max-w-5xl mx-auto"
                 >
                   <div className="flex flex-col md:flex-row bg-gradient-to-r from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60">
-                    <div className="md:w-2/5 lg:w-1/2">
+                    <div className="md:w-2/5 lg:w-1/2 w-full">
                       <Image
-                        src={lawyers[activeIndex].image}
-                        alt={lawyers[activeIndex].name}
-                        className="w-full h-full object-cover object-center"
+                        src={lawyers[activeIndex]?.image}
+                        alt={lawyers[activeIndex]?.name || "Lawyer photo"}
+                        layout="responsive"
+                        width={4}
+                        height={5}
+                        className="object-cover object-center rounded-lg"
+                        sizes="(min-width: 1024px) 50vw, (min-width: 768px) 40vw, 100vw"
+                        priority
                       />
                     </div>
-                    
+
                     <div className="md:w-3/5 lg:w-1/2 p-6 md:p-10 flex flex-col justify-center">
                       <p className="text-lg md:text-xl font-light leading-relaxed text-white drop-shadow mb-6">
                         {lawyers[activeIndex].description}

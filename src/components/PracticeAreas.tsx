@@ -34,7 +34,7 @@ const PracticeAreas = () => {
       icon: <FaBuilding size={24} className={iconStyle} />,
       title: t.societario,
       points: t.societario_points,
-      link: '/areas/societario',
+      link: '/areas/derecho-societario',
     },
     {
       icon: <FaBalanceScale size={24} className={iconStyle} />,

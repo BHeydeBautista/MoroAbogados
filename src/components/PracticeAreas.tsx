@@ -1,17 +1,23 @@
 'use client';
-import { motion } from 'framer-motion';
+
 import { useState } from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
 import es from '@/locales/es.json';
 import en from '@/locales/en.json';
 import {
-  FaBuilding, FaBalanceScale, FaBriefcase, FaLayerGroup,
-  FaUserShield, FaUsers, FaLandmark
+  FaBuilding,
+  FaBalanceScale,
+  FaBriefcase,
+  FaLayerGroup,
+  FaUserShield,
+  FaUsers,
+  FaLandmark,
 } from 'react-icons/fa';
-import Link from 'next/link';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-const iconStyle = "text-[#D4A75D] flex-shrink-0";
+const iconStyle = 'text-[#D4A75D] flex-shrink-0';
 
 const PracticeAreas = () => {
   const { language } = useLanguage();
@@ -27,22 +33,45 @@ const PracticeAreas = () => {
     {
       icon: <FaBuilding size={28} className={iconStyle} />,
       title: t.societario,
-      points: t.societario_points, // este debe ser un array en el JSON
-      link: "/areas/societario"
+      points: t.societario_points,
+      link: '/areas/societario',
     },
     {
       icon: <FaBalanceScale size={28} className={iconStyle} />,
       title: t.contencioso,
       points: t.contencioso_points,
-      link: "/areas/contencioso"
+      link: '/areas/contencioso',
     },
     {
       icon: <FaBriefcase size={28} className={iconStyle} />,
       title: t.mercantil,
       points: t.mercantil_points,
-      link: "/areas/mercantil"
+      link: '/areas/mercantil',
     },
-    // Agregá los demás igual...
+    {
+      icon: <FaLayerGroup size={28} className={iconStyle} />,
+      title: t.concursal,
+      points: t.concursal_points,
+      link: '/areas/concursal',
+    },
+    {
+      icon: <FaUserShield size={28} className={iconStyle} />,
+      title: t.civil,
+      points: t.civil_points,
+      link: '/areas/civil',
+    },
+    {
+      icon: <FaUsers size={28} className={iconStyle} />,
+      title: t.laboral,
+      points: t.laboral_points,
+      link: '/areas/laboral',
+    },
+    {
+      icon: <FaLandmark size={28} className={iconStyle} />,
+      title: t.administrativo,
+      points: t.administrativo_points,
+      link: '/areas/administrativo',
+    },
   ];
 
   return (
@@ -68,7 +97,7 @@ const PracticeAreas = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-xl p-6 shadow hover:shadow-md transition flex flex-col gap-4"
+              className="group bg-white/5 border border-white/10 rounded-xl p-6 shadow hover:shadow-md transition flex flex-col gap-4"
             >
               <div
                 onClick={() => toggleExpand(i)}
@@ -80,7 +109,11 @@ const PracticeAreas = () => {
                     {area.title}
                   </h3>
                   <div className="flex items-center text-white/60 text-sm">
-                    {expandedIndex === i ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                    {expandedIndex === i ? (
+                      <ChevronUp size={18} />
+                    ) : (
+                      <ChevronDown size={18} />
+                    )}
                     <span className="ml-2">Ver detalles</span>
                   </div>
                 </div>
@@ -88,13 +121,13 @@ const PracticeAreas = () => {
 
               {expandedIndex === i && (
                 <ul className="mt-2 ml-1 list-disc list-inside text-white/80 text-sm space-y-1">
-                  {area.points.map((point, idx) => (
+                  {area.points.map((point: string, idx: number) => (
                     <li key={idx}>{point}</li>
                   ))}
                 </ul>
               )}
 
-              <div className="mt-2">
+              <div className="mt-2 hidden group-hover:block transition">
                 <Link href={area.link}>
                   <span className="text-[#D4A75D] text-sm hover:underline">
                     Ver más sobre el área →

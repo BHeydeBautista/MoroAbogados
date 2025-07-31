@@ -50,19 +50,30 @@
     "contencioso": "Asuntos Contenciosos",
     "contencioso_desc": "Representación legal en conflictos judiciales y extrajudiciales.",
     "contencioso_points": [
-      "Litigios comerciales y civiles complejos.",
-      "Conflictos contractuales y societarios.",
-      "Procesos arbitrales nacionales e internacionales.",
-      "Recursos administrativos y judiciales."
+      "Mercantil y civil.",
+      "Responsabilidad por daños y perjuicios.",
+      "Contencioso-administrativo.",
+      "Derecho constitucional.",
+      "Mediación.",
+      "Arbitrajes.",
+      "Transacciones judiciales y extra-judiciales.",
+      "Representación de clientes locales y extranjeros ante los tribunales federales y locales (incluyendo la Corte Suprema de la Nación).",
+      "Ejecución de créditos hipotecarios y prendarios.",
+      "Ejecución de sentencias y laudos arbitrales extranjeros en la Argentina y en el exterior."
     ],
 
     "mercantil": "Mercantil y Empresarial General",
     "mercantil_desc": "Protección y gestión de marcas, patentes y derechos de autor.",
     "mercantil_points": [
-      "Contratos comerciales nacionales e internacionales.",
-      "Protección de propiedad intelectual.",
-      "Negociaciones de acuerdos comerciales.",
-      "Consultoría jurídica integral para empresas."
+      "Asesoramiento corporativo.",
+      "Negociaciones.",
+      "Contratos domésticos e internacionales.",
+      "Transferencia de fondo de comercio.",
+      "Comercio internacional: letras de cambio y créditos documentarios.",
+      "Contratos comerciales, incluyendo contratos de distribución y de licencia, de compraventa y de leasing.",
+      "Defensa de la competencia.",
+      "Defensa del consumidor y competencia desleal.",
+      "Responsabilidad por productos y protección al consumidor."
     ],
 
     "concursal": "Concursal",

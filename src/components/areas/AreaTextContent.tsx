@@ -1,7 +1,6 @@
-// components/areas/AreaTextContent.tsx
 export default function AreaTextContent() {
   return (
-    <div className="space-y-6 text-base leading-relaxed">
+    <article className="space-y-6 text-base leading-relaxed max-w-prose mx-auto prose prose-indigo">
       <p>
         Nuestros abogados en derecho societario asesoran en la constitución y organización de sociedades, resolución de conflictos entre socios y procesos de reorganización empresaria.
       </p>
@@ -20,6 +19,6 @@ export default function AreaTextContent() {
         <li>Resolución de conflictos societarios.</li>
         <li>Asistencia en inversiones extranjeras.</li>
       </ul>
-    </div>
+    </article>
   );
 }

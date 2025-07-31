@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import AreaHeader from "@/components/areas/AreaHeader";
 import AreaTabs from "@/components/areas/AreaTabs";
@@ -12,20 +12,19 @@ export default function DerechoSocietarioPage() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
-    <div className="bg-gray-50 text-neutral-900 min-h-screen">
+    <main className="bg-gray-50 text-neutral-900 min-h-screen pt-20">
+      {/* Pasamos activeTab y onTabChange para controlar */}
+      <AreaTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
+
       <AreaHeader title="Derecho Societario" />
-      <AreaTabs tabs={tabs} defaultActiveTab={activeTab} />
+
       <div className="max-w-7xl mx-auto px-6 py-10">
         <AreaQuote />
-        {/* Mostrar contenido condicional */}
         {activeTab === "Información General" && (
-          <AreaLayout
-            left={<AreaTextContent />}
-            right={<AreaContacts />}
-          />
+          <AreaLayout left={<AreaTextContent />} right={<AreaContacts />} />
         )}
         {activeTab === "Contactos" && (
-          <div className="text-center text-lg py-12">Sección Contactos próximamente...</div>
+          <AreaContacts />
         )}
         {activeTab === "Reconocimientos" && (
           <div className="text-center text-lg py-12">Sección Reconocimientos próximamente...</div>
@@ -34,7 +33,6 @@ export default function DerechoSocietarioPage() {
           <div className="text-center text-lg py-12">Sección Contenido próximamente...</div>
         )}
       </div>
-    </div>
+    </main>
   );
 }
-

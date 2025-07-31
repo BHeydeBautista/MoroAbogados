@@ -1,7 +1,6 @@
-// components/areas/AreaContent.tsx
 export default function AreaContent() {
   return (
-    <div className="space-y-8 text-base leading-relaxed">
+    <section className="space-y-8 text-base leading-relaxed max-w-prose mx-auto prose prose-indigo">
       <section>
         <h2 className="text-2xl font-semibold mb-2">Servicios destacados</h2>
         <ul className="list-disc list-inside space-y-1">
@@ -26,6 +25,6 @@ export default function AreaContent() {
           normativa vigente y las necesidades del cliente.
         </p>
       </section>
-    </div>
+    </section>
   );
 }

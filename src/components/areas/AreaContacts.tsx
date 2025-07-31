@@ -1,4 +1,3 @@
-// components/areas/AreaContacts.tsx
 const contacts = [
   {
     name: "Santiago Carregal",
@@ -24,12 +23,19 @@ const contacts = [
 
 export default function AreaContacts() {
   return (
-    <div>
-      <h2 className="text-xl font-semibold mb-4">Contactos</h2>
-      <ul className="space-y-4">
+    <section>
+      <h2 className="text-xl font-semibold mb-6">Contactos</h2>
+      <ul className="space-y-6">
         {contacts.map(({ name, role, image }) => (
-          <li key={name} className="flex items-center space-x-4">
-            <img src={image} alt={name} className="w-16 h-16 object-cover rounded" />
+          <li key={name} className="flex items-center space-x-5">
+            <img
+              src={image}
+              alt={`${name} - ${role}`}
+              className="w-16 h-16 object-cover rounded-full"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+            />
             <div>
               <p className="font-semibold">{name}</p>
               <p className="text-sm text-gray-600">{role}</p>
@@ -37,6 +43,6 @@ export default function AreaContacts() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

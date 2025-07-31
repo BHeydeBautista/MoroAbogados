@@ -1,6 +1,12 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import { useLanguage } from '@/context/LanguageContext';
 import es from '@/locales/es.json';
 import en from '@/locales/en.json';
@@ -49,11 +55,24 @@ const PracticeAreas = () => {
         </h2>
         <div className="w-14 h-1 bg-[#D4A75D] mx-auto mb-16 rounded" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 group relative">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={30}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          navigation
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+        >
           {areas.map((area, i) => (
-            <AreaCard key={i} {...area} index={i} />
+            <SwiperSlide key={i}>
+              <AreaCard {...area} index={i} />
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </div>
     </motion.section>
   );

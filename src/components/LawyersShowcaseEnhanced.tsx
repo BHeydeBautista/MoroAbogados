@@ -2,9 +2,11 @@
 import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 const lawyers = [
   {
+    slug: "dr-carlos-moro",
     name: "Dr. Carlos Moro",
     title: "Managing Partner",
     description:
@@ -12,6 +14,7 @@ const lawyers = [
     image: "/img/lawyer1.jpg",
   },
   {
+    slug: "dr-emilio-f-moro",
     name: "Dr. Emilio F. Moro",
     title: "Socio Director",
     description:
@@ -19,7 +22,8 @@ const lawyers = [
     image: "/img/lawyer1.jpg",
   },
   {
-    name: "Dra. ",
+    slug: "dra-nombre-apellido",
+    name: "Dra. Nombre Apellido",
     title: "Socia Principal",
     description:
       "Especializada en derecho corporativo con enfoque en nuevas tecnologías y protección de datos",
@@ -51,7 +55,7 @@ const LawyersShowcaseEnhanced = () => {
       else if (value < 0.5) setActiveIndex(0);
       else if (value < 0.65) setActiveIndex(1);
       else if (value < 0.8) setActiveIndex(2);
-      else setActiveIndex(2); 
+      else setActiveIndex(2);
     });
 
     return () => unsubscribe();
@@ -124,15 +128,12 @@ const LawyersShowcaseEnhanced = () => {
                         {lawyers[activeIndex].title}
                       </p>
                       <div className="mt-6">
-                        <a
-                          href={`/lawyers/${lawyers[activeIndex].name
-                            .toLowerCase()
-                            .replace(/\s+/g, "-")
-                            .replace(/\./g, "")}`}
+                        <Link
+                          href={`/abogados/${lawyers[activeIndex].slug}`}
                           className="inline-block px-8 py-3 border border-[#D4A75D] text-sm rounded-md hover:bg-[#D4A75D] hover:text-black transition duration-300"
                         >
                           Ver más
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>

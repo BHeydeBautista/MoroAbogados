@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
@@ -15,19 +14,13 @@ import {
   FaUsers,
   FaLandmark,
 } from 'react-icons/fa';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const iconStyle = 'text-[#D4A75D] flex-shrink-0';
 
 const PracticeAreas = () => {
   const { language } = useLanguage();
   const t = language === 'es' ? es.areas : en.areas;
-
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
 
   const areas = [
     {
@@ -97,37 +90,37 @@ const PracticeAreas = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group bg-white/5 border border-white/10 rounded-xl p-6 shadow hover:shadow-md transition flex flex-col gap-4"
+              className="group bg-white/5 border border-white/10 rounded-xl p-6 shadow hover:shadow-md transition flex flex-col gap-4 relative"
             >
-              <div
-                onClick={() => toggleExpand(i)}
-                className="flex gap-4 cursor-pointer items-start"
-              >
+              <div className="flex gap-4 items-start">
                 <div className="pt-1">{area.icon}</div>
                 <div className="flex-1">
                   <h3 className="text-[#D4A75D] font-serif font-semibold text-lg mb-1">
                     {area.title}
                   </h3>
-                  <div className="flex items-center text-white/60 text-sm">
-                    {expandedIndex === i ? (
-                      <ChevronUp size={18} />
-                    ) : (
-                      <ChevronDown size={18} />
-                    )}
+
+                  <div className="flex items-center text-white/60 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <ChevronDown size={18} />
                     <span className="ml-2">Ver detalles</span>
                   </div>
                 </div>
               </div>
 
-              {expandedIndex === i && (
-                <ul className="mt-2 ml-1 list-disc list-inside text-white/80 text-sm space-y-1">
+              {/* Contenedor con overflow aislado */}
+              <div className="relative overflow-hidden h-0 group-hover:h-auto transition-all duration-500">
+                <motion.ul
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-2 ml-1 list-disc list-inside text-white/80 text-sm space-y-1"
+                >
                   {area.points.map((point: string, idx: number) => (
                     <li key={idx}>{point}</li>
                   ))}
-                </ul>
-              )}
+                </motion.ul>
+              </div>
 
-              <div className="mt-2 hidden group-hover:block transition">
+              <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <Link href={area.link}>
                   <span className="text-[#D4A75D] text-sm hover:underline">
                     Ver más sobre el área →

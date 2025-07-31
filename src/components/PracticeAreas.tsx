@@ -1,5 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import es from '@/locales/es.json';
 import en from '@/locales/en.json';
@@ -7,6 +8,8 @@ import {
   FaBuilding, FaBalanceScale, FaBriefcase, FaLayerGroup,
   FaUserShield, FaUsers, FaLandmark
 } from 'react-icons/fa';
+import Link from 'next/link';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const iconStyle = "text-[#D4A75D] flex-shrink-0";
 
@@ -14,14 +17,32 @@ const PracticeAreas = () => {
   const { language } = useLanguage();
   const t = language === 'es' ? es.areas : en.areas;
 
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   const areas = [
-    { icon: <FaBuilding size={28} className={iconStyle} />, title: t.societario, description: t.societario_desc },
-    { icon: <FaBalanceScale size={28} className={iconStyle} />, title: t.contencioso, description: t.contencioso_desc },
-    { icon: <FaBriefcase size={28} className={iconStyle} />, title: t.mercantil, description: t.mercantil_desc },
-    { icon: <FaLayerGroup size={28} className={iconStyle} />, title: t.concursal, description: t.concursal_desc },
-    { icon: <FaUserShield size={28} className={iconStyle} />, title: t.civil, description: t.civil_desc },
-    { icon: <FaUsers size={28} className={iconStyle} />, title: t.laboral, description: t.laboral_desc },
-    { icon: <FaLandmark size={28} className={iconStyle} />, title: t.administrativo, description: t.administrativo_desc },
+    {
+      icon: <FaBuilding size={28} className={iconStyle} />,
+      title: t.societario,
+      points: t.societario_points, // este debe ser un array en el JSON
+      link: "/areas/societario"
+    },
+    {
+      icon: <FaBalanceScale size={28} className={iconStyle} />,
+      title: t.contencioso,
+      points: t.contencioso_points,
+      link: "/areas/contencioso"
+    },
+    {
+      icon: <FaBriefcase size={28} className={iconStyle} />,
+      title: t.mercantil,
+      points: t.mercantil_points,
+      link: "/areas/mercantil"
+    },
+    // Agregá los demás igual...
   ];
 
   return (
@@ -47,16 +68,38 @@ const PracticeAreas = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-xl p-8 shadow hover:shadow-md transition flex gap-4"
+              className="bg-white/5 border border-white/10 rounded-xl p-6 shadow hover:shadow-md transition flex flex-col gap-4"
             >
-              <div className="pt-1">{area.icon}</div>
-              <div>
-                <h3 className="text-[#D4A75D] font-serif font-semibold text-lg mb-2">
-                  {area.title}
-                </h3>
-                <p className="text-sm text-white/80 leading-relaxed">
-                  {area.description}
-                </p>
+              <div
+                onClick={() => toggleExpand(i)}
+                className="flex gap-4 cursor-pointer items-start"
+              >
+                <div className="pt-1">{area.icon}</div>
+                <div className="flex-1">
+                  <h3 className="text-[#D4A75D] font-serif font-semibold text-lg mb-1">
+                    {area.title}
+                  </h3>
+                  <div className="flex items-center text-white/60 text-sm">
+                    {expandedIndex === i ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                    <span className="ml-2">Ver detalles</span>
+                  </div>
+                </div>
+              </div>
+
+              {expandedIndex === i && (
+                <ul className="mt-2 ml-1 list-disc list-inside text-white/80 text-sm space-y-1">
+                  {area.points.map((point, idx) => (
+                    <li key={idx}>{point}</li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="mt-2">
+                <Link href={area.link}>
+                  <span className="text-[#D4A75D] text-sm hover:underline">
+                    Ver más sobre el área →
+                  </span>
+                </Link>
               </div>
             </motion.div>
           ))}

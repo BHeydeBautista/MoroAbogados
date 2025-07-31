@@ -18,10 +18,9 @@ const AreaCard = ({ icon, title, points, link, index }: Props) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="group/card bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg transition-all duration-500 relative z-10 hover:z-20 hover:scale-[1.02] hover:brightness-110 hover:border-[#D4A75D]/30"
+    className="group/card bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg transition-all duration-500 relative z-10 hover:z-20 hover:scale-[1.02] hover:brightness-110 hover:border-[#D4A75D]/30 min-h-[240px] flex flex-col justify-between"
     aria-label={`Área de práctica: ${title}`}
   >
-    {/* Fondo difuso */}
     <div className="absolute inset-0 pointer-events-none transition-all duration-500 z-0 group-hover:blur-sm group-hover:brightness-75 group-hover/card:blur-none group-hover/card:brightness-100" />
 
     <div className="flex gap-4 items-start relative z-10">
@@ -37,22 +36,11 @@ const AreaCard = ({ icon, title, points, link, index }: Props) => (
       </div>
     </div>
 
-    <motion.ul
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={{
-        visible: { transition: { staggerChildren: 0.1 } },
-        hidden: {},
-      }}
-      className="overflow-hidden h-0 group-hover/card:h-auto transition-all duration-500 relative z-10 mt-2 ml-1 list-disc list-inside text-white/80 text-sm space-y-1"
-    >
+    <ul className="overflow-hidden max-h-0 opacity-0 group-hover/card:max-h-40 group-hover/card:opacity-100 transition-all duration-500 mt-3 ml-1 list-disc list-inside text-white/80 text-sm space-y-1 relative z-10">
       {points.map((point, idx) => (
-        <motion.li key={idx} variants={{ visible: { opacity: 1 }, hidden: { opacity: 0 } }}>
-          {point}
-        </motion.li>
+        <li key={idx}>{point}</li>
       ))}
-    </motion.ul>
+    </ul>
 
     <div className="mt-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 relative z-10">
       <Link href={link}>

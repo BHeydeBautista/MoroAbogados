@@ -1,12 +1,13 @@
-import { useRouter } from "next/router";
+"use client";
+import { useParams } from "next/navigation";
 import { lawyerDetails } from "@/data/lawyerData";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 const LawyerProfilePage = () => {
-  const router = useRouter();
-  const { slug } = router.query;
+  const params = useParams();
+  const slug = params?.slug;
 
   if (!slug) return <div className="text-white">Cargando...</div>;
 
@@ -122,7 +123,7 @@ const LawyerProfilePage = () => {
         {/* Volver */}
         <div className="flex justify-center mt-20">
           <Link
-            href="/abogados"
+            href="/"
             className="px-8 py-4 bg-[#D4A75D] text-white rounded-full font-serif font-semibold hover:bg-[#b88c2c] shadow-lg transition text-lg"
           >
             Volver al listado

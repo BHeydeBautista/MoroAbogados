@@ -50,7 +50,7 @@ const Navbar = () => {
       <div className="w-full px-6 lg:px-24 flex items-center justify-between h-16 lg:h-20">
         <Link href="/" aria-label="Ir a inicio">
           <Image
-            src="/img/logo.png"
+            src="/img/moro-logo.png"
             alt="Logo Moro & Asociados"
             width={64}
             height={64}

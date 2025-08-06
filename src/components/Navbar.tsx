@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 
 import es from '@/locales/es.json';
@@ -12,6 +12,7 @@ import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
   const { language, toggleLanguage } = useLanguage();
@@ -22,6 +23,8 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const isDark = !scrolled && isHome;
   const bgStyle = isDark
@@ -59,7 +62,8 @@ const Navbar = () => {
           />
         </Link>
 
-        <nav className="flex space-x-8" aria-label="Secciones principales">
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex space-x-8" aria-label="Secciones principales">
           {navLinks.map(({ name, href }) => (
             <Link
               key={name}
@@ -71,7 +75,20 @@ const Navbar = () => {
           ))}
         </nav>
 
-        <div className="flex items-center space-x-6">
+        {/* Mobile menu icon */}
+        <div className="lg:hidden flex items-center space-x-4">
+          <FaSearch className={`text-lg ${textColor} cursor-pointer`} aria-label="Buscar" />
+          <button onClick={toggleMenu} aria-label="Toggle menu">
+            {menuOpen ? (
+              <FaTimes className={`text-xl ${textColor}`} />
+            ) : (
+              <FaBars className={`text-xl ${textColor}`} />
+            )}
+          </button>
+        </div>
+
+        {/* Desktop language switcher */}
+        <div className="hidden lg:flex items-center space-x-6">
           <FaSearch className={`text-lg ${textColor} cursor-pointer`} aria-label="Buscar" />
           <button
             onClick={toggleLanguage}
@@ -82,6 +99,32 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+
+      {/* Mobile nav menu */}
+      {menuOpen && (
+        <div className={`lg:hidden flex flex-col items-center gap-4 py-4 ${bgStyle}`}>
+          {navLinks.map(({ name, href }) => (
+            <Link
+              key={name}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              className={`text-lg font-medium ${textColor} ${hoverColor} transition`}
+            >
+              {name}
+            </Link>
+          ))}
+          <button
+            onClick={() => {
+              toggleLanguage();
+              setMenuOpen(false);
+            }}
+            className={`text-lg font-medium ${textColor} ${hoverColor} transition`}
+            aria-label="Cambiar idioma"
+          >
+            {t.language} <span className="text-gray-400">{language === 'es' ? '| EN' : '| ES'}</span>
+          </button>
+        </div>
+      )}
     </motion.nav>
   );
 };

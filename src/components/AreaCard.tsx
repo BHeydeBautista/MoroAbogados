@@ -26,23 +26,32 @@ const AreaCard = ({ icon, title, points, link, index }: Props) => (
     <div className="flex gap-4 items-start relative z-10">
       <div className="pt-1">{icon}</div>
       <div className="flex-1">
-        <h3 className="text-[#D4A75D] font-serif font-semibold text-lg mb-1">
-          {title}
-        </h3>
-        <div className="flex items-center text-white/60 text-sm opacity-0 group-hover/card:opacity-100 transition-opacity duration-300">
+        <h3 className="text-[#D4A75D] font-serif font-semibold text-lg mb-1">{title}</h3>
+        <div className="flex items-center text-white/60 text-sm 
+          opacity-100 md:opacity-0 md:group-hover/card:opacity-100 
+          transition-opacity duration-300"
+        >
           <ChevronDown size={18} />
           <span className="ml-2 uppercase tracking-wider">Ver detalles</span>
         </div>
       </div>
     </div>
 
-    <ul className="overflow-hidden max-h-0 opacity-0 group-hover/card:max-h-40 group-hover/card:opacity-100 transition-all duration-500 mt-3 ml-1 list-disc list-inside text-white/80 text-sm space-y-1 relative z-10">
+    <ul
+      className="mt-3 ml-1 list-disc list-inside text-white/80 text-sm space-y-1 relative z-10 
+        max-h-full opacity-100 transition-all duration-500
+        md:max-h-0 md:opacity-0 md:group-hover/card:max-h-40 md:group-hover/card:opacity-100"
+    >
       {points.map((point, idx) => (
         <li key={idx}>{point}</li>
       ))}
     </ul>
 
-    <div className="mt-2 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 relative z-10">
+    <div
+      className="mt-2 relative z-10 
+        opacity-100 transition-opacity duration-300
+        md:opacity-0 md:group-hover/card:opacity-100"
+    >
       <Link href={link}>
         <span className="text-[#D4A75D] text-sm hover:underline tracking-wide">
           Ver más sobre el área →

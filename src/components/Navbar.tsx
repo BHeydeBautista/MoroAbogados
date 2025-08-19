@@ -6,8 +6,8 @@ import { motion } from 'framer-motion';
 import { FaSearch, FaBars, FaTimes } from 'react-icons/fa';
 import { usePathname } from 'next/navigation';
 
-import es from '@/locales/es.json';
-import en from '@/locales/en.json';
+import es from '@/locales/es/navbar.json';
+import en from '@/locales/en/navbar.json';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {

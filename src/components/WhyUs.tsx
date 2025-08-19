@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
-import es from '@/locales/es.json';
-import en from '@/locales/en.json';
+import es from '@/locales/es/whyus.json';
+import en from '@/locales/en/whyus.json';
 import { useLanguage } from '@/context/LanguageContext';
 import { FaGavel, FaUserTie, FaGlobeAmericas, FaHandshake } from 'react-icons/fa';
 

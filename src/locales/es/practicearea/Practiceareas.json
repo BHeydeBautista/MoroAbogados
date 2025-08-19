@@ -1,0 +1,85 @@
+{
+    "areas": {
+    "title": "Áreas de Práctica",
+
+    "societario": "Derecho Societario",
+    "societario_desc": "Asesoramiento integral a empresas nacionales e internacionales.",
+    "societario_points": [
+      "Inscripciones y registros societarios.",
+      "Constitución de sociedades y sucursales.",
+      "Representación de sociedades.",
+      "Convenios de accionistas.",
+      "Reorganizaciones societarias.",
+      "Fusiones y adquisiciones.",
+      "Inversiones extranjeras.",
+      "Planeamiento de contratos y 'joint ventures'.",
+      "Auditorías legales (due diligence).",
+      "Resolución de conflictos societarios."
+    ],
+
+    "contencioso": "Asuntos Contenciosos",
+    "contencioso_desc": "Representación legal en conflictos judiciales y extrajudiciales.",
+    "contencioso_points": [
+      "Mercantil y civil.",
+      "Responsabilidad por daños y perjuicios.",
+      "Contencioso-administrativo.",
+      "Derecho constitucional.",
+      "Mediación.",
+      "Arbitrajes.",
+      "Transacciones judiciales y extra-judiciales.",
+      "Representación de clientes locales y extranjeros ante los tribunales federales y locales (incluyendo la Corte Suprema de la Nación).",
+      "Ejecución de créditos hipotecarios y prendarios.",
+      "Ejecución de sentencias y laudos arbitrales extranjeros en la Argentina y en el exterior."
+    ],
+
+    "mercantil": "Mercantil y Empresarial General",
+    "mercantil_desc": "Protección y gestión de marcas, patentes y derechos de autor.",
+    "mercantil_points": [
+      "Asesoramiento corporativo.",
+      "Negociaciones.",
+      "Contratos domésticos e internacionales.",
+      "Transferencia de fondo de comercio.",
+      "Comercio internacional: letras de cambio y créditos documentarios.",
+      "Contratos comerciales, incluyendo contratos de distribución y de licencia, de compraventa y de leasing.",
+      "Defensa de la competencia.",
+      "Defensa del consumidor y competencia desleal.",
+      "Responsabilidad por productos y protección al consumidor."
+    ],
+
+    "concursal": "Concursal",
+    "concursal_desc": "Gestión estratégica de situaciones de insolvencia y procesos concursales.",
+    "concursal_points": [
+      "Concursos preventivos y quiebras.",
+      "Representación de acreedores y deudores.",
+      "Reestructuración de pasivos empresariales.",
+      "Negociación de acuerdos preventivos extrajudiciales."
+    ],
+
+    "civil": "Civil",
+    "civil_desc": "Responsabilidad civil, daños, sucesiones y relaciones jurídicas privadas.",
+    "civil_points": [
+      "Contratos civiles.",
+      "Juicios por daños y perjuicios.",
+      "Sucesiones y particiones.",
+      "Relaciones de familia y bienes."
+    ],
+
+    "laboral": "Derecho Laboral de Empresas",
+    "laboral_desc": "Asesoramiento en relaciones laborales, conflictos sindicales y normativa vigente.",
+    "laboral_points": [
+      "Contratos laborales y convenios colectivos.",
+      "Despidos y conflictos individuales.",
+      "Negociación con sindicatos.",
+      "Prevención de conflictos y cumplimiento normativo."
+    ],
+
+    "administrativo": "Administrativo-Constitucional Económico",
+    "administrativo_desc": "Defensa ante organismos públicos, licitaciones, recursos y constitucionalidad.",
+    "administrativo_points": [
+      "Procedimientos administrativos y sancionatorios.",
+      "Participación en licitaciones públicas.",
+      "Reclamos por inconstitucionalidad de normas.",
+      "Asesoramiento en regulación estatal."
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+    "areas": {
+    "title": "Practice Areas",
+
+    "societario": "Corporate Law",
+    "societario_desc": "Comprehensive legal advice for national and international companies.",
+    "societario_points": [
+      "Corporate registrations and filings.",
+      "Company and branch formations.",
+      "Corporate representation.",
+      "Shareholders agreements.",
+      "Corporate reorganizations.",
+      "Mergers and acquisitions.",
+      "Foreign investments.",
+      "Planning of contracts and joint ventures.",
+      "Legal audits (due diligence).",
+      "Resolution of corporate disputes."
+    ],
+
+    "contencioso": "Litigation and Disputes",
+    "contencioso_desc": "Legal representation in judicial and extrajudicial disputes.",
+    "contencioso_points": [
+      "Complex commercial and civil litigation.",
+      "Contractual and corporate disputes.",
+      "National and international arbitration.",
+      "Administrative and judicial appeals."
+    ],
+
+    "mercantil": "Commercial and General Business Law",
+    "mercantil_desc": "Protection and management of trademarks, patents, and copyrights.",
+    "mercantil_points": [
+      "Domestic and international commercial contracts.",
+      "Intellectual property protection.",
+      "Negotiation of commercial agreements.",
+      "Comprehensive legal consulting for companies."
+    ],
+
+    "concursal": "Bankruptcy and Insolvency",
+    "concursal_desc": "Strategic management of insolvency situations and bankruptcy proceedings.",
+    "concursal_points": [
+      "Preventive bankruptcy and liquidation.",
+      "Representation of creditors and debtors.",
+      "Corporate debt restructuring.",
+      "Negotiation of out-of-court settlements."
+    ],
+
+    "civil": "Civil Law",
+    "civil_desc": "Civil liability, damages, inheritance, and private legal matters.",
+    "civil_points": [
+      "Civil contracts.",
+      "Lawsuits for damages.",
+      "Inheritance and asset distribution.",
+      "Family and property matters."
+    ],
+
+    "laboral": "Employment Law for Companies",
+    "laboral_desc": "Advice on labor relations, union conflicts, and regulatory compliance.",
+    "laboral_points": [
+      "Employment contracts and collective agreements.",
+      "Dismissals and individual conflicts.",
+      "Union negotiations.",
+      "Conflict prevention and legal compliance."
+    ],
+
+    "administrativo": "Administrative-Constitutional Economic Law",
+    "administrativo_desc": "Defense before public authorities, tenders, appeals, and constitutional claims.",
+    "administrativo_points": [
+      "Administrative and sanctioning proceedings.",
+      "Participation in public bids.",
+      "Challenges to unconstitutional regulations.",
+      "Advice on government regulation."
+    ]
+  }
+}

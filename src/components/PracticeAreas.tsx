@@ -8,8 +8,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { useLanguage } from '@/context/LanguageContext';
-import es from '@/locales/es.json';
-import en from '@/locales/en.json';
+import es from '@/locales/es/practicearea/Practiceareas.json';
+import en from '@/locales/en/practicearea/Practiceareas.json';
 
 import {
   FaBuilding,

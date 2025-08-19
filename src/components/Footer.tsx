@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa6';
 import { motion } from 'framer-motion';
 
-import es from '@/locales/es.json';
-import en from '@/locales/en.json';
+import es from '@/locales/es/footer.json';
+import en from '@/locales/en/footer.json';
 import { useLanguage } from '@/context/LanguageContext';
 
 const Footer = () => {

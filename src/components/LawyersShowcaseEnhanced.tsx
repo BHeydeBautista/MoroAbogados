@@ -8,7 +8,7 @@ const lawyers = [
   {
     slug: "dr-carlos-moro",
     name: "Dr. Carlos Moro",
-    title: "Managing Partner",
+    title: "",
     description:
       "El secreto de nuestra firma radica en abordar extraordinariamente bien los puntos clave del asesoramiento jurídico",
     image: "/img/lawyer1.jpg",
@@ -16,17 +16,9 @@ const lawyers = [
   {
     slug: "dr-emilio-f-moro",
     name: "Dr. Emilio F. Moro",
-    title: "Socio Director",
+    title: "",
     description:
       "Negocios en la Era Digital: los Abogados de la City quieren parte del León",
-    image: "/img/lawyer1.jpg",
-  },
-  {
-    slug: "dra-nombre-apellido",
-    name: "Dra. Nombre Apellido",
-    title: "Socia Principal",
-    description:
-      "Especializada en derecho corporativo con enfoque en nuevas tecnologías y protección de datos",
     image: "/img/lawyer1.jpg",
   },
 ];
@@ -53,9 +45,8 @@ const LawyersShowcaseEnhanced = () => {
     const unsubscribe = scrollYProgress.onChange((value) => {
       if (value <= 0.3) setActiveIndex(-1);
       else if (value < 0.5) setActiveIndex(0);
-      else if (value < 0.65) setActiveIndex(1);
-      else if (value < 0.8) setActiveIndex(2);
-      else setActiveIndex(2);
+      else if (value < 0.8) setActiveIndex(1);
+      else setActiveIndex(1); 
     });
 
     return () => unsubscribe();
@@ -65,7 +56,7 @@ const LawyersShowcaseEnhanced = () => {
     const updateHeight = () => {
       if (ref.current) {
         const viewportHeight = window.innerHeight;
-        const optimalHeight = viewportHeight * 6; // más espacio para 4 cards
+        const optimalHeight = viewportHeight * 6;
         (ref.current as HTMLElement).style.height = `${optimalHeight}px`;
       }
     };
@@ -96,46 +87,41 @@ const LawyersShowcaseEnhanced = () => {
               {activeIndex >= 0 && (
                 <motion.div
                   key={activeIndex}
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
                   transition={{ duration: 0.5 }}
-                  className="w-full max-w-5xl mx-auto"
+                  className="w-full max-w-xl mx-auto"
                 >
-                  <div className="flex flex-col md:flex-row bg-gradient-to-r from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60">
-                    <div className="md:w-2/5 lg:w-1/2 w-full">
-                      {lawyers[activeIndex] && (
-                        <Image
-                          src={lawyers[activeIndex].image}
-                          alt={lawyers[activeIndex].name}
-                          width={600}
-                          height={800}
-                          className="w-full h-auto object-cover object-center rounded-lg"
-                          sizes="(min-width: 1024px) 50vw, (min-width: 768px) 40vw, 100vw"
-                          priority
-                        />
-                      )}
+                  <div className="flex flex-col items-center text-center bg-gradient-to-b from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60 p-8">
+                    <div className="w-32 h-32 mb-6">
+                      <Image
+                        src={lawyers[activeIndex].image}
+                        alt={lawyers[activeIndex].name}
+                        width={128}
+                        height={128}
+                        className="w-32 h-32 rounded-full object-cover border-2 border-[#D4A75D]/70 shadow-md"
+                        priority
+                      />
                     </div>
 
-                    <div className="md:w-3/5 lg:w-1/2 p-6 md:p-10 flex flex-col justify-center">
-                      <p className="text-lg md:text-xl font-light leading-relaxed text-white drop-shadow mb-6">
-                        {lawyers[activeIndex].description}
-                      </p>
-                      <h3 className="text-lg md:text-2xl font-bold text-[#D4A75D]">
-                        {lawyers[activeIndex].name}
-                      </h3>
-                      <p className="text-sm md:text-base text-gray-300 mt-1">
-                        {lawyers[activeIndex].title}
-                      </p>
-                      <div className="mt-6">
-                        <Link
-                          href={`/abogados/${lawyers[activeIndex].slug}`}
-                          className="inline-block px-8 py-3 border border-[#D4A75D] text-sm rounded-md hover:bg-[#D4A75D] hover:text-black transition duration-300"
-                        >
-                          Ver más
-                        </Link>
-                      </div>
-                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-[#D4A75D]">
+                      {lawyers[activeIndex].name}
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-400 mb-4">
+                      {lawyers[activeIndex].title}
+                    </p>
+
+                    <p className="text-base md:text-lg font-light leading-relaxed text-white/90 mb-6">
+                      {lawyers[activeIndex].description}
+                    </p>
+
+                    <Link
+                      href={`/abogados/${lawyers[activeIndex].slug}`}
+                      className="inline-block px-6 py-2 border border-[#D4A75D] text-sm rounded-md hover:bg-[#D4A75D] hover:text-black transition duration-300"
+                    >
+                      Ver más
+                    </Link>
                   </div>
                 </motion.div>
               )}

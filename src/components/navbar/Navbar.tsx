@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import es from '@/locales/es/navbar.json';
 import en from '@/locales/en/navbar.json';
 import { useLanguage } from '@/context/LanguageContext';
-import { LanguageDropdown } from './LanguageDropdown'; // nuevo componente
+import { LanguageDropdown } from './LanguageDropdown'; 
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -36,10 +36,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: t.nosotros, href: '#Profile' },
-    { name: t.profesionales, href: '#profesionales' },
-    { name: t.areas, href: '#areas' },
-    { name: t.contenido, href: '#contenido' },
-    { name: t.carrera, href: '#carrera' },
+    { name: t.profesionales, href: '#Profesionales' },
+    { name: t.clientes, href: '#Clientes' },
+    { name: t.areas, href: '#PracticeAreas' },
+    { name: t.contenido, href: '#InstagramFeed' },
     { name: t.contacto, href: '/contact' },
   ];
 

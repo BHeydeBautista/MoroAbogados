@@ -82,6 +82,7 @@ const PracticeAreas = () => {
       transition={{ duration: 0.8 }}
       className="bg-[#0B1422] text-white px-6 lg:px-24 py-24"
       aria-label={t.title}
+      id="PracticeAreas"
     >
       <div className="max-w-7xl mx-auto">
         <p className="uppercase tracking-wider text-white/50 text-sm text-center mb-2">

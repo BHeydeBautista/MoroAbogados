@@ -96,10 +96,11 @@ const PracticeAreas = () => {
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
-          loop={true} // 🔁 Para que vuelva al inicio automáticamente
+          loop={true} 
           autoplay={{
-            delay: 5000, // 🕒 Tiempo entre slides
-            disableOnInteraction: false, // no se detiene al hacer click
+            delay: 7000,
+            disableOnInteraction: false, 
+            pauseOnMouseEnter: true,
           }}
           pagination={{ clickable: true }}
           navigation

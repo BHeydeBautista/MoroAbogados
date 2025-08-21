@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 interface Props {
   icon: React.ReactNode;
@@ -26,8 +26,11 @@ const AreaCard = ({ icon, title, points, link, index }: Props) => (
     <div className="flex gap-4 items-start relative z-10">
       <div className="pt-1">{icon}</div>
       <div className="flex-1">
-        <h3 className="text-[#D4A75D] font-serif font-semibold text-lg mb-1">{title}</h3>
-        <div className="flex items-center text-white/60 text-sm 
+        <h3 className="text-[#D4A75D] font-serif font-semibold text-lg mb-1">
+          {title}
+        </h3>
+        <div
+          className="flex items-center text-white/60 text-sm 
           opacity-100 md:opacity-0 md:group-hover/card:opacity-100 
           transition-opacity duration-300"
         >
@@ -38,9 +41,7 @@ const AreaCard = ({ icon, title, points, link, index }: Props) => (
     </div>
 
     <ul
-      className="mt-3 ml-1 list-disc list-inside text-white/80 text-sm space-y-1 relative z-10 
-        max-h-full opacity-100 transition-all duration-500
-        md:max-h-0 md:opacity-0 md:group-hover/card:max-h-40 md:group-hover/card:opacity-100"
+      className="mt-3 ml-1 list-disc list-inside text-white/80 text-sm space-y-1 relative z-10 overflow-hiddenmax-h-full opacity-100 transition-all duration-500 md:max-h-0 md:opacity-0 md:group-hover/card:max-h-60 md:group-hover/card:opacity-100"
     >
       {points.map((point, idx) => (
         <li key={idx}>{point}</li>

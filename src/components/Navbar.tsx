@@ -34,7 +34,7 @@ const Navbar = () => {
   const hoverColor = 'hover:text-gray-400';
 
   const navLinks = [
-    { name: t.nosotros, href: '#nosotros' },
+    { name: t.nosotros, href: '#Profile' },
     { name: t.profesionales, href: '#profesionales' },
     { name: t.areas, href: '#areas' },
     { name: t.contenido, href: '#contenido' },

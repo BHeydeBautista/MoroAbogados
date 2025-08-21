@@ -22,7 +22,7 @@ const mockedPosts = [
 
 const InstagramFeed = () => {
   return (
-    <section className="bg-white py-24 px-6 lg:px-24 text-black">
+    <section className="bg-white py-24 px-6 lg:px-24 text-black" id="InstagramFeed">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-4xl font-serif font-semibold text-[#0F1C2E] mb-4">
           Últimas publicaciones

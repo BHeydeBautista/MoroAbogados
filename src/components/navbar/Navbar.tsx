@@ -9,13 +9,14 @@ import { usePathname } from 'next/navigation';
 import es from '@/locales/es/navbar.json';
 import en from '@/locales/en/navbar.json';
 import { useLanguage } from '@/context/LanguageContext';
+import { LanguageDropdown } from './LanguageDropdown'; 
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
-  const { language, toggleLanguage } = useLanguage();
+  const { language } = useLanguage();
   const t = language === 'es' ? es.navbar : en.navbar;
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen(prev => !prev);
 
   const isDark = !scrolled && isHome;
   const bgStyle = isDark
@@ -35,11 +36,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: t.nosotros, href: '#Profile' },
-    { name: t.profesionales, href: '#profesionales' },
-    { name: t.areas, href: '#areas' },
-    { name: t.contenido, href: '#contenido' },
-    { name: t.carrera, href: '#carrera' },
-    { name: t.contacto, href: '/contact' },
+    { name: t.profesionales, href: '#Profesionales' },
+    { name: t.clientes, href: '/building' },
+    { name: t.areas, href: '#PracticeAreas' },
+    { name: t.contenido, href: '#InstagramFeed' },
+    { name: t.contacto, href: '/building' },
   ];
 
   return (
@@ -51,6 +52,7 @@ const Navbar = () => {
       aria-label="Main navigation"
     >
       <div className="w-full px-6 lg:px-24 flex items-center justify-between h-16 lg:h-20">
+        {/* Logo */}
         <Link href="/" aria-label="Ir a inicio">
           <Image
             src="/img/moro-logo.png"
@@ -87,16 +89,10 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Desktop language switcher */}
+        {/* Desktop language dropdown */}
         <div className="hidden lg:flex items-center space-x-6">
           <FaSearch className={`text-lg ${textColor} cursor-pointer`} aria-label="Buscar" />
-          <button
-            onClick={toggleLanguage}
-            className={`text-lg ${textColor} font-medium ${hoverColor} transition`}
-            aria-label="Cambiar idioma"
-          >
-            {t.language} <span className="text-gray-400">{language === 'es' ? '| EN' : '| ES'}</span>
-          </button>
+          <LanguageDropdown textColor={textColor} hoverColor={hoverColor} isDark={isDark} />
         </div>
       </div>
 
@@ -113,16 +109,8 @@ const Navbar = () => {
               {name}
             </Link>
           ))}
-          <button
-            onClick={() => {
-              toggleLanguage();
-              setMenuOpen(false);
-            }}
-            className={`text-lg font-medium ${textColor} ${hoverColor} transition`}
-            aria-label="Cambiar idioma"
-          >
-            {t.language} <span className="text-gray-400">{language === 'es' ? '| EN' : '| ES'}</span>
-          </button>
+          {/* Dropdown simplificado para móvil */}
+          <LanguageDropdown textColor={textColor} hoverColor={hoverColor} isDark={isDark} />
         </div>
       )}
     </motion.nav>

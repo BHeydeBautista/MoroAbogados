@@ -67,7 +67,7 @@ const LawyersShowcaseEnhanced = () => {
   }, []);
 
   return (
-    <section ref={ref} className="relative">
+    <section ref={ref} className="relative" id="Profesionales">
       <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-[#0F1C2E] to-black z-0" />
       <div className="absolute bottom-0 w-full h-[25vh]" />
       <div className="sticky top-0 left-0 w-full h-[100dvh] py-12 flex items-center justify-center z-10 overflow-hidden">

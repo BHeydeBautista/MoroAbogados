@@ -35,6 +35,7 @@ const Profile = () => {
       transition={{ duration: 0.6 }}
       className="px-6 lg:px-24 py-24 bg-gray-50 text-[#0F1C2E]"
       aria-label={t.title}
+      id="Profile"
     >
       <div className="max-w-6xl mx-auto">
         <motion.h2

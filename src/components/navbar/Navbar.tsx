@@ -37,10 +37,10 @@ const Navbar = () => {
   const navLinks = [
     { name: t.nosotros, href: '#Profile' },
     { name: t.profesionales, href: '#Profesionales' },
-    { name: t.clientes, href: '#Clientes' },
+    { name: t.clientes, href: '/building' },
     { name: t.areas, href: '#PracticeAreas' },
     { name: t.contenido, href: '#InstagramFeed' },
-    { name: t.contacto, href: '/contact' },
+    { name: t.contacto, href: '/building' },
   ];
 
   return (

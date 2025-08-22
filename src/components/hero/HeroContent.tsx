@@ -18,7 +18,7 @@ const HeroContent = () => (
         transition={{ duration: 1, delay: 1 }}
         className="text-base sm:text-lg md:text-xl mt-2 text-white/90 font-light drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] mb-8"
       >
-        Asociados.
+        texto complementario.
       </motion.p>
       <motion.a
         href="#WhyUS"

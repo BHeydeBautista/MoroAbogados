@@ -40,37 +40,37 @@ const PracticeAreas = () => {
       icon: <FaBalanceScale size={24} className={iconStyle} />,
       title: t.contencioso,
       points: t.contencioso_points,
-      link: '/areas/contencioso',
+      link: '/building',
     },
     {
       icon: <FaBriefcase size={24} className={iconStyle} />,
       title: t.mercantil,
       points: t.mercantil_points,
-      link: '/areas/mercantil',
+      link: '/building',
     },
     {
       icon: <FaLayerGroup size={24} className={iconStyle} />,
       title: t.concursal,
       points: t.concursal_points,
-      link: '/areas/concursal',
+      link: '/building',
     },
     {
       icon: <FaUserShield size={24} className={iconStyle} />,
       title: t.civil,
       points: t.civil_points,
-      link: '/areas/civil',
+      link: '/building',
     },
     {
       icon: <FaUsers size={24} className={iconStyle} />,
       title: t.laboral,
       points: t.laboral_points,
-      link: '/areas/laboral',
+      link: '/building',
     },
     {
       icon: <FaLandmark size={24} className={iconStyle} />,
       title: t.administrativo,
       points: t.administrativo_points,
-      link: '/areas/administrativo',
+      link: '/building',
     },
   ];
 

@@ -18,7 +18,7 @@ const lawyers = [
     name: "Dr. Emilio F. Moro",
     title: "",
     description:
-      "Negocios en la Era Digital: los Abogados de la City quieren parte del León",
+      "Biografía/frase",
     image: "/img/lawyer1.jpg",
   },
 ];

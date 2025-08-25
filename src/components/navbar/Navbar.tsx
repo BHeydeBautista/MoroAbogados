@@ -17,10 +17,8 @@ const Navbar = () => {
   const pathname = usePathname();
   const isHome = pathname === '/';
 
-  // usamos el context para cambiar idioma SIN navegar (evita 404)
   const { language, setLanguage } = useLanguage();
 
-  // elige el diccionario correcto (ES | EN | FR)
   const t =
     language === 'es'
       ? es.navbar
@@ -50,7 +48,7 @@ const Navbar = () => {
   const navLinkBase =
     `font-medium tracking-wide ${textColor} ${hoverColor} transition`;
 
-  // Tipografía un toque más grande
+
   const navLinkSize = 'text-[16px] lg:text-[18px]';
 
   const navLinks = [
@@ -62,7 +60,7 @@ const Navbar = () => {
     { name: t.contacto, href: '/building' },
   ];
 
-  // estilo para idioma activo
+
   const langClass = (lng: 'es' | 'en' | 'fr') =>
     `text-[15px] lg:text-[17px] font-semibold ${textColor} ${
       language === lng ? 'opacity-100 underline underline-offset-4' : 'opacity-70'
@@ -77,7 +75,7 @@ const Navbar = () => {
       aria-label="Main navigation"
     >
       <div className="w-full px-6 lg:px-24 flex items-center justify-between h-16 lg:h-20">
-        {/* Logo */}
+
         <Link href="/" aria-label="Ir a inicio">
           <Image
             src="/img/moro-logo.png"
@@ -89,7 +87,7 @@ const Navbar = () => {
           />
         </Link>
 
-        {/* Desktop nav */}
+
         <nav className="hidden lg:flex items-center space-x-8" aria-label="Secciones principales">
           {navLinks.map(({ name, href }) => (
             <Link
@@ -102,7 +100,7 @@ const Navbar = () => {
           ))}
         </nav>
 
-        {/* Mobile menu icon */}
+
         <div className="lg:hidden flex items-center space-x-4">
           <FaSearch className={`text-xl ${textColor} cursor-pointer`} aria-label="Buscar" />
           <button onClick={toggleMenu} aria-label="Toggle menu">
@@ -114,7 +112,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Desktop language simple switch (sin navegación) */}
+
         <div className="hidden lg:flex items-center space-x-6">
           <FaSearch className={`text-xl ${textColor} cursor-pointer`} aria-label="Buscar" />
           <div className="flex items-center gap-3">
@@ -133,7 +131,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile nav menu */}
+
       {menuOpen && (
         <div className={`lg:hidden flex flex-col items-center gap-5 py-5 ${bgStyle}`}>
           {navLinks.map(({ name, href }) => (
@@ -146,7 +144,7 @@ const Navbar = () => {
               {name}
             </Link>
           ))}
-          {/* Mobile language simple switch (sin navegación) */}
+
           <div className="flex items-center gap-3">
             <button type="button" onClick={() => switchLang('es')} className={langClass('es')}>
               ES

@@ -34,14 +34,14 @@ export default function ClientsSection() {
   );
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0b1c2c] to-[#112e45] text-white">
+    <section className="pt-32 pb-20 bg-gradient-to-b from-[#0b1c2c] to-[#112e45] text-white">
       <div className="container mx-auto px-6">
-        {/* Título */}
+        {/* Título con efecto dorado */}
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-4xl md:text-5xl font-extrabold text-center mb-4 tracking-tight"
+          className="text-4xl md:text-5xl font-extrabold text-center mb-4 bg-gradient-to-r from-[#D4A75D] to-[#D4A75D] bg-clip-text text-transparent"
         >
           Nuestros Clientes
         </motion.h2>
@@ -67,7 +67,7 @@ export default function ClientsSection() {
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
                 selectedCategory === cat
-                  ? "bg-white text-[#0b1c2c]"
+                  ? "bg-yellow-400 text-[#0b1c2c]"
                   : "bg-white/10 hover:bg-white/20"
               }`}
             >
@@ -92,7 +92,7 @@ export default function ClientsSection() {
                 onClick={() => setCurrentPage(page)}
                 className={`px-3 py-1 rounded text-sm ${
                   currentPage === page
-                    ? "bg-white text-[#0b1c2c]"
+                    ? "bg-yellow-400 text-[#0b1c2c]"
                     : "bg-white/10 hover:bg-white/20"
                 }`}
               >

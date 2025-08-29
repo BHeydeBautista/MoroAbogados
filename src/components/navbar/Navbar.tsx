@@ -47,19 +47,16 @@ const Navbar = () => {
 
   const navLinkBase =
     `font-medium tracking-wide ${textColor} ${hoverColor} transition`;
-
-
   const navLinkSize = 'text-[16px] lg:text-[18px]';
 
   const navLinks = [
-    { name: t.nosotros, href: '#Profile' },
-    { name: t.profesionales, href: '#Profesionales' },
-    { name: t.clientes, href: '/Clients' },
-    { name: t.areas, href: '#PracticeAreas' },
-    { name: t.contenido, href: '#InstagramFeed' },
+    { name: t.nosotros, href: '/#Profile' },
+    { name: t.profesionales, href: '/#Profesionales' },
+    { name: t.clientes, href: '/clients' },
+    { name: t.areas, href: '/#PracticeAreas' },
+    { name: t.contenido, href: '/#InstagramFeed' },
     { name: t.contacto, href: '/building' },
   ];
-
 
   const langClass = (lng: 'es' | 'en' | 'fr') =>
     `text-[15px] lg:text-[17px] font-semibold ${textColor} ${
@@ -76,17 +73,17 @@ const Navbar = () => {
     >
       <div className="w-full px-6 lg:px-24 flex items-center justify-between h-16 lg:h-20">
 
-        <Link href="/" aria-label="Ir a inicio">
+
+        <Link href="/" aria-label="Ir a inicio" className="flex-shrink-0">
           <Image
             src="/img/moro-logo.png"
             alt="Logo Moro & Asociados"
             width={68}
             height={68}
-            className="rounded-xl border border-[#D4A75D] bg-[#0F1C2E] p-1.5 drop-shadow-xl"
+            className="rounded-xl border border-[#D4A75D] bg-[#0F1C2E] p-1.5 drop-shadow-xl w-12 h-12 sm:w-16 sm:h-16 object-contain"
             priority
           />
         </Link>
-
 
         <nav className="hidden lg:flex items-center space-x-8" aria-label="Secciones principales">
           {navLinks.map(({ name, href }) => (
@@ -100,7 +97,6 @@ const Navbar = () => {
           ))}
         </nav>
 
-
         <div className="lg:hidden flex items-center space-x-4">
           <FaSearch className={`text-xl ${textColor} cursor-pointer`} aria-label="Buscar" />
           <button onClick={toggleMenu} aria-label="Toggle menu">
@@ -111,7 +107,6 @@ const Navbar = () => {
             )}
           </button>
         </div>
-
 
         <div className="hidden lg:flex items-center space-x-6">
           <FaSearch className={`text-xl ${textColor} cursor-pointer`} aria-label="Buscar" />
@@ -130,7 +125,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
 
       {menuOpen && (
         <div className={`lg:hidden flex flex-col items-center gap-5 py-5 ${bgStyle}`}>

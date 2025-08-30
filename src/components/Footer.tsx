@@ -24,7 +24,7 @@ const Footer = () => {
 
         <div className="space-y-4">
           <p className="font-serif font-bold uppercase text-[#D4A75D] text-lg">
-            Moro & Asociados
+            Moro Abogados
           </p>
           <div className="text-xs text-white/50">
             <p>Miembro de</p>

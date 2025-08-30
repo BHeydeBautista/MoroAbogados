@@ -3,6 +3,7 @@ import InstagramFeed from "@/components/InstagramFeed";
 import LawyersShowcaseEnhanced from "@/components/LawyersShowcaseEnhanced";
 import PracticeAreas from "@/components/PracticeAreas";
 import Profile from "@/components/Profile";
+import TeamSection from "@/components/Team/TeamSection";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <PracticeAreas />
       <InstagramFeed />
       <LawyersShowcaseEnhanced />
+      <TeamSection />
     </main>
   );
 }

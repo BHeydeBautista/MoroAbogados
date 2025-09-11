@@ -69,7 +69,7 @@ const Navbar = () => {
       href: "#",
       submenu: [
         { name: "Socios", href: "/#Profesionales" },
-        { name: "Nuestro equipo", href: "/#Equipo" },
+        { name: "Nuestro equipo", href: "/Team" },
       ],
     },
     { name: t.clientes, href: "/clients" },

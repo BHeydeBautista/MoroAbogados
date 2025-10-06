@@ -14,7 +14,7 @@ import { useLanguage } from "@/context/LanguageContext";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openSubmenu, setOpenSubmenu] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
   const pathname = usePathname();
@@ -39,7 +39,7 @@ const Navbar = () => {
         submenuRef.current &&
         !submenuRef.current.contains(event.target as Node)
       ) {
-        setOpenSubmenu(false);
+        setOpenSubmenu(null);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -74,7 +74,15 @@ const Navbar = () => {
     },
     { name: t.clientes, href: "/clients" },
     { name: t.areas, href: "/#PracticeAreas" },
-    { name: t.contenido, href: "/#InstagramFeed" },
+    {
+      name: t.contenido,
+      href: "#",
+      submenu: [
+        { name: "Publicaciones Instagram", href: "/#InstagramFeed" },
+        { name: "Publicaciones propias", href: "/publicaciones" },
+        { name: "Noticias", href: "/noticias" },
+      ],
+    },
     { name: t.contacto, href: "/building" },
   ];
 
@@ -129,14 +137,16 @@ const Navbar = () => {
                 key={name}
                 className="relative"
                 ref={submenuRef}
-                onMouseEnter={() => setOpenSubmenu(true)}
-                onMouseLeave={() => setOpenSubmenu(false)}
+                onMouseEnter={() => setOpenSubmenu(name)}
+                onMouseLeave={() => setOpenSubmenu(null)}
               >
                 <button
-                  onClick={() => setOpenSubmenu((prev) => !prev)}
+                  onClick={() =>
+                    setOpenSubmenu((prev) => (prev === name ? null : name))
+                  }
                   aria-haspopup="true"
                   aria-controls={`submenu-${name}`}
-                  aria-expanded={openSubmenu}
+                  aria-expanded={openSubmenu === name}
                   className={`${navLinkBase} ${navLinkSize} focus:outline-none relative px-1`}
                 >
                   {name}
@@ -146,14 +156,14 @@ const Navbar = () => {
                     aria-hidden
                     className="absolute left-0 -bottom-1 h-[3px] rounded-full bg-[#D4A75D] origin-left"
                     initial={{ scaleX: 0 }}
-                    animate={{ scaleX: openSubmenu ? 1 : 0 }}
+                    animate={{ scaleX: openSubmenu === name ? 1 : 0 }}
                     transition={{ duration: 0.28, ease: "easeOut" }}
                     style={{ width: "100%" }}
                   />
                 </button>
 
                 <AnimatePresence>
-                  {openSubmenu && (
+                  {openSubmenu === name && (
                     <motion.div
                       id={`submenu-${name}`}
                       role="menu"
@@ -175,7 +185,7 @@ const Navbar = () => {
                             key={item.name}
                             href={item.href}
                             role="menuitem"
-                            onClick={() => setOpenSubmenu(false)}
+                            onClick={() => setOpenSubmenu(null)}
                             className="text-[16px] font-semibold text-white hover:text-[#D4A75D] transition-colors"
                           >
                             {item.name}

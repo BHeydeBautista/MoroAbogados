@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { FaSearch, FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 
 import es from "@/locales/es/navbar.json";
@@ -15,6 +15,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
   const pathname = usePathname();
@@ -46,7 +47,10 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const toggleMenu = () => {
+    setMenuOpen((prev) => !prev);
+    setMobileOpenSubmenu(null);
+  };
   const switchLang = (lng: "es" | "en" | "fr") => {
     setLanguage(lng);
     setMenuOpen(false);
@@ -68,8 +72,8 @@ const Navbar = () => {
       name: t.profesionales,
       href: "#",
       submenu: [
-        { name: "Socios", href: "/#Profesionales" },
-        { name: "Nuestro equipo", href: "/Team" },
+        { name: t.socios, href: "/#Profesionales" },
+        { name: t.equipo, href: "/Team" },
       ],
     },
     { name: t.clientes, href: "/clients" },
@@ -78,9 +82,9 @@ const Navbar = () => {
       name: t.contenido,
       href: "#",
       submenu: [
-        { name: "Publicaciones Instagram", href: "/#InstagramFeed" },
-        { name: "Publicaciones propias", href: "/publicaciones" },
-        { name: "Noticias", href: "/noticias" },
+        { name: t.pub_instagram, href: "/#InstagramFeed" },
+        { name: t.pub_propias, href: "/publicaciones" },
+        { name: t.noticias, href: "/noticias" },
       ],
     },
     { name: t.contacto, href: "/building" },
@@ -252,35 +256,74 @@ const Navbar = () => {
       {/* Mobile menu */}
       {menuOpen && (
         <div
-          className={`lg:hidden flex flex-col items-center gap-5 py-5 ${bgStyle}`}
+          className={`lg:hidden flex flex-col items-stretch gap-3 py-4 px-4 ${bgStyle}`}
         >
           {navLinks.map(({ name, href, submenu }) => (
-            <div key={name} className="flex flex-col items-center">
-              <Link
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                className={`text-[18px] ${navLinkBase}`}
-              >
-                {name}
-              </Link>
+            <div key={name} className="w-full">
+              {!submenu && (
+                <Link
+                  href={href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`w-full block text-left px-4 py-3 rounded-md ${navLinkBase} text-[18px]`}
+                >
+                  {name}
+                </Link>
+              )}
+
               {submenu && (
-                <div className="flex flex-col mt-2 space-y-2">
-                  {submenu.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setMenuOpen(false)}
-                      className="text-[16px] text-gray-600 hover:text-[#D4A75D]"
+                <div className="w-full">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setMobileOpenSubmenu((prev) => (prev === name ? null : name))
+                    }
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-md ${navLinkBase} text-[18px]`}
+                    aria-expanded={mobileOpenSubmenu === name}
+                    aria-controls={`mobile-submenu-${name}`}
+                  >
+                    <span>{name}</span>
+                    <motion.span
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: mobileOpenSubmenu === name ? 180 : 0 }}
+                      transition={{ duration: 0.18 }}
+                      className="ml-3 text-sm text-gray-400"
+                      aria-hidden
                     >
-                      {item.name}
-                    </Link>
-                  ))}
+                      <FaChevronDown />
+                    </motion.span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {mobileOpenSubmenu === name && (
+                      <motion.div
+                        id={`mobile-submenu-${name}`}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.22, ease: "easeOut" }}
+                        className="overflow-hidden bg-gradient-to-b from-[#0F1C2E]/90 to-black/80 rounded-md mt-2 px-4 py-3"
+                      >
+                        <div className="flex flex-col gap-2">
+                          {submenu.map((item) => (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              onClick={() => setMenuOpen(false)}
+                              className="text-[16px] text-white/90 hover:text-[#D4A75D] px-2 py-2 rounded-md transition-colors"
+                            >
+                              {item.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               )}
             </div>
           ))}
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 mt-2">
             <button
               type="button"
               onClick={() => switchLang("es")}

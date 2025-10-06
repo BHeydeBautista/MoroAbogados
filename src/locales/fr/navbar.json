@@ -8,7 +8,10 @@
     "clientes": "Clients",
     "contacto": "Contact",
     "language": "EN",
-    "socios": "Socios",
-    "equipo": "Nuestro equipo"
+    "socios": "Partners",
+    "equipo": "Our team",
+    "pub_instagram": "Instagram posts",
+    "pub_propias": "Own publications",
+    "noticias": "News"
   }
 }

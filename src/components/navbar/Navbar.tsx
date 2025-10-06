@@ -125,35 +125,63 @@ const Navbar = () => {
             }
 
             return (
-              <div key={name} className="relative" ref={submenuRef}>
+              <div
+                key={name}
+                className="relative"
+                ref={submenuRef}
+                onMouseEnter={() => setOpenSubmenu(true)}
+                onMouseLeave={() => setOpenSubmenu(false)}
+              >
                 <button
                   onClick={() => setOpenSubmenu((prev) => !prev)}
-                  className={`${navLinkBase} ${navLinkSize} focus:outline-none`}
+                  aria-haspopup="true"
+                  aria-controls={`submenu-${name}`}
+                  aria-expanded={openSubmenu}
+                  className={`${navLinkBase} ${navLinkSize} focus:outline-none relative px-1`}
                 >
                   {name}
+
+                  {/* animated underline */}
+                  <motion.span
+                    aria-hidden
+                    className="absolute left-0 -bottom-1 h-[3px] rounded-full bg-[#D4A75D] origin-left"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: openSubmenu ? 1 : 0 }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    style={{ width: "100%" }}
+                  />
                 </button>
 
                 <AnimatePresence>
                   {openSubmenu && (
                     <motion.div
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      id={`submenu-${name}`}
+                      role="menu"
+                      initial={{ opacity: 0, y: -8, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="absolute left-0 top-full mt-3 px-6 py-3 flex flex-row gap-8
-                                 bg-[#0F1C2E]/95 border border-[#D4A75D]/40 rounded-xl shadow-2xl
+                      exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                      transition={{ duration: 0.28, ease: "easeOut" }}
+                      className="absolute left-0 top-full mt-4 w-[36rem] lg:w-[48rem] px-6 py-5
+                                 bg-gradient-to-b from-[#0F1C2E]/95 to-black/80
+                                 border border-[#D4A75D]/20 rounded-xl shadow-2xl
                                  backdrop-blur-md z-50"
                     >
-                      {submenu.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="text-[16px] font-semibold text-white hover:text-[#D4A75D] transition-colors"
-                          onClick={() => setOpenSubmenu(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
+                      {/* small rotated square as arrow */}
+                      <div className="absolute -top-2 left-10 w-4 h-4 bg-[#0F1C2E]/95 border-l border-t border-[#D4A75D]/20 transform rotate-45" />
+
+                      <div className="grid grid-cols-2 gap-6">
+                        {submenu.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            role="menuitem"
+                            onClick={() => setOpenSubmenu(false)}
+                            className="text-[16px] font-semibold text-white hover:text-[#D4A75D] transition-colors"
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>

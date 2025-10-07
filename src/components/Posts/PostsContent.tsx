@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import InstagramPosts, { IGPost } from "./InstagramPosts";
-import OwnPublications from "./OwnPublications";
+import PublicationsGrid from "./Publications/PublicationsGrid";
 import NewsList from "./NewsList";
 
 const mockedPosts: IGPost[] = [
@@ -122,7 +122,7 @@ export default function PostsContent() {
               <InstagramPosts posts={posts} loading={loading} error={error} />
             )}
 
-            {active === "propias" && <OwnPublications />}
+            {active === "propias" && <PublicationsGrid />}
 
             {active === "noticias" && <NewsList />}
           </AnimatePresence>

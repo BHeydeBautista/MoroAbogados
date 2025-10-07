@@ -10,56 +10,77 @@ type Props = {
 export default function PublicationCard({ pub, author, onOpen }: Props) {
   return (
     <article
-      className="group bg-white rounded-lg overflow-hidden border hover:shadow-lg transition"
+      className="group bg-white rounded-lg overflow-hidden border border-gray-100 hover:shadow-lg transition transform will-change-transform duration-200"
       aria-labelledby={`pub-${pub.id}`}
       role="article"
     >
-      <div className="h-[260px] w-full bg-gray-100 flex items-center justify-center overflow-hidden">
-        {pub.cover ? (
-          <img src={pub.cover} alt={pub.title} className="w-full h-full object-cover" />
-        ) : (
-          <div className="text-gray-400">Sin imagen</div>
-        )}
-      </div>
-
-      <div className="p-4">
-        <h3 id={`pub-${pub.id}`} className="text-lg font-semibold text-[#0F1C2E]">
-          {pub.title}
-        </h3>
-        <p className="text-sm text-gray-600 mt-1">{author?.name ?? "Autor"}</p>
-        <div className="mt-3 flex items-center justify-between">
-          <span className="text-xs px-2 py-1 bg-[#D4A75D]/15 text-[#D4A75D] rounded-full">
-            {pub.type === "libro" ? "Libro" : "Artículo"}
-          </span>
-          <div className="text-sm text-gray-500">{pub.year ?? ""}</div>
+      <div className="relative">
+        <div className="aspect-[3/4] sm:aspect-[4/5] w-full bg-gray-100 flex items-center justify-center overflow-hidden">
+          {pub.cover ? (
+            <img
+              src={pub.cover}
+              alt={pub.title}
+              className="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+          ) : (
+            <div className="text-gray-400">Sin imagen</div>
+          )}
         </div>
 
-        <div className="mt-4 flex gap-2">
+        {/* badge on top-left */}
+        <div className="absolute top-3 left-3">
+          <span className="text-xs px-2 py-0.5 bg-white/90 text-[#D4A75D] rounded-full font-medium shadow-sm">
+            {pub.type === "libro" ? "Libro" : "Artículo"}
+          </span>
+        </div>
+      </div>
+
+      <div className="p-4 flex flex-col gap-3">
+        <h3
+          id={`pub-${pub.id}`}
+          className="text-base sm:text-lg font-semibold text-[#0F1C2E] line-clamp-2"
+        >
+          {pub.title}
+        </h3>
+
+        <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center gap-3">
+            <span className="hidden sm:inline text-sm">{author?.name ?? "Autor"}</span>
+            <span className="text-xs text-gray-500">{pub.year ?? ""}</span>
+          </div>
+
+          <div className="text-sm text-gray-500 hidden sm:block">{pub.pages ? `${pub.pages} pág.` : null}</div>
+        </div>
+
+        <p className="text-sm text-gray-600 line-clamp-3">{pub.excerpt}</p>
+
+        <div className="mt-2 flex flex-col sm:flex-row gap-2">
           <button
             onClick={() => onOpen?.(pub.id)}
-            className="text-sm text-white bg-[#0F1C2E] px-3 py-1 rounded"
+            className="w-full sm:w-auto flex-1 text-sm bg-[#0F1C2E] text-white px-3 py-2 rounded-md shadow-sm hover:brightness-95 transition"
             aria-label={`Ver ${pub.title}`}
           >
             Ver
           </button>
-          {pub.pdfUrl && (
+
+          {pub.pdfUrl ? (
             <a
               href={pub.pdfUrl}
-              className="text-sm text-[#0F1C2E] border px-3 py-1 rounded"
+              className="w-full sm:w-auto text-center text-sm border border-[#E5E7EB] text-[#0F1C2E] px-3 py-2 rounded-md hover:bg-gray-50 transition"
               target="_blank"
               rel="noopener noreferrer"
             >
               Descargar PDF
             </a>
-          )}
-          {!pub.pdfUrl && pub.href && (
+          ) : pub.href ? (
             <a
               href={pub.href}
-              className="text-sm text-[#0F1C2E] border px-3 py-1 rounded"
+              className="w-full sm:w-auto text-center text-sm border border-[#E5E7EB] text-[#0F1C2E] px-3 py-2 rounded-md hover:bg-gray-50 transition"
             >
               Detalle
             </a>
-          )}
+          ) : null}
         </div>
       </div>
     </article>

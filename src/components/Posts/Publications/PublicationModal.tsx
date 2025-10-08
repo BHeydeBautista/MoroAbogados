@@ -1,6 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import type { Publication, Author } from "../../../data/publicationsData";
+import type {
+  PublicationBooks,
+  PublicationArt,
+  Author,
+  Editorials,
+} from "../../../data/publicationsData";
+import { EDITORIALS } from "../../../data/publicationsData";
+
+type Publication = PublicationBooks | PublicationArt;
 
 type Props = {
   pub?: Publication | null;
@@ -10,6 +18,13 @@ type Props = {
 
 export default function PublicationModal({ pub, author, onClose }: Props) {
   if (!pub) return null;
+
+  const isBook = (p: Publication): p is PublicationBooks =>
+    (p as PublicationBooks).type === "libro";
+
+  const editorialName = isBook(pub)
+    ? EDITORIALS.find((e: Editorials) => e.id === pub.editorialId)?.name ?? ""
+    : "";
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
@@ -33,7 +48,7 @@ export default function PublicationModal({ pub, author, onClose }: Props) {
         <div className="flex items-center justify-between p-4 border-b">
           <div>
             <h3 className="text-lg sm:text-2xl font-semibold text-[#0F1C2E]">{pub.title}</h3>
-            <p className="text-sm text-gray-600">{author?.name}</p>
+            <p className="text-sm text-gray-600">{author?.name ?? ""}</p>
           </div>
           <button
             onClick={onClose}
@@ -62,10 +77,44 @@ export default function PublicationModal({ pub, author, onClose }: Props) {
               <div className="text-sm text-gray-700 space-y-3">
                 {pub.excerpt && <p className="prose-sm text-gray-700">{pub.excerpt}</p>}
 
-                <ul className="mt-2 space-y-1 text-sm text-gray-600">
-                  {pub.year && <li><strong className="font-medium text-gray-800">Año:</strong> {pub.year}</li>}
-                  {pub.pages && <li><strong className="font-medium text-gray-800">Páginas:</strong> {pub.pages}</li>}
-                  {pub.tags && <li><strong className="font-medium text-gray-800">Tags:</strong> {pub.tags.join(", ")}</li>}
+                <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-y-1 text-sm text-gray-600">
+                  {/* Campos comunes */}
+                  {pub.year !== undefined && (
+                    <li>
+                      <strong className="font-medium text-gray-800">Año:</strong> {pub.year}
+                    </li>
+                  )}
+                  {pub.pages !== undefined && (
+                    <li>
+                      <strong className="font-medium text-gray-800">Páginas:</strong> {pub.pages}
+                    </li>
+                  )}
+                  {pub.tags && pub.tags.length > 0 && (
+                    <li className="sm:col-span-2">
+                      <strong className="font-medium text-gray-800">Tags:</strong> {pub.tags.join(", ")}
+                    </li>
+                  )}
+
+                  {/* Campos exclusivos para libros */}
+                  {isBook(pub) && (
+                    <>
+                      {editorialName && (
+                        <li>
+                          <strong className="font-medium text-gray-800">Editorial:</strong> {editorialName}
+                        </li>
+                      )}
+                      {pub.clasification && (
+                        <li>
+                          <strong className="font-medium text-gray-800">Clasificación:</strong> {pub.clasification}
+                        </li>
+                      )}
+                      {pub.format && (
+                        <li>
+                          <strong className="font-medium text-gray-800">Formato:</strong> {pub.format}
+                        </li>
+                      )}
+                    </>
+                  )}
                 </ul>
               </div>
 
@@ -82,18 +131,12 @@ export default function PublicationModal({ pub, author, onClose }: Props) {
                 )}
 
                 {pub.href && (
-                  <a
-                    href={pub.href}
-                    className="inline-block px-4 py-2 border rounded-md text-[#0F1C2E]"
-                  >
+                  <a href={pub.href} className="inline-block px-4 py-2 border rounded-md text-[#0F1C2E]">
                     Ver detalle
                   </a>
                 )}
 
-                <button
-                  onClick={onClose}
-                  className="inline-block px-4 py-2 text-sm text-gray-700 rounded-md"
-                >
+                <button onClick={onClose} className="inline-block px-4 py-2 text-sm text-gray-700 rounded-md">
                   Cerrar
                 </button>
               </div>

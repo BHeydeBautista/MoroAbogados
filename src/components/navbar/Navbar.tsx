@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaSearch, FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import es from "@/locales/es/navbar.json";
 import en from "@/locales/en/navbar.json";
@@ -12,13 +12,14 @@ import fr from "@/locales/fr/navbar.json";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
-  const pathname = usePathname();
   const isHome = pathname === "/";
 
   const { language, setLanguage } = useLanguage();
@@ -97,6 +98,30 @@ const Navbar = () => {
         : "opacity-70"
     } ${hoverColor}`;
 
+  // función para navegar y mostrar la sección "Profesionales" sin que el usuario tenga que scrollear mucho
+  const handleProfesionalesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const scrollToSection = () => {
+      const el = document.getElementById("Profesionales");
+      if (!el) return;
+      // posicion dentro de la sección para que la tarjeta esté ya visible
+      const offset = Math.round(window.innerHeight * 0.18);
+      const top = el.getBoundingClientRect().top + window.scrollY + offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    };
+
+    if (pathname !== "/") {
+      // si no estamos en la home, navegamos y luego hacemos scroll (pequeño delay para asegurar render)
+      router.push("/").then(() => {
+        setTimeout(() => scrollToSection(), 220);
+      });
+    } else {
+      scrollToSection();
+    }
+    // cerrar menu móvil si está abierto
+    setMenuOpen(false);
+  };
+
   return (
     <motion.nav
       initial={{ y: -20, opacity: 0 }}
@@ -125,6 +150,7 @@ const Navbar = () => {
         >
           {navLinks.map(({ name, href, submenu }) => {
             if (!submenu) {
+              // link normal
               return (
                 <Link
                   key={name}
@@ -184,17 +210,33 @@ const Navbar = () => {
                       <div className="absolute -top-2 left-10 w-4 h-4 bg-[#0F1C2E]/95 border-l border-t border-[#D4A75D]/20 transform rotate-45" />
 
                       <div className="grid grid-cols-2 gap-6">
-                        {submenu.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            role="menuitem"
-                            onClick={() => setOpenSubmenu(null)}
-                            className="text-[16px] font-semibold text-white hover:text-[#D4A75D] transition-colors"
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
+                        {submenu.map((item) => {
+                          // Si es el item "Socios" (href === "/#Profesionales") usamos handler en vez de Link
+                          if (item.href === "/#Profesionales") {
+                            return (
+                              <a
+                                key={item.name}
+                                href={item.href}
+                                onClick={handleProfesionalesClick}
+                                role="menuitem"
+                                className="text-[16px] font-semibold text-white hover:text-[#D4A75D] transition-colors"
+                              >
+                                {item.name}
+                              </a>
+                            );
+                          }
+                          return (
+                            <Link
+                              key={item.name}
+                              href={item.href}
+                              role="menuitem"
+                              onClick={() => setOpenSubmenu(null)}
+                              className="text-[16px] font-semibold text-white hover:text-[#D4A75D] transition-colors"
+                            >
+                              {item.name}
+                            </Link>
+                          );
+                        })}
                       </div>
                     </motion.div>
                   )}

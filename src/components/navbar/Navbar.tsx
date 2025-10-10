@@ -101,24 +101,24 @@ const Navbar = () => {
   // función para navegar y mostrar la sección "Profesionales" sin que el usuario tenga que scrollear mucho
   const handleProfesionalesClick = (e: React.MouseEvent) => {
     e.preventDefault();
+
     const scrollToSection = () => {
       const el = document.getElementById("Profesionales");
       if (!el) return;
-      // posicion dentro de la sección para que la tarjeta esté ya visible
       const offset = Math.round(window.innerHeight * 0.18);
       const top = el.getBoundingClientRect().top + window.scrollY + offset;
       window.scrollTo({ top, behavior: "smooth" });
     };
 
     if (pathname !== "/") {
-      // si no estamos en la home, navegamos y luego hacemos scroll (pequeño delay para asegurar render)
-      router.push("/").then(() => {
-        setTimeout(() => scrollToSection(), 220);
-      });
+      // navegar con hash: el navegador intentará posicionarse en #Profesionales
+      router.push("/#Profesionales");
+      // fallback por si no se posiciona inmediatamente
+      setTimeout(scrollToSection, 300);
     } else {
       scrollToSection();
     }
-    // cerrar menu móvil si está abierto
+
     setMenuOpen(false);
   };
 

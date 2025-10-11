@@ -95,18 +95,74 @@ const LawyersShowcaseEnhanced = () => {
 		}
 	}, []);
 
+	// helper: small programmatic scroll when user clicks the hint
+	const triggerScroll = () => {
+		if (!ref.current) return;
+		const el = ref.current;
+		const top =
+			el.getBoundingClientRect().top +
+			window.scrollY +
+			Math.round(window.innerHeight * 0.18) +
+			40;
+		window.scrollTo({ top, behavior: "smooth" });
+	};
+
 	return (
-		<section ref={ref} className="relative" id="Profesionales">
+		<section
+			ref={ref}
+			className="relative"
+			id="Profesionales"
+			aria-label="Sección de profesionales"
+		>
 			<div className="absolute inset-0 h-full w-full bg-gradient-to-r from-[#0F1C2E] to-black z-0" />
 			<div className="absolute bottom-0 w-full h-[25vh]" />
 			<div className="sticky top-0 left-0 w-full h-[100dvh] py-8 flex items-center justify-center z-10 overflow-hidden">
-				<div className="flex flex-col items-center justify-center w-full h-full">
+				<div className="flex flex-col items-center justify-center w-full h-full relative">
 					<motion.h2
 						style={{ scale: titleScale, opacity: titleOpacity }}
 						className="text-3xl md:text-5xl font-bold text-center mb-6 text-white drop-shadow-lg"
 					>
 						Moro Abogados
 					</motion.h2>
+
+					{/* Indicator: aparece cuando activeIndex === -1 */}
+					{activeIndex === -1 && (
+						<motion.button
+							onClick={triggerScroll}
+							aria-label="Desplazá hacia abajo para interactuar"
+							initial={{ opacity: 1 }}
+							animate={{ y: [0, 8, 0] }}
+							transition={{ repeat: Infinity, duration: 1.6 }}
+							className="absolute bottom-10 flex flex-col items-center gap-2 bg-transparent border-0"
+						>
+							<span className="text-sm text-gray-200/90 select-none">
+								Desplazá para interactuar
+							</span>
+
+							<span
+								className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/16 transition cursor-pointer"
+								role="img"
+								aria-hidden
+							>
+								<svg
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+									className="text-white"
+								>
+									<path
+										d="M6 9l6 6 6-6"
+										stroke="white"
+										strokeWidth="1.6"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+								</svg>
+							</span>
+						</motion.button>
+					)}
 
 					<motion.div
 						style={{ opacity: cardsContainerOpacity, y: cardsContainerY }}

@@ -105,8 +105,10 @@ const Navbar = () => {
     const scrollToSection = () => {
       const el = document.getElementById("Profesionales");
       if (!el) return;
-      const offset = Math.round(window.innerHeight * 0.18);
-      const top = el.getBoundingClientRect().top + window.scrollY + offset;
+      // Ajuste: subir factor para bajar más el scroll y un pequeño offset adicional
+      const scrollOffsetFactor = 1; // antes 0.18 — aumentar para bajar más
+      const extraPixels = 40; // margen adicional para asegurar visibilidad
+      const top = el.getBoundingClientRect().top + window.scrollY + Math.round(window.innerHeight * scrollOffsetFactor) + extraPixels;
       window.scrollTo({ top, behavior: "smooth" });
     };
 

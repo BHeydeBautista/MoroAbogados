@@ -29,4 +29,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Small noise overlay to give subtle texture (works well con bg oscuro) */
+.team-noise {
+  background-image: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 1px);
+  background-size: 6px 6px;
+}
+
+/* Slight card lift when focused for keyboard users */
+.team-card-focus:focus {
+  outline: 2px solid rgba(212,167,93,0.18);
+  outline-offset: 4px;
+}
+
 

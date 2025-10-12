@@ -1,12 +1,16 @@
+"use client";
+
 import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image"; // agregado
 
 type NewsItem = {
   id: string;
   title: string;
   excerpt: string;
-  href: string;
-  date?: string; // ISO date optional
+  href: string; // Ej: "/noticias/congreso-regional-2025"
+  date?: string;
   cover?: string;
 };
 
@@ -36,7 +40,6 @@ export default function NewsList({
 }: Props) {
   const [page, setPage] = useState(1);
 
-  // ordenar por date descendente si existe
   const sorted = useMemo(() => {
     return [...items].sort((a, b) => {
       const ta = a.date ? Date.parse(a.date) : 0;
@@ -67,13 +70,14 @@ export default function NewsList({
             key={n.id}
             className="flex flex-col sm:flex-row gap-4 rounded-lg border border-[#D4A75D]/30 p-4 bg-white shadow-sm hover:shadow-md transition"
           >
-            <div className="w-full sm:w-36 h-24 sm:h-auto flex-shrink-0 bg-gray-100 overflow-hidden rounded-md flex items-center justify-center">
+            <div className="w-full sm:w-36 h-24 sm:h-auto flex-shrink-0 bg-gray-100 overflow-hidden rounded-md flex items-center justify-center relative">
               {n.cover ? (
-                <img
+                <Image
                   src={n.cover}
                   alt={n.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 144px"
+                  className="object-cover"
                 />
               ) : (
                 <div className="text-gray-400 text-sm px-2">Sin imagen</div>
@@ -96,12 +100,12 @@ export default function NewsList({
                 {n.excerpt}
               </p>
 
-              <a
+              <Link
                 href={n.href}
-                className="inline-block mt-4 text-sm text-[#D4A75D] font-medium"
+                className="inline-block mt-4 text-sm text-[#D4A75D] font-medium hover:underline"
               >
                 Leer noticia →
-              </a>
+              </Link>
             </div>
           </article>
         ))}

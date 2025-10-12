@@ -1,12 +1,15 @@
+"use client";
+
 import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 type NewsItem = {
   id: string;
   title: string;
   excerpt: string;
-  href: string;
-  date?: string; // ISO date optional
+  href: string; // Ej: "/noticias/congreso-regional-2025"
+  date?: string;
   cover?: string;
 };
 
@@ -36,7 +39,6 @@ export default function NewsList({
 }: Props) {
   const [page, setPage] = useState(1);
 
-  // ordenar por date descendente si existe
   const sorted = useMemo(() => {
     return [...items].sort((a, b) => {
       const ta = a.date ? Date.parse(a.date) : 0;
@@ -96,12 +98,12 @@ export default function NewsList({
                 {n.excerpt}
               </p>
 
-              <a
+              <Link
                 href={n.href}
-                className="inline-block mt-4 text-sm text-[#D4A75D] font-medium"
+                className="inline-block mt-4 text-sm text-[#D4A75D] font-medium hover:underline"
               >
                 Leer noticia →
-              </a>
+              </Link>
             </div>
           </article>
         ))}

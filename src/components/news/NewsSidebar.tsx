@@ -2,8 +2,17 @@
 
 import { motion } from "framer-motion";
 
-export default function NewsSidebar() {
-  const sections = ["Preámbulo", "Artículo 1°", "Artículo 2°", "Disposiciones finales"];
+type Section = { id: string; title: string };
+
+export default function NewsSidebar({ sections }: { sections?: Section[] }) {
+  const fallback = [
+    { id: "preambulo", title: "Preámbulo" },
+    { id: "articulo1", title: "Artículo 1°" },
+    { id: "articulo2", title: "Artículo 2°" },
+    { id: "finales", title: "Disposiciones finales" },
+  ];
+
+  const items = sections && sections.length > 0 ? sections : fallback;
 
   return (
     <motion.aside
@@ -14,13 +23,13 @@ export default function NewsSidebar() {
     >
       <h3 className="text-[#d4a75d] text-lg font-semibold mb-4">Índice</h3>
       <ul className="space-y-2">
-        {sections.map((section, index) => (
-          <li key={index}>
+        {items.map((section) => (
+          <li key={section.id}>
             <a
-              href={`#${section.toLowerCase().replace(/\s/g, "-")}`}
+              href={`#${section.id}`}
               className="text-gray-300 hover:text-white transition-colors"
             >
-              {section}
+              {section.title}
             </a>
           </li>
         ))}

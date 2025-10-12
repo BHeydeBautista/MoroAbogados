@@ -3,6 +3,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image"; // agregado
 
 type NewsItem = {
   id: string;
@@ -69,13 +70,14 @@ export default function NewsList({
             key={n.id}
             className="flex flex-col sm:flex-row gap-4 rounded-lg border border-[#D4A75D]/30 p-4 bg-white shadow-sm hover:shadow-md transition"
           >
-            <div className="w-full sm:w-36 h-24 sm:h-auto flex-shrink-0 bg-gray-100 overflow-hidden rounded-md flex items-center justify-center">
+            <div className="w-full sm:w-36 h-24 sm:h-auto flex-shrink-0 bg-gray-100 overflow-hidden rounded-md flex items-center justify-center relative">
               {n.cover ? (
-                <img
+                <Image
                   src={n.cover}
                   alt={n.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 144px"
+                  className="object-cover"
                 />
               ) : (
                 <div className="text-gray-400 text-sm px-2">Sin imagen</div>

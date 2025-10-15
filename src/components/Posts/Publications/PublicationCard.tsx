@@ -71,7 +71,7 @@ export default function PublicationCard({ pub, author, onOpen }: Props) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Descargar PDF
+              Detalle
             </a>
           ) : pub.href ? (
             <a

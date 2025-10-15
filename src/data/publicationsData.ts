@@ -59,7 +59,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
   // Libros
   {
     id: "b1",
-    title: "Ley de Concursos Comentada, Anotada y Concordada",
+    title: "Ley de Concursos Comentada, Anotada y Concordada. ",
     type: "libro",
     authorId: "a1",
     cover: "/mock/books/ley_concursos1.jpg",
@@ -78,7 +78,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     title: "Proyecto de Reformas",
     type: "libro",
     authorId: "a1",
-    cover: "/mock/books/proyecto_reformas.jpg",
+    cover: "/mock/books/libros4.jpg",
     excerpt: "Propuestas y análisis críticos sobre reformas legales.",
     year: 2001,
     pages: 320,
@@ -92,10 +92,10 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
   // Artículos
   {
     id: "art1",
-    title: "Responsabilidad Civil en obras",
+    title: "ERRAPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     type: "articulo",
     authorId: "a1",
-    cover: "/mock/articles/responsabilidad_obras.jpg",
+    cover: "/mock/articles/art.png",
     excerpt: "Análisis de casos y recomendaciones para empresas constructoras.",
     year: 2019,
     pages: undefined,
@@ -108,7 +108,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     title: "Protección de la imagen",
     type: "articulo",
     authorId: "a2",
-    cover: "/mock/articles/proteccion_imagen.jpg",
+    cover: "/mock/articles/art.png",
     excerpt: "Sobre el derecho a la propia imagen y su resguardo legal.",
     year: 2020,
     href: "/publicaciones/proteccion-imagen",

@@ -12,7 +12,7 @@ export default function NewsFooter() {
       className="mt-12 border-t border-[#D4A75D]/30 pt-6 flex justify-between items-center"
     >
       <Link
-        href="/contenido"
+        href="/"
         className="text-[#D4A75D] hover:underline text-sm font-medium"
       >
         ← Volver a noticias

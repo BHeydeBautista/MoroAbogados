@@ -130,11 +130,6 @@ export default function TeamSection() {
             </div>
           </section>
 
-          <div className="flex justify-center mt-8">
-            <button className="px-6 py-2 rounded-md border border-[#D4A75D] text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition">
-              Ver más profesionales
-            </button>
-          </div>
         </div>
       </div>
     </section>

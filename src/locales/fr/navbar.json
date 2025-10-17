@@ -1,17 +1,17 @@
 {
   "navbar": {
-    "home": "Home",
-    "profesionales": "Professionals",
-    "areas": "Practice Areas",
-    "contenido": "Content",
-    "nosotros": "About Us",
+    "home": "Accueil",
+    "profesionales": "Professionnels",
+    "areas": "Domaines de pratique",
+    "contenido": "Contenu",
+    "nosotros": "À propos",
     "clientes": "Clients",
     "contacto": "Contact",
-    "language": "EN",
-    "socios": "Partners",
-    "equipo": "Our team",
-    "pub_instagram": "Instagram posts",
-    "pub_propias": "Own publications",
-    "noticias": "News"
+    "language": "FR",
+    "socios": "Associés",
+    "equipo": "Notre équipe",
+    "pub_instagram": "Publications Instagram",
+    "pub_propias": "Publications internes",
+    "noticias": "Actualités"
   }
 }

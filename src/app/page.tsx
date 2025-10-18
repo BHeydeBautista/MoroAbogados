@@ -1,6 +1,6 @@
 import HeroCarousel from "@/components/hero/HeroCarousel";
 import PostsContent from "@/components/Posts/PostsContent";
-import LawyersShowcaseEnhanced from "@/components/LawyersShowcaseEnhanced";
+import LawyersShowcaseEnhanced from "@/components/lawyers/LawyersShowcaseEnhanced";
 import PracticeAreas from "@/components/PracticeAreas";
 import Profile from "@/components/Profile";
 

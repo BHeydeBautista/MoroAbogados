@@ -1,5 +1,23 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import TeamCard from "./TeamCard";
+import { motion } from "framer-motion";
+import Image from "next/image";
+
+const socios = [
+  {
+    name: "Carlos E. Moro",
+    role: "Abogado",
+    image: "/img/lawyer1.jpg",
+    bio: "Especialista en derecho empresarial y societario con más de 20 años de experiencia en litigios complejos.",
+  },
+  {
+    name: "Emilio F. Moro",
+    role: "Abogado",
+    image: "/img/lawyer1.jpg",
+    bio: "Referente en derecho civil y comercial. Amplia trayectoria en asesoramiento integral a empresas.",
+  },
+];
 
 const abogados = [
   {
@@ -22,9 +40,18 @@ const abogados = [
   },
 ];
 
+const pasantes = [
+  {
+    name: "Nombre",
+    role: "Pasante de Derecho",
+    image: "/img/lawyer1.jpg",
+    bio: "Estudiante avanzada en derecho. Apoyo en investigaciones y gestión de documentación.",
+  },
+];
+
 const procuradores = [
-  { name: "Nombre", role: "Procuradora / Secretaria", bio: "Gestión de expedientes y soporte administrativo." },
-  { name: "Paula", role: "Procuradora / Secretaria", bio: "Coordinación de agenda y atención a clientes." },
+  { name: "Nombre", role: "Procuradora", bio: "Gestión de expedientes y soporte administrativo." },
+  { name: "Paula", role: "Procuradora", bio: "Coordinación de agenda y atención a clientes." },
 ];
 
 const itAssistants = [
@@ -33,65 +60,136 @@ const itAssistants = [
 ];
 
 export default function TeamSection() {
+  // 🔹 Diseño genérico (abogadas y pasantes)
+  const CircleGrid = (title: string, members: any[]) => (
+    <section className="mb-10 md:mb-14">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 md:mb-8 gap-3">
+        <h3 className="text-lg md:text-xl font-semibold text-white">{title}</h3>
+        <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
+          {members.length} miembros
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 place-items-center">
+        {members.map((member, index) => (
+          <motion.div
+            key={member.name}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="relative group flex flex-col items-center text-center"
+          >
+            <div className="relative w-40 h-40 md:w-48 md:h-48 mb-3 rounded-full overflow-hidden shadow-lg transition-transform duration-500 group-hover:scale-105 group-hover:shadow-2xl">
+              <Image
+                src={member.image}
+                alt={member.name}
+                fill
+                className="object-cover rounded-full"
+              />
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button className="px-3 py-1 text-xs md:text-sm border border-[#D4A75D]/70 text-[#D4A75D] rounded-md hover:bg-[#D4A75D] hover:text-black transition-all duration-300">
+                  Saber más
+                </button>
+              </div>
+            </div>
+            <h4 className="text-[#D4A75D] text-base md:text-lg font-serif font-bold">
+              {member.name}
+            </h4>
+            <p className="text-gray-300 text-xs md:text-sm">{member.role}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+
+  // 🔹 Socios (jerárquicos pero más compactos)
+  const SociosGrid = (title: string, members: any[]) => (
+    <section className="mb-12 md:mb-16">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 md:mb-8 gap-3">
+        <h3 className="text-xl md:text-2xl font-semibold text-[#D4A75D]">{title}</h3>
+        <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D4A75D]/10 text-xs md:text-sm text-[#D4A75D]">
+          {members.length} miembros
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10 place-items-center">
+        {members.map((member, index) => (
+          <motion.div
+            key={member.name}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
+            className="relative group flex flex-col items-center text-center"
+          >
+            <div className="relative w-44 h-44 md:w-52 md:h-52 mb-4 rounded-full overflow-hidden shadow-[0_0_15px_rgba(212,167,93,0.25)] transition-transform duration-500 group-hover:scale-105">
+              <div className="absolute inset-0 rounded-full border-[2px] border-[#D4A75D]/70 animate-pulse-slow"></div>
+              <Image
+                src={member.image}
+                alt={member.name}
+                fill
+                className="object-cover rounded-full"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <button className="px-3 py-1 text-xs md:text-sm font-medium border border-[#D4A75D] bg-[#D4A75D]/90 text-black rounded-md hover:bg-[#D4A75D] hover:scale-105 transition-all duration-300">
+                  Saber más
+                </button>
+              </div>
+            </div>
+            <h4 className="text-[#D4A75D] text-lg md:text-xl font-serif font-bold">
+              {member.name}
+            </h4>
+            <p className="text-gray-300 text-xs md:text-sm">{member.role}</p>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+
   return (
-    <section className="relative py-20" aria-labelledby="team-title">
-      {/* Background layer (subtle vignette + texture) */}
+    <section className="relative py-12 md:py-30" aria-labelledby="team-title">
+      {/* Fondo */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
             "radial-gradient(1200px 600px at 10% 10%, rgba(13,20,30,0.55), transparent 10%), radial-gradient(900px 400px at 90% 90%, rgba(9,19,36,0.45), transparent 10%), linear-gradient(180deg,#071224 0%, #081726 60%)",
-          mixBlendMode: "normal",
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6">
-        <div id="team-title" className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-2 text-[#D4A75D]">
+      <div className="relative max-w-6xl mx-auto px-4 md:px-6">
+        <div id="team-title" className="text-center mb-8 md:mb-10">
+          <h2 className="text-2xl md:text-3xl font-serif font-bold mb-2 text-[#D4A75D]">
             Nuestro equipo
           </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto">
-            Equipo multidisciplinario: abogadas, procuradores y asistentes informáticos. Aqui mostramos a las personas que colaboran en la firma.
+          <p className="text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
+            Equipo multidisciplinario: abogados socios, abogados, pasantes,
+            procuradores y asistentes informáticos. Aquí mostramos a las
+            personas que colaboran en la firma.
           </p>
         </div>
 
-        {/* Panel central — crea contraste para que las cards "floten" */}
-        <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-8 md:p-10 shadow-xl">
-          {/* Abogadas */}
-          <section className="mb-12">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
-              <h3 className="text-xl font-semibold text-white">Abogadas</h3>
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-sm text-white/90">
-                {abogados.length} miembros
-              </span>
-            </div>
+        <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-6 md:p-8 shadow-lg">
+          {/* Socios */}
+          {SociosGrid("Abogados Socios", socios)}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {abogados.map((member, index) => (
-                <TeamCard
-                  key={member.name}
-                  index={index}
-                  name={member.name}
-                  role={member.role}
-                  image={member.image}
-                  bio={member.bio}
-                  showProfile={false}
-                />
-              ))}
-            </div>
-          </section>
+          {/* Abogadas */}
+          {CircleGrid("Abogados", abogados)}
+
+          {/* Pasantes */}
+          {CircleGrid("Pasantes", pasantes)}
 
           {/* Procuradores */}
-          <section className="mb-12">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
-              <h3 className="text-xl font-semibold text-white">Procuradores</h3>
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-sm text-white/90">
+          <section className="mb-10">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-5 gap-3">
+              <h3 className="text-lg md:text-xl font-semibold text-white">Procuradores</h3>
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
                 {procuradores.length} miembros
               </span>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {procuradores.map((member, index) => (
                 <TeamCard
                   key={member.name}
@@ -106,16 +204,17 @@ export default function TeamSection() {
             </div>
           </section>
 
-          {/* IT */}
-          <section className="mb-2">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
-              <h3 className="text-xl font-semibold text-white">Asistentes Informáticos</h3>
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-sm text-white/90">
+          {/* Asistentes */}
+          <section>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-5 gap-3">
+              <h3 className="text-lg md:text-xl font-semibold text-white">
+                Asistentes Informáticos
+              </h3>
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
                 {itAssistants.length} miembros
               </span>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {itAssistants.map((member, index) => (
                 <TeamCard
                   key={member.name}
@@ -129,7 +228,6 @@ export default function TeamSection() {
               ))}
             </div>
           </section>
-
         </div>
       </div>
     </section>

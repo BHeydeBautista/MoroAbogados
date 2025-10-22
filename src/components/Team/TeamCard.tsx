@@ -14,6 +14,7 @@ interface TeamCardProps {
   email?: string;
   showProfile?: boolean; // controla si se muestra "Ver perfil"
   compact?: boolean; // nuevo: versión compacta (sin foto -> tarjetas más pequeñas)
+  onOpenBio?: () => void; // callback para abrir modal/bio en el padre
 }
 
 // helper: extrae iniciales
@@ -36,6 +37,7 @@ export default function TeamCard({
   email,
   showProfile = false,
   compact = false,
+  onOpenBio,
 }: TeamCardProps) {
   const hasImage = Boolean(image);
 
@@ -106,7 +108,7 @@ export default function TeamCard({
 
           {/* overlay (same behavior for both) */}
           <div className="absolute inset-0 flex flex-col justify-end p-4">
-            <div className="opacity-0 hover:opacity-100 transition-opacity duration-300">
+            <div className="opacity-0 hover:opacity-100 pointer-events-none hover:pointer-events-auto transition-opacity duration-300">
               <div className="backdrop-blur-sm bg-black/30 rounded-md p-3">
                 {hasImage && (
                   <>
@@ -132,7 +134,18 @@ export default function TeamCard({
                     )}
                   </div>
 
-                  {showProfile ? (
+                  {/* Si el padre provee onOpenBio renderizamos un botón para abrir la bio/modal */}
+                  {onOpenBio ? (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenBio();
+                      }}
+                      className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
+                    >
+                      Saber más
+                    </button>
+                  ) : showProfile ? (
                     <Link
                       href={`/team/${name.toLowerCase().replace(/\s+/g, "-")}`}
                       className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"

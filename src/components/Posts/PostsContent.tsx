@@ -94,7 +94,10 @@ export default function PostsContent() {
 
         {/* Tabs: responsive — mobile scroll, desktop centrado */}
         <div className="mb-8">
-          <div className="flex gap-3 overflow-x-auto no-scrollbar py-2 px-1 items-center md:justify-center">
+          <div
+            role="tablist"
+            className="flex gap-3 overflow-x-auto no-scrollbar py-3 px-2 items-center md:justify-center"
+          >
             {[
               { key: "instagram", label: "Instagram" },
               { key: "propias", label: "Publicaciones propias" },
@@ -105,7 +108,9 @@ export default function PostsContent() {
                 <button
                   key={tab.key}
                   onClick={() => setActive(tab.key as any)}
-                  className={`shrink-0 px-4 py-2 rounded-full text-sm font-medium transition ${
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`shrink-0 px-5 py-3 rounded-full text-sm font-medium transition ${
                     isActive
                       ? "bg-[#0F1C2E] text-white shadow-md"
                       : "bg-white border border-gray-200 text-gray-700"

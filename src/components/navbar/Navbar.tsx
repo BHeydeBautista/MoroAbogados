@@ -8,7 +8,6 @@ import { usePathname, useRouter } from "next/navigation";
 
 import es from "@/locales/es/navbar.json";
 import en from "@/locales/en/navbar.json";
-import fr from "@/locales/fr/navbar.json";
 import { useLanguage } from "@/context/LanguageContext";
 
 const Navbar = () => {
@@ -22,7 +21,7 @@ const Navbar = () => {
 
   const isHome = pathname === "/";
   const { language, setLanguage } = useLanguage();
-  const t = language === "es" ? es.navbar : language === "en" ? en.navbar : fr.navbar;
+  const t = language === "es" ? es.navbar : en.navbar; // Only support Spanish and English; fallback to English
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -45,7 +44,7 @@ const Navbar = () => {
     setMobileOpenSubmenu(null);
   };
 
-  const switchLang = (lng: "es" | "en" | "fr") => {
+  const switchLang = (lng: "es" | "en") => {
     setLanguage(lng);
     setMenuOpen(false);
   };
@@ -76,7 +75,7 @@ const Navbar = () => {
     { name: t.contacto, href: "/building" },
   ];
 
-  const langClass = (lng: "es" | "en" | "fr") =>
+  const langClass = (lng: "es" | "en") =>
     `text-[15px] lg:text-[17px] font-semibold ${textColor} ${
       language === lng ? "opacity-100 underline underline-offset-4" : "opacity-70"
     } ${hoverColor}`;
@@ -188,10 +187,6 @@ const Navbar = () => {
             <button onClick={() => switchLang("en")} className={langClass("en")}>
               EN
             </button>
-            <span className={`${textColor} opacity-50`}>|</span>
-            <button onClick={() => switchLang("fr")} className={langClass("fr")}>
-              FR
-            </button>
           </div>
         </div>
       </div>
@@ -266,10 +261,6 @@ const Navbar = () => {
             <span className={`${textColor} opacity-50`}>|</span>
             <button onClick={() => switchLang("en")} className={langClass("en")}>
               EN
-            </button>
-            <span className={`${textColor} opacity-50`}>|</span>
-            <button onClick={() => switchLang("fr")} className={langClass("fr")}>
-              FR
             </button>
           </div>
         </div>

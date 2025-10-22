@@ -70,14 +70,14 @@ export default function NewsList({
             key={n.id}
             className="flex flex-col sm:flex-row gap-4 rounded-lg border border-[#D4A75D]/30 p-4 bg-white shadow-sm hover:shadow-md transition"
           >
-            <div className="w-full sm:w-36 h-24 sm:h-auto flex-shrink-0 bg-gray-100 overflow-hidden rounded-md flex items-center justify-center relative">
+            <div className="w-full sm:w-36 h-36 sm:h-auto flex-shrink-0 bg-gray-100 overflow-hidden rounded-md flex items-center justify-center relative">
               {n.cover ? (
                 <Image
                   src={n.cover}
                   alt={n.title}
                   fill
                   sizes="(max-width: 640px) 100vw, 144px"
-                  className="object-cover"
+                  className="object-cover rounded-md"
                 />
               ) : (
                 <div className="text-gray-400 text-sm px-2">Sin imagen</div>
@@ -122,7 +122,7 @@ export default function NewsList({
         <button
           onClick={() => setPage((s) => Math.max(1, s - 1))}
           disabled={page === 1}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-4 py-2 border rounded-md disabled:opacity-50"
         >
           ←
         </button>
@@ -131,7 +131,7 @@ export default function NewsList({
           <button
             key={pNum}
             onClick={() => setPage(pNum)}
-            className={`px-3 py-1 border rounded ${
+            className={`px-4 py-2 border rounded-md ${
               page === pNum
                 ? "bg-[#0F1C2E] text-white"
                 : "bg-white"
@@ -144,7 +144,7 @@ export default function NewsList({
         <button
           onClick={() => setPage((s) => Math.min(pageCount, s + 1))}
           disabled={page === pageCount}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-4 py-2 border rounded-md disabled:opacity-50"
         >
           →
         </button>

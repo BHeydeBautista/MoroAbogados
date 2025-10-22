@@ -62,7 +62,7 @@ export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: 
             rel="noopener noreferrer"
             className="group block overflow-hidden rounded-lg border border-[#D4A75D]/30 bg-white shadow-sm hover:shadow-md transition-transform transform hover:-translate-y-1"
           >
-            <div className="w-full h-[280px] bg-gray-100 overflow-hidden flex items-center justify-center">
+            <div className="w-full h-48 sm:h-56 md:h-64 lg:h-[280px] bg-gray-100 overflow-hidden flex items-center justify-center">
               <img
                 src={post.media_url}
                 alt={post.caption || "Instagram post"}
@@ -88,7 +88,7 @@ export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: 
         <button
           onClick={() => setPage((s) => Math.max(1, s - 1))}
           disabled={page === 1}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-4 py-2 border rounded-md disabled:opacity-50 touch-manipulation"
           aria-label="Anterior"
         >
           ←
@@ -100,7 +100,7 @@ export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: 
               key={pNum}
               onClick={() => setPage(pNum)}
               aria-current={page === pNum ? "page" : undefined}
-              className={`px-3 py-1 border rounded ${page === pNum ? "bg-[#0F1C2E] text-white" : "bg-white"}`}
+              className={`px-4 py-2 border rounded-md ${page === pNum ? "bg-[#0F1C2E] text-white" : "bg-white"}`}
             >
               {pNum}
             </button>
@@ -108,14 +108,14 @@ export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: 
         </div>
 
         {/* en mobile mostrar sólo indicador y load next/prev */}
-        <div className="sm:hidden text-sm text-gray-600 px-2">
+        <div className="sm:hidden text-sm text-gray-600 px-2" aria-live="polite">
           {page} / {pageCount}
         </div>
 
         <button
           onClick={() => setPage((s) => Math.min(pageCount, s + 1))}
           disabled={page === pageCount}
-          className="px-3 py-1 border rounded disabled:opacity-50"
+          className="px-4 py-2 border rounded-md disabled:opacity-50 touch-manipulation"
           aria-label="Siguiente"
         >
           →

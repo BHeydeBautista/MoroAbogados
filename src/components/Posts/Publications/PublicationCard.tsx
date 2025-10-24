@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import type { Publication, Author } from "../../../data/publicationsData";
 
 type Props = {
@@ -15,13 +16,14 @@ export default function PublicationCard({ pub, author, onOpen }: Props) {
       role="article"
     >
       <div className="relative">
-        <div className="aspect-[3/4] sm:aspect-[4/5] w-full bg-gray-100 flex items-center justify-center overflow-hidden">
+        <div className="aspect-[3/4] sm:aspect-[4/5] w-full bg-gray-100 flex items-center justify-center overflow-hidden relative">
           {pub.cover ? (
-            <img
+            <Image
               src={pub.cover}
               alt={pub.title}
-              className="w-full h-full object-cover object-center"
-              loading="lazy"
+              fill
+              sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 420px"
+              className="object-cover object-center"
             />
           ) : (
             <div className="text-gray-400">Sin imagen</div>

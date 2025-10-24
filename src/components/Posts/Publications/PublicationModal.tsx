@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type {
   PublicationBooks,
   PublicationArt,
@@ -14,9 +15,10 @@ type Props = {
   pub?: Publication | null;
   author?: Author | null;
   onClose: () => void;
+  onFilterEditorial?: (editorialId?: string) => void;
 };
 
-export default function PublicationModal({ pub, author, onClose }: Props) {
+export default function PublicationModal({ pub, author, onClose, onFilterEditorial }: Props) {
   if (!pub) return null;
 
   const isBook = (p: Publication): p is PublicationBooks =>
@@ -61,11 +63,13 @@ export default function PublicationModal({ pub, author, onClose }: Props) {
 
         <div className="p-4 sm:p-6 overflow-auto">
           <div className="flex flex-col sm:flex-row gap-4">
-            <div className="w-full sm:w-44 flex-shrink-0">
+            <div className="w-full sm:w-44 flex-shrink-0 relative">
               {pub.cover ? (
-                <img
+                <Image
                   src={pub.cover}
                   alt={pub.title}
+                  width={320}
+                  height={440}
                   className="w-full h-auto object-cover rounded-md shadow-sm"
                 />
               ) : (
@@ -134,6 +138,20 @@ export default function PublicationModal({ pub, author, onClose }: Props) {
                   <a href={pub.href} className="inline-block px-4 py-2 border rounded-md text-[#0F1C2E]">
                     Ver detalle
                   </a>
+                )}
+
+                {/* Si es libro con editorial, ofrecer filtrar por editorial */}
+                {isBook(pub) && editorialName && (
+                  <button
+                    onClick={() => {
+                      // avisamos al padre para filtrar por esta editorial (si fue pasada)
+                      if (onFilterEditorial) onFilterEditorial(pub.editorialId);
+                      onClose();
+                    }}
+                    className="inline-block px-4 py-2 border rounded-md text-[#0F1C2E]"
+                  >
+                    Ver en editorial {editorialName}
+                  </button>
                 )}
 
                 <button onClick={onClose} className="inline-block px-4 py-2 text-sm text-gray-700 rounded-md">

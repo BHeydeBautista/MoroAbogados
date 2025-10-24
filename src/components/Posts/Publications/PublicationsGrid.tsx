@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useMemo, useState, useEffect } from "react";
-import { PUBLICATIONS, AUTHORS, type Publication } from "../../../data/publicationsData";
+import { PUBLICATIONS, AUTHORS, EDITORIALS, type Publication } from "../../../data/publicationsData";
 import PublicationCard from "./PublicationCard";
 import PublicationModal from "./PublicationModal";
 
 export default function PublicationsGrid() {
   const [authorFilter, setAuthorFilter] = useState<string | "all">("all");
+  const [editorialFilter, setEditorialFilter] = useState<string | "all">("all");
   const [typeFilter, setTypeFilter] = useState<"all" | "libro" | "articulo">("all");
   const [openId, setOpenId] = useState<string | null>(null);
   const [page, setPage] = useState(1);
@@ -17,13 +18,20 @@ export default function PublicationsGrid() {
     return PUBLICATIONS.filter((p) => {
       if (authorFilter !== "all" && p.authorId !== authorFilter) return false;
       if (typeFilter !== "all" && p.type !== typeFilter) return false;
+      if (editorialFilter !== "all") {
+        // solo coincidirá para libros que tengan editorialId
+        if ((p as any).editorialId !== editorialFilter) return false;
+      }
       return true;
     });
-  }, [authorFilter, typeFilter]);
+  }, [authorFilter, typeFilter, editorialFilter]);
 
-  // Orden: por year descendente (nuevos primero), fallback por título asc
+  // Orden: libros primero, luego por year descendente, fallback por título asc
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => {
+      const ta = a.type === "libro" ? 0 : 1;
+      const tb = b.type === "libro" ? 0 : 1;
+      if (ta !== tb) return ta - tb;
       const ay = a.year ?? 0;
       const by = b.year ?? 0;
       if (by !== ay) return by - ay;
@@ -33,7 +41,7 @@ export default function PublicationsGrid() {
 
   // Paginación
   const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
-  useEffect(() => setPage(1), [authorFilter, typeFilter]); // resetear al cambiar filtro
+  useEffect(() => setPage(1), [authorFilter, typeFilter, editorialFilter]); // resetear al cambiar filtro
   useEffect(() => { if (page > pageCount) setPage(pageCount); }, [pageCount, page]);
 
   const pageItems = useMemo(() => {
@@ -77,6 +85,19 @@ export default function PublicationsGrid() {
             {AUTHORS.map((a) => (
               <option key={a.id} value={a.id}>
                 {a.name}
+              </option>
+            ))}
+          </select>
+          {/* Editorial filter */}
+          <select
+            value={editorialFilter}
+            onChange={(e) => setEditorialFilter(e.target.value as any)}
+            className="ml-2 shrink-0 border rounded px-3 py-2 text-sm bg-white"
+          >
+            <option value="all">Todas las editoriales</option>
+            {EDITORIALS.map((ed) => (
+              <option key={ed.id} value={ed.id}>
+                {ed.name}
               </option>
             ))}
           </select>
@@ -133,7 +154,17 @@ export default function PublicationsGrid() {
         </button>
       </div>
 
-      <PublicationModal pub={selected} author={selectedAuthor} onClose={() => setOpenId(null)} />
+      <PublicationModal
+        pub={selected}
+        author={selectedAuthor}
+        onClose={() => setOpenId(null)}
+        // permite al modal activar el filtro por editorial
+        onFilterEditorial={(id?: string) => {
+          if (!id) return;
+          setEditorialFilter(id);
+          setOpenId(null);
+        }}
+      />
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { clients } from "@/data/clients";
 import ClientCard from "./ClientCard";
 import { motion } from "framer-motion";
+import TopClientsMarquee from "./TopClientsMarquee"; // <-- import añadido
 
 const categories = [
   "Todos",
@@ -33,6 +34,8 @@ export default function ClientsSection() {
     currentPage * ITEMS_PER_PAGE
   );
 
+  const topClients = clients.slice(0, Math.min(12, clients.length)); // primeros destacados
+
   return (
     <section className="pt-32 pb-20 bg-gradient-to-b from-[#0b1c2c] to-[#112e45] text-white">
       <div className="container mx-auto px-6">
@@ -55,6 +58,19 @@ export default function ClientsSection() {
         >
           Empresas líderes que han confiado en nuestro estudio.
         </motion.p>
+
+        {/* Integración del marquee con clientes destacados */}
+        <div className="mb-8">
+          <TopClientsMarquee
+            items={topClients.map((c) => ({
+              name: c.name,
+              logo: c.logo,
+              href: c.website,
+            }))}
+            speed={48}
+            height={64}
+          />
+        </div>
 
         {/* Filtros por categoría */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">

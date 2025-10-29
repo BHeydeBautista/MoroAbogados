@@ -34,7 +34,19 @@ export default function ClientsSection() {
     currentPage * ITEMS_PER_PAGE
   );
 
-  const topClients = clients.slice(0, Math.min(12, clients.length)); // primeros destacados
+  // Reemplazar esta línea:
+  // const topClients = clients.slice(0, Math.min(12, clients.length)); // primeros destacados
+
+  // { cambiado: construir topClients priorizando featured + logo, luego cualquier con logo, luego fallback }
+  const featuredWithLogos = clients.filter((c) => c.featured && c.logo);
+  const logoOnly = clients.filter((c) => c.logo);
+  const source =
+    featuredWithLogos.length > 0
+      ? featuredWithLogos
+      : logoOnly.length > 0
+      ? logoOnly
+      : clients;
+  const topClients = source.slice(0, Math.min(12, clients.length)); // primeros destacados
 
   return (
     <section className="pt-32 pb-20 bg-gradient-to-b from-[#0b1c2c] to-[#112e45] text-white">
@@ -65,7 +77,7 @@ export default function ClientsSection() {
             items={topClients.map((c) => ({
               name: c.name,
               logo: c.logo,
-              href: c.website,
+              featured: c.featured, // pasar la bandera para que el marquee pueda usarla
             }))}
             speed={48}
             height={64}

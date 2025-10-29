@@ -6,14 +6,14 @@ export interface Client {
 }
 
 export const clients: Client[] = [
-  { name: "Acindar S.G.R.", category: "Industria y Producción", logo: "/logos/Acindar S.G.R..jpg", featured: false },
+  { name: "Acindar S.G.R.", category: "Industria y Producción"},
   { name: "Automóvil Club Argentino", category: "Servicios y Otros", logo: "/logos/Automóvil Club Argentino.jpg" },
-  { name: "Agroservicios Pampeanos S.A.", category: "Industria y Producción", logo: "/logos/Agroservicios Pampeanos S.A..jpg" },
-  { name: "Agrotécnica Litoral S.R.L.", category: "Industria y Producción", logo: "/logos/Agrotécnica Litoral S.R.L..jpg" },
+  { name: "Agroservicios Pampeanos S.A.", category: "Industria y Producción" },
+  { name: "Agrotécnica Litoral S.R.L.", category: "Industria y Producción" },
   { name: "Aberturas Valentinuz S.A.", category: "Industria y Producción", logo: "/logos/Aberturas Valentinuz S.A..jpg" },
   { name: "Avebe Argentina S.A.", category: "Industria y Producción", logo: "/logos/Avebe Argentina S.A..jpg" },
   { name: "Banco Comafi S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Comafi S.A..jpg" },
-  { name: "Banco de Entre Ríos S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco de Entre Ríos S.A..jpg" },
+  { name: "Banco de Entre Ríos S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco de Entre Ríos S.A..jpg", featured: true },
   { name: "Banco Finansur S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Finansur S.A..jpg" },
   { name: "Banco Hipotecario S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Hipotecario S.A..jpg" },
   { name: "Banco Municipal de Rosario", category: "Gobierno y Municipios", logo: "/logos/Banco Municipal de Rosario.jpg" },

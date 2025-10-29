@@ -5,6 +5,7 @@ type Item = {
   name: string;
   logo?: string;
   href?: string;
+  featured?: boolean; // <-- añadido
 };
 
 type Props = {
@@ -14,11 +15,15 @@ type Props = {
 };
 
 export default function TopClientsMarquee({ items, speed = 40, height = 72 }: Props) {
-  // doble array para loop continuo
-  const display = [...items, ...items];
+  // Usar "featured" si hay, si no fallback a todos los items
+  const featured = items.filter((it) => Boolean(it.featured));
+  const selected = featured.length > 0 ? featured : items;
 
-  // duración estimada (ajustable)
-  const duration = Math.max(10, Math.floor((items.length * 100) / speed));
+  // doble array para loop continuo usando la selección
+  const display = [...selected, ...selected];
+
+  // duración estimada (ajustable) en base a la cantidad de elementos seleccionados
+  const duration = Math.max(10, Math.floor((selected.length * 100) / speed));
 
   return (
     <div
@@ -49,7 +54,7 @@ export default function TopClientsMarquee({ items, speed = 40, height = 72 }: Pr
                 title={it.name}
               >
                 <Image
-                  src={it.logo}
+                  src={encodeURI(it.logo)}
                   alt={it.name}
                   width={Math.floor(height * 1.4)}
                   height={height - 8}

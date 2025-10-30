@@ -4,6 +4,7 @@ import { useState } from "react";
 import { clients } from "@/data/clients";
 import ClientCard from "./ClientCard";
 import { motion } from "framer-motion";
+import TopClientsMarquee from "./TopClientsMarquee"; // <-- import añadido
 
 const categories = [
   "Todos",
@@ -33,6 +34,20 @@ export default function ClientsSection() {
     currentPage * ITEMS_PER_PAGE
   );
 
+  // Reemplazar esta línea:
+  // const topClients = clients.slice(0, Math.min(12, clients.length)); // primeros destacados
+
+  // { cambiado: construir topClients priorizando featured + logo, luego cualquier con logo, luego fallback }
+  const featuredWithLogos = clients.filter((c) => c.featured && c.logo);
+  const logoOnly = clients.filter((c) => c.logo);
+  const source =
+    featuredWithLogos.length > 0
+      ? featuredWithLogos
+      : logoOnly.length > 0
+      ? logoOnly
+      : clients;
+  const topClients = source.slice(0, Math.min(12, clients.length)); // primeros destacados
+
   return (
     <section className="pt-32 pb-20 bg-gradient-to-b from-[#0b1c2c] to-[#112e45] text-white">
       <div className="container mx-auto px-6">
@@ -55,6 +70,19 @@ export default function ClientsSection() {
         >
           Empresas líderes que han confiado en nuestro estudio.
         </motion.p>
+
+        {/* Integración del marquee con clientes destacados */}
+        <div className="mb-8">
+          <TopClientsMarquee
+            items={topClients.map((c) => ({
+              name: c.name,
+              logo: c.logo,
+              featured: c.featured, // pasar la bandera para que el marquee pueda usarla
+            }))}
+            speed={48}
+            height={64}
+          />
+        </div>
 
         {/* Filtros por categoría */}
         <div className="flex flex-wrap justify-center gap-3 mb-10">

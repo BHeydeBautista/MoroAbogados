@@ -36,7 +36,7 @@ export interface Lawyer {
       email: "prueba@gmai.com",
       name: "Dr. Carlos E. Moro",
       title: "Abogado, especialista en Derecho Concursal",
-      image: "/img/lawyer1.jpg",
+      image: "/img/lawyers/Carlos.jpg",
       bio: "Abogado egresado en 1976 de la UNL. Amplia trayectoria en derecho concursal y societario.",
       birthDate: "13 de enero de 1955",
       birthPlace: "Paraná, Entre Ríos",

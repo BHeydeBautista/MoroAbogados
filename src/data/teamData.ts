@@ -23,21 +23,21 @@ export const socios: TeamMember[] = [
 
 export const abogados: TeamMember[] = [
   {
-    name: "Rocio",
+    name: "Rocío Leites",
     role: "Abogada",
-    image: "/img/lawyer1.jpg",
+    image: "/img/lawyers/Dra-Rocio.jpg",
     bio: "Especialista en derecho corporativo y compliance. Experiencia en asesoría a empresas familiares.",
   },
   {
-    name: "Abril",
+    name: "Abril Martinez Figueroa",
     role: "Abogada",
-    image: "/img/lawyer1.jpg",
+    image: "/img/lawyers/Dra-Abril.jpg",
     bio: "Litigante con foco en resolución alternativa de conflictos y derecho civil.",
   },
   {
-    name: "Noelia",
+    name: "Noelia Torres",
     role: "Abogada",
-    image: "/img/lawyer1.jpg",
+    image: "/img/lawyers/Dra-Noelia.jpg",
     bio: "Asesora en derecho laboral y seguridad social con amplia experiencia en pymes.",
   },
 ];
@@ -53,12 +53,12 @@ export const pasantes: TeamMember[] = [
 
 export const procuradores: TeamMember[] = [
   {
-    name: "Nombre",
+    name: "Rosellí Giannichini",
     role: "Procuradora",
     bio: "Gestión de expedientes y soporte administrativo.",
   },
   {
-    name: "Paula",
+    name: "Paula Jaime",
     role: "Procuradora",
     bio: "Coordinación de agenda y atención a clientes.",
   },
@@ -67,7 +67,7 @@ export const procuradores: TeamMember[] = [
 export const itAssistants: TeamMember[] = [
   {
     name: "Sergio Heyde",
-    role: "Asistente Informático",
+    role: "Analista en Sistemas",
     bio: "Soporte técnico y mantenimiento de sistemas.",
   },
   {

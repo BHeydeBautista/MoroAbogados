@@ -60,15 +60,21 @@ export default function TeamSection() {
               >
                 <div
                   className={`relative w-28 h-28 sm:w-40 sm:h-40 md:w-48 md:h-48 mb-3 rounded-full overflow-hidden shadow-lg transition-transform duration-500 ${
-                    isActive ? "scale-105 shadow-2xl" : "group-hover:scale-105 group-hover:shadow-2xl"
+                    isActive
+                      ? "scale-105 shadow-2xl"
+                      : "group-hover:scale-105 group-hover:shadow-2xl"
                   }`}
                 >
                   <Image
                     src={member.image ?? "/img/lawyer1.jpg"}
                     alt={member.name}
                     fill
-                    sizes="(max-width: 640px) 112px, (max-width: 768px) 160px, 192px"
-                    className="object-cover object-center rounded-full"
+                    sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 208px"
+                    className={`object-cover rounded-full ${
+                      member.focus
+                        ? `object-[${member.focus}]`
+                        : "object-center"
+                    }`}
                   />
 
                   <div
@@ -94,7 +100,9 @@ export default function TeamSection() {
                 <h4 className="text-[#D4A75D] text-sm md:text-lg font-serif font-bold">
                   {member.name}
                 </h4>
-                <p className="text-gray-300 text-xs md:text-sm">{member.role}</p>
+                <p className="text-gray-300 text-xs md:text-sm">
+                  {member.role}
+                </p>
 
                 {isActive && member.bio && (
                   <motion.div
@@ -118,7 +126,9 @@ export default function TeamSection() {
   const SociosGrid = (title: string, members: any[]) => (
     <section className="mb-10 md:mb-16">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 md:mb-6 gap-2">
-        <h3 className="text-xl md:text-2xl font-semibold text-[#D4A75D]">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-semibold text-[#D4A75D]">
+          {title}
+        </h3>
         <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D4A75D]/10 text-xs md:text-sm text-[#D4A75D]">
           {members.length} miembros
         </span>
@@ -162,7 +172,11 @@ export default function TeamSection() {
                     alt={member.name}
                     fill
                     sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 208px"
-                    className="object-cover object-[50%_20%] rounded-full"
+                    className={`object-cover rounded-full ${
+                      member.focus
+                        ? `object-[${member.focus}]`
+                        : "object-center"
+                    }`}
                   />
 
                   <div
@@ -188,7 +202,9 @@ export default function TeamSection() {
                 <h4 className="text-[#D4A75D] text-base md:text-xl font-serif font-bold">
                   {member.name}
                 </h4>
-                <p className="text-gray-300 text-xs md:text-sm">{member.role}</p>
+                <p className="text-gray-300 text-xs md:text-sm">
+                  {member.role}
+                </p>
 
                 {isActive && member.bio && (
                   <motion.div
@@ -210,7 +226,10 @@ export default function TeamSection() {
   );
 
   return (
-    <section className="relative pt-20 pb-10 md:pt-28 md:pb-20" aria-labelledby="team-title">
+    <section
+      className="relative pt-20 pb-10 md:pt-28 md:pb-20"
+      aria-labelledby="team-title"
+    >
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -221,7 +240,10 @@ export default function TeamSection() {
       />
 
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
-        <div id="team-title" className="text-center mb-6 md:mb-10 scroll-mt-20 md:scroll-mt-32">
+        <div
+          id="team-title"
+          className="text-center mb-6 md:mb-10 scroll-mt-20 md:scroll-mt-32"
+        >
           <h2 className="text-2xl md:text-3xl font-serif font-bold mb-2 text-[#D4A75D]">
             Nuestro equipo
           </h2>
@@ -234,7 +256,35 @@ export default function TeamSection() {
         <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-4 md:p-8 shadow-lg">
           {SociosGrid("Abogados Socios", socios)}
           {CircleGrid("Abogados", abogados)}
-          {CircleGrid("Pasantes", pasantes)}
+
+          <section className="mb-6 md:mb-10">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
+              <h3 className="text-lg md:text-xl font-semibold text-white">
+                Pasantes
+              </h3>
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
+                {pasantes.length} miembros
+              </span>
+            </div>
+
+            <div className="w-full overflow-x-auto -mx-4 px-4">
+              <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
+                {pasantes.map((member, index) => (
+                  <div key={member.name} className="min-w-[180px] sm:min-w-0">
+                    <TeamCard
+                      index={index}
+                      name={member.name}
+                      role={member.role}
+                      bio={member.bio}
+                      showProfile={false}
+                      compact
+                      onOpenBio={() => setModalMember(member)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">

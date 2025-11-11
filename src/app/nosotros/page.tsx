@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import StoryIntro from "@/components/About/StoryIntro";
 import ProfileSection from "@/components/About/ProfileSection";
 import Timeline from "@/components/About/Timeline";
-import TeamSection from "@/components/About/TeamSection";
+import TeamSection from "@/components/Team/TeamSection";
 import StudioGallery from "@/components/About/StudioGallery";
 
 export default function NosotrosPage() {

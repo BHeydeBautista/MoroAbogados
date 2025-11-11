@@ -15,6 +15,7 @@ interface TeamCardProps {
   showProfile?: boolean;
   compact?: boolean;
   onOpenBio?: () => void;
+  focus?: string;
 }
 
 function initials(name: string) {
@@ -37,6 +38,7 @@ export default function TeamCard({
   showProfile = false,
   compact = false,
   onOpenBio,
+  focus,
 }: TeamCardProps) {
   const hasImage = Boolean(image);
 
@@ -48,7 +50,9 @@ export default function TeamCard({
     : "relative w-full h-40";
 
   const initialsSize = compact ? "w-16 h-16 text-lg" : "w-28 h-28 text-2xl";
-  const nameClass = compact ? "text-base font-serif font-bold" : "text-lg md:text-xl font-serif font-bold";
+  const nameClass = compact
+    ? "text-base font-serif font-bold"
+    : "text-lg md:text-xl font-serif font-bold";
   const roleClass = compact ? "text-xs text-gray-300" : "text-sm text-gray-300";
 
   return (
@@ -60,14 +64,20 @@ export default function TeamCard({
         transition={{ duration: 0.45, delay: index * 0.06 }}
         viewport={{ once: true }}
         className={`w-full rounded-xl overflow-hidden border border-white/6 shadow-lg transition-all duration-300 ${
-          hasImage ? "bg-gradient-to-b from-[#071224] to-[#0B1624]" : "bg-gradient-to-b from-white/5 to-white/3"
+          hasImage
+            ? "bg-gradient-to-b from-[#071224] to-[#0B1624]"
+            : "bg-gradient-to-b from-white/5 to-white/3"
         }`}
       >
         <div className={mediaClass}>
           {hasImage ? (
             <>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className={`${compact ? "w-32 h-32" : "w-44 h-44"} rounded-full bg-gradient-to-t from-[#2a1620] via-[#0f1012] to-transparent opacity-30 filter blur-2xl`} />
+                <div
+                  className={`${
+                    compact ? "w-32 h-32" : "w-44 h-44"
+                  } rounded-full bg-gradient-to-t from-[#2a1620] via-[#0f1012] to-transparent opacity-30 filter blur-2xl`}
+                />
               </div>
 
               <div className="relative z-10 w-full h-full overflow-hidden">
@@ -76,7 +86,9 @@ export default function TeamCard({
                   src={image!}
                   alt={name}
                   fill
-                  className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                  className={`object-cover scale-[1.35] translate-y-[4%] transition-transform duration-700 hover:scale-[1.45] ${
+                    focus ? `object-[${focus}]` : "object-center"
+                  }`}
                 />
 
                 {/* OPCIÓN PARA CARLOS (si querés moverlo más abajo):  
@@ -92,7 +104,8 @@ export default function TeamCard({
                 <div
                   className={`${initialsSize} rounded-full flex items-center justify-center font-bold text-white flex-shrink-0`}
                   style={{
-                    background: "linear-gradient(135deg,#D4A75D 0%, #0F1C2E 100%)",
+                    background:
+                      "linear-gradient(135deg,#D4A75D 0%, #0F1C2E 100%)",
                     boxShadow: "0 8px 24px rgba(13,20,30,0.35)",
                   }}
                   aria-hidden
@@ -113,12 +126,18 @@ export default function TeamCard({
               <div className="backdrop-blur-sm bg-black/30 rounded-md p-3">
                 {hasImage && (
                   <>
-                    <h3 className="text-lg font-serif font-bold text-[#D4A75D]">{name}</h3>
+                    <h3 className="text-lg font-serif font-bold text-[#D4A75D]">
+                      {name}
+                    </h3>
                     <p className="text-sm text-gray-300 mb-2">{role}</p>
                   </>
                 )}
 
-                {bio && <p className="text-xs text-gray-200/85 line-clamp-3 mb-3">{bio}</p>}
+                {bio && (
+                  <p className="text-xs text-gray-200/85 line-clamp-3 mb-3">
+                    {bio}
+                  </p>
+                )}
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -162,7 +181,9 @@ export default function TeamCard({
 
       {hasImage && !compact && (
         <div className="mt-4 text-center">
-          <h3 className="text-lg font-serif font-bold text-[#D4A75D]">{name}</h3>
+          <h3 className="text-lg font-serif font-bold text-[#D4A75D]">
+            {name}
+          </h3>
           <p className="text-sm text-gray-300">{role}</p>
         </div>
       )}

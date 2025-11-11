@@ -12,12 +12,11 @@ interface TeamCardProps {
   index: number;
   bio?: string;
   email?: string;
-  showProfile?: boolean; // controla si se muestra "Ver perfil"
-  compact?: boolean; // nuevo: versión compacta (sin foto -> tarjetas más pequeñas)
-  onOpenBio?: () => void; // callback para abrir modal/bio en el padre
+  showProfile?: boolean;
+  compact?: boolean;
+  onOpenBio?: () => void;
 }
 
-// helper: extrae iniciales
 function initials(name: string) {
   return name
     .split(" ")
@@ -41,11 +40,9 @@ export default function TeamCard({
 }: TeamCardProps) {
   const hasImage = Boolean(image);
 
-  // alturas y tamaños según compact / hasImage
+  // FIX: mantener SIEMPRE área cuadrada para que el círculo quede perfecto
   const mediaClass = hasImage
-    ? compact
-      ? "relative w-full h-64"
-      : "relative w-full h-80"
+    ? "relative w-full aspect-square"
     : compact
     ? "relative w-full h-28"
     : "relative w-full h-40";
@@ -67,7 +64,6 @@ export default function TeamCard({
         }`}
       >
         <div className={mediaClass}>
-          {/* If image exists show it, otherwise show styled placeholder */}
           {hasImage ? (
             <>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -75,12 +71,18 @@ export default function TeamCard({
               </div>
 
               <div className="relative z-10 w-full h-full overflow-hidden">
+                {/* FIX PRINCIPAL: object-center para que nunca corte mal */}
                 <Image
                   src={image!}
                   alt={name}
                   fill
-                  className="object-cover transition-transform duration-700 hover:scale-105"
+                  className="object-cover object-center transition-transform duration-700 hover:scale-105"
                 />
+
+                {/* OPCIÓN PARA CARLOS (si querés moverlo más abajo):  
+                 className="object-cover object-[50%_20%] transition-transform duration-700 hover:scale-105"
+                */}
+
                 <div className="absolute inset-3 rounded-lg pointer-events-none border border-white/6" />
               </div>
             </>
@@ -106,7 +108,6 @@ export default function TeamCard({
             </div>
           )}
 
-          {/* overlay (same behavior for both) */}
           <div className="absolute inset-0 flex flex-col justify-end p-4">
             <div className="opacity-0 hover:opacity-100 pointer-events-none hover:pointer-events-auto transition-opacity duration-300">
               <div className="backdrop-blur-sm bg-black/30 rounded-md p-3">
@@ -117,9 +118,7 @@ export default function TeamCard({
                   </>
                 )}
 
-                {bio && (
-                  <p className="text-xs text-gray-200/85 line-clamp-3 mb-3">{bio}</p>
-                )}
+                {bio && <p className="text-xs text-gray-200/85 line-clamp-3 mb-3">{bio}</p>}
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -134,7 +133,6 @@ export default function TeamCard({
                     )}
                   </div>
 
-                  {/* Si el padre provee onOpenBio renderizamos un botón para abrir la bio/modal */}
                   {onOpenBio ? (
                     <button
                       onClick={(e) => {
@@ -161,13 +159,6 @@ export default function TeamCard({
           </div>
         </div>
       </motion.div>
-
-      {/* Texto debajo de la card (for no-image we already printed name/role inside, but keep this for consistency) */}
-      {!hasImage && !compact && (
-        <div className="mt-3 text-center">
-          <p className="text-sm text-gray-300">{role}</p>
-        </div>
-      )}
 
       {hasImage && !compact && (
         <div className="mt-4 text-center">

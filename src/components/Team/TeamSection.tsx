@@ -14,8 +14,6 @@ import {
 
 export default function TeamSection() {
   const [activeMember, setActiveMember] = useState<string | null>(null);
-
-  // detecta viewport mobile para habilitar tap-to-toggle
   const [isMobile, setIsMobile] = useState(false);
   const [modalMember, setModalMember] = useState<any | null>(null);
 
@@ -26,7 +24,6 @@ export default function TeamSection() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 🔹 Card genérica (abogados / pasantes)
   const CircleGrid = (title: string, members: any[]) => (
     <section className="mb-8 md:mb-14">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 md:mb-6 gap-2">
@@ -36,7 +33,6 @@ export default function TeamSection() {
         </span>
       </div>
 
-      {/* Scroll horizontal en pantallas pequeñas */}
       <div className="w-full overflow-x-auto -mx-4 px-4">
         <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 py-2">
           {members.map((member, index) => {
@@ -50,7 +46,6 @@ export default function TeamSection() {
                 transition={{ duration: 0.4, delay: index * 0.06 }}
                 viewport={{ once: true }}
                 className="min-w-[180px] sm:min-w-0 relative group flex flex-col items-center text-center"
-                // en mobile tocar la card activa/desactiva el overlay
                 onClick={() => {
                   if (isMobile) setActiveMember(isActive ? null : member.name);
                 }}
@@ -73,10 +68,9 @@ export default function TeamSection() {
                     alt={member.name}
                     fill
                     sizes="(max-width: 640px) 112px, (max-width: 768px) 160px, 192px"
-                    className="object-cover rounded-full"
+                    className="object-cover object-center rounded-full"
                   />
 
-                  {/* Overlay visible si hover o activo en mobile */}
                   <div
                     className={`absolute inset-0 bg-black/40 transition-opacity duration-300 flex items-center justify-center ${
                       isActive
@@ -88,7 +82,6 @@ export default function TeamSection() {
                       aria-label={`Saber más sobre ${member.name}`}
                       className="px-3 py-1 text-xs md:text-sm border border-[#D4A75D]/70 text-[#D4A75D] rounded-md bg-black/10 hover:bg-[#D4A75D] hover:text-black transition-all duration-300"
                       onClick={(e) => {
-                        // evitar que el click propague y cierre/abra la card
                         e.stopPropagation();
                         setModalMember(member);
                       }}
@@ -103,9 +96,6 @@ export default function TeamSection() {
                 </h4>
                 <p className="text-gray-300 text-xs md:text-sm">{member.role}</p>
 
-                {/* eliminado botón extra en mobile: tap a la card activa el overlay y el botón del overlay abre el modal */}
-
-                {/* Mostrar bio compacta debajo en mobile/expanded si se desea (opcional) */}
                 {isActive && member.bio && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
@@ -125,7 +115,6 @@ export default function TeamSection() {
     </section>
   );
 
-  // 🔹 Socios (versión destacada)
   const SociosGrid = (title: string, members: any[]) => (
     <section className="mb-10 md:mb-16">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 md:mb-6 gap-2">
@@ -166,15 +155,16 @@ export default function TeamSection() {
                   }`}
                 >
                   <div className="absolute inset-0 rounded-full border-[2px] border-[#D4A75D]/70 animate-pulse-slow pointer-events-none"></div>
+
+                  {/* ✅ FIX REAL DEL PROBLEMA */}
                   <Image
                     src={member.image ?? "/img/lawyer1.jpg"}
                     alt={member.name}
                     fill
                     sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 208px"
-                    className="object-cover rounded-full"
+                    className="object-cover object-[50%_20%] rounded-full"
                   />
 
-                  {/* Overlay */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center transition-opacity duration-300 ${
                       isActive
@@ -200,9 +190,6 @@ export default function TeamSection() {
                 </h4>
                 <p className="text-gray-300 text-xs md:text-sm">{member.role}</p>
 
-                {/* Botón móvil */}
-                {/* eliminado botón móvil debajo: se usa tap-to-toggle + overlay button abre modal */}
-
                 {isActive && member.bio && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
@@ -223,9 +210,7 @@ export default function TeamSection() {
   );
 
   return (
-    // Añadimos padding-top para compensar navbar fija en mobile (ajusta valores si tu navbar tiene otra altura)
     <section className="relative pt-20 pb-10 md:pt-28 md:pb-20" aria-labelledby="team-title">
-      {/* Fondo */}
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -236,17 +221,13 @@ export default function TeamSection() {
       />
 
       <div className="relative max-w-6xl mx-auto px-4 md:px-6">
-        <div
-          id="team-title"
-          className="text-center mb-6 md:mb-10 scroll-mt-20 md:scroll-mt-32"
-        >
+        <div id="team-title" className="text-center mb-6 md:mb-10 scroll-mt-20 md:scroll-mt-32">
           <h2 className="text-2xl md:text-3xl font-serif font-bold mb-2 text-[#D4A75D]">
             Nuestro equipo
           </h2>
           <p className="text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
             Equipo multidisciplinario: abogados socios, abogados, pasantes,
-            procuradores y asistentes informáticos. Aquí mostramos a las
-            personas que colaboran en la firma.
+            procuradores y asistentes informáticos.
           </p>
         </div>
 
@@ -255,7 +236,6 @@ export default function TeamSection() {
           {CircleGrid("Abogados", abogados)}
           {CircleGrid("Pasantes", pasantes)}
 
-          {/* Procuradores */}
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
               <h3 className="text-lg md:text-xl font-semibold text-white">
@@ -284,7 +264,6 @@ export default function TeamSection() {
             </div>
           </section>
 
-          {/* Asistentes Informáticos */}
           <section>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
               <h3 className="text-lg md:text-xl font-semibold text-white">
@@ -315,7 +294,6 @@ export default function TeamSection() {
         </div>
       </div>
 
-      {/* Modal simple para mostrar bio */}
       {modalMember && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"

@@ -256,7 +256,35 @@ export default function TeamSection() {
         <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-4 md:p-8 shadow-lg">
           {SociosGrid("Abogados Socios", socios)}
           {CircleGrid("Abogados", abogados)}
-          {CircleGrid("Pasantes", pasantes)}
+
+          <section className="mb-6 md:mb-10">
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
+              <h3 className="text-lg md:text-xl font-semibold text-white">
+                Pasantes
+              </h3>
+              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
+                {pasantes.length} miembros
+              </span>
+            </div>
+
+            <div className="w-full overflow-x-auto -mx-4 px-4">
+              <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
+                {pasantes.map((member, index) => (
+                  <div key={member.name} className="min-w-[180px] sm:min-w-0">
+                    <TeamCard
+                      index={index}
+                      name={member.name}
+                      role={member.role}
+                      bio={member.bio}
+                      showProfile={false}
+                      compact
+                      onOpenBio={() => setModalMember(member)}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
 
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">

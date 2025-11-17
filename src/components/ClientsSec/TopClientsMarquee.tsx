@@ -5,81 +5,83 @@ type Item = {
   name: string;
   logo?: string;
   href?: string;
-  featured?: boolean; // <-- añadido
+  featured?: boolean;
 };
 
 type Props = {
   items: Item[];
-  speed?: number; // px/sec approximate
-  height?: number; // px height of the strip
+  speed?: number; // velocidad base
+  height?: number; // altura de la tira
 };
 
-export default function TopClientsMarquee({ items, speed = 40, height = 72 }: Props) {
-  // Usar "featured" si hay, si no fallback a todos los items
-  const featured = items.filter((it) => Boolean(it.featured));
-  const selected = featured.length > 0 ? featured : items;
+export default function TopClientsMarquee({
+  items,
+  speed = 45,
+  height = 72,
+}: Props) {
+  const featured = items.filter((i) => i.featured && i.logo);
+  const selected = featured.length > 0 ? featured : items.filter((i) => i.logo);
 
-  // doble array para loop continuo usando la selección
   const display = [...selected, ...selected];
 
-  // duración estimada (ajustable) en base a la cantidad de elementos seleccionados
-  const duration = Math.max(10, Math.floor((selected.length * 100) / speed));
+  const duration = Math.max(10, Math.floor((selected.length * 120) / speed));
 
   return (
     <div
-      className="overflow-hidden w-full marquee-container"
+      className="relative overflow-hidden w-full"
       aria-hidden={false}
       role="region"
-      aria-label="Clientes destacados"
-      tabIndex={0} // permite pausar con focus
+      tabIndex={0}
     >
+      {/* Lado izquierdo (fade) */}
+      <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#0b1c2c] to-transparent z-10" />
+
+      {/* Lado derecho (fade) */}
+      <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#0b1c2c] to-transparent z-10" />
+
       <div
-        className="marquee-inner flex gap-8 items-center"
+        className="flex gap-10 items-center marquee-inner"
         style={{
           animation: `marquee ${duration}s linear infinite`,
         }}
       >
-        {display.map((it, idx) => (
-          <div
-            key={`${it.name}-${idx}`}
-            className="flex items-center justify-center"
-            style={{ height, minWidth: height * 1.6 }}
+        {display.map((it, i) => (
+          <a
+            key={`${it.name}-${i}`}
+            href={it.href ?? "#"}
+            target={it.href ? "_blank" : undefined}
+            rel={it.href ? "noopener noreferrer" : undefined}
+            className="block"
+            style={{ minWidth: height * 1.8 }}
+            title={it.name}
           >
-            {it.logo ? (
-              <a
-                href={it.href ?? "#"}
-                target={it.href ? "_blank" : undefined}
-                rel={it.href ? "noopener noreferrer" : undefined}
-                className="inline-block p-2 rounded-md bg-transparent transform transition"
-                title={it.name}
-              >
-                <Image
-                  src={encodeURI(it.logo)}
-                  alt={it.name}
-                  width={Math.floor(height * 1.4)}
-                  height={height - 8}
-                  className="object-contain transition-transform duration-300 transform hover:scale-105 hover:brightness-105 hover:saturate-120 hover:drop-shadow-xl focus:scale-105"
-                />
-              </a>
-            ) : (
-              <div className="px-3 text-sm text-white/90">{it.name}</div>
-            )}
-          </div>
+            <Image
+              src={encodeURI(it.logo!)}
+              alt={it.name}
+              width={Math.floor(height * 1.6)}
+              height={height}
+              className="object-contain transition-transform duration-300 hover:scale-110 hover:brightness-110 hover:drop-shadow-[0_4px_14px_rgba(212,167,93,0.4)]"
+            />
+          </a>
         ))}
       </div>
 
       <style jsx>{`
         @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
         }
+
         .marquee-inner {
           will-change: transform;
         }
-        /* Pausar al hover/focus para poder interactuar con logos */
-        .marquee-container:hover .marquee-inner,
-        .marquee-container:focus-within .marquee-inner,
-        .marquee-container:focus .marquee-inner {
+
+        .marquee-inner:hover,
+        .marquee-inner:focus-within {
           animation-play-state: paused;
         }
       `}</style>

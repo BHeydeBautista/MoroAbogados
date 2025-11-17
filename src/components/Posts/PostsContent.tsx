@@ -45,10 +45,13 @@ export default function PostsContent() {
     setLoading(true);
     setError(null);
 
-    fetch("/api/instagram")
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/instagram`;
+
+    fetch(url)
       .then(async (res) => {
         if (!res.ok) throw new Error("No se pudo obtener posts");
         const data = await res.json();
+
         const igPosts: IGPost[] =
           data?.data?.map((p: any) => ({
             id: p.id,
@@ -58,6 +61,7 @@ export default function PostsContent() {
             media_type: p.media_type,
             timestamp: p.timestamp,
           })) || [];
+
         if (mounted) {
           setPosts(igPosts.length ? igPosts : mockedPosts);
           setLoading(false);
@@ -66,7 +70,9 @@ export default function PostsContent() {
       .catch((err) => {
         console.warn("Instagram fetch error:", err);
         if (mounted) {
-          setError("No se pudieron cargar las publicaciones. Mostrando ejemplos.");
+          setError(
+            "No se pudieron cargar las publicaciones. Mostrando ejemplos."
+          );
           setPosts(mockedPosts);
           setLoading(false);
         }
@@ -88,7 +94,8 @@ export default function PostsContent() {
             Contenido
           </h2>
           <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
-            Últimas publicaciones desde Instagram, nuestras publicaciones propias y noticias de la firma.
+            Últimas publicaciones desde Instagram, nuestras publicaciones
+            propias y noticias de la firma.
           </p>
         </div>
 
@@ -127,7 +134,12 @@ export default function PostsContent() {
         <div>
           <AnimatePresence mode="wait">
             {active === "instagram" && (
-              <InstagramPosts posts={posts} loading={loading} error={error} pageSize={6} />
+              <InstagramPosts
+                posts={posts}
+                loading={loading}
+                error={error}
+                pageSize={6}
+              />
             )}
 
             {active === "propias" && <PublicationsGrid />}

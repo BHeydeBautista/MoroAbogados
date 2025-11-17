@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { useEffect, useState } from "react";
+
+import { useEffect, useState, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import InstagramPosts, { IGPost } from "./InstagramPosts";
 import PublicationsGrid from "./Publications/PublicationsGrid";
 import NewsList from "./NewsList";
 import { useSearchParams } from "next/navigation";
 
+// Mocked posts de ejemplo
 const mockedPosts: IGPost[] = [
   {
     id: "1",
@@ -31,29 +33,27 @@ const mockedPosts: IGPost[] = [
   },
 ];
 
-export default function PostsContent() {
-  const [active, setActive] = useState<"instagram" | "propias" | "noticias">(
-    "instagram"
-  );
-  const [posts, setPosts] = useState<IGPost[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  // ======================================================
-  //   🔥 LEE "#Contenido?tab=propias" Y CAMBIA AUTOMÁTICAMENTE LA TAB
-  // ======================================================
+// Componente cliente para leer query params y actualizar la tab activa
+function TabSelector({ setActive }: { setActive: (tab: "instagram" | "propias" | "noticias") => void }) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const tab = searchParams.get("tab");
-
     if (tab === "instagram" || tab === "propias" || tab === "noticias") {
       setActive(tab);
     }
-  }, [searchParams]);
+  }, [searchParams, setActive]);
 
-  // ======================================================
+  return null;
+}
 
+export default function PostsContent() {
+  const [active, setActive] = useState<"instagram" | "propias" | "noticias">("instagram");
+  const [posts, setPosts] = useState<IGPost[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch de posts de Instagram
   useEffect(() => {
     if (active !== "instagram") return;
 
@@ -86,9 +86,7 @@ export default function PostsContent() {
       .catch((err) => {
         console.warn("Instagram fetch error:", err);
         if (mounted) {
-          setError(
-            "No se pudieron cargar las publicaciones. Mostrando ejemplos."
-          );
+          setError("No se pudieron cargar las publicaciones. Mostrando ejemplos.");
           setPosts(mockedPosts);
           setLoading(false);
         }
@@ -105,13 +103,13 @@ export default function PostsContent() {
       className="bg-gradient-to-b from-white to-white/95 py-20 px-4 sm:px-6 lg:px-24 text-black"
     >
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[#0F1C2E]">
             Contenido
           </h2>
           <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
-            Últimas publicaciones desde Instagram, nuestras publicaciones
-            propias y noticias de la firma.
+            Últimas publicaciones desde Instagram, nuestras publicaciones propias y noticias de la firma.
           </p>
         </div>
 
@@ -147,19 +145,17 @@ export default function PostsContent() {
           </div>
         </div>
 
+        {/* Contenido de tabs */}
+        <Suspense fallback={<p>Cargando contenido...</p>}>
+          <TabSelector setActive={setActive} />
+        </Suspense>
+
         <div>
           <AnimatePresence mode="wait">
             {active === "instagram" && (
-              <InstagramPosts
-                posts={posts}
-                loading={loading}
-                error={error}
-                pageSize={6}
-              />
+              <InstagramPosts posts={posts} loading={loading} error={error} pageSize={6} />
             )}
-
             {active === "propias" && <PublicationsGrid />}
-
             {active === "noticias" && <NewsList pageSize={4} />}
           </AnimatePresence>
         </div>

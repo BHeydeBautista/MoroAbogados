@@ -17,7 +17,7 @@ const mockedPosts: IGPost[] = [
   {
     id: "2",
     media_url: "/mock/2.png",
-    caption: "🏗️ ¿Qué pasa si se cae una obra?",
+    caption: "🏗️ ¿Qué pasa si se cae una obra??",
     permalink: "https://www.instagram.com/p/Cmock2/",
     timestamp: "2025-08-10",
   },

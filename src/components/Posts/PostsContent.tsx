@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import InstagramPosts, { IGPost } from "./InstagramPosts";
 import PublicationsGrid from "./Publications/PublicationsGrid";
 import NewsList from "./NewsList";
+import { useSearchParams } from "next/navigation";
 
 const mockedPosts: IGPost[] = [
   {
@@ -37,6 +38,21 @@ export default function PostsContent() {
   const [posts, setPosts] = useState<IGPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // ======================================================
+  //   🔥 LEE "#Contenido?tab=propias" Y CAMBIA AUTOMÁTICAMENTE LA TAB
+  // ======================================================
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+
+    if (tab === "instagram" || tab === "propias" || tab === "noticias") {
+      setActive(tab);
+    }
+  }, [searchParams]);
+
+  // ======================================================
 
   useEffect(() => {
     if (active !== "instagram") return;
@@ -99,7 +115,7 @@ export default function PostsContent() {
           </p>
         </div>
 
-        {/* Tabs: responsive — mobile scroll, desktop centrado */}
+        {/* Tabs */}
         <div className="mb-8">
           <div
             role="tablist"

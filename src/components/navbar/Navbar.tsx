@@ -16,7 +16,9 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(null);
+  const [mobileOpenSubmenu, setMobileOpenSubmenu] = useState<string | null>(
+    null
+  );
   const submenuRef = useRef<HTMLDivElement | null>(null);
 
   const isHome = pathname === "/";
@@ -31,7 +33,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (submenuRef.current && !submenuRef.current.contains(event.target as Node)) {
+      if (
+        submenuRef.current &&
+        !submenuRef.current.contains(event.target as Node)
+      ) {
         setOpenSubmenu(null);
       }
     };
@@ -67,17 +72,19 @@ const Navbar = () => {
       name: t.contenido,
       href: "#",
       submenu: [
-        { name: t.pub_instagram, href: "/#InstagramFeed" },
-        { name: t.pub_propias, href: "/publicaciones" },
-        { name: t.noticias, href: "/noticias" },
+        { name: t.pub_instagram, href: "/?tab=instagram#Contenido" },
+        { name: t.pub_propias, href: "/?tab=propias#Contenido" },
+        { name: t.noticias, href: "/?tab=noticias#Contenido" },
       ],
     },
-    { name: t.contacto, href: "/building" },
+    //{ name: t.contacto, href: "/building" },
   ];
 
   const langClass = (lng: "es" | "en") =>
     `text-[15px] lg:text-[17px] font-semibold ${textColor} ${
-      language === lng ? "opacity-100 underline underline-offset-4" : "opacity-70"
+      language === lng
+        ? "opacity-100 underline underline-offset-4"
+        : "opacity-70"
     } ${hoverColor}`;
 
   return (
@@ -103,7 +110,11 @@ const Navbar = () => {
           {navLinks.map(({ name, href, submenu }) => {
             if (!submenu) {
               return (
-                <Link key={name} href={href} className={`${navLinkBase} ${navLinkSize}`}>
+                <Link
+                  key={name}
+                  href={href}
+                  className={`${navLinkBase} ${navLinkSize}`}
+                >
                   {name}
                 </Link>
               );
@@ -180,11 +191,17 @@ const Navbar = () => {
         <div className="hidden lg:flex items-center space-x-6">
           <FaSearch className={`text-xl ${textColor} cursor-pointer`} />
           <div className="flex items-center gap-3">
-            <button onClick={() => switchLang("es")} className={langClass("es")}>
+            <button
+              onClick={() => switchLang("es")}
+              className={langClass("es")}
+            >
               ES
             </button>
             <span className={`${textColor} opacity-50`}>|</span>
-            <button onClick={() => switchLang("en")} className={langClass("en")}>
+            <button
+              onClick={() => switchLang("en")}
+              className={langClass("en")}
+            >
               EN
             </button>
           </div>
@@ -192,7 +209,9 @@ const Navbar = () => {
       </div>
 
       {menuOpen && (
-        <div className={`lg:hidden flex flex-col items-stretch gap-3 py-4 px-4 ${bgStyle}`}>
+        <div
+          className={`lg:hidden flex flex-col items-stretch gap-3 py-4 px-4 ${bgStyle}`}
+        >
           {navLinks.map(({ name, href, submenu }) => (
             <div key={name} className="w-full">
               {!submenu && (
@@ -210,7 +229,9 @@ const Navbar = () => {
                   <button
                     type="button"
                     onClick={() =>
-                      setMobileOpenSubmenu((prev) => (prev === name ? null : name))
+                      setMobileOpenSubmenu((prev) =>
+                        prev === name ? null : name
+                      )
                     }
                     className={`w-full flex items-center justify-between px-4 py-3 rounded-md ${navLinkBase} text-[18px]`}
                   >
@@ -255,11 +276,17 @@ const Navbar = () => {
           ))}
 
           <div className="flex items-center gap-3 mt-2">
-            <button onClick={() => switchLang("es")} className={langClass("es")}>
+            <button
+              onClick={() => switchLang("es")}
+              className={langClass("es")}
+            >
               ES
             </button>
             <span className={`${textColor} opacity-50`}>|</span>
-            <button onClick={() => switchLang("en")} className={langClass("en")}>
+            <button
+              onClick={() => switchLang("en")}
+              className={langClass("en")}
+            >
               EN
             </button>
           </div>

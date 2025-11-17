@@ -5,73 +5,92 @@ import AreaTabs from "@/components/areas/AreaTabs";
 import AreaQuote from "@/components/areas/AreaQuote";
 import AreaLayout from "@/components/areas/AreaLayout";
 import AreaTextContent from "@/components/areas/AreaTextContent";
-import AreaContacts from "@/components/areas/AreaContacts";
 
 export default function DerechoSocietarioPage() {
-  const tabs = [
-    "Información General",
-    "Contactos",
-    "Reconocimientos",
-    "Contenido",
-  ];
+  const tabs = ["Información General", "Reconocimientos", "Contenido"];
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
-  // Refs para cada sección
+  // refs
   const infoRef = useRef<HTMLDivElement>(null);
-  const contactoRef = useRef<HTMLDivElement>(null);
   const reconocimientosRef = useRef<HTMLDivElement>(null);
   const contenidoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const sectionMap: Record<string, React.RefObject<HTMLDivElement | null>> = {
       "Información General": infoRef,
-      Contactos: contactoRef,
       Reconocimientos: reconocimientosRef,
       Contenido: contenidoRef,
     };
 
     const targetRef = sectionMap[activeTab];
     if (targetRef?.current) {
-      const yOffset = -80; // Ajustar si tenés navbar fija
+      const yOffset = -80;
       const y =
         targetRef.current.getBoundingClientRect().top +
         window.pageYOffset +
         yOffset;
+
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   }, [activeTab]);
 
   return (
-    <main className="bg-gray-50 text-neutral-900 min-h-screen pt-20">
+    <main className="bg-gradient-to-b from-white to-gray-50 text-neutral-900 min-h-screen pt-20">
+      {/* Tabs */}
       <AreaTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
-      <AreaHeader title="Derecho Societario" />
 
-      {/* Información General */}
-      <section ref={infoRef} className="max-w-7xl mx-auto px-6 py-16">
-        <AreaQuote />
-        <AreaLayout left={<AreaTextContent />} right={
-          <div ref={contactoRef}>
-            <AreaContacts />
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6">
+        <AreaHeader title="Derecho Societario" />
+      </div>
+
+      {/* === INFORMACIÓN GENERAL === */}
+      <section
+        ref={infoRef}
+        className="max-w-7xl mx-auto px-6 py-20 border-b border-gray-200"
+      >
+        <div className="mb-12">
+          <AreaQuote />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="space-y-6 text-lg leading-relaxed">
+            <AreaTextContent />
           </div>
-        } />
+
+          {/* Lado derecho: imagen estilo legal, elegante */}
+          <div className="relative">
+            <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+              <img
+                src="/img/areas/societario.jpg"
+                alt="Derecho Societario"
+                className="w-full h-[360px] object-cover"
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* Reconocimientos */}
+      {/* === RECONOCIMIENTOS === */}
       <section
         ref={reconocimientosRef}
-        className="max-w-7xl mx-auto px-6 py-16 text-center text-lg"
+        className="max-w-7xl mx-auto px-6 py-20 border-b border-gray-200"
       >
-        <h2 className="text-2xl font-semibold mb-4">Reconocimientos</h2>
-        Próximamente...
+        <h2 className="text-3xl font-semibold mb-6 text-[#0F1C2E]">
+          Reconocimientos
+        </h2>
+        <p className="text-gray-600 text-lg">Próximamente...</p>
       </section>
 
-      {/* Contenido */}
+      {/* === CONTENIDO === */}
       <section
         ref={contenidoRef}
-        className="max-w-7xl mx-auto px-6 py-16 text-center text-lg"
+        className="max-w-7xl mx-auto px-6 py-20"
       >
-        <h2 className="text-2xl font-semibold mb-4">Contenido</h2>
-        Próximamente...
+        <h2 className="text-3xl font-semibold mb-6 text-[#0F1C2E]">
+          Contenido
+        </h2>
+        <p className="text-gray-600 text-lg">Próximamente...</p>
       </section>
     </main>
   );

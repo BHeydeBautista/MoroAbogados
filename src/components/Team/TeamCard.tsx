@@ -16,6 +16,7 @@ interface TeamCardProps {
   compact?: boolean;
   onOpenBio?: () => void;
   focus?: string;
+  slug?: string;
 }
 
 function initials(name: string) {
@@ -35,14 +36,13 @@ export default function TeamCard({
   index,
   bio,
   email,
-  showProfile = false,
   compact = false,
   onOpenBio,
   focus,
+  slug,
 }: TeamCardProps) {
   const hasImage = Boolean(image);
 
-  // FIX: mantener SIEMPRE área cuadrada para que el círculo quede perfecto
   const mediaClass = hasImage
     ? "relative w-full aspect-square"
     : compact
@@ -81,7 +81,6 @@ export default function TeamCard({
               </div>
 
               <div className="relative z-10 w-full h-full overflow-hidden">
-                {/* FIX PRINCIPAL: object-center para que nunca corte mal */}
                 <Image
                   src={image!}
                   alt={name}
@@ -90,10 +89,6 @@ export default function TeamCard({
                     focus ? `object-[${focus}]` : "object-center"
                   }`}
                 />
-
-                {/* OPCIÓN PARA CARLOS (si querés moverlo más abajo):  
-                 className="object-cover object-[50%_20%] transition-transform duration-700 hover:scale-105"
-                */}
 
                 <div className="absolute inset-3 rounded-lg pointer-events-none border border-white/6" />
               </div>
@@ -108,7 +103,6 @@ export default function TeamCard({
                       "linear-gradient(135deg,#D4A75D 0%, #0F1C2E 100%)",
                     boxShadow: "0 8px 24px rgba(13,20,30,0.35)",
                   }}
-                  aria-hidden
                 >
                   {initials(name)}
                 </div>
@@ -145,7 +139,6 @@ export default function TeamCard({
                       <a
                         href={`mailto:${email}`}
                         className="text-white/90 hover:text-[#D4A75D] transition-colors text-sm"
-                        aria-label={`Email ${name}`}
                       >
                         <FaEnvelope />
                       </a>
@@ -162,15 +155,15 @@ export default function TeamCard({
                     >
                       Saber más
                     </button>
-                  ) : showProfile ? (
+                  ) : slug ? (
                     <Link
-                      href={`/team/${name.toLowerCase().replace(/\s+/g, "-")}`}
+                      href={`/abogados/${slug}`}
                       className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
                     >
                       Ver perfil
                     </Link>
                   ) : (
-                    <div className="w-24" aria-hidden />
+                    <div className="w-24" />
                   )}
                 </div>
               </div>

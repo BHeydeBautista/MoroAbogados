@@ -2,12 +2,12 @@ export interface Client {
   name: string;
   logo?: string;
   category: string;
-  featured?: boolean; // nuevo: si true aparece en la cinta de logos
+  featured?: boolean;
 }
 
 export const clients: Client[] = [
-  { name: "Acindar S.G.R.", category: "Industria y Producción"},
-  { name: "Automóvil Club Argentino", category: "Servicios y Otros", logo: "/logos/Automóvil Club Argentino.jpg" },
+  { name: "Acindar S.G.R.", category: "Industria y Producción" },
+  { name: "Automóvil Club Argentino", category: "Servicios y Otros", logo: "/logos/Automóvil Club Argentino.jpg", featured: true },
   { name: "Agroservicios Pampeanos S.A.", category: "Industria y Producción" },
   { name: "Agrotécnica Litoral S.R.L.", category: "Industria y Producción" },
   { name: "Aberturas Valentinuz S.A.", category: "Industria y Producción", logo: "/logos/Aberturas Valentinuz S.A..jpg" },
@@ -15,13 +15,13 @@ export const clients: Client[] = [
   { name: "Banco Comafi S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Comafi S.A..jpg" },
   { name: "Banco de Entre Ríos S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco de Entre Ríos S.A..jpg", featured: true },
   { name: "Banco Finansur S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Finansur S.A..jpg" },
-  { name: "Banco Hipotecario S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Hipotecario S.A..jpg" },
+  { name: "Banco Hipotecario S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Hipotecario S.A..jpg", featured: true },
   { name: "Banco Municipal de Rosario", category: "Gobierno y Municipios", logo: "/logos/Banco Municipal de Rosario.jpg" },
   { name: "Banco Patagonia S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Patagonia S.A..jpg", featured: true },
   { name: "Banco Santander Río S.A.", category: "Bancos y Finanzas", logo: "/logos/Banco Santander Río S.A..jpg", featured: true },
   { name: "Bonafide S.A.", category: "Retail y Consumo", logo: "/logos/Bonafide S.A.jpg" },
   { name: "Bulonera del Litoral S.A.", category: "Industria y Producción", logo: "/logos/Bulonera del Litoral S.A..jpg", featured: true },
-  { name: "CAMMESA", category: "Gobierno y Municipios", logo: "/logos/CAMMESA.jpg" },
+  { name: "CAMMESA", category: "Gobierno y Municipios", logo: "/logos/CAMMESA.jpg", featured: true },
   { name: "CEMYC S.R.L.", category: "Servicios y Otros", logo: "/logos/CEMYC S.R.L..jpg" },
   { name: "CencoSud S.A.", category: "Retail y Consumo", logo: "/logos/CencoSud S.A..jpg" },
   { name: "CGM Leasing S.A.", category: "Servicios y Otros", logo: "/logos/CGM Leasing S.A..jpg" },
@@ -35,11 +35,11 @@ export const clients: Client[] = [
   { name: "Glencore Cereales S.A.", category: "Industria y Producción", logo: "/logos/Glencore Cereales S.A..jpg", featured: true },
   { name: "Gottig Hnos. y compañía S.R.L.", category: "Servicios y Otros", logo: "/logos/Gottig Hnos. y compañía S.R.L..jpg" },
   { name: "Grupo Almar S.R.L.", category: "Servicios y Otros", logo: "/logos/Grupo Almar S.R.L..jpg" },
-  { name: "ICBC", category: "Bancos y Finanzas", logo: "/logos/ICBC.jpg" },
+  { name: "ICBC", category: "Bancos y Finanzas", logo: "/logos/ICBC.jpg", featured: true },
   { name: "Instituto del Seguro de Entre Ríos", category: "Salud y Farmacéutica", logo: "/logos/Instituto del Seguro de Entre Ríos.jpg" },
   { name: "Instituto Privado de Cirugía Plástica", category: "Salud y Farmacéutica", logo: "/logos/Instituto Privado de Cirugía Plástica.jpg" },
   { name: "Instituto de Traumatología y Enfermedades Oseas (ITEO)", category: "Salud y Farmacéutica", logo: "/logos/Instituto de Traumatología y Enfermedades Oseas (ITEO).jpg" },
-  { name: "Jumbo Retail Argentina S.A.", category: "Retail y Consumo", logo: "/logos/Jumbo Retail Argentina S.A..jpg" },
+  { name: "Jumbo Retail Argentina S.A.", category: "Retail y Consumo", logo: "/logos/Jumbo Retail Argentina S.A..jpg", featured: true },
   { name: "Las Margaritas S.A.", category: "Industria y Producción", logo: "/logos/Las Margaritas S.A..jpg" },
   { name: "Lexis Nexis Argentina S.A.", category: "Tecnología", logo: "/logos/Lexis Nexis Argentina S.A..jpg" },
   { name: "MTH SRL", category: "Industria y Producción", logo: "/logos/MTH SRL.jpg" },
@@ -55,9 +55,11 @@ export const clients: Client[] = [
   { name: "SIEMMENS", category: "Tecnología", logo: "/logos/SIEMMENS.jpg" },
   { name: "Standard Bank S.A.", category: "Bancos y Finanzas", logo: "/logos/Standard Bank S.A..jpg" },
   { name: "Supercemento S.A.", category: "Industria y Producción", logo: "/logos/Supercemento S.A..jpg" },
-  { name: "VITTAL S.A.", category: "Salud y Farmacéutica", logo: "/logos/VITTAL S.A..jpg", featured: true },
-  { name: "Telefónica de Argentina S.A. (MOVISTAR)", category: "Tecnología", logo: "/logos/Telefónica de Argentina S.A. (MOVISTAR).jpg" },
+  { name: "Telefónica de Argentina S.A. (MOVISTAR)", category: "Tecnología", logo: "/logos/Telefónica de Argentina S.A. (MOVISTAR).jpg", featured: true },
   { name: "TRANSENER", category: "Gobierno y Municipios", logo: "/logos/TRANSENER.jpg" },
   { name: "Yara Argentina S.A.", category: "Industria y Producción", logo: "/logos/Yara Argentina S.A..jpg" },
   { name: "Zanella Hnos. S.A.", category: "Industria y Producción", logo: "/logos/Zanella Hnos. S.A..jpg" },
+  // Clientes nuevos que faltaban
+  { name: "VEA", category: "Retail y Consumo", logo: "/logos/VEA.jpg", featured: true },
+  { name: "Bienestar Telefónica", category: "Servicios y Otros", logo: "/logos/Bienestar Telefónica.jpg", featured: true },
 ];

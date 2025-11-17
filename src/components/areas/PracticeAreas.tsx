@@ -31,46 +31,46 @@ const PracticeAreas = () => {
 
   const areas = [
     {
-      icon: <FaBuilding size={24} className={iconStyle} />,
-      title: t.societario,
-      points: t.societario_points,
-      link: '/areas/derecho-societario',
+      icon: <FaLandmark size={24} className={iconStyle} />,
+      title: t.administrativo,
+      points: t.administrativo_points,
+      link: '/areas/Administrativo-Constitucional',
     },
     {
       icon: <FaBalanceScale size={24} className={iconStyle} />,
       title: t.contencioso,
       points: t.contencioso_points,
-      link: '/building',
-    },
-    {
-      icon: <FaBriefcase size={24} className={iconStyle} />,
-      title: t.mercantil,
-      points: t.mercantil_points,
-      link: '/building',
-    },
-    {
-      icon: <FaLayerGroup size={24} className={iconStyle} />,
-      title: t.concursal,
-      points: t.concursal_points,
-      link: '/building',
+      link: '/areas/Asuntos-Contenciosos',
     },
     {
       icon: <FaUserShield size={24} className={iconStyle} />,
       title: t.civil,
       points: t.civil_points,
-      link: '/building',
+      link: '/areas/Civil',
+    },
+    {
+      icon: <FaLayerGroup size={24} className={iconStyle} />,
+      title: t.concursal,
+      points: t.concursal_points,
+      link: '/areas/Concursal',
     },
     {
       icon: <FaUsers size={24} className={iconStyle} />,
       title: t.laboral,
       points: t.laboral_points,
-      link: '/building',
+      link: '/areas/Derecho-Laboral-de-Empresas',
     },
     {
-      icon: <FaLandmark size={24} className={iconStyle} />,
-      title: t.administrativo,
-      points: t.administrativo_points,
-      link: '/building',
+      icon: <FaBriefcase size={24} className={iconStyle} />,
+      title: t.mercantil,
+      points: t.mercantil_points,
+      link: '/areas/Mercantil',
+    },
+    {
+      icon: <FaBuilding size={24} className={iconStyle} />,
+      title: t.societario,
+      points: t.societario_points,
+      link: '/areas/derecho-societario',
     },
   ];
 

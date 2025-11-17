@@ -1,8 +1,9 @@
 interface Props {
   title: string;
+  subtitle?: string;
 }
 
-export default function AreaHeader({ title }: Props) {
+export default function AreaHeader({ title, subtitle }: Props) {
   return (
     <header
       role="banner"
@@ -11,9 +12,12 @@ export default function AreaHeader({ title }: Props) {
       <h1 className="text-center text-6xl font-extrabold tracking-tight text-gray-900 drop-shadow-lg">
         {title}
       </h1>
-      <p className="mt-4 text-center text-lg font-medium text-gray-700 max-w-3xl mx-auto">
-        Especialistas en derecho societario con soluciones jurídicas a medida para cada cliente.
-      </p>
+
+      {subtitle && (
+        <p className="mt-4 text-center text-lg font-medium text-gray-700 max-w-3xl mx-auto">
+          {subtitle}
+        </p>
+      )}
     </header>
   );
 }

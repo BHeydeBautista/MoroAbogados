@@ -5,6 +5,7 @@ export type TeamMember = {
   image?: string;
   bio?: string;
   focus?: string;
+  slug?: string;
 };
 
 export const socios: TeamMember[] = [
@@ -14,6 +15,7 @@ export const socios: TeamMember[] = [
     image: "/img/lawyers/Dr-Carlos.jpg",
     bio: "Especialista en derecho empresarial y societario con más de 20 años de experiencia en litigios complejos.",
     focus: "50%_20%",
+    slug: "dr-carlos-moro"
   },
   {
     name: "Emilio F. Moro",
@@ -21,6 +23,7 @@ export const socios: TeamMember[] = [
     image: "/img/lawyers/Dr-Emilio.jpg",
     bio: "Referente en derecho civil y comercial. Amplia trayectoria en asesoramiento integral a empresas.",
     focus: "50%_35%",
+    slug: "dr-emilio-f-moro"
   },
 ];
 

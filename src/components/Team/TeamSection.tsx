@@ -191,10 +191,14 @@ export default function TeamSection() {
                       className="px-3 py-1 text-xs md:text-sm font-medium border border-[#D4A75D] bg-[#D4A75D]/90 text-black rounded-md hover:bg-[#D4A75D] hover:scale-105 transition-all duration-300"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setModalMember(member);
+                        if (member.slug) {
+                          window.location.href = `/abogados/${member.slug}`;
+                        } else {
+                          setModalMember(member);
+                        }
                       }}
                     >
-                      Saber más
+                      {member.slug ? "Ver perfil" : "Saber más"}
                     </button>
                   </div>
                 </div>
@@ -254,7 +258,7 @@ export default function TeamSection() {
         </div>
 
         <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-4 md:p-8 shadow-lg">
-          {SociosGrid("Abogados Socios", socios)}
+          {SociosGrid("Socios", socios)}
           {CircleGrid("Abogados", abogados)}
 
           <section className="mb-6 md:mb-10">
@@ -332,9 +336,9 @@ export default function TeamSection() {
                       name={member.name}
                       role={member.role}
                       bio={member.bio}
-                      showProfile={false}
+                      slug={member.slug}
+                      showProfile={true}
                       compact
-                      onOpenBio={() => setModalMember(member)}
                     />
                   </div>
                 ))}

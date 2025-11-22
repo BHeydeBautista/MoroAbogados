@@ -53,7 +53,7 @@ export const abogados: TeamMember[] = [
 
 export const pasantes: TeamMember[] = [
   {
-    name: "Isabela Depalma",
+    name: "Isabellia Di Palma",
     role: "Pasante de Derecho",
     bio: "Estudiante avanzada en derecho. Apoyo en investigaciones y gestión de documentación.",
   },

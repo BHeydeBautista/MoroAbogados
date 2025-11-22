@@ -44,7 +44,7 @@ export default function ClientsSection() {
       ? logoOnly
       : clients;
 
-  const topClients = source.slice(0, Math.min(12, clients.length));
+  const topClients = clients.filter((c) => c.featured && c.logo);
 
   return (
     <section className="pt-40 pb-24 bg-gradient-to-b from-[#0b1c2c] to-[#112e45] text-white">
@@ -64,7 +64,7 @@ export default function ClientsSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center text-gray-300 mb-12 max-w-2xl mx-auto text-lg"
         >
-          Empresas líderes que confían en nuestro estudio.
+          Empresas líderes que han confiado en nuestro estudio
         </motion.p>
 
         <div className="mb-12">
@@ -74,7 +74,7 @@ export default function ClientsSection() {
                 logo: c.logo,
               }))}
               size={110}
-              radius={270}
+              radius={340}
               speed={13}
             />
         </div>

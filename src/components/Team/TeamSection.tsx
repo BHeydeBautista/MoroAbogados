@@ -264,7 +264,7 @@ export default function TeamSection() {
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Pasantes
+                Pasante
               </h3>
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
                 {pasantes.length} miembros

@@ -251,10 +251,6 @@ export default function TeamSection() {
           <h2 className="text-2xl md:text-3xl font-serif font-bold mb-2 text-[#D4A75D]">
             Nuestro equipo
           </h2>
-          <p className="text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
-            Equipo multidisciplinario: abogados socios, abogados, pasantes,
-            procuradores y asistentes informáticos.
-          </p>
         </div>
 
         <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-4 md:p-8 shadow-lg">

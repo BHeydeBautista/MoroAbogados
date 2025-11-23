@@ -12,15 +12,14 @@ export const socios: TeamMember[] = [
   {
     name: "Carlos E. Moro",
     role: "Abogado",
-    image: "/img/lawyers/Dr-Carlos.jpg",
+    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917793/Dr-Carlos_b652ws.jpg",
     bio: "Especialista en derecho empresarial y societario con más de 20 años de experiencia en litigios complejos.",
-    focus: "50%_20%",
     slug: "dr-carlos-moro"
   },
   {
     name: "Emilio F. Moro",
     role: "Abogado",
-    image: "/img/lawyers/Dr-Emilio.jpg",
+    image: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763917798/Dr-Emilio_bb8cwm.jpg",
     bio: "Referente en derecho civil y comercial. Amplia trayectoria en asesoramiento integral a empresas.",
     focus: "50%_35%",
     slug: "dr-emilio-f-moro"
@@ -31,21 +30,21 @@ export const abogados: TeamMember[] = [
   {
     name: "Rocío Leites",
     role: "Abogada",
-    image: "/img/lawyers/Dra-Rocio.jpg",
+    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917774/Dra-Rocio_d8jqeg.jpg",
     bio: "Especialista en derecho corporativo y compliance. Experiencia en asesoría a empresas familiares.",
     focus: "50%_20%",
   },
   {
     name: "Abril Martinez Figueroa",
     role: "Abogada",
-    image: "/img/lawyers/Dra-Abril.jpg",
+    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
     bio: "Litigante con foco en resolución alternativa de conflictos y derecho civil.",
     focus: "50%_20%",
   },
   {
     name: "Noelia Torres",
     role: "Abogada",
-    image: "/img/lawyers/Dra-Noelia.jpg",
+    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917207/Dra-Noelia_bobfsr.jpg",
     bio: "Asesora en derecho laboral y seguridad social con amplia experiencia en pymes.",
     focus: "50%_20%",
   },

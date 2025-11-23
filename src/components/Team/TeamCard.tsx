@@ -85,9 +85,7 @@ export default function TeamCard({
                   src={image!}
                   alt={name}
                   fill
-                  className={`object-cover scale-[1.35] translate-y-[4%] transition-transform duration-700 hover:scale-[1.45] ${
-                    focus ? `object-[${focus}]` : "object-center"
-                  }`}
+                  className="object-cover object-center"
                 />
 
                 <div className="absolute inset-3 rounded-lg pointer-events-none border border-white/6" />

@@ -23,7 +23,7 @@ export const clients: Client[] = [
   { name: "MTH SRL", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919286/MTH_SRL_o1xz9p.webp", featured: true },
   { name: "Michelin Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918942/Michelin_il7slg.png", featured: true },
   { name: "Papel Prensa S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919351/Papel_Prensa_S.A._bx5qkl.png" },
-  { name: "Praxair Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919351/Papel_Prensa_S.A._bx5qkl.png" },
+  { name: "Praxair Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919373/Praxair_Argentina_S.A._ehvppv.png" },
   { name: "Santa Elena Alimentos S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918949/Santa_Elena_Alimentos_S.A._army7j.webp" },
   { name: "Supercemento S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918961/Supercemento_S.A._cds08r.webp" },
   { name: "Yara Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918972/Yara_Argentina_S.A._wb2qpw.png" },

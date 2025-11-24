@@ -30,7 +30,7 @@ export const abogados: TeamMember[] = [
   {
     name: "Rocío Leites",
     role: "Abogada",
-    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917774/Dra-Rocio_d8jqeg.jpg",
+    image: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764022528/rocio_jnmrfw.jpg",
     bio: "Especialista en derecho corporativo y compliance. Experiencia en asesoría a empresas familiares.",
     focus: "50%_20%",
   },

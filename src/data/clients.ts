@@ -30,11 +30,11 @@ export const clients: Client[] = [
   { name: "Zanella Hnos. S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918974/Zanella_Hnos._S.A._j6ki0f.webp" },
 
   // ——— INDUSTRIA (NUEVAS AGREGADAS) ———
-  { name: "LEFFLER & WOLLERT S.R.L.", category: "Industria y Producción" },
+  { name: "LEFFLER & WOLLERT S.R.L.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764025022/LEFFLER_WOLLERT_S.R.L._eyweqp.webp" },
   { name: "ALIMENTI S.R.L.", category: "Industria y Producción" },
-  { name: "LEFFLER-DIETZ ALUMINIO", category: "Industria y Producción" },
-  { name: "ROTH HUEVO CAMPO", category: "Industria y Producción" },
-  { name: "L & B Maquinarias S.A.", category: "Industria y Producción" },
+  { name: "LEFFLER-DIETZ ALUMINIO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764025022/LEFFLER-DIETZ_ALUMINIO_ck7ofe.png" },
+  { name: "ROTH HUEVO CAMPO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764025023/ROTH_HUEVO_CAMPO_nwulim.png" },
+  { name: "L & B Maquinarias S.A.", category: "Industria y Producción" , logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764025131/L_B_Maquinarias_S.A._jv590i.png" },
   { name: "ASTILLERO Samuel Gutnisky S.A.", category: "Industria y Producción" },
 
   // ——— SERVICIOS Y OTROS ———
@@ -82,5 +82,5 @@ export const clients: Client[] = [
   { name: "Lexis Nexis Argentina S.A.", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920354/Lexis_Nexis_Argentina_S.A._f6tylw.png" },
   { name: "Microsoft Corporation", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918942/Microsoft_tw8qlf.png", featured: true },
   { name: "SIEMMENS", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918955/SIEMMENS_jtdrpd.png" },
-  { name: "Telefónica de Argentina S.A. (MOVISTAR)", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918963/telefonica_wrqju6.webp", featured: true },
+  { name: "Telefónica de Argentina S.A. (MOVISTAR)", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918966/Telef%C3%B3nica_de_Argentina_S.A._MOVISTAR_tbet1c.webp", featured: true },
 ];

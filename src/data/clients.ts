@@ -29,6 +29,14 @@ export const clients: Client[] = [
   { name: "Yara Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918972/Yara_Argentina_S.A._wb2qpw.png" },
   { name: "Zanella Hnos. S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918974/Zanella_Hnos._S.A._j6ki0f.webp" },
 
+  // ——— INDUSTRIA (NUEVAS AGREGADAS) ———
+  { name: "LEFFLER & WOLLERT S.R.L.", category: "Industria y Producción" },
+  { name: "ALIMENTI S.R.L.", category: "Industria y Producción" },
+  { name: "LEFFLER-DIETZ ALUMINIO", category: "Industria y Producción" },
+  { name: "ROTH HUEVO CAMPO", category: "Industria y Producción" },
+  { name: "L & B Maquinarias S.A.", category: "Industria y Producción" },
+  { name: "ASTILLERO Samuel Gutnisky S.A.", category: "Industria y Producción" },
+
   // ——— SERVICIOS Y OTROS ———
   { name: "Automóvil Club Argentino", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919494/Autom%C3%B3vil_Club_Argentino_hcjem3.jpg", featured: true },
   { name: "CEMYC S.R.L.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919520/CEMYC_S.R.L._andk05.jpg" },
@@ -38,11 +46,11 @@ export const clients: Client[] = [
   { name: "Redengas S.A.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918947/Redengas_S.A._ora9lp.png" },
   { name: "SEDESA", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918953/SEDESA_ipbs5f.png" },
   { name: "Bonafide S.A.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919682/Bonafide_S.A_dgjvd6.png" },
-  { name: "Leffler y Wollert SRL", category: "Servicios y Otros" },
+  { name: "Leffler y Wollert S.R.L.", category: "Servicios y Otros" },
 
   // ——— BANCOS Y FINANZAS ———
   { name: "Banco Finansur S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919748/Banco_Finansur_S.A._aa1zay.jpg" },
-  { name: "Banco Hipotecario S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919766/Banco_Hipotecario_S.A._r1i3dm.png" },
+  { name: "Banco Hipotecario S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919766/Banco_Hipotecario_S.A._r1i3dm.png", featured: true },
   { name: "Banco Patagonia S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919785/Banco_Patagonia_S.A._mfvomz.jpg", featured: true },
   { name: "Banco de Entre Ríos S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919804/Banco_de_Entre_R%C3%ADos_S.A._ncesnf.webp" },
   { name: "Banco Municipal de Rosario", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919825/Banco_Municipal_de_Rosario_u2blnt.jpg" },
@@ -61,13 +69,14 @@ export const clients: Client[] = [
   { name: "ENERSA", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918932/ENERSA_xxqwvq.jpg" },
   { name: "Municipalidad de Paraná", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920205/Municipalidad_de_Paran%C3%A1_yvqylq.jpg" },
   { name: "Municipalidad de Crespo", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920222/Municipalidad_de_Crespo_cdsaak.png" },
-  { name: "Municipalidad de Feliciano", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918945/Municipalidad_de_Feliciano_wkqmbe.webp" },
+  { name: "Municipalidad de San José de Feliciano", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918945/Municipalidad_de_Feliciano_wkqmbe.webp" },
   { name: "Instituto del Seguro de Entre Ríos (IAPSER)", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918935/IAPSER_ufte9f.png", featured: true },
 
   // ——— SALUD Y FARMACÉUTICA ———
   { name: "Instituto de Traumatología y Enfermedades Oseas (ITEO)", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920292/Instituto_de_Traumatolog%C3%ADa_y_Enfermedades_Oseas_ITEO_yhqlxd.png" },
   { name: "Eli Lilly Interamericana", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920311/Eli_Lilly_Interamericana_xylwij.webp" },
   { name: "Vittal", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918970/Vittal_vrvfgs.webp" },
+  { name: "Galli Instituto Privado de Cirugía Plástica", category: "Salud y Farmacéutica", logo: "" },
 
   // ——— TECNOLOGÍA ———
   { name: "Lexis Nexis Argentina S.A.", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920354/Lexis_Nexis_Argentina_S.A._f6tylw.png" },

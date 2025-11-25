@@ -16,6 +16,7 @@ const categories = [
   "Salud y Farmacéutica",
   "Tecnología",
   "Servicios y Otros",
+  "Seguros"
 ];
 
 const ITEMS_PER_PAGE = 20;

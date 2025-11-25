@@ -8,7 +8,7 @@ export interface Client {
 export const clients: Client[] = [
 
   // ——— INDUSTRIA Y PRODUCCIÓN ———
-  { name: "Acindar S.G.R.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918923/acindar_jbc2ik.gif" },
+  { name: "Acindar S.G.R.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918923/acindar_jbc2ik.gif", featured: true },
   { name: "Agroservicios Pampeanos S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918924/Agroservicios_Pampeanos_S.A._lmbuij.jpg" },
   { name: "Agrotécnica Litoral S.R.L.", category: "Industria y Producción" },
   { name: "Aberturas Valentinuz S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919034/Aberturas_Valentinuz_S.A._ijopgp.jpg" },
@@ -61,8 +61,9 @@ export const clients: Client[] = [
   // ——— RETAIL Y CONSUMO ———
   { name: "CencoSud S.A.", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919927/CencoSud_S.A._ejh1zl.jpg", featured: true },
   { name: "COTO", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920029/COTO_CICSA_rhaori.webp", featured: true },
-  { name: "Jumbo S.A.", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920074/Jumbo_Retail_Argentina_S.A._kxllqx.webp", featured: true },
-  { name: "VEA", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918968/Vea_th5kjj.jpg", featured: true },
+  { name: "Jumbo S.A.", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920074/Jumbo_Retail_Argentina_S.A._kxllqx.webp" },
+  { name: "VEA", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918968/Vea_th5kjj.jpg" },
+  { name: "Jumbo - Vea - Disco", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764110090/jumbo-disco-vea_bdw4se.jpg", featured: true },
 
   // ——— GOBIERNO Y MUNICIPIOS ———
   { name: "CAMMESA", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920142/CAMMESA_iqvpzo.jpg", featured: true },
@@ -83,4 +84,8 @@ export const clients: Client[] = [
   { name: "Microsoft Corporation", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918942/Microsoft_tw8qlf.png", featured: true },
   { name: "SIEMMENS", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918955/SIEMMENS_jtdrpd.png" },
   { name: "Telefónica de Argentina S.A. (MOVISTAR)", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918966/Telef%C3%B3nica_de_Argentina_S.A._MOVISTAR_tbet1c.webp", featured: true },
+
+   // ——— SEGUROS ———
+  { name: "Provincia ART", category: "Seguros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764110090/provincia-art.png_kfhdk3.jpg" },
+
 ];

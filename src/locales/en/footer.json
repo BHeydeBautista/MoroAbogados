@@ -1,10 +1,60 @@
 {
-    "footer": {
+  "footer": {
     "navigation": "Professionals",
     "areas": "Practice Areas",
     "content": "Content",
     "contact": "Contact",
-    "follow_us": "Follow us on social media",
-    "rights": "All rights reserved."
+    "follow_us": "Follow us on our social networks",
+    "rights": "All rights reserved.",
+    "nuestro_equipo": "Our Team",
+    "perfil_firma": "Firm Profile",
+    "aviso_legal": "Legal Notice",
+    "politica_privacidad": "Privacy Policy",
+    "novedades": "News",
+    "insights": "Insights",
+    "eventos": "Events",
+    "podcast": "Podcast",
+    "administrativo": "Administrative & Constitutional",
+    "administrativo_points": [
+      "Public policy advice",
+      "Regulation and compliance",
+      "Administrative litigation"
+    ],
+    "contencioso": "Contentious Matters",
+    "contencioso_points": [
+      "Civil and commercial litigation",
+      "Arbitration",
+      "Dispute resolution"
+    ],
+    "civil": "Civil Law",
+    "civil_points": [
+      "Civil contracts",
+      "Liability claims",
+      "Family and succession"
+    ],
+    "concursal": "Insolvency & Restructuring",
+    "concursal_points": [
+      "Restructurings",
+      "Bankruptcy",
+      "Preventive agreements"
+    ],
+    "laboral": "Employment Law for Companies",
+    "laboral_points": [
+      "Labor advice",
+      "Collective bargaining",
+      "Labor litigation"
+    ],
+    "mercantil": "Commercial Law",
+    "mercantil_points": [
+      "Commercial contracts",
+      "Trade and contracts",
+      "International trade"
+    ],
+    "societario": "Corporate Law",
+    "societario_points": [
+      "Company formation",
+      "Corporate governance",
+      "Corporate transactions"
+    ]
   }
 }

@@ -1,10 +1,60 @@
 {
-    "footer": {
+  "footer": {
     "navigation": "Profesionales",
     "areas": "Áreas de Práctica",
     "content": "Contenido",
     "contact": "Contacto",
     "follow_us": "Seguinos en nuestras redes",
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "nuestro_equipo": "Nuestro Equipo",
+    "perfil_firma": "Perfil de la Firma",
+    "aviso_legal": "Aviso Legal",
+    "politica_privacidad": "Política de Privacidad",
+    "novedades": "Novedades",
+    "insights": "Insights",
+    "eventos": "Eventos",
+    "podcast": "Podcast",
+    "administrativo": "Administrativo y Constitucional",
+    "administrativo_points": [
+      "Asesoramiento en política pública",
+      "Regulación y cumplimiento",
+      "Litigio administrativo"
+    ],
+    "contencioso": "Asuntos Contenciosos",
+    "contencioso_points": [
+      "Litigios civiles y comerciales",
+      "Arbitraje",
+      "Resolución de disputas"
+    ],
+    "civil": "Derecho Civil",
+    "civil_points": [
+      "Contratos civiles",
+      "Responsabilidad civil",
+      "Familia y sucesiones"
+    ],
+    "concursal": "Derecho Concursal",
+    "concursal_points": [
+      "Reestructuraciones",
+      "Quiebras",
+      "Acuerdos preventivos"
+    ],
+    "laboral": "Derecho Laboral de Empresas",
+    "laboral_points": [
+      "Asesoramiento laboral",
+      "Negociaciones colectivas",
+      "Litigios laborales"
+    ],
+    "mercantil": "Derecho Mercantil",
+    "mercantil_points": [
+      "Contratos comerciales",
+      "Comercio y contratos",
+      "Comercio internacional"
+    ],
+    "societario": "Derecho Societario",
+    "societario_points": [
+      "Constitución de sociedades",
+      "Gobierno societario",
+      "Operaciones corporativas"
+    ]
   }
 }

@@ -4,6 +4,7 @@ import es from "@/locales/es/profile.json";
 import en from "@/locales/en/profile.json";
 import { useLanguage } from "@/context/LanguageContext";
 import { FaBuilding, FaBalanceScale, FaBolt } from "react-icons/fa";
+import StudioGallery from "@/components/About/StudioGallery";
 
 const Profile = () => {
   const { language } = useLanguage();
@@ -91,7 +92,6 @@ const Profile = () => {
                    rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-1 
                    transition transform flex flex-col items-center text-center space-y-5"
               >
-                {/* Ícono */}
                 <div
                   className="bg-gradient-to-br from-[#D4A75D]/30 to-[#D4A75D]/10 
                         p-4 rounded-full text-[#D4A75D] shadow-inner"
@@ -99,18 +99,21 @@ const Profile = () => {
                   <Icon size={32} />
                 </div>
 
-                {/* Título */}
                 <h3 className="font-serif text-xl font-bold text-[#0F1C2E] tracking-tight">
                   {c.title}
                 </h3>
 
-                {/* Descripción */}
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {c.description}
                 </p>
               </motion.div>
             );
           })}
+        </div>
+
+        {/* 🔥 GALERÍA DEL ESTUDIO */}
+        <div className="mt-24">
+          <StudioGallery />
         </div>
       </div>
     </motion.section>

@@ -99,12 +99,12 @@ export interface Lawyer {
       email: "prueba@gmai.com",
       title: "Abogado, especialista en Derecho Comercial y Procesal",
       image: "/img/lawyers/Dr-Emilio.jpg",
-      bio: "Profesor y abogado con amplia trayectoria en derecho comercial, concursal y procesal civil.",
-      birthDate: "2 de abril de 1952",
+      bio: "Profesor y abogado con amplia trayectoria en derecho comercial, concursal y civil.",
+      birthDate: "14 de mayo de 1980",
       birthPlace: "Paraná, Entre Ríos",
       education: {
         degree: "Abogado, Universidad Nacional del Litoral",
-        graduationDate: "1975"
+        graduationDate: "2004 "
       },
       career: [
         {

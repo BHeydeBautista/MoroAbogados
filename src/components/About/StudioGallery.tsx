@@ -1,21 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
-const images = [
-  "/img/estudio/sala-rauniones.jpg",
-  "/img/estudio/Hol.jpg",
-  "/img/estudio/Entrada-alta.jpg",
-  "/img/estudio/logo-despacho.jpg",
-  "/img/estudio/despacho-pasante-2.jpg",
-  "/img/estudio/despacho-pasante.jpg",
-  "/img/estudio/sala-reunones-3.jpg",
-  "/img/estudio/sala-reuniones-2.jpg",
-  "/img/estudio/despacho-emilio.jpg",
-  "/img/estudio/despacho-abogadas.jpg",
-];
+// ⬇️ Import de las imágenes externas
+import { studioImages as images } from "@/data/studioImages";
 
 const IMAGES_PER_PAGE = 8;
 const INTERVAL = 3500;
@@ -23,6 +14,9 @@ const INTERVAL = 3500;
 export default function StudioGallery() {
   const [index, setIndex] = useState(1);
   const [page, setPage] = useState(1);
+
+  // NEW: estado para modal
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -69,12 +63,8 @@ export default function StudioGallery() {
               key={i}
               animate={variants[state]}
               transition={{ duration: 0.9, ease: "easeInOut" }}
-              className="
-          absolute 
-          w-[280px] h-[190px]
-          md:w-[420px] md:h-[300px]
-          rounded-2xl overflow-hidden shadow-2xl bg-black/20
-        "
+              className="absolute w-[280px] h-[190px] md:w-[420px] md:h-[300px]
+              rounded-2xl overflow-hidden shadow-2xl bg-black/20"
             >
               <Image src={src} alt="" fill className="object-cover" />
             </motion.div>
@@ -87,6 +77,7 @@ export default function StudioGallery() {
         {pageImages.map((src, i) => (
           <motion.div
             key={i}
+            onClick={() => setSelectedImage(src)} // ← abrir modal
             whileHover={{ scale: 1.045, y: -3 }}
             transition={{ duration: 0.32 }}
             className="rounded-xl overflow-hidden shadow-md cursor-pointer"
@@ -140,6 +131,33 @@ export default function StudioGallery() {
           Siguiente
         </button>
       </div>
+
+      {/* MODAL DE IMAGEN AMPLIADA */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              className="relative w-[90%] max-w-4xl h-[70vh] rounded-xl overflow-hidden shadow-2xl"
+              initial={{ scale: 0.7, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.7, opacity: 0 }}
+            >
+              <Image
+                src={selectedImage}
+                alt=""
+                fill
+                className="object-contain bg-black"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

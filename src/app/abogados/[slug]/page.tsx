@@ -356,7 +356,7 @@ const LawyerProfilePage = () => {
             href="/Team"
             className="px-10 py-4 bg-[#D4A75D] text-white rounded-full font-serif font-semibold hover:bg-[#b88c2c] shadow-lg transition text-lg"
           >
-            Volver al listado
+            Volver a Equipo
           </Link>
         </div>
       </section>

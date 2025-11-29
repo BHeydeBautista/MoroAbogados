@@ -33,7 +33,7 @@ const LawyerCard: React.FC<LawyerCardProps> = ({ lawyer }) => {
             {lawyer.title}
           </p>
           <p className="text-sm text-[#777] line-clamp-3 mb-4">
-            {lawyer.bio}
+            
           </p>
           <span className="inline-block px-4 py-2 text-sm bg-[#D4A75D] text-white font-semibold rounded-full hover:bg-[#c0953f] transition">
             Ver perfil completo

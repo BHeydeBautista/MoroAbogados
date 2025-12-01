@@ -5,9 +5,15 @@ import Footer from '@/components/Footer'
 import { LanguageProvider } from '@/context/LanguageContext'
 
 export const metadata: Metadata = {
-  title: 'Moro & Asociados - Estudio Jurídico',
+  title: 'MORO ABOGADOS',
   description: 'Asesoramiento jurídico integral en diversas áreas del derecho.',
+  icons: {
+    icon: '/favicon.ico', // o /icon.png
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 }
+
 
 export default function RootLayout({
   children,

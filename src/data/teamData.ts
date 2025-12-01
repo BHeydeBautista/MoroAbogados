@@ -13,14 +13,14 @@ export const socios: TeamMember[] = [
     name: "Carlos E. Moro",
     role: "Abogado",
     image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917793/Dr-Carlos_b652ws.jpg",
-    bio: "Especialista en derecho empresarial y societario con más de 20 años de experiencia en litigios complejos.",
+    bio: "Abogado, especialista en Derecho Concursal",
     slug: "dr-carlos-moro"
   },
   {
     name: "Emilio F. Moro",
     role: "Abogado",
     image: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763917798/Dr-Emilio_bb8cwm.jpg",
-    bio: "Referente en derecho civil y comercial. Amplia trayectoria en asesoramiento integral a empresas.",
+    bio: "Abogado, especialista en Derecho Comercial, Concursal y Procesal",
     focus: "50%_35%",
     slug: "dr-emilio-f-moro"
   },

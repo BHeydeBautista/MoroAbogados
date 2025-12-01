@@ -18,7 +18,7 @@ export const clients: Client[] = [
   { name: "Dragados y Construcciones Argentina S.A. (DYCASA)", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919148/Dragados_y_Construcciones_Argentina_S.A._DYCASA_hlarrz.jpg" },
   { name: "Estancias Chalbaud", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919177/Estancia_Chalbaud_jdnqj3.webp" },
   { name: "General Motors Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918934/gm_r6tnnx.webp", featured: true },
-  { name: "Glencore Cereales S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919226/Glencore_Cereales_S.A._iodlxn.png" },
+  { name: "Glencore Cereales S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764605360/Dise%C3%B1o_sin_t%C3%ADtulo_1_xnptb1.png" },
   { name: "Las Margaritas S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919253/Las_Margaritas_S.A._ciwalx.webp" },
   { name: "MTH SRL", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919286/MTH_SRL_o1xz9p.webp", featured: true },
   { name: "Michelin Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918942/Michelin_il7slg.png", featured: true },
@@ -50,7 +50,7 @@ export const clients: Client[] = [
 
   // ——— BANCOS Y FINANZAS ———
   { name: "Banco Finansur S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919748/Banco_Finansur_S.A._aa1zay.jpg" },
-  { name: "Banco Hipotecario S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919766/Banco_Hipotecario_S.A._r1i3dm.png", featured: true },
+  { name: "Banco Hipotecario S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764605129/Dise%C3%B1o_sin_t%C3%ADtulo_mmxzjr.png", featured: true },
   { name: "Banco Patagonia S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919785/Banco_Patagonia_S.A._mfvomz.jpg", featured: true },
   { name: "Banco de Entre Ríos S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919804/Banco_de_Entre_R%C3%ADos_S.A._ncesnf.webp" },
   { name: "Banco Municipal de Rosario", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763919825/Banco_Municipal_de_Rosario_u2blnt.jpg" },
@@ -69,7 +69,7 @@ export const clients: Client[] = [
   { name: "CAMMESA", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920142/CAMMESA_iqvpzo.jpg", featured: true },
   { name: "ENERSA", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918932/ENERSA_xxqwvq.jpg" },
   { name: "Municipalidad de Paraná", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920205/Municipalidad_de_Paran%C3%A1_yvqylq.jpg" },
-  { name: "Municipalidad de Crespo", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763920222/Municipalidad_de_Crespo_cdsaak.png" },
+  { name: "Municipalidad de Crespo", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764605358/Dise%C3%B1o_sin_t%C3%ADtulo_2_bbt8vp.png" },
   { name: "Municipalidad de San José de Feliciano", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918945/Municipalidad_de_Feliciano_wkqmbe.webp" },
   { name: "Instituto del Seguro de Entre Ríos (IAPSER)", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763918935/IAPSER_ufte9f.png", featured: true },
 

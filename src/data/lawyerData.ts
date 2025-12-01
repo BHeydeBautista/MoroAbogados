@@ -57,6 +57,9 @@ export const lawyerDetails: Record<string, Lawyer> = {
     personal: {
       birthDate: "13 de enero de 1955",
       birthPlace: "Paraná, Entre Ríos",
+      civilStatus: "",
+      address: "",
+      phone: "",
     },
 
     education: {
@@ -68,15 +71,232 @@ export const lawyerDetails: Record<string, Lawyer> = {
     },
 
     books: [
+      {
+        title: "Ley de Concursos. Comentada, Anotada y Concordada",
+        year: "1994",
+      },
+      { title: "Proyectos de Reformas. Ley de Concursos", year: "1994" },
+      { title: "Ley de Concursos", year: "1996" },
+      { title: "Concurso Preventivo y la Quiebra", year: "2002" },
+      { title: "Manual de Derecho Concursal", year: "2005" },
+      {
+        title: "Daños Judiciales y Acciones en las Sociedades y Concursos",
+        year: "2005",
+      },
+      {
+        title:
+          "Resoluciones Alternativas de Conflictos en la Crisis de la Empresa y el Consumidor",
+        year: "2005",
+      },
+      { title: "Ensayos de Derecho Concursal", year: "2009" },
+      { title: "Ley de Concursos. Introducción y Estudio", year: "2011" },
+      { title: "Concursos y Quiebras. Comentada", year: "2012" },
+      { title: "Cuestiones Concursales", year: "2010" },
       { title: "La empresa en crisis", year: "1995" },
       { title: "El concurso de la sociedad conyugal", year: "2002" },
     ],
 
     articles: [
       {
-        title: "Concursos y quiebras",
-        publication: "Revista de las Sociedades y Concursos (Errepar)",
+        title:
+          "La Responsabilidad Solidaria del Art. 31 de la Ley de Contrato de Trabajo",
+        publication: "Visión Societaria y Concursal",
         year: "2004",
+      },
+      {
+        title:
+          "El Fondo de Garantía de los Créditos Laborales. La creación de lo que ya existe",
+        publication:
+          "XVI Jornadas de Institutos de Derecho Comercial de la República Argentina",
+        year: "2007",
+      },
+      {
+        title:
+          "El 1º: El Término de la Prescripción Concursal no se desactiva con la Quiebra Indirecta",
+        publication: "XVI Jornadas Institutos Derecho Comercial",
+        year: "2007",
+      },
+      {
+        title:
+          "Verificación de Honorarios. Con condena en costas firme, pero no regulados",
+        publication: "XVI Jornadas Institutos Derecho Comercial",
+        year: "2007",
+      },
+      {
+        title: "La Empresa del Ausente",
+        publication: "XVI Jornadas Institutos Derecho Comercial",
+        year: "2007",
+      },
+      {
+        title:
+          "El Estado de Cesación de Pagos: Un presupuesto que no puede faltar, ni al principio ni al final",
+        publication: "XV Jornadas Institutos Derecho Comercial",
+        year: "",
+      },
+      {
+        title: "El 'Créditum' en el Concurso",
+        publication: "XV Jornadas Institutos Derecho Comercial",
+        year: "",
+      },
+      {
+        title: "Cuando se compró lo que no existe... estamos en problemas",
+        publication:
+          "Temas Actuales de Derecho Concursal (Fundación para la Investigación y Desarrollo de las Ciencias Jurídicas)",
+        year: "2007",
+      },
+      {
+        title:
+          "Verificación de Honorarios. Con condena en costas firme pero no regulados",
+        publication: "LEX – Caja Forense de Entre Ríos",
+        year: "",
+      },
+      {
+        title: "Nuevas Tendencias en la Jurisprudencia Societaria y Concursal",
+        publication:
+          "Fundación para la Investigación y Desarrollo de las Ciencias Jurídicas",
+        year: "2008",
+      },
+      {
+        title: "El Fraude Concursal y otras Cuestiones de Derecho Falimentario",
+        publication:
+          "Fundación para la Investigación y Desarrollo de las Ciencias Jurídicas",
+        year: "2010",
+      },
+
+      {
+        title: "Abuso de Derecho Concursal",
+        publication: "Revista de Derecho Concursal - Ad-Hoc",
+        year: "2006",
+      },
+
+      {
+        title:
+          "Un Privilegiado en la Ley Concursal. 'Súper privilegiado' por la Ley PYME con Registro",
+        publication: "Errepar",
+        year: "",
+      },
+      {
+        title: "Pedido de Quiebra Rechazado e Imposición de Costas",
+        publication: "Errepar",
+        year: "",
+      },
+      {
+        title:
+          "Verificación de Créditos y Sentencias Dictadas en Juicio Ejecutivo",
+        publication: "Errepar",
+        year: "",
+      },
+      {
+        title:
+          "Apertura Judicial de Concurso Ampliado. Excepción de Alta de Personería",
+        publication: "Errepar",
+        year: "",
+      },
+      {
+        title: "Plazo de Gracia en los Concursos",
+        publication: "Errepar",
+        year: "",
+      },
+      { title: "Impugnación al Acuerdo", publication: "Errepar", year: "" },
+      { title: "Concurso sin Sujeto", publication: "Errepar", year: "" },
+      {
+        title: "Administración Concursal (al después)",
+        publication: "Errepar",
+        year: "",
+      },
+      {
+        title:
+          "La Sentencia de la Corte Federal 'Sociedad Comercial del Plata S.A.' Algo más que un fallo más",
+        publication: "Errepar",
+        year: "",
+      },
+
+      {
+        title: "Nueva Ley de Quiebras (24.522) – Comentada",
+        publication: "Delta – Separata",
+        year: "1995",
+      },
+      {
+        title:
+          "La Quiebra de Apelación Directa. Rechazo – Apelabilidad. Una cuestión que parecía resuelta",
+        publication: "Delta",
+        year: "1995",
+      },
+      { title: "Verificación de Créditos", publication: "Delta", year: "1997" },
+      {
+        title: "Salida del APE. Las cuestiones procesales",
+        publication: "Delta",
+        year: "1997",
+      },
+      {
+        title: "Tasa de Intereses Aplicables",
+        publication: "Delta",
+        year: "1997",
+      },
+      {
+        title: "Quebrar: un salto al vacío",
+        publication: "Delta",
+        year: "1998",
+      },
+      {
+        title:
+          "La quiebra de los socios y directores (Responsabilidad Personal)",
+        publication: "Delta",
+        year: "1998",
+      },
+
+      {
+        title:
+          "Interacción de las sentencias dictadas por fueros Comercial y Penal en materia tributaria",
+        publication: "Revista Derecho Fiscal – Lexis Nexis",
+        year: "2008",
+      },
+
+      {
+        title: "La Reproducción Concursal Directa en el Extranjero",
+        publication: "Revista RICCO",
+        year: "2005",
+      },
+      {
+        title: "La Reapertura Concursal y los Acreedores Concurrentes",
+        publication: "Revista RICCO",
+        year: "2007",
+      },
+      {
+        title: "Concurso en caso de Argentinazo",
+        publication: "DYC – Universidad Austral",
+        year: "",
+      },
+      {
+        title: "Crowdfunding y Sociedades por Acciones Simplificadas",
+        publication: "Instituto de Derecho Comercial",
+        year: "2018",
+      },
+
+      {
+        title: "Responsabilidad Directores de Empresa frente a su Quiebra",
+        publication: "II Congreso Iberoamericano de la Insolvencia",
+        year: "2000",
+      },
+      {
+        title: "Abuso de Derecho Concursal",
+        publication: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
+        year: "2004",
+      },
+      {
+        title: "Verificación de Créditos",
+        publication: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
+        year: "2004",
+      },
+      {
+        title: "Pronto Pago y Voto",
+        publication: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
+        year: "",
+      },
+      {
+        title: "Fraude Concursal",
+        publication: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
+        year: "2006",
       },
     ],
 
@@ -110,19 +330,62 @@ export const lawyerDetails: Record<string, Lawyer> = {
       },
     ],
 
-    universityRoles: [],
+    universityRoles: [
+      {
+        title: "Expositor / Docente en Jornadas y Cursos de Posgrado",
+        year: "",
+      },
+      { title: "Profesor invitado en actividades de posgrado", year: "" },
+    ],
 
-    awards: [],
+    awards: [
+      // No aparecen premios explícitos en las primeras 4 capturas; dejé vacío para completar si querés
+    ],
 
-    scholarships: [],
+    scholarships: [
+      // No aparecen becas en las imágenes; dejé vacío
+    ],
 
-    languages: [],
+    languages: [
+      { language: "Español", certificates: [] },
+      { language: "Inglés", certificates: [] },
+    ],
 
-    conferences: [],
+    conferences: [
+      {
+        title:
+          "XVI Jornadas de Institutos de Derecho Comercial de la República Argentina",
+        year: "2007",
+      },
+      { title: "XV Jornadas de Institutos de Derecho Comercial", year: "" },
+      { title: "II Congreso Iberoamericano de la Insolvencia", year: "2000" },
+      {
+        title: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
+        year: "2004",
+      },
+      {
+        title: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
+        year: "2006",
+      },
+      { title: "DYC – Universidad Austral", year: "" },
+      { title: "Instituto de Derecho Comercial (eventos)", year: "2018" },
+    ],
 
-    otherRoles: [],
+    otherRoles: [
+      { title: "Director (Editorial)", string: ["Editorial Delta"] },
+      {
+        title: "Fundador/Director",
+        string: [
+          "Instituto de Derecho Concursal del Colegio de Abogados de Entre Ríos",
+        ],
+      },
+    ],
 
-    otherAntecedentes: [],
+    otherAntecedentes: [
+      "Amplia participación en jornadas, congresos y cursos sobre Derecho Concursal a nivel nacional e internacional.",
+      "Colaborador en revistas jurídicas especializadas (Delta, Errepar, RICCO, Revista Derecho Fiscal, entre otras).",
+      "Miembro activo en comisiones y órganos de revisión del Derecho Procesal y Concursal provincial.",
+    ],
   },
 
   "dr-emilio-f-moro": {
@@ -323,7 +586,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
 
     otherAntecedentes: [
       "Abogado junior en BRONS & SALAS S.C.",
-      "Merito en el juzgado de lera. instacia en lo Comercial nro. 21(Secr. 42) de la Ciudad Autonoma de Buenos Aires a cargo del DR. Germán Paez Castañeda."
+      "Merito en el juzgado de lera. instacia en lo Comercial nro. 21(Secr. 42) de la Ciudad Autonoma de Buenos Aires a cargo del DR. Germán Paez Castañeda.",
     ],
   },
 };

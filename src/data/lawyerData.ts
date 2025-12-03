@@ -400,7 +400,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
       birthPlace: "Paraná (Entre Ríos)",
       civilStatus: "Casado",
       address:
-        "Vélez Sarsfield 3466, Piso 6, Dpto. A (Santa Fe) / La Rioja 2464, Piso 2, Dpto. A (Santa Fe)",
+        "Alameda de la Federación 361",
       phone: "011-48080487 / 0342-4528194 / 0343-4311172",
     },
 
@@ -412,7 +412,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
       postgraduate:
         "Magíster en Derecho de la Empresa (MDE) – Universidad Austral, Medalla de Oro (promedio 9,27)",
       doctorate:
-        "Cursando Doctorado en Derecho y Ciencias Jurídicas y Sociales – UNL. Tesis: Responsabilidad Civil de administradores societarios",
+        " En Derecho y Ciencias Jurídicas y Sociales – UNL. Tesis: Responsabilidad Civil de administradores societarios",
     },
 
     books: [

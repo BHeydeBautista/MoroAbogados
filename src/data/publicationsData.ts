@@ -347,7 +347,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     excerpt:
       "Análisis crítico sobre responsabilidad, LDC, agencias de viaje y jurisprudencia reciente.",
     year: 2025,
-    pages: 6, // si querés
+    pages: 13, // si querés
     href: "",
     pdfUrl: "/pdf/articulo-derecho-consumidor.pdf", // <--- AQUI LA MAGIA
     tags: ["Derecho del Consumidor", "Responsabilidad", "Jurisprudencia"],

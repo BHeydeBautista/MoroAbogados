@@ -49,6 +49,7 @@ export type Publication = PublicationBooks | PublicationArt;
 export const AUTHORS: Author[] = [
   { id: "a1", name: "Carlos E. Moro" },
   { id: "a2", name: "Emilio F. Moro" },
+  { id: "a3", name: "Abril Martínez Figueroa" }
 ];
 
 export const EDITORIALS: Editorials[] = [
@@ -336,5 +337,19 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     pdfUrl: "",
     tags: ["Responsabilidad Civil", "Construcción"],
   },
-  
+  {
+    id: "art6",
+    title:
+      "Algunas reflexiones sobre un trascendente precedente jurisprudencial",
+    type: "articulo",
+    authorId: "a3",
+    cover: "/mock/articles/derecho_consumidor.png", // si tenés tapa, si no poné una genérica
+    excerpt:
+      "Análisis crítico sobre responsabilidad, LDC, agencias de viaje y jurisprudencia reciente.",
+    year: 2025,
+    pages: 6, // si querés
+    href: "",
+    pdfUrl: "/pdf/articulo-derecho-consumidor.pdf", // <--- AQUI LA MAGIA
+    tags: ["Derecho del Consumidor", "Responsabilidad", "Jurisprudencia"],
+  },
 ];

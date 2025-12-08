@@ -70,6 +70,11 @@ export default function ArticleLayout({
         transition={{ delay: 0.4, duration: 0.8 }}
         className="container mx-auto px-6 lg:px-12 mt-12 grid lg:grid-cols-[1fr_320px] gap-12"
       >
+        {/* Mobile sidebar (visible on small screens above content) */}
+        <div className="lg:hidden">
+          <ArticleSidebar sections={sections} pdfUrl={pdfUrl} mobile />
+        </div>
+
         <div>
           {/* Sections summary (expanded content) */}
           <ArticleSections sections={sections} pdfUrl={pdfUrl} />

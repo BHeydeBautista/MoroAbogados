@@ -18,7 +18,7 @@ export const articlesData = [
       "VIII. Los protocolos de familia, la transición generacional y la influencia del art. 1010, Cód. Civ. y Com.",
       "IX. Conclusión.",
     ],
-    pdfUrl: "/pdfs/Diario 20-10-25.pdf", // Ruta sugerida para el archivo
+    pdfUrl: "/pdf/Diario 20-10-25.pdf", // Ruta sugerida para el archivo
     sections: [
       {
         id: "i-introduccion",

@@ -1,12 +1,23 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 type Section = { id: string; title: string };
 
-type Props = { sections?: Section[]; pdfUrl?: string };
+type Props = {
+  sections?: Section[];
+  pdfUrl?: string;
+  mobile?: boolean;
+};
 
-export default function ArticleSidebar({ sections, pdfUrl }: Props) {
+export default function ArticleSidebar({ sections, pdfUrl, mobile = false }: Props) {
+  // For desktop we keep sticky sidebar; for mobile we render a block that flows above content
+  const outerClass = mobile
+    ? "block relative bg-white/5 p-4 rounded-xl border border-white/10 backdrop-blur-sm mb-6"
+    : "hidden lg:block sticky top-28 h-max bg-white/5 p-5 rounded-xl border border-white/10 backdrop-blur-sm";
+
   return (
-    <aside className="hidden lg:block sticky top-28 h-max bg-white/5 p-5 rounded-xl border border-white/10 backdrop-blur-sm">
+    <aside className={outerClass}>
 
       <h3 className="text-[#d4a75d] font-semibold mb-3">Índice</h3>
 
@@ -15,19 +26,24 @@ export default function ArticleSidebar({ sections, pdfUrl }: Props) {
       )}
 
       <nav aria-label="Tabla de contenidos">
-        <ul className="space-y-2">
-          {sections?.map((s, idx) => (
-            <li key={s.id}>
+        <motion.ul
+          className="space-y-2"
+          initial="hidden"
+          animate="visible"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.04 } } }}
+        >
+          {sections?.map((s) => (
+            <motion.li key={s.id} variants={{ hidden: { opacity: 0, y: 6 }, visible: { opacity: 1, y: 0 } }}>
               <a
                 href={`#${s.id}`}
-                className="group flex items-center gap-3 text-white/70 hover:text-white transition text-sm"
+                className="group flex items-center gap-3 text-white/70 hover:text-white transition text-sm hover:bg-white/3 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-[#d4a75d]/30"
               >
-                <span className="w-6 h-6 flex items-center justify-center text-xs bg-white/6 rounded-md text-white/80 group-hover:bg-[#d4a75d] group-hover:text-[#0f1c2e]">{idx + 1}</span>
-                <span>{s.title}</span>
+                <span className="flex-1">{s.title}</span>
+                <span className="ml-2 opacity-0 group-hover:opacity-100 transition text-sm text-[#d4a75d]">→</span>
               </a>
-            </li>
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </nav>
 
       {pdfUrl && (

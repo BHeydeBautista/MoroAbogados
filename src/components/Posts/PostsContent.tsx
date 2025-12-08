@@ -34,7 +34,11 @@ const mockedPosts: IGPost[] = [
 ];
 
 // Componente cliente para leer query params y actualizar la tab activa
-function TabSelector({ setActive }: { setActive: (tab: "instagram" | "propias" | "noticias") => void }) {
+function TabSelector({
+  setActive,
+}: {
+  setActive: (tab: "instagram" | "propias" | "noticias") => void;
+}) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -48,7 +52,9 @@ function TabSelector({ setActive }: { setActive: (tab: "instagram" | "propias" |
 }
 
 export default function PostsContent() {
-  const [active, setActive] = useState<"instagram" | "propias" | "noticias">("instagram");
+  const [active, setActive] = useState<"instagram" | "propias" | "noticias">(
+    "instagram"
+  );
   const [posts, setPosts] = useState<IGPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -71,7 +77,8 @@ export default function PostsContent() {
         const igPosts: IGPost[] =
           data?.data?.map((p: any) => ({
             id: p.id,
-            media_url: p.media_url || p.thumbnail_url || "",
+            media_url: p.media_url || "",
+            thumbnail_url: p.thumbnail_url || "",
             caption: p.caption || "",
             permalink: p.permalink || `https://www.instagram.com/p/${p.id}/`,
             media_type: p.media_type,
@@ -86,7 +93,9 @@ export default function PostsContent() {
       .catch((err) => {
         console.warn("Instagram fetch error:", err);
         if (mounted) {
-          setError("No se pudieron cargar las publicaciones. Mostrando ejemplos.");
+          setError(
+            "No se pudieron cargar las publicaciones. Mostrando ejemplos."
+          );
           setPosts(mockedPosts);
           setLoading(false);
         }
@@ -109,7 +118,8 @@ export default function PostsContent() {
             Contenido
           </h2>
           <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
-            Últimas publicaciones desde Instagram, nuestras publicaciones propias y noticias de la firma.
+            Últimas publicaciones desde Instagram, nuestras publicaciones
+            propias y noticias de la firma.
           </p>
         </div>
 
@@ -153,7 +163,12 @@ export default function PostsContent() {
         <div>
           <AnimatePresence mode="wait">
             {active === "instagram" && (
-              <InstagramPosts posts={posts} loading={loading} error={error} pageSize={6} />
+              <InstagramPosts
+                posts={posts}
+                loading={loading}
+                error={error}
+                pageSize={6}
+              />
             )}
             {active === "propias" && <PublicationsGrid />}
             {active === "noticias" && <NewsList pageSize={4} />}

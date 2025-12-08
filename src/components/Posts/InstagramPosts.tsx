@@ -19,10 +19,14 @@ type Props = {
   pageSize?: number;
 };
 
-export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: Props) {
+export default function InstagramPosts({
+  posts,
+  loading,
+  error,
+  pageSize = 6,
+}: Props) {
   const [page, setPage] = useState(1);
 
-  // ordenar por fecha
   const sorted = useMemo(() => {
     return [...posts].sort((a, b) => {
       const ta = a.timestamp ? Date.parse(a.timestamp) : 0;
@@ -52,16 +56,22 @@ export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: 
         <div className="w-14 h-1 bg-[#D4A75D] rounded" />
       </div>
 
-      {loading && <div className="text-center py-8 text-gray-500">Cargando...</div>}
-      {error && <div className="text-center text-sm text-red-600 mb-4">{error}</div>}
+      {loading && (
+        <div className="text-center py-8 text-gray-500">Cargando...</div>
+      )}
+      {error && (
+        <div className="text-center text-sm text-red-600 mb-4">{error}</div>
+      )}
 
+      {/* GRID */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
         {pageItems.map((post) => {
-          // elegir imagen correcta — FIX para reels
-          const imgSrc =
-            post.media_type?.toLowerCase().includes("video")
-              ? post.thumbnail_url || post.media_url
-              : post.media_url;
+          const isVideo = ["VIDEO", "REEL"].includes(
+            (post.media_type || "").toUpperCase()
+          );
+          const imgSrc = isVideo
+            ? post.thumbnail_url ?? post.media_url
+            : post.media_url;
 
           return (
             <a
@@ -82,20 +92,33 @@ export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: 
                   unoptimized
                 />
 
+                {/* GRADIENTE HOVER */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
+                {/* TEXTO EN HOVER */}
                 <div className="absolute left-0 bottom-0 p-3 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   <div className="flex items-center justify-between gap-2 text-white">
-                    <p className="text-xs line-clamp-2 text-shadow">{post.caption ?? "—"}</p>
+                    <p className="text-xs line-clamp-2 text-shadow">
+                      {post.caption ?? "—"}
+                    </p>
                     <div className="text-[11px] text-white/80 whitespace-nowrap">
-                      {post.timestamp ? new Date(post.timestamp).toLocaleDateString("es-AR") : ""}
+                      {post.timestamp
+                        ? new Date(post.timestamp).toLocaleDateString("es-AR")
+                        : ""}
                     </div>
                   </div>
                 </div>
 
-                {post.media_type && post.media_type.toLowerCase().includes("video") && (
+                {/* ICONO DE VIDEO */}
+                {isVideo && (
                   <div className="absolute top-2 right-2 bg-black/40 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden
+                    >
                       <path d="M8 5v14l11-7z" />
                     </svg>
                   </div>
@@ -106,7 +129,7 @@ export default function InstagramPosts({ posts, loading, error, pageSize = 6 }: 
         })}
       </div>
 
-      {/* paginación */}
+      {/* PAGINACIÓN */}
       <div className="mt-6 flex items-center justify-center gap-2 flex-wrap">
         <button
           onClick={() => setPage((s) => Math.max(1, s - 1))}

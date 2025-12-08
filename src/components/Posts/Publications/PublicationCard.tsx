@@ -30,11 +30,23 @@ export default function PublicationCard({ pub, author, onOpen }: Props) {
           )}
         </div>
 
-        {/* badge on top-left */}
-        <div className="absolute top-3 left-3">
+        {/* badge + avatar simple */}
+        <div className="absolute top-3 left-3 space-y-2">
           <span className="text-xs px-2 py-0.5 bg-white/90 text-[#D4A75D] rounded-full font-medium shadow-sm">
             {pub.type === "libro" ? "Libro" : "Artículo"}
           </span>
+
+          {author?.avatar && (
+            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
+              <Image
+                src={author.avatar}
+                alt={author.name}
+                fill
+                sizes="56px"
+                className="object-cover"
+              />
+            </div>
+          )}
         </div>
       </div>
 
@@ -48,11 +60,15 @@ export default function PublicationCard({ pub, author, onOpen }: Props) {
 
         <div className="flex items-center justify-between text-sm text-gray-600">
           <div className="flex items-center gap-3">
-            <span className="hidden sm:inline text-sm">{author?.name ?? "Autor"}</span>
+            <span className="hidden sm:inline text-sm">
+              {author?.name ?? "Autor"}
+            </span>
             <span className="text-xs text-gray-500">{pub.year ?? ""}</span>
           </div>
 
-          <div className="text-sm text-gray-500 hidden sm:block">{pub.pages ? `${pub.pages} pág.` : null}</div>
+          <div className="text-sm text-gray-500 hidden sm:block">
+            {pub.pages ? `${pub.pages} pág.` : null}
+          </div>
         </div>
 
         <p className="text-sm text-gray-600 line-clamp-3">{pub.excerpt}</p>

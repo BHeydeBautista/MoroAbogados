@@ -47,9 +47,20 @@ export type PublicationArt = {
 export type Publication = PublicationBooks | PublicationArt;
 
 export const AUTHORS: Author[] = [
-  { id: "a1", name: "Carlos E. Moro" },
-  { id: "a2", name: "Emilio F. Moro" },
-  { id: "a3", name: "Abril Martínez Figueroa" }
+  {
+    id: "a1",
+    name: "Carlos E. Moro",
+  },
+  {
+    id: "a2",
+    name: "Emilio F. Moro",
+  },
+  {
+    id: "a3",
+    name: "Abril Martínez Figueroa",
+    avatar:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/v1765211568/Dr-Abril-2_vshjxc.jpg",
+  },
 ];
 
 export const EDITORIALS: Editorials[] = [

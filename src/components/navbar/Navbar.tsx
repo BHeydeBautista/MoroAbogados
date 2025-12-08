@@ -92,7 +92,7 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 w-full z-50 ${bgStyle}`}
+      className={`fixed top-0 left-0 w-full z-50 overflow-visible ${bgStyle}`}
     >
       <div className="w-full px-6 lg:px-24 flex items-center justify-between h-16 lg:h-20">
         <Link href="/" className="flex-shrink-0">
@@ -151,12 +151,17 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -8, scale: 0.98 }}
                       transition={{ duration: 0.28 }}
-                      className="absolute left-0 top-full mt-4 w-[36rem] lg:w-[48rem] px-6 py-5
-                                 bg-gradient-to-b from-[#0F1C2E]/95 to-black/80
-                                 border border-[#D4A75D]/20 rounded-xl shadow-2xl
-                                 backdrop-blur-md z-50"
+                      className="
+                        absolute top-full left-1/2 -translate-x-1/2 mt-4
+                        w-[92vw] max-w-3xl
+                        px-6 py-5
+                        bg-gradient-to-b from-[#0F1C2E]/95 to-black/80
+                        border border-[#D4A75D]/25 rounded-2xl shadow-2xl
+                        backdrop-blur-xl z-[999]
+                        overflow-visible
+                      "
                     >
-                      <div className="absolute -top-2 left-10 w-4 h-4 bg-[#0F1C2E]/95 border-l border-t border-[#D4A75D]/20 transform rotate-45" />
+                      <div className="absolute -top-2 left-10 w-4 h-4 bg-[#0F1C2E]/95 border-l border-t border-[#D4A75D]/25 transform rotate-45" />
                       <div className="grid grid-cols-2 gap-6">
                         {submenu.map((item) => (
                           <Link

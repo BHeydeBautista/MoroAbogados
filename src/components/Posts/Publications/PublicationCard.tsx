@@ -37,12 +37,12 @@ export default function PublicationCard({ pub, author, onOpen }: Props) {
           </span>
 
           {author?.avatar && (
-            <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-white shadow-md">
+            <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
               <Image
                 src={author.avatar}
                 alt={author.name}
                 fill
-                sizes="56px"
+                sizes="80px"
                 className="object-cover"
               />
             </div>

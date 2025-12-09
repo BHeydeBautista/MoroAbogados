@@ -7,6 +7,7 @@ import InstagramPosts, { IGPost } from "./InstagramPosts";
 import PublicationsGrid from "./Publications/PublicationsGrid";
 import NewsList from "./NewsList";
 import { useSearchParams } from "next/navigation";
+import ArticlesList from "../articles/ArticlesList";
 
 // Mocked posts de ejemplo
 const mockedPosts: IGPost[] = [
@@ -34,12 +35,21 @@ const mockedPosts: IGPost[] = [
 ];
 
 // Componente cliente para leer query params y actualizar la tab activa
-function TabSelector({ setActive }: { setActive: (tab: "instagram" | "propias" | "noticias") => void }) {
+function TabSelector({
+  setActive,
+}: {
+  setActive: (tab: "instagram" | "propias" | "noticias" | "articulos") => void;
+}) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const tab = searchParams.get("tab");
-    if (tab === "instagram" || tab === "propias" || tab === "noticias") {
+    if (
+      tab === "instagram" ||
+      tab === "propias" ||
+      tab === "noticias" ||
+      tab === "articulos"
+    ) {
       setActive(tab);
     }
   }, [searchParams, setActive]);
@@ -48,7 +58,9 @@ function TabSelector({ setActive }: { setActive: (tab: "instagram" | "propias" |
 }
 
 export default function PostsContent() {
-  const [active, setActive] = useState<"instagram" | "propias" | "noticias">("instagram");
+  const [active, setActive] = useState<
+    "instagram" | "propias" | "noticias" | "articulos"
+  >("instagram");
   const [posts, setPosts] = useState<IGPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -71,7 +83,8 @@ export default function PostsContent() {
         const igPosts: IGPost[] =
           data?.data?.map((p: any) => ({
             id: p.id,
-            media_url: p.media_url || p.thumbnail_url || "",
+            media_url: p.media_url || "",
+            thumbnail_url: p.thumbnail_url || "",
             caption: p.caption || "",
             permalink: p.permalink || `https://www.instagram.com/p/${p.id}/`,
             media_type: p.media_type,
@@ -86,7 +99,9 @@ export default function PostsContent() {
       .catch((err) => {
         console.warn("Instagram fetch error:", err);
         if (mounted) {
-          setError("No se pudieron cargar las publicaciones. Mostrando ejemplos.");
+          setError(
+            "No se pudieron cargar las publicaciones. Mostrando ejemplos."
+          );
           setPosts(mockedPosts);
           setLoading(false);
         }
@@ -109,7 +124,8 @@ export default function PostsContent() {
             Contenido
           </h2>
           <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
-            Últimas publicaciones desde Instagram, nuestras publicaciones propias y noticias de la firma.
+            Últimas publicaciones desde Instagram, nuestras publicaciones
+            propias y noticias de la firma.
           </p>
         </div>
 
@@ -123,6 +139,7 @@ export default function PostsContent() {
               { key: "instagram", label: "Instagram" },
               { key: "propias", label: "Publicaciones propias" },
               { key: "noticias", label: "Noticias" },
+              { key: "articulos", label: "Artículos doctrinarios" },
             ].map((tab) => {
               const isActive = active === (tab.key as any);
               return (
@@ -136,7 +153,7 @@ export default function PostsContent() {
                       ? "bg-[#0F1C2E] text-white shadow-md"
                       : "bg-white border border-gray-200 text-gray-700"
                   }`}
-                  aria-pressed={isActive}
+                  
                 >
                   {tab.label}
                 </button>
@@ -153,10 +170,33 @@ export default function PostsContent() {
         <div>
           <AnimatePresence mode="wait">
             {active === "instagram" && (
-              <InstagramPosts posts={posts} loading={loading} error={error} pageSize={6} />
+              <InstagramPosts
+                posts={posts}
+                loading={loading}
+                error={error}
+                pageSize={6}
+              />
             )}
+
             {active === "propias" && <PublicationsGrid />}
+
             {active === "noticias" && <NewsList pageSize={4} />}
+
+            {active === "articulos" && (
+              <ArticlesList
+                pageSize={4}
+                items={[
+                  {
+                    id: "1",
+                    title: "Sociedades, responsabilidad de administradores...",
+                    excerpt: "Análisis doctrinario publicado en La Ley.",
+                    href: "/articles/sociedades-responsabilidad-2025",
+                    autor: "Emilio F. Moro",
+                    date: "2025-10-20",
+                  },
+                ]}
+              />
+            )}
           </AnimatePresence>
         </div>
       </div>

@@ -47,9 +47,20 @@ export type PublicationArt = {
 export type Publication = PublicationBooks | PublicationArt;
 
 export const AUTHORS: Author[] = [
-  { id: "a1", name: "Carlos E. Moro" },
-  { id: "a2", name: "Emilio F. Moro" },
-  { id: "a3", name: "Abril Martínez Figueroa" }
+  {
+    id: "a1",
+    name: "Carlos E. Moro",
+  },
+  {
+    id: "a2",
+    name: "Emilio F. Moro",
+  },
+  {
+    id: "a3",
+    name: "Abril Martínez Figueroa",
+    avatar:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/v1765211568/Dr-Abril-2_vshjxc.jpg",
+  },
 ];
 
 export const EDITORIALS: Editorials[] = [
@@ -347,7 +358,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     excerpt:
       "Análisis crítico sobre responsabilidad, LDC, agencias de viaje y jurisprudencia reciente.",
     year: 2025,
-    pages: 6, // si querés
+    pages: 13, // si querés
     href: "",
     pdfUrl: "/pdf/articulo-derecho-consumidor.pdf", // <--- AQUI LA MAGIA
     tags: ["Derecho del Consumidor", "Responsabilidad", "Jurisprudencia"],

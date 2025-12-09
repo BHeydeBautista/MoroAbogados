@@ -5,7 +5,11 @@ import HeroVideo from './HeroVideo';
 import HeroContent from './HeroContent';
 import HeroControls from './HeroControls';
 
-const videoList = ["/videos/hero.mp4", "/videos/hero2.mp4"];
+const videoList = [
+  "https://res.cloudinary.com/di2os0yqc/video/upload/v1765218380/entrada_uiuork.mov",
+  "https://res.cloudinary.com/di2os0yqc/video/upload/v1765219792/HOLD_bosocc.mov",
+  "https://res.cloudinary.com/di2os0yqc/video/upload/c_fill,g_center,y_-400,ar_16:9/v1765220008/CasaGob_umj8j2.mov"
+];
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

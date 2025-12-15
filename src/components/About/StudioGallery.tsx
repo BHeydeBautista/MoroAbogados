@@ -4,6 +4,9 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import es from "@/locales/es/gallery.json";
+import en from "@/locales/en/gallery.json";
+import { useLanguage } from "@/context/LanguageContext";
 
 // ⬇️ Import de las imágenes externas
 import { studioImages as images } from "@/data/studioImages";
@@ -12,6 +15,8 @@ const IMAGES_PER_PAGE = 8;
 const INTERVAL = 3500;
 
 export default function StudioGallery() {
+  const { language } = useLanguage();
+  const t = language === "es" ? es.gallery : en.gallery;
   const [index, setIndex] = useState(1);
   const [page, setPage] = useState(1);
 
@@ -43,7 +48,7 @@ export default function StudioGallery() {
     <div className="max-w-6xl mx-auto px-6 flex flex-col gap-16">
       {/* TITULO */}
       <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#0F1C2E] text-center">
-        Nuestro Estudio
+        {t.title}
       </h2>
 
       {/* CARRUSEL 3D */}
@@ -102,7 +107,7 @@ export default function StudioGallery() {
             page === 1 ? "text-gray-400" : "text-[#0F1C2E] hover:underline"
           }`}
         >
-          Anterior
+          {t.prev}
         </button>
 
         {Array.from({ length: totalPages }).map((_, i) => (
@@ -128,7 +133,7 @@ export default function StudioGallery() {
               : "text-[#0F1C2E] hover:underline"
           }`}
         >
-          Siguiente
+          {t.next}
         </button>
       </div>
 

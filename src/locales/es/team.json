@@ -1,0 +1,15 @@
+{
+  "team": {
+    "title": "Nuestro equipo",
+    "partners": "Socios",
+    "lawyers": "Abogados",
+    "intern": "Pasante",
+    "procuradores": "Procuradores",
+    "it_assistants": "Asistentes Informáticos",
+    "members": "miembros",
+    "learn_more": "Saber más",
+    "view_profile": "Ver perfil",
+    "close": "Cerrar",
+    "about_aria": "Saber más sobre {name}"
+  }
+}

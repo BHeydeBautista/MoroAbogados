@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FaEnvelope } from "react-icons/fa";
+import es from "@/locales/es/team.json";
+import en from "@/locales/en/team.json";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TeamCardProps {
   name: string;
@@ -42,6 +45,8 @@ export default function TeamCard({
   slug,
 }: TeamCardProps) {
   const hasImage = Boolean(image);
+  const { language } = useLanguage();
+  const t = language === "es" ? es.team : en.team;
 
   const mediaClass = hasImage
     ? "relative w-full aspect-square"
@@ -144,25 +149,25 @@ export default function TeamCard({
                   </div>
 
                   {onOpenBio ? (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onOpenBio();
-                      }}
-                      className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
-                    >
-                      Saber más
-                    </button>
-                  ) : slug ? (
-                    <Link
-                      href={`/abogados/${slug}`}
-                      className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
-                    >
-                      Ver perfil
-                    </Link>
-                  ) : (
-                    <div className="w-24" />
-                  )}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onOpenBio();
+                        }}
+                        className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
+                      >
+                        {t.learn_more}
+                      </button>
+                    ) : slug ? (
+                      <Link
+                        href={`/abogados/${slug}`}
+                        className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
+                      >
+                        {t.view_profile}
+                      </Link>
+                    ) : (
+                      <div className="w-24" />
+                    )}
                 </div>
               </div>
             </div>

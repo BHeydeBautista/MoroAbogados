@@ -1,0 +1,15 @@
+{
+  "team": {
+    "title": "Our Team",
+    "partners": "Partners",
+    "lawyers": "Lawyers",
+    "intern": "Intern",
+    "procuradores": "Procuradores",
+    "it_assistants": "IT Assistants",
+    "members": "members",
+    "learn_more": "Learn more",
+    "view_profile": "View profile",
+    "close": "Close",
+    "about_aria": "Learn more about {name}"
+  }
+}

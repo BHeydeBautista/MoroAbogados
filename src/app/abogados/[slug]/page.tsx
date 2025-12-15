@@ -4,10 +4,12 @@ import { lawyerDetails } from "@/data/lawyerData";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const LawyerProfilePage = () => {
   const params = useParams();
   const slug = params?.slug;
+  const { language } = useLanguage();
 
   if (!slug) return <div className="text-white">Cargando...</div>;
 
@@ -25,6 +27,21 @@ const LawyerProfilePage = () => {
       </div>
     );
   }
+
+  // Helper function to get translated field
+  const getField = (fieldName: keyof typeof lawyer, defaultValue: any = "") => {
+    if (language === "en" && lawyer[`${fieldName}_en` as keyof typeof lawyer]) {
+      return lawyer[`${fieldName}_en` as keyof typeof lawyer];
+    }
+    return lawyer[fieldName] ?? defaultValue;
+  };
+
+  const displayTitle = language === "en" && lawyer.title_en ? lawyer.title_en : lawyer.title;
+  const displayUniversity = language === "en" && lawyer.education?.university_en ? lawyer.education.university_en : lawyer.education?.university;
+  const displayBooks = language === "en" && lawyer.books_en ? lawyer.books_en : lawyer.books;
+  const displayArticles = language === "en" && lawyer.articles_en ? lawyer.articles_en : lawyer.articles;
+  const displayOtherRoles = language === "en" && lawyer.otherRoles_en ? lawyer.otherRoles_en : lawyer.otherRoles;
+  const displayOtherAntecedentes = language === "en" && lawyer.otherAntecedentes_en ? lawyer.otherAntecedentes_en : lawyer.otherAntecedentes;
 
   return (
     <div className="min-h-screen bg-[#0F1C2E] text-white">
@@ -54,7 +71,7 @@ const LawyerProfilePage = () => {
             <h1 className="text-5xl font-serif font-bold text-[#D4A75D] mb-4">
               {lawyer.name}
             </h1>
-            <h2 className="text-2xl font-semibold mb-4">{lawyer.title}</h2>
+            <h2 className="text-2xl font-semibold mb-4">{displayTitle}</h2>
           </motion.div>
         </div>
       </section>
@@ -110,7 +127,7 @@ const LawyerProfilePage = () => {
                 </p>
               )}
               <p>
-                <strong>Universitario:</strong> {lawyer.education.university}
+                <strong>Universitario:</strong> {displayUniversity}
               </p>
               {lawyer.education.postgraduate && (
                 <p>
@@ -126,18 +143,18 @@ const LawyerProfilePage = () => {
           </div>
 
           {/* LIBROS */}
-          {lawyer.books.length > 0 && (
+          {displayBooks && displayBooks.length > 0 && (
             <div>
               <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Libros publicados
+                {language === "en" ? "Published Books" : "Libros publicados"}
               </h3>
               <div className="grid md:grid-cols-2 gap-12">
-                {lawyer.books.map((book, idx) => (
+                {displayBooks.map((book: any, idx: number) => (
                   <div
                     key={idx}
                     className="bg-[#F7F7F7] border-2 border-[#D4A75D] p-8 rounded-xl shadow"
                   >
-                    <h4 className="font-bold">{book.title}</h4>
+                    <h4 className="font-bold">{book.title_en || book.title}</h4>
                     {book.year && (
                       <p className="text-sm text-[#D4A75D] mt-1">
                         ({book.year})
@@ -150,20 +167,20 @@ const LawyerProfilePage = () => {
           )}
 
           {/* ARTÍCULOS */}
-          {lawyer.articles.length > 0 && (
+          {displayArticles && displayArticles.length > 0 && (
             <div>
               <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Artículos académicos
+                {language === "en" ? "Academic Articles" : "Artículos académicos"}
               </h3>
               <div className="grid md:grid-cols-2 gap-12">
-                {lawyer.articles.map((a, idx) => (
+                {displayArticles.map((a: any, idx: number) => (
                   <div
                     key={idx}
                     className="bg-[#F7F7F7] border-2 border-[#D4A75D] p-8 rounded-xl shadow"
                   >
-                    <h4 className="font-bold mb-1">{a.title}</h4>
-                    {a.publication && (
-                      <p className="text-sm">{a.publication}</p>
+                    <h4 className="font-bold mb-1">{a.title_en || a.title}</h4>
+                    {a.publication_en || a.publication && (
+                      <p className="text-sm">{a.publication_en || a.publication}</p>
                     )}
                     {a.year && (
                       <p className="text-sm text-[#D4A75D] mt-1">({a.year})</p>
@@ -328,15 +345,15 @@ const LawyerProfilePage = () => {
 
 
           {/* OTROS Antecedentes */}
-          {lawyer.otherAntecedentes.length > 0 && (
+          {displayOtherAntecedentes && displayOtherAntecedentes.length > 0 && (
 
             <div>
 
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">Otros Antecedentes</h3>
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">{language === "en" ? "Other Backgrounds" : "Otros Antecedentes"}</h3>
 
               <ul className="list-disc ml-6 space-y-2">
 
-                {lawyer.otherAntecedentes.map((r, idx) => (
+                {displayOtherAntecedentes.map((r: string, idx: number) => (
 
                   <li key={idx}>{r}</li>
 

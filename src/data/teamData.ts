@@ -2,8 +2,10 @@
 export type TeamMember = {
   name: string;
   role: string;
+  role_en?: string;
   image?: string;
   bio?: string;
+  bio_en?: string;
   focus?: string;
   slug?: string;
 };

@@ -2,6 +2,7 @@ export interface Lawyer {
   slug: string;
   name: string;
   title: string;
+  title_en?: string;
   email: string;
   image: string;
 
@@ -17,13 +18,16 @@ export interface Lawyer {
     primary: string;
     secondary: string;
     university: string;
+    university_en?: string;
     postgraduate: string;
     doctorate?: string;
   };
 
   books: Array<{ title: string; year?: string }>;
+  books_en?: Array<{ title_en: string; year?: string }>;
 
   articles: Array<{ title: string; publication?: string; year?: string }>;
+  articles_en?: Array<{ title_en?: string; publication_en?: string; year?: string }>;
 
   academicPositions: Array<{
     title: string;
@@ -42,8 +46,10 @@ export interface Lawyer {
   conferences: Array<{ title: string; year?: string }>;
 
   otherRoles: Array<{ title: string; string?: string[] }>;
+  otherRoles_en?: Array<{ title_en?: string; string_en?: string[] }>;
 
   otherAntecedentes: string[];
+  otherAntecedentes_en?: string[];
 }
 
 export const lawyerDetails: Record<string, Lawyer> = {
@@ -52,6 +58,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
     name: "Dr. Carlos E. Moro",
     email: "prueba@gmai.com",
     title: "Abogado, especialista en Derecho Concursal",
+    title_en: "Lawyer, specialist in Insolvency Law",
     image: "/img/lawyers/Dr-Carlos.jpg",
 
     personal: {
@@ -66,6 +73,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
       primary: "",
       secondary: "",
       university: "Abogado – Universidad Nacional del Litoral (1976)",
+      university_en: "Lawyer – National University of the Litoral (1976)",
       postgraduate: "",
       doctorate: "",
     },
@@ -94,6 +102,22 @@ export const lawyerDetails: Record<string, Lawyer> = {
       { title: "Cuestiones Concursales", year: "2010" },
       { title: "La empresa en crisis", year: "1995" },
       { title: "El concurso de la sociedad conyugal", year: "2002" },
+    ],
+
+    books_en: [
+      { title_en: "Bankruptcy Law. Commented, Annotated and Concordant", year: "1994" },
+      { title_en: "Draft Reform Projects. Bankruptcy Law", year: "1994" },
+      { title_en: "Bankruptcy Law", year: "1996" },
+      { title_en: "Preventive Reorganization and Bankruptcy", year: "2002" },
+      { title_en: "Handbook of Insolvency Law", year: "2005" },
+      { title_en: "Judicial Damages and Actions in Companies and Bankruptcies", year: "2005" },
+      { title_en: "Alternative Dispute Resolutions in Business and Consumer Crisis", year: "2005" },
+      { title_en: "Essays on Insolvency Law", year: "2009" },
+      { title_en: "Bankruptcy Law. Introduction and Study", year: "2011" },
+      { title_en: "Bankruptcy and Insolvency. Commented", year: "2012" },
+      { title_en: "Insolvency Issues", year: "2010" },
+      { title_en: "The Company in Crisis", year: "1995" },
+      { title_en: "Bankruptcy of the Marital Partnership", year: "2002" },
     ],
 
     articles: [
@@ -298,6 +322,47 @@ export const lawyerDetails: Record<string, Lawyer> = {
         publication: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
         year: "2006",
       },
+    ],
+
+    articles_en: [
+      { title_en: "Joint Liability under Art. 31 of the Labor Contract Law", publication_en: "Societary and Insolvency View", year: "2004" },
+      { title_en: "The Labor Credit Guarantee Fund. The creation of what already exists", publication_en: "Proceedings of XVI Commercial Law Institutes", year: "2007" },
+      { title_en: "The First: The Term of Insolvency Prescription Is Not Deactivated by Indirect Bankruptcy", publication_en: "Proceedings of XVI Commercial Law Institutes", year: "2007" },
+      { title_en: "Fee Verification. Final costs award, but not regulated", publication_en: "Proceedings of XVI Commercial Law Institutes", year: "2007" },
+      { title_en: "The Absent Person's Company", publication_en: "Proceedings of XVI Commercial Law Institutes", year: "2007" },
+      { title_en: "State of Insolvency: A prerequisite that cannot be missing", publication_en: "XV Conference Proceedings", year: "" },
+      { title_en: "The 'Créditum' in Bankruptcy", publication_en: "XV Conference Proceedings", year: "" },
+      { title_en: "When one bought what does not exist... we are in trouble", publication_en: "Topics in Insolvency Law", year: "2007" },
+      { title_en: "Fee Verification. Final costs award but not regulated", publication_en: "LEX – Caja Forense de Entre Ríos", year: "" },
+      { title_en: "New Trends in Corporate and Insolvency Jurisprudence", publication_en: "Foundation for Research and Development of Legal Sciences", year: "2008" },
+      { title_en: "Bankruptcy Fraud and other Issues of Bankruptcy Law", publication_en: "Foundation for Research and Development of Legal Sciences", year: "2010" },
+      { title_en: "Abuse of Insolvency Law", publication_en: "Insolvency Law Review - Ad-Hoc", year: "2006" },
+      { title_en: "A Privileged One in Insolvency Law: 'Super privileged' by the SME Law with Registration", publication_en: "Errepar", year: "" },
+      { title_en: "Rejected Bankruptcy Petition and Imposition of Costs", publication_en: "Errepar", year: "" },
+      { title_en: "Verification of Credits and Judgments in Executive Proceedings", publication_en: "Errepar", year: "" },
+      { title_en: "Judicial Opening of Expanded Bankruptcy. Exception of High Registration", publication_en: "Errepar", year: "" },
+      { title_en: "Grace Period in Insolvency Proceedings", publication_en: "Errepar", year: "" },
+      { title_en: "Challenge to the Agreement", publication_en: "Errepar", year: "" },
+      { title_en: "Bankruptcy without Subject", publication_en: "Errepar", year: "" },
+      { title_en: "Insolvency Administration (the later)", publication_en: "Errepar", year: "" },
+      { title_en: "The Federal Court Ruling 'Sociedad Comercial del Plata S.A.' More than just another ruling", publication_en: "Errepar", year: "" },
+      { title_en: "New Bankruptcy Law (24.522) – Commented", publication_en: "Delta – Supplement", year: "1995" },
+      { title_en: "Appealable Bankruptcy. Rejection – Appealable. A matter that seemed resolved", publication_en: "Delta", year: "1995" },
+      { title_en: "Verification of Credits", publication_en: "Delta", year: "1997" },
+      { title_en: "Exit from APE. Procedural issues", publication_en: "Delta", year: "1997" },
+      { title_en: "Applicable Interest Rates", publication_en: "Delta", year: "1997" },
+      { title_en: "To Go Bankrupt: A Leap into the Void", publication_en: "Delta", year: "1998" },
+      { title_en: "Bankruptcy of Partners and Directors (Personal Liability)", publication_en: "Delta", year: "1998" },
+      { title_en: "Interaction of Judgments from Commercial and Criminal Courts in Tax Matters", publication_en: "Tax Law Review – Lexis Nexis", year: "2008" },
+      { title_en: "Direct Insolvency Recognition Abroad", publication_en: "RICCO Review", year: "2005" },
+      { title_en: "Reopening of Insolvency and Concurrent Creditors", publication_en: "RICCO Review", year: "2007" },
+      { title_en: "Insolvency in Case of Argentinazo", publication_en: "DYC – Austral University", year: "" },
+      { title_en: "Crowdfunding and Simplified Stock Corporations", publication_en: "Institute of Commercial Law", year: "2018" },
+      { title_en: "Liability of Company Directors before its Bankruptcy", publication_en: "II Ibero-American Insolvency Congress", year: "2000" },
+      { title_en: "Abuse of Insolvency Law", publication_en: "Ibero-American Congress of Insolvency Law – Ad-Hoc", year: "2004" },
+      { title_en: "Verification of Credits", publication_en: "Ibero-American Congress of Insolvency Law – Ad-Hoc", year: "2004" },
+      { title_en: "Early Payment and Voting", publication_en: "Ibero-American Congress of Insolvency Law – Ad-Hoc", year: "" },
+      { title_en: "Insolvency Fraud", publication_en: "Ibero-American Congress of Insolvency Law – Ad-Hoc", year: "2006" },
     ],
 
     academicPositions: [

@@ -457,6 +457,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
     slug: "dr-emilio-f-moro",
     name: "Dr. Emilio Federico Moro",
     title: "Abogado, especialista en Derecho Comercial, Concursal y Procesal",
+    title_en: "Lawyer, specialist in Commercial, Insolvency and Procedural Law",
     email: "emiliomoro@arnet.com.ar",
     image: "/img/lawyers/Dr-Emilio.jpg",
 
@@ -474,6 +475,8 @@ export const lawyerDetails: Record<string, Lawyer> = {
       secondary: "Instituto Modelo Michelangelo (Paraná) – Promedio 8,53",
       university:
         "Facultad de Ciencias Jurídicas – UNL (Santa Fe) – Promedio 7,02",
+      university_en:
+        "Faculty of Legal Sciences – UNL (Santa Fe) – Average 7,02",
       postgraduate:
         "Magíster en Derecho de la Empresa (MDE) – Universidad Austral, Medalla de Oro (promedio 9,27)",
       doctorate:
@@ -525,6 +528,28 @@ export const lawyerDetails: Record<string, Lawyer> = {
       { title: "Efectos del concurso preventivo…", year: "2005" },
       { title: "¿Es la sociedad unipersonal…?", year: "2007" },
       { title: "Consejo de la Magistratura…", year: "2008" },
+    ],
+
+    articles_en: [
+      { title_en: "The Challengeability of Board Acts...", publication_en: "La Ley", year: "2009" },
+      { title_en: "Fragmented Result Obligations...", year: "2009" },
+      { title_en: "From Two Perspectives: Challenge of Board Acts...", year: "2009" },
+      { title_en: "Forgetting Demogue...", year: "2007" },
+      { title_en: "Does Legal Rigor Matter...?", year: "2010" },
+      { title_en: "Postscripts on the Nature of Time...", year: "2009" },
+      { title_en: "State Liability by Omission...", year: "2008" },
+      { title_en: "Fragmented Result Obligations...", year: "2008" },
+      { title_en: "Should the State Respond...?", year: "2008" },
+      { title_en: "Right to Information...", year: "2007" },
+      { title_en: "Approved Accounting Statement...", year: "2006" },
+      { title_en: "On the Right Path: On the Current Criterion...", year: "2007" },
+      { title_en: "Directors Affected in Their Rights...", year: "2007" },
+      { title_en: "Should a Rate Be Required...?", year: "2007" },
+      { title_en: "Brief Reflections on Unipersonal Partnerships...", year: "2005" },
+      { title_en: "Benefit of Litigation Without Costs...", year: "2005" },
+      { title_en: "Effects of Preventive Bankruptcy...", year: "2005" },
+      { title_en: "Is the Unipersonal Partnership...?", year: "2007" },
+      { title_en: "Judicial Council...", year: "2008" },
     ],
 
     academicPositions: [
@@ -652,6 +677,11 @@ export const lawyerDetails: Record<string, Lawyer> = {
     otherAntecedentes: [
       "Abogado junior en BRONS & SALAS S.C.",
       "Merito en el juzgado de lera. instacia en lo Comercial nro. 21(Secr. 42) de la Ciudad Autonoma de Buenos Aires a cargo del DR. Germán Paez Castañeda.",
+    ],
+
+    otherAntecedentes_en: [
+      "Junior Lawyer at BRONS & SALAS S.C.",
+      "Merit at the first instance commercial court no. 21 (Sec. 42) of the Autonomous City of Buenos Aires under Dr. Germán Paez Castañeda.",
     ],
   },
 };

@@ -1,20 +1,20 @@
 {
   "title": "MORO ABOGADOS",
-  "paragraph1": "MORO ABOGADOS es un Estudio Jurídico cuya área territorial de actuación está dada por la Provincia de Entre Ríos y la Provincia de Santa Fe y que se especializa en asuntos de índole empresarial, comercial, bancario, civil, laboral y administrativo, con foco, principalmente, en toda la problemática jurídica suscitada en el seno de sociedades comerciales y empresas de todo tipo, tanto en asesoramiento integral como a lo relativo a lo contencioso judicial.",
-  "paragraph2": "El Estudio se caracteriza por su constante compromiso en el ofrecimiento de verdadero servicio de excelencia a sus clientes y en el cual se prioriza el contacto directo y personal entre los socios y los clientes, que permite alcanzar altos niveles de comunicación, eficiencia y calidad en las prestaciones jurídicas que se ofrecen. Nuestro principal objetivo es brindar un servicio de atención de casos y cuestiones que ameriten y exijan elevados estándares de conocimientos y práctica jurídica, a cuyos efectos los antecedentes, impronta académica de sus integrantes, numerosos libros y artículos publicados y actividad docente en Jornadas Nacionales y universidades de prestigio en todo el país representan un claro valor agregado.",
-  "paragraph3": "Consciente de los desafíos que impone la globalización como dato inocultable de nuestro tiempo, el Estudio presenta el valor agregado de prestar sus servicios con versación de sus integrantes en variados idiomas: Inglés, Francés, Italiano, Portugués y, circunscripto a conocimientos básicos, Chino Mandarín.",
+  "paragraph1": "A law firm whose territorial scope covers the Province of Entre Ríos, the Province of Santa Fe and the Autonomous City of Buenos Aires, specialized in corporate, commercial, banking, civil, labor and administrative matters, with a primary focus on legal issues arising within commercial companies and businesses of all kinds, both in comprehensive advisory services and in litigation.",
+  "paragraph2": "The firm is characterized by its ongoing commitment to providing genuine, high-quality service to its clients, prioritizing direct and personal contact between partners and clients, which enables high levels of communication, efficiency and quality in the legal services offered. Our main objective is to provide case handling and advice that require and demand elevated standards of legal knowledge and practice; in this regard, the background and academic profile of our members, numerous books and articles published, and teaching activity at national conferences and prestigious universities across the country represent a clear added value.",
+  "paragraph3": "Aware of the challenges posed by globalization as an undeniable reality of our time, the firm offers the added value of providing services with its members' proficiency in several languages: English, French, Italian, Portuguese and, at a basic level, Mandarin Chinese.",
   "cards": {
     "empresarial": {
-      "title": "Sector Empresarial",
-      "desc": "El estudio participa activamente en el sector empresarial de la región y promueve la aplicación de estrategias colectivas de agrupamiento mediante distritos industriales, clusters y consorcios."
+      "title": "Corporate Sector",
+      "desc": "The firm actively participates in the region's corporate sector and promotes the application of collective clustering strategies through industrial districts, clusters and consortia."
     },
     "asesoramiento": {
-      "title": "Asesoramiento",
-      "desc": "Brinda servicios de consultoría y asesoramiento de excelente nivel profesional aplicando conocimientos madurados y enriquecidos desde la vasta experiencia y un continuo perfeccionamiento de sus integrantes en las áreas de actuación del Estudio."
+      "title": "Advisory Services",
+      "desc": "We provide consultancy and advisory services of outstanding professional quality, applying knowledge honed through extensive experience and continuous development of our members in the firm's practice areas."
     },
     "soluciones": {
-      "title": "Soluciones Ágiles",
-      "desc": "Ofrece a sus clientes soluciones ágiles, eficientes y rápidas. Para ello, contamos con una clara visión interdisciplinaria, esto es, somos plenamente conscientes de que la clave del éxito está en la apertura a trabajar en cooperación con otras disciplinas e incluso, en algunos casos, con otros colegas, formando equipos de trabajo."
+      "title": "Agile Solutions",
+      "desc": "We offer our clients agile, efficient and prompt solutions. To that end, we adopt a clear interdisciplinary approach, fully aware that the key to success lies in collaborating with other disciplines and, in some cases, with other colleagues to form dedicated teams."
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "content": {
+    "title": "Content",
+    "description": "Latest posts from Instagram, our own publications and firm news.",
+    "tabs": {
+      "instagram": "Instagram",
+      "propias": "Own publications",
+      "noticias": "News",
+      "articulos": "Articles"
+    },
+    "loading": "Loading content...",
+    "ig_fetch_error": "Could not load posts. Showing examples.",
+    "mocked_captions": [
+      "🧑‍⚖️✨ This Friday we took part in an unmissable conference!",
+      "🏗️ What happens if a construction collapses??",
+      "🔒 Did you know your image is a right protected by law?"
+    ]
+  }
+}

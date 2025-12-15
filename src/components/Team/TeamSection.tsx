@@ -11,8 +11,13 @@ import {
   procuradores,
   itAssistants,
 } from "../../data/teamData";
+import es from "@/locales/es/team.json";
+import en from "@/locales/en/team.json";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TeamSection() {
+  const { language } = useLanguage();
+  const t = language === "es" ? es.team : en.team;
   const [activeMember, setActiveMember] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [modalMember, setModalMember] = useState<any | null>(null);
@@ -29,7 +34,7 @@ export default function TeamSection() {
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 md:mb-6 gap-2">
         <h3 className="text-lg md:text-xl font-semibold text-white">{title}</h3>
         <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
-          {members.length} miembros
+          {members.length} {t.members}
         </span>
       </div>
 
@@ -37,6 +42,8 @@ export default function TeamSection() {
         <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 py-2">
           {members.map((member, index) => {
             const isActive = activeMember === member.name;
+            const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
+            const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
 
             return (
               <motion.div
@@ -85,14 +92,14 @@ export default function TeamSection() {
                     }`}
                   >
                     <button
-                      aria-label={`Saber más sobre ${member.name}`}
+                            aria-label={t.about_aria.replace("{name}", member.name)}
                       className="px-3 py-1 text-xs md:text-sm border border-[#D4A75D]/70 text-[#D4A75D] rounded-md bg-black/10 hover:bg-[#D4A75D] hover:text-black transition-all duration-300"
                       onClick={(e) => {
                         e.stopPropagation();
                         setModalMember(member);
                       }}
                     >
-                      Saber más
+                      {t.learn_more}
                     </button>
                   </div>
                 </div>
@@ -101,10 +108,10 @@ export default function TeamSection() {
                   {member.name}
                 </h4>
                 <p className="text-gray-300 text-xs md:text-sm">
-                  {member.role}
+                  {displayRole}
                 </p>
 
-                {isActive && member.bio && (
+                {isActive && displayBio && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
@@ -112,7 +119,7 @@ export default function TeamSection() {
                     className="mt-3 px-3 text-xs text-gray-200 bg-white/3 rounded-md w-full"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {member.bio}
+                    {displayBio}
                   </motion.div>
                 )}
               </motion.div>
@@ -130,7 +137,7 @@ export default function TeamSection() {
           {title}
         </h3>
         <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#D4A75D]/10 text-xs md:text-sm text-[#D4A75D]">
-          {members.length} miembros
+          {members.length} {t.members}
         </span>
       </div>
 
@@ -138,6 +145,8 @@ export default function TeamSection() {
         <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 py-2">
           {members.map((member, index) => {
             const isActive = activeMember === member.name;
+            const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
+            const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
 
             return (
               <motion.div
@@ -187,7 +196,7 @@ export default function TeamSection() {
                     }`}
                   >
                     <button
-                      aria-label={`Saber más sobre ${member.name}`}
+                      aria-label={t.about_aria.replace("{name}", member.name)}
                       className="px-3 py-1 text-xs md:text-sm font-medium border border-[#D4A75D] bg-[#D4A75D]/90 text-black rounded-md hover:bg-[#D4A75D] hover:scale-105 transition-all duration-300"
                       onClick={(e) => {
                         e.stopPropagation();
@@ -198,7 +207,7 @@ export default function TeamSection() {
                         }
                       }}
                     >
-                      {member.slug ? "Ver perfil" : "Saber más"}
+                      {member.slug ? t.view_profile : t.learn_more}
                     </button>
                   </div>
                 </div>
@@ -207,10 +216,10 @@ export default function TeamSection() {
                   {member.name}
                 </h4>
                 <p className="text-gray-300 text-xs md:text-sm">
-                  {member.role}
+                  {displayRole}
                 </p>
 
-                {isActive && member.bio && (
+                {isActive && displayBio && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: "auto" }}
@@ -218,7 +227,7 @@ export default function TeamSection() {
                     className="mt-3 px-3 text-sm text-gray-200 bg-white/3 rounded-md w-full"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    {member.bio}
+                    {displayBio}
                   </motion.div>
                 )}
               </motion.div>
@@ -249,39 +258,43 @@ export default function TeamSection() {
           className="text-center mb-6 md:mb-10 scroll-mt-20 md:scroll-mt-32"
         >
           <h2 className="text-2xl md:text-3xl font-serif font-bold mb-2 text-[#D4A75D]">
-            Nuestro equipo
+            {t.title}
           </h2>
         </div>
 
         <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-4 md:p-8 shadow-lg">
-          {SociosGrid("Socios", socios)}
-          {CircleGrid("Abogados", abogados)}
+          {SociosGrid(t.partners, socios)}
+          {CircleGrid(t.lawyers, abogados)}
 
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Pasante
+                {t.intern}
               </h3>
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
-                {pasantes.length} miembros
+                {pasantes.length} {t.members}
               </span>
             </div>
 
             <div className="w-full overflow-x-auto -mx-4 px-4">
               <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
-                {pasantes.map((member, index) => (
-                  <div key={member.name} className="min-w-[180px] sm:min-w-0">
-                    <TeamCard
-                      index={index}
-                      name={member.name}
-                      role={member.role}
-                      bio={member.bio}
-                      showProfile={false}
-                      compact
-                      onOpenBio={() => setModalMember(member)}
-                    />
-                  </div>
-                ))}
+                {pasantes.map((member, index) => {
+                      const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
+                      const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
+                      return (
+                        <div key={member.name} className="min-w-[180px] sm:min-w-0">
+                          <TeamCard
+                            index={index}
+                            name={member.name}
+                            role={displayRole}
+                            bio={displayBio}
+                            showProfile={false}
+                            compact
+                            onOpenBio={() => setModalMember(member)}
+                          />
+                        </div>
+                      );
+                    })}
               </div>
             </div>
           </section>
@@ -289,27 +302,31 @@ export default function TeamSection() {
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Procuradores
+                {t.procuradores}
               </h3>
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
-                {procuradores.length} miembros
+                {procuradores.length} {t.members}
               </span>
             </div>
             <div className="w-full overflow-x-auto -mx-4 px-4">
               <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
-                {procuradores.map((member, index) => (
-                  <div key={member.name} className="min-w-[180px] sm:min-w-0">
-                    <TeamCard
-                      index={index}
-                      name={member.name}
-                      role={member.role}
-                      bio={member.bio}
-                      showProfile={false}
-                      compact
-                      onOpenBio={() => setModalMember(member)}
-                    />
-                  </div>
-                ))}
+                {procuradores.map((member, index) => {
+                  const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
+                  const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
+                  return (
+                    <div key={member.name} className="min-w-[180px] sm:min-w-0">
+                      <TeamCard
+                        index={index}
+                        name={member.name}
+                        role={displayRole}
+                        bio={displayBio}
+                        showProfile={false}
+                        compact
+                        onOpenBio={() => setModalMember(member)}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -317,27 +334,31 @@ export default function TeamSection() {
           <section>
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
               <h3 className="text-lg md:text-xl font-semibold text-white">
-                Asistentes Informáticos
+                {t.it_assistants}
               </h3>
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
-                {itAssistants.length} miembros
+                {itAssistants.length} {t.members}
               </span>
             </div>
             <div className="w-full overflow-x-auto -mx-4 px-4">
               <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
-                {itAssistants.map((member, index) => (
-                  <div key={member.name} className="min-w-[180px] sm:min-w-0">
-                    <TeamCard
-                      index={index}
-                      name={member.name}
-                      role={member.role}
-                      bio={member.bio}
-                      slug={member.slug}
-                      showProfile={true}
-                      compact
-                    />
-                  </div>
-                ))}
+                {itAssistants.map((member, index) => {
+                  const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
+                  const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
+                  return (
+                    <div key={member.name} className="min-w-[180px] sm:min-w-0">
+                      <TeamCard
+                        index={index}
+                        name={member.name}
+                        role={displayRole}
+                        bio={displayBio}
+                        slug={member.slug}
+                        showProfile={true}
+                        compact
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -345,33 +366,40 @@ export default function TeamSection() {
       </div>
 
       {modalMember && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
-          onClick={() => setModalMember(null)}
-        >
-          <div
-            className="max-w-xl w-full bg-[#071224] rounded-xl p-6 border border-white/8 shadow-lg"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h3 className="text-xl font-serif font-bold text-[#D4A75D]">
-                  {modalMember.name}
-                </h3>
-                <p className="text-sm text-gray-300 mb-3">{modalMember.role}</p>
-                <p className="text-sm text-gray-200">{modalMember.bio}</p>
-              </div>
+        (() => {
+          const modalRole = language === "es" ? modalMember.role : modalMember.role_en ?? modalMember.role;
+          const modalBio = language === "es" ? modalMember.bio : modalMember.bio_en ?? modalMember.bio;
 
-              <button
-                aria-label="Cerrar"
-                className="ml-4 text-white/80 hover:text-white"
-                onClick={() => setModalMember(null)}
+          return (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+              onClick={() => setModalMember(null)}
+            >
+              <div
+                className="max-w-xl w-full bg-[#071224] rounded-xl p-6 border border-white/8 shadow-lg"
+                onClick={(e) => e.stopPropagation()}
               >
-                ✕
-              </button>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-[#D4A75D]">
+                      {modalMember.name}
+                    </h3>
+                    <p className="text-sm text-gray-300 mb-3">{modalRole}</p>
+                    <p className="text-sm text-gray-200">{modalBio}</p>
+                  </div>
+
+                  <button
+                    aria-label={t.close}
+                    className="ml-4 text-white/80 hover:text-white"
+                    onClick={() => setModalMember(null)}
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          );
+        })()
       )}
     </section>
   );

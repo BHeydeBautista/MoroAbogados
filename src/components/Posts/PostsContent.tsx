@@ -8,27 +8,30 @@ import PublicationsGrid from "./Publications/PublicationsGrid";
 import NewsList from "./NewsList";
 import { useSearchParams } from "next/navigation";
 import ArticlesList from "../articles/ArticlesList";
+import es from "@/locales/es/content.json";
+import en from "@/locales/en/content.json";
+import { useLanguage } from "@/context/LanguageContext";
 
-// Mocked posts de ejemplo
-const mockedPosts: IGPost[] = [
+// Mocked posts de ejemplo (captions localizadas)
+const createMockedPosts = (captions: string[]): IGPost[] => [
   {
     id: "1",
     media_url: "/mock/1.png",
-    caption: "🧑‍⚖️✨ ¡Este viernes participamos de una jornada imperdible!",
+    caption: captions[0] || "",
     permalink: "https://www.instagram.com/p/Cmock1/",
     timestamp: "2025-09-01",
   },
   {
     id: "2",
     media_url: "/mock/2.png",
-    caption: "🏗️ ¿Qué pasa si se cae una obra??",
+    caption: captions[1] || "",
     permalink: "https://www.instagram.com/p/Cmock2/",
     timestamp: "2025-08-10",
   },
   {
     id: "3",
     media_url: "/mock/3.png",
-    caption: "🔒 ¿Sabías que tu imagen es un derecho protegido por la ley?",
+    caption: captions[2] || "",
     permalink: "https://www.instagram.com/p/Cmock3/",
     timestamp: "2025-07-01",
   },
@@ -64,6 +67,9 @@ export default function PostsContent() {
   const [posts, setPosts] = useState<IGPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { language } = useLanguage();
+  const t = language === "es" ? es.content : en.content;
+  const mockedPosts = createMockedPosts(t.mocked_captions || []);
 
   // Fetch de posts de Instagram
   useEffect(() => {
@@ -99,9 +105,7 @@ export default function PostsContent() {
       .catch((err) => {
         console.warn("Instagram fetch error:", err);
         if (mounted) {
-          setError(
-            "No se pudieron cargar las publicaciones. Mostrando ejemplos."
-          );
+          setError(t.ig_fetch_error);
           setPosts(mockedPosts);
           setLoading(false);
         }
@@ -120,14 +124,13 @@ export default function PostsContent() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[#0F1C2E]">
-            Contenido
-          </h2>
-          <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
-            Últimas publicaciones desde Instagram, nuestras publicaciones
-            propias y noticias de la firma.
-          </p>
-        </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[#0F1C2E]">
+              {t.title}
+            </h2>
+            <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
+              {t.description}
+            </p>
+          </div>
 
         {/* Tabs */}
         <div className="mb-8">
@@ -136,10 +139,10 @@ export default function PostsContent() {
             className="flex gap-3 overflow-x-auto no-scrollbar py-3 px-2 items-center md:justify-center"
           >
             {[
-              { key: "instagram", label: "Instagram" },
-              { key: "propias", label: "Publicaciones propias" },
-              { key: "noticias", label: "Noticias" },
-              { key: "articulos", label: "Artículos doctrinarios" },
+              { key: "instagram", label: t.tabs.instagram },
+              { key: "propias", label: t.tabs.propias },
+              { key: "noticias", label: t.tabs.noticias },
+              { key: "articulos", label: t.tabs.articulos },
             ].map((tab) => {
               const isActive = active === (tab.key as any);
               return (
@@ -163,7 +166,7 @@ export default function PostsContent() {
         </div>
 
         {/* Contenido de tabs */}
-        <Suspense fallback={<p>Cargando contenido...</p>}>
+        <Suspense fallback={<p>{t.loading}</p>}>
           <TabSelector setActive={setActive} />
         </Suspense>
 

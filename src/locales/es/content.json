@@ -1,0 +1,19 @@
+{
+  "content": {
+    "title": "Contenido",
+    "description": "Últimas publicaciones desde Instagram, nuestras publicaciones propias y noticias de la firma.",
+    "tabs": {
+      "instagram": "Instagram",
+      "propias": "Publicaciones propias",
+      "noticias": "Noticias",
+      "articulos": "Artículos doctrinarios"
+    },
+    "loading": "Cargando contenido...",
+    "ig_fetch_error": "No se pudieron cargar las publicaciones. Mostrando ejemplos.",
+    "mocked_captions": [
+      "🧑‍⚖️✨ ¡Este viernes participamos de una jornada imperdible!",
+      "🏗️ ¿Qué pasa si se cae una obra??",
+      "🔒 ¿Sabías que tu imagen es un derecho protegido por la ley?"
+    ]
+  }
+}

@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useMemo, useState, useEffect } from "react";
 
 export type ArticleItem = {
   id: string;
   title: string;
   excerpt: string;
-  href: string;
+  slug: string;
   date?: string;
   autor?: string;
+  tipo?: "diario" | "doctrinario";
+  sectionId?: string;
 };
 
 type Props = {
@@ -18,10 +20,7 @@ type Props = {
   pageSize?: number;
 };
 
-export default function ArticlesList({
-  items = [],
-  pageSize = 4,
-}: Props) {
+export default function ArticlesList({ items = [], pageSize = 4 }: Props) {
   const [page, setPage] = useState(1);
 
   const sorted = useMemo(() => {
@@ -32,83 +31,64 @@ export default function ArticlesList({
     });
   }, [items]);
 
-  const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
-  const pageItems = useMemo(() => {
-    const start = (page - 1) * pageSize;
-    return sorted.slice(start, start + pageSize);
-  }, [sorted, page, pageSize]);
+  const pageItems = sorted.slice((page - 1) * pageSize, page * pageSize);
 
   useEffect(() => setPage(1), [items]);
 
   return (
-    <motion.div
-      key="articles"
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -6 }}
-      transition={{ duration: 0.28 }}
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {pageItems.map((a) => (
-          <article
-            key={a.id}
-            className="flex flex-col gap-4 rounded-lg border border-[#D4A75D]/30 p-4 bg-gradient-to-br from-white to-white/95 shadow-sm hover:shadow-md transition transform hover:-translate-y-1"
-          >
-            <div className="flex justify-between items-start">
-              <h4 className="text-xl font-semibold text-[#0F1C2E]">{a.title}</h4>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <div className="grid md:grid-cols-2 gap-6">
+        {pageItems.map((a) => {
+          const href = a.sectionId
+            ? `/articles/${a.slug}#${a.sectionId}`
+            : `/articles/${a.slug}`;
+
+          return (
+            <article
+              key={a.id}
+              className="rounded-xl border border-[#D4A75D]/30 p-5 bg-white hover:shadow-md transition"
+            >
+              {/* Título + tipo */}
+              <div className="flex justify-between items-start gap-3">
+                <h4 className="text-xl font-semibold text-[#0f1c2e]">
+                  {a.title}
+                </h4>
+
+                {a.tipo && (
+                  <span className="shrink-0 text-xs px-2 py-1 rounded bg-[#0f1c2e]/10 text-[#0f1c2e]">
+                    {a.tipo === "diario" ? "Prensa" : "Doctrina"}
+                  </span>
+                )}
+              </div>
+
+              {/* Fecha */}
               {a.date && (
-                <span className="text-xs text-white/70 bg-[#0f1c2e]/40 px-2 py-1 rounded-md">{a.date}</span>
+                <p className="text-xs text-gray-500 mt-1">
+                  {new Date(a.date).toLocaleDateString("es-AR")}
+                </p>
               )}
-            </div>
 
-            {a.autor && (
-              <p className="text-sm text-gray-500 italic">{a.autor}</p>
-            )}
+              {/* Autor */}
+              {a.autor && (
+                <p className="text-sm text-gray-500 italic mt-1">
+                  {a.autor}
+                </p>
+              )}
 
-            <p className="text-sm text-gray-600 line-clamp-3">{a.excerpt}</p>
+              {/* Extracto */}
+              <p className="text-sm text-gray-700 mt-3 line-clamp-3">
+                {a.excerpt}
+              </p>
 
-            <Link href={a.href} className="mt-2 inline-block text-sm text-[#D4A75D] font-medium hover:underline">Leer artículo →</Link>
-          </article>
-        ))}
-
-        {pageItems.length === 0 && (
-          <div className="col-span-full text-center text-gray-600 py-8">
-            No hay artículos.
-          </div>
-        )}
-      </div>
-
-      {/* Paginación */}
-      <div className="mt-6 flex items-center justify-center gap-2">
-        <button
-          onClick={() => setPage((s) => Math.max(1, s - 1))}
-          disabled={page === 1}
-          className="px-4 py-2 border rounded-md disabled:opacity-50"
-        >
-          ←
-        </button>
-
-        {Array.from({ length: pageCount }, (_, i) => i + 1).map((pNum) => (
-          <button
-            key={pNum}
-            onClick={() => setPage(pNum)}
-            className={`px-4 py-2 border rounded-md ${
-              page === pNum
-                ? "bg-[#0F1C2E] text-white"
-                : "bg-white"
-            }`}
-          >
-            {pNum}
-          </button>
-        ))}
-
-        <button
-          onClick={() => setPage((s) => Math.min(pageCount, s + 1))}
-          disabled={page === pageCount}
-          className="px-4 py-2 border rounded-md disabled:opacity-50"
-        >
-          →
-        </button>
+              <Link
+                href={href}
+                className="inline-block mt-4 text-sm text-[#D4A75D] font-medium hover:underline"
+              >
+                Leer artículo →
+              </Link>
+            </article>
+          );
+        })}
       </div>
     </motion.div>
   );

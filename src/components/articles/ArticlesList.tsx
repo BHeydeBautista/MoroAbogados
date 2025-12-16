@@ -48,21 +48,34 @@ export default function ArticlesList({ items = [], pageSize = 4 }: Props) {
               key={a.id}
               className="rounded-xl border border-[#D4A75D]/30 p-5 bg-white hover:shadow-md transition"
             >
-              <div className="flex justify-between items-start mb-2">
+              {/* Título + tipo */}
+              <div className="flex justify-between items-start gap-3">
                 <h4 className="text-xl font-semibold text-[#0f1c2e]">
                   {a.title}
                 </h4>
+
                 {a.tipo && (
-                  <span className="text-xs px-2 py-1 rounded bg-[#0f1c2e]/10">
+                  <span className="shrink-0 text-xs px-2 py-1 rounded bg-[#0f1c2e]/10 text-[#0f1c2e]">
                     {a.tipo === "diario" ? "Prensa" : "Doctrina"}
                   </span>
                 )}
               </div>
 
-              {a.autor && (
-                <p className="text-sm text-gray-500 italic">{a.autor}</p>
+              {/* Fecha */}
+              {a.date && (
+                <p className="text-xs text-gray-500 mt-1">
+                  {new Date(a.date).toLocaleDateString("es-AR")}
+                </p>
               )}
 
+              {/* Autor */}
+              {a.autor && (
+                <p className="text-sm text-gray-500 italic mt-1">
+                  {a.autor}
+                </p>
+              )}
+
+              {/* Extracto */}
               <p className="text-sm text-gray-700 mt-3 line-clamp-3">
                 {a.excerpt}
               </p>

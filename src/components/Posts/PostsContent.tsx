@@ -125,13 +125,13 @@ export default function PostsContent() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[#0F1C2E]">
-              {t.title}
-            </h2>
-            <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
-              {t.description}
-            </p>
-          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[#0F1C2E]">
+            {t.title}
+          </h2>
+          <p className="text-gray-600 mt-3 max-w-2xl mx-auto text-sm sm:text-base">
+            {t.description}
+          </p>
+        </div>
 
         {/* Tabs */}
         <div className="mb-8">
@@ -157,7 +157,6 @@ export default function PostsContent() {
                       ? "bg-[#0F1C2E] text-white shadow-md"
                       : "bg-white border border-gray-200 text-gray-700"
                   }`}
-                  
                 >
                   {tab.label}
                 </button>
@@ -191,14 +190,24 @@ export default function PostsContent() {
                 pageSize={4}
                 items={articlesData.map((a, i) => {
                   const stripHtml = (s?: string) =>
-                    s ? s.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim() : "";
+                    s
+                      ? s
+                          .replace(/<[^>]*>/g, "")
+                          .replace(/\s+/g, " ")
+                          .trim()
+                      : "";
 
                   return {
                     id: a.slug ?? String(i),
                     title: a.title,
-                    excerpt: stripHtml(a.html) || (a.sumario && a.sumario[0]) || "", 
+                    excerpt:
+                      a.excerpt ||
+                      a.resumen ||
+                      (a.sumario && a.sumario[0]) ||
+                      "",
+
                     slug: a.slug,
-                    date: a.fecha ?? a.date,
+                    date: a.fecha,
                     autor: a.autor,
                   };
                 })}

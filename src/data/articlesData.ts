@@ -1,5 +1,24 @@
-export const articlesData = [
-  // --- Artículo 1: Impacto del Código Civil y Comercial en Sociedades ---
+export type Article = {
+  slug: string;
+  title: string;
+  subtitulo?: string;
+  autor?: string;
+  fuente?: string;
+  fecha: string;
+  tipo?: "diario" | "doctrinario";
+  excerpt: string;
+  resumen?: string;
+  sumario?: string[];
+  sections?: {
+    id: string;
+    title: string;
+    summary?: string;
+  }[];
+  pdfUrl?: string;
+};
+
+
+export const articlesData: Article[] = [
   {
     slug: "impacto-ccc-societario",
     title: "Impacto del Código Civil y Comercial en materia societaria",
@@ -7,110 +26,103 @@ export const articlesData = [
     autor: "Emilio F. Moro",
     fuente: "LA LEY",
     fecha: "2025-10-20",
+    tipo: "doctrinario",
+
+    excerpt:
+      "Análisis del impacto del Código Civil y Comercial en la práctica societaria argentina, a diez años de su entrada en vigencia.",
+
+    resumen:
+      "El artículo examina los principales cambios introducidos por el Código Civil y Comercial en materia societaria, abordando la responsabilidad de los administradores, las asambleas digitales y nuevas herramientas jurídicas aplicables a las sociedades.",
+
     sumario: [
-      "I. Introducción.",
-      "II. La incidencia del art. 158, Cód. Civ. y Com., sobre la irrupción de las asambleas digitales.",
-      "III. La aplicación del Código Civil y Comercial (en su medida) al desempeño de los administradores societarios.",
-      "IV. El ensanchamiento hacia la noción de dolo eventual y su impacto en la actuación de los administradores societarios.",
-      "V. La existencia de ciertas y puntuales prestaciones a cargo de administradores societarios que califican como 'obligaciones de resultado'.",
-      "VI. Alternativas frente a casos de bloqueo u obstrucción en el órgano de administración (art. 161, Cód. Civ. y Com.).",
-      "VII. Referencia a la admisión de la viabilidad de reparación en ciertos casos de daños indirectos (art. 1739, Cód. Civ. y Com.).",
-      "VIII. Los protocolos de familia, la transición generacional y la influencia del art. 1010, Cód. Civ. y Com.",
-      "IX. Conclusión.",
+      "Introducción.",
+      "Asambleas digitales.",
+      "Responsabilidad de administradores.",
+      "Dolo eventual.",
+      "Obligaciones de resultado.",
+      "Bloqueos societarios.",
+      "Daños indirectos.",
+      "Protocolos de familia.",
+      "Conclusión.",
     ],
-    pdfUrl: "/pdf/Diario 20-10-25.pdf", // Ruta sugerida para el archivo
+
+    pdfUrl: "/pdf/Diario 20-10-25.pdf",
+
     sections: [
       {
         id: "i-introduccion",
-        title: "I. Introducción.",
-        summary: "Presenta el objetivo del artículo: analizar el impacto del nuevo Código Civil y Comercial en la praxis societaria argentina y plantear las principales líneas de cambio en la última década."
+        title: "Introducción",
+        summary:
+          "Plantea el objetivo del trabajo y el contexto normativo del Código Civil y Comercial en el derecho societario.",
       },
       {
         id: "ii-asambleas-digitales",
-        title: "II. La incidencia del art. 158, Cód. Civ. y Com., sobre la irrupción de las asambleas digitales.",
-        summary: "Examina cómo el artículo facilita la celebración de asambleas virtuales y las implicancias en quórums, documentación y desafíos tecnológicos para las sociedades."
+        title: "Asambleas digitales",
+        summary:
+          "Analiza el impacto del art. 158 del Código Civil y Comercial en la celebración de asambleas virtuales.",
       },
       {
         id: "iii-administradores",
-        title: "III. La aplicación del Código Civil y Comercial (en su medida) al desempeño de los administradores societarios.",
-        summary: "Analiza el régimen de deberes de los administradores, estándares de diligencia y la interacción entre normas societarias y las reglas civiles de responsabilidad."
+        title: "Administradores societarios",
+        summary:
+          "Examina los deberes, la diligencia exigida y la interacción entre normas civiles y societarias.",
       },
       {
         id: "iv-dolo-eventual",
-        title: "IV. El ensanchamiento hacia la noción de dolo eventual y su impacto en la actuación de los administradores societarios.",
-        summary: "Valora la evolución doctrinal sobre dolo eventual y los riesgos de ampliar esta figura en el control de la gestión societaria."
+        title: "Dolo eventual",
+        summary:
+          "Estudia la expansión del concepto de dolo eventual y sus riesgos en la responsabilidad de administradores.",
       },
       {
-        id: "v-obligaciones-de-resultado",
-        title: "V. La existencia de ciertas y puntuales prestaciones a cargo de administradores societarios que califican como 'obligaciones de resultado'.",
-        summary: "Describe supuestos concretos donde la actuación del administrador puede vincularse a obligaciones de resultado y sus consecuencias legales."
+        id: "v-obligaciones-resultado",
+        title: "Obligaciones de resultado",
+        summary:
+          "Describe supuestos específicos donde el administrador asume obligaciones calificadas como de resultado.",
       },
       {
         id: "vi-bloqueo",
-        title: "VI. Alternativas frente a casos de bloqueo u obstrucción en el órgano de administración (art. 161, Cód. Civ. y Com.).",
-        summary: "Repasa mecanismos legales y contractuales para resolver situaciones de bloqueo, incluyendo decisiones judiciales y protocolos internos."
+        title: "Bloqueo societario",
+        summary:
+          "Presenta alternativas legales frente a situaciones de obstrucción en el órgano de administración.",
       },
       {
-        id: "vii-reparacion-danos-indirectos",
-        title: "VII. Referencia a la admisión de la viabilidad de reparación en ciertos casos de daños indirectos (art. 1739, Cód. Civ. y Com.).",
-        summary: "Señala criterios jurisprudenciales y doctrinales que permiten reclamar reparaciones por daños no directos vinculados a la gestión societaria."
+        id: "vii-danos-indirectos",
+        title: "Daños indirectos",
+        summary:
+          "Analiza la admisión de la reparación de daños indirectos conforme al art. 1739 del Código.",
       },
       {
         id: "viii-protocolos-familia",
-        title: "VIII. Los protocolos de familia, la transición generacional y la influencia del art. 1010, Cód. Civ. y Com.",
-        summary: "Aborda la utilidad de los protocolos familiares y las herramientas del Código para ordenar la sucesión empresarial y controlar conflictos intergeneracionales."
+        title: "Protocolos de familia",
+        summary:
+          "Aborda la utilidad de los protocolos familiares y la transición generacional en empresas familiares.",
       },
       {
         id: "ix-conclusion",
-        title: "IX. Conclusión.",
-        summary: "Conclusiones y recomendaciones prácticas para administradores, asesores y legisladores frente a los cambios introducidos por el Código." 
-      }
+        title: "Conclusión",
+        summary:
+          "Conclusiones y recomendaciones prácticas para la gestión societaria actual.",
+      },
     ],
-    html: "<p>Análisis del significativo impacto del Código Civil y Comercial en el derecho societario argentino, abarcando desde la responsabilidad civil de los administradores hasta la introducción de asambleas digitales.</p>",
   },
-  
-  // --- Artículo 2: Responsabilidad de Administradores (Fallo "Oviedo") ---
+
+
   {
-    slug: "responsabilidad-administradores-oviedo",
-    title: "Responsabilidad de los administradores de sociedades",
-    subtitulo: "Desde la perspectiva del fallo 'Oviedo' de la Corte Suprema",
-    autor: "Fernando J. Marcos",
-    fuente: "LA LEY",
-    fecha: "2025-10-20",
-    sumario: [
-      "I. Planteo del tema a debatir. El fallo.",
-      "II. La doctrina que emerge de la sentencia.",
-      "III. La personalidad jurídica de las sociedades.",
-      "IV. La tutela del sistema societario. El abordaje de las normas de excepción.",
-      "V. La extensión de la responsabilidad es la excepción, 'no la regla'.",
-      "VI. Reflexiones sobre supuestos especiales y la presunción de culpa.",
-      "VII. La responsabilidad es por daños.",
-      "VIII. El análisis del contexto donde se desarrolla la gestión.",
-      "IX. El caso 'Oviedo' en el Congreso de Derecho Societario. Reseña.",
-      "X. Cómo continuará este asunto.",
-    ],
-    pdfUrl: "/pdfs/Diario 20-10-25.pdf", // El mismo PDF
+    slug: "diario-14-4-25",
+    title: "Los criptoactivos y su incidencia en el nacimiento, funcionamiento y desarrollo de las sociedades comerciales",
+    subtitulo: "Nota de prensa",
+    autor: "Emilio F. Moro",
+    fuente: "Diario",
+    fecha: "2025-04-15",
+    tipo: "diario",
+
+    excerpt:
+      "Nota periodística publicada el 14 de abril de 2025 sobre actualidad jurídica.",
+
+    resumen:
+      "Artículo periodístico publicado en abril de 2025. El contenido completo se encuentra disponible en el documento original en formato PDF.",
+
+    pdfUrl: "/pdf/Diario 14-4-25.pdf",
     sections: [],
-    html: "<p>Estudio detallado del fallo 'Oviedo' de la Corte Suprema y su implicancia en la responsabilidad civil de los administradores de sociedades, reafirmando que la extensión de la responsabilidad es una excepción.</p>",
-  },
-  
-  // --- Artículo 3: Inoponibilidad en Fideicomisos ---
-  {
-    slug: "inoponibilidad-fideicomiso",
-    title: "La acción de inoponibilidad de la persona jurídica aplicada al patrimonio de afectación del fideicomiso",
-    subtitulo: "Doctrina",
-    autor: "Federico C. Wayar",
-    fuente: "LA LEY",
-    fecha: "2025-10-20",
-    sumario: [
-      "I. Importancia de la figura del fideicomiso.",
-      "II. Estructura típica del contrato de fideicomiso.",
-      "III. Fideicomisos comunes u ordinarios.",
-      "IV. Algunos problemas centrales en torno al fideicomiso.",
-      "V. Conclusión.",
-    ],
-    pdfUrl: "/pdfs/Diario 20-10-25.pdf", // El mismo PDF
-    sections: [],
-    html: "<p>Análisis sobre si la figura del fideicomiso, con su patrimonio separado, puede ser objeto de la acción de inoponibilidad de la personalidad jurídica prevista en el Código Civil y Comercial.</p>",
   },
 ];

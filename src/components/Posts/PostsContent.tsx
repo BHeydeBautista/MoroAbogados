@@ -8,6 +8,7 @@ import PublicationsGrid from "./Publications/PublicationsGrid";
 import NewsList from "./NewsList";
 import { useSearchParams } from "next/navigation";
 import ArticlesList from "../articles/ArticlesList";
+import { articlesData } from "@/data/articlesData";
 import es from "@/locales/es/content.json";
 import en from "@/locales/en/content.json";
 import { useLanguage } from "@/context/LanguageContext";
@@ -188,16 +189,19 @@ export default function PostsContent() {
             {active === "articulos" && (
               <ArticlesList
                 pageSize={4}
-                items={[
-                  {
-                    id: "1",
-                    title: "Sociedades, responsabilidad de administradores...",
-                    excerpt: "Análisis doctrinario publicado en La Ley.",
-                    href: "/articles/sociedades-responsabilidad-2025",
-                    autor: "Emilio F. Moro",
-                    date: "2025-10-20",
-                  },
-                ]}
+                items={articlesData.map((a, i) => {
+                  const stripHtml = (s?: string) =>
+                    s ? s.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim() : "";
+
+                  return {
+                    id: a.slug ?? String(i),
+                    title: a.title,
+                    excerpt: stripHtml(a.html) || (a.sumario && a.sumario[0]) || "", 
+                    slug: a.slug,
+                    date: a.fecha ?? a.date,
+                    autor: a.autor,
+                  };
+                })}
               />
             )}
           </AnimatePresence>

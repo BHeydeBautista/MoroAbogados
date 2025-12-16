@@ -15,11 +15,12 @@ type Props = {
 
   title: string;
   subtitulo?: string;
+  resumen?: string;
 
-  // Cambiado para artículos doctrinarios
   autor?: string;
   fuente?: string;
   fecha?: string;
+  tipo?: "diario" | "doctrinario";
 
   sumario?: string[];
   sections?: Section[];
@@ -30,26 +31,32 @@ export default function ArticleLayout({
   children,
   title,
   subtitulo,
+  resumen,
   autor,
   fuente,
   fecha,
+  tipo,
   sumario,
   sections,
   pdfUrl,
 }: Props) {
   return (
-    <section className="relative bg-gradient-to-b from-[#0f1c2e] via-[#16233b] to-[#0f1c2e] text-white pt-28 pb-16 overflow-hidden z-20">
+    <section className="relative bg-gradient-to-b from-[#0f1c2e] via-[#16233b] to-[#0f1c2e] text-white pt-28 pb-16">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.6 }}
         className="container mx-auto px-6 lg:px-12"
       >
-        <ArticleHeader
-          title={title}
-          subtitulo={subtitulo}
-        />
+        <ArticleHeader title={title} subtitulo={subtitulo} />
+
+        {/* Resumen editorial */}
+        {resumen && (
+          <div className="mt-6 bg-white/5 border-l-4 border-[#d4a75d] p-5 rounded-md">
+            <p className="text-white/90 text-base leading-relaxed">{resumen}</p>
+          </div>
+        )}
 
         <div className="mt-6">
           <ArticleMetadata
@@ -57,33 +64,30 @@ export default function ArticleLayout({
               autor,
               fuente,
               fecha,
-              sumario: (!sections || sections.length === 0) ? sumario : undefined,
+              tipo,
+              sumario: !sections || sections.length === 0 ? sumario : undefined,
             }}
           />
         </div>
       </motion.div>
 
-      {/* Main grid */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-        className="container mx-auto px-6 lg:px-12 mt-12 grid lg:grid-cols-[1fr_320px] gap-12"
-      >
-        {/* Mobile sidebar (visible on small screens above content) */}
+      {/* Main */}
+      <div className="container mx-auto px-6 lg:px-12 mt-12 grid lg:grid-cols-[1fr_320px] gap-12">
         <div className="lg:hidden">
           <ArticleSidebar sections={sections} pdfUrl={pdfUrl} mobile />
         </div>
 
         <div>
-          {/* Sections summary (expanded content) */}
-          <ArticleSections sections={sections} pdfUrl={pdfUrl} />
 
-          {children ? <ArticleBody>{children}</ArticleBody> : <ArticleContent />}
+          {children && <ArticleBody>{children}</ArticleBody>}
+
+          {!children && pdfUrl && <ArticleContent pdfUrl={pdfUrl} />}
+
+          <ArticleSections sections={sections} pdfUrl={pdfUrl} />
         </div>
 
         <ArticleSidebar sections={sections} pdfUrl={pdfUrl} />
-      </motion.div>
+      </div>
     </section>
   );
 }

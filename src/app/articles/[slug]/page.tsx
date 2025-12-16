@@ -1,43 +1,23 @@
 import ArticleLayout from "@/components/articles/ArticleLayout";
-import { articlesData } from "../../../data/articlesData";
+import { articlesData } from "@/data/articlesData";
+import { notFound } from "next/navigation";
 
-type ArticleType = (typeof articlesData)[number];
-
-// ⚠️ Luego lo cambiás por params.slug
-const article = articlesData[0];
-
-const getSectionsFromArticle = (article: ArticleType) => {
-  if (article.sections && article.sections.length > 0) {
-    return article.sections;
-  }
-
-  return (article.sumario || []).map((item: string) => {
-    const id = item
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-*|-*$/g, "");
-
-    return {
-      id,
-      title: item,
-      summary: undefined,
-    };
-  });
+type Props = {
+  params: Promise<{
+    slug: string;
+  }>;
 };
 
-export default function ArticleDetailPage() {
+export default async function ArticleDetailPage({ params }: Props) {
+  const { slug } = await params;
+
+  const article = articlesData.find(
+    (a) => a.slug === slug
+  );
+
   if (!article) {
-    return <div className="text-white p-10">Artículo no encontrado.</div>;
+    notFound();
   }
-
-  const formattedFuente = article.fuente
-    ? `${article.fuente} — ${article.fecha
-        .split("-")
-        .reverse()
-        .join("/")}`
-    : undefined;
-
-  const sections = getSectionsFromArticle(article);
 
   return (
     <ArticleLayout
@@ -45,11 +25,11 @@ export default function ArticleDetailPage() {
       subtitulo={article.subtitulo}
       resumen={article.resumen}
       autor={article.autor}
-      fuente={formattedFuente}
+      fuente={article.fuente}
       fecha={article.fecha}
       tipo={article.tipo}
       sumario={article.sumario}
-      sections={sections}
+      sections={article.sections}
       pdfUrl={article.pdfUrl}
     />
   );

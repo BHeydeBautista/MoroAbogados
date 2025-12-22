@@ -51,32 +51,21 @@ const Profile = () => {
         <div className="w-14 h-1 bg-[#D4A75D] mx-auto my-6 rounded" />
 
         <div className="space-y-10 max-w-4xl mx-auto mb-20">
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-lg text-gray-800 leading-relaxed text-justify border-l-4 border-[#D4A75D] pl-4 italic"
-          >
-            {t.paragraph1}
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg text-gray-700 leading-relaxed"
-          >
-            {t.paragraph2}
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg text-gray-700 leading-relaxed"
-          >
-            {t.paragraph3}
-          </motion.p>
+          {[t.paragraph1, t.paragraph2, t.paragraph3].map((text, index) => (
+            <motion.p
+              key={index}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className={`text-lg leading-relaxed text-justify ${
+                index === 0
+                  ? "text-gray-800 border-l-4 border-[#D4A75D] pl-4 italic"
+                  : "text-gray-700"
+              }`}
+            >
+              {text}
+            </motion.p>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

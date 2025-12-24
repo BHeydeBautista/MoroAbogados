@@ -1,6 +1,7 @@
 export interface HeroVideoProps {
   currentIndex: number;
   videoList: string[];
+  onEnded?: () => void;
 }
 
 export interface HeroControlsProps {

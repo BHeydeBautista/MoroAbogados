@@ -5,7 +5,6 @@ import { useEffect, useState, Suspense } from "react";
 import { AnimatePresence } from "framer-motion";
 import InstagramPosts, { IGPost } from "./InstagramPosts";
 import PublicationsGrid from "./Publications/PublicationsGrid";
-import NewsList from "./NewsList";
 import { useSearchParams } from "next/navigation";
 import ArticlesList from "../articles/ArticlesList";
 import { articlesData } from "@/data/articlesData";
@@ -42,7 +41,7 @@ const createMockedPosts = (captions: string[]): IGPost[] => [
 function TabSelector({
   setActive,
 }: {
-  setActive: (tab: "instagram" | "propias" | "noticias" | "articulos") => void;
+  setActive: (tab: "instagram" | "propias" | "articulos") => void;
 }) {
   const searchParams = useSearchParams();
 
@@ -51,7 +50,6 @@ function TabSelector({
     if (
       tab === "instagram" ||
       tab === "propias" ||
-      tab === "noticias" ||
       tab === "articulos"
     ) {
       setActive(tab);
@@ -63,7 +61,7 @@ function TabSelector({
 
 export default function PostsContent() {
   const [active, setActive] = useState<
-    "instagram" | "propias" | "noticias" | "articulos"
+    "instagram" | "propias" | "articulos"
   >("instagram");
   const [posts, setPosts] = useState<IGPost[]>([]);
   const [loading, setLoading] = useState(false);
@@ -142,7 +140,6 @@ export default function PostsContent() {
             {[
               { key: "instagram", label: t.tabs.instagram },
               { key: "propias", label: t.tabs.propias },
-              { key: "noticias", label: t.tabs.noticias },
               { key: "articulos", label: t.tabs.articulos },
             ].map((tab) => {
               const isActive = active === (tab.key as any);
@@ -182,8 +179,6 @@ export default function PostsContent() {
             )}
 
             {active === "propias" && <PublicationsGrid />}
-
-            {active === "noticias" && <NewsList pageSize={4} />}
 
             {active === "articulos" && (
               <ArticlesList

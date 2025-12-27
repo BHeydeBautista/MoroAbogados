@@ -5,9 +5,9 @@ import HeroContent from './HeroContent';
 import HeroControls from './HeroControls';
 
 const videoList = [
-  "https://res.cloudinary.com/di2os0yqc/video/upload/v1766583267/Torre_vyd7gl.mp4",
+  "https://res.cloudinary.com/de3x5vn0g/video/upload/v1766844211/Torre_vyd7gl_qihk1i.mp4",
   "https://res.cloudinary.com/di2os0yqc/video/upload/v1765218380/entrada_uiuork.mov",
-  "https://res.cloudinary.com/di2os0yqc/video/upload/v1765219792/HOLD_bosocc.mov",
+  "https://res.cloudinary.com/de3x5vn0g/video/upload/v1766846317/hold-bosocc_i1tZPKWF_wpeif1.mp4",
   "https://res.cloudinary.com/di2os0yqc/video/upload/c_fill,g_center,y_-400,ar_16:9/v1765220008/CasaGob_umj8j2.mov"
 ];
 

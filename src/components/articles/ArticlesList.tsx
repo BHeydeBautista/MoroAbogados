@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useMemo, useState, useEffect } from "react";
+import ArticleModal, { type ArticleItem as ModalArticle } from "./ArticleModal";
 
 export type ArticleItem = {
   id: string;
@@ -11,6 +12,8 @@ export type ArticleItem = {
   slug: string;
   date?: string;
   autor?: string;
+  fuente?: string;
+  sumario?: string[];
   tipo?: "diario" | "doctrinario";
   sectionId?: string;
 };
@@ -22,6 +25,7 @@ type Props = {
 
 export default function ArticlesList({ items = [], pageSize = 4 }: Props) {
   const [page, setPage] = useState(1);
+  const [selected, setSelected] = useState<ModalArticle | null>(null);
 
   const sorted = useMemo(() => {
     return [...items].sort((a, b) => {
@@ -38,7 +42,7 @@ export default function ArticlesList({ items = [], pageSize = 4 }: Props) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <div className="grid md:grid-cols-2 gap-6">
-        {pageItems.map((a) => {
+          {pageItems.map((a) => {
           const href = a.sectionId
             ? `/articles/${a.slug}#${a.sectionId}`
             : `/articles/${a.slug}`;
@@ -75,20 +79,50 @@ export default function ArticlesList({ items = [], pageSize = 4 }: Props) {
                 </p>
               )}
 
+              {/* Fuente */}
+              {a.fuente && (
+                <p className="text-xs text-gray-400 mt-1">{a.fuente}</p>
+              )}
+
               {/* Extracto */}
               <p className="text-sm text-gray-700 mt-3 line-clamp-3">
                 {a.excerpt}
               </p>
 
-              <Link
-                href={href}
-                className="inline-block mt-4 text-sm text-[#D4A75D] font-medium hover:underline"
-              >
-                Leer artículo →
-              </Link>
+              {/* Sumario (si existe) */}
+              {a.sumario && a.sumario.length > 0 && (
+                <ul className="mt-3 text-sm text-gray-600 list-disc list-inside space-y-1">
+                  {a.sumario.slice(0, 4).map((s, i) => (
+                    <li key={i} className="truncate">{s}</li>
+                  ))}
+                </ul>
+              )}
+
+              <div className="mt-4 flex items-center gap-3">
+                <button
+                  onClick={() => setSelected({
+                    id: a.id,
+                    title: a.title,
+                    excerpt: a.excerpt,
+                    slug: a.slug,
+                    date: a.date,
+                    autor: a.autor,
+                    fuente: a.fuente,
+                    sumario: a.sumario,
+                  })}
+                  className="text-sm text-[#D4A75D] font-medium hover:underline"
+                >
+                  Leer artículo →
+                </button>
+
+                <Link href={href} className="text-sm text-gray-500 hover:underline">
+                  Ver página
+                </Link>
+              </div>
             </article>
           );
         })}
+        <ArticleModal article={selected} onClose={() => setSelected(null)} />
       </div>
     </motion.div>
   );

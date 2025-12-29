@@ -1,5 +1,5 @@
 import ArticleLayout from "@/components/articles/ArticleLayout";
-import { articlesData } from "@/data/articlesData";
+import { articlesData, carlosArticles } from "@/data/articlesData";
 import { notFound } from "next/navigation";
 
 type Props = {
@@ -11,9 +11,8 @@ type Props = {
 export default async function ArticleDetailPage({ params }: Props) {
   const { slug } = await params;
 
-  const article = articlesData.find(
-    (a) => a.slug === slug
-  );
+  const allArticles = [...articlesData, ...carlosArticles];
+  const article = allArticles.find((a) => a.slug === slug);
 
   if (!article) {
     notFound();
@@ -23,7 +22,7 @@ export default async function ArticleDetailPage({ params }: Props) {
     <ArticleLayout
       title={article.title}
       subtitulo={article.subtitulo}
-      resumen={article.resumen}
+      resumen={article.resumen || article.excerpt}
       autor={article.autor}
       fuente={article.fuente}
       fecha={article.fecha}

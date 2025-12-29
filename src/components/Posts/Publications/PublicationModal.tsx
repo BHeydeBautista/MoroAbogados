@@ -8,6 +8,7 @@ import type {
   Editorials,
 } from "../../../data/publicationsData";
 import { EDITORIALS } from "../../../data/publicationsData";
+import { carlosArticles } from "../../../data/articlesData";
 
 type Publication = PublicationBooks | PublicationArt;
 
@@ -33,6 +34,16 @@ export default function PublicationModal({
     ? EDITORIALS.find((e: Editorials) => e.id === pub.editorialId)?.name ?? ""
     : "";
 
+  // Buscar artículos relacionados en carlosArticles por coincidencia de fuente
+  const relatedArticles = (carlosArticles || []).filter((a) => {
+    if (!a.fuente) return false;
+    try {
+      return a.fuente.toLowerCase().includes((pub.title || "").toLowerCase());
+    } catch (e) {
+      return false;
+    }
+  });
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3">
       {/* Backdrop */}
@@ -48,7 +59,7 @@ export default function PublicationModal({
         exit={{ opacity: 0, y: 30 }}
         transition={{ duration: 0.18 }}
         className="
-          relative w-full max-w-lg sm:max-w-3xl bg-white
+          relative w-full max-w-4xl bg-white
           rounded-xl shadow-xl overflow-hidden flex flex-col
           max-h-[90vh]
         "
@@ -73,11 +84,11 @@ export default function PublicationModal({
           </button>
         </div>
 
-        {/* Content Scroll */}
-        <div className="p-4 sm:p-6 overflow-y-auto">
+        {/* Content Fixed (no scroll) */}
+        <div className="p-4 sm:p-6 flex-shrink-0">
           <div className="flex flex-col sm:flex-row gap-5">
             {/* Cover */}
-            <div className="w-full sm:w-48 flex justify-center sm:block">
+            <div className="w-full sm:w-48 flex justify-center sm:block flex-shrink-0">
               {pub.cover ? (
                 <div className="relative w-40 h-56 sm:w-44 sm:h-64">
                   <Image
@@ -204,6 +215,24 @@ export default function PublicationModal({
             </div>
           </div>
         </div>
+
+        {relatedArticles.length > 0 && (
+          <div className="p-4 border-t overflow-y-auto flex-1">
+            <h4 className="text-sm font-semibold text-[#0F1C2E] sticky top-0 bg-white pb-2">Artículos relacionados</h4>
+            <ul className="mt-3 space-y-3">
+              {relatedArticles.map((r) => (
+                <li key={r.slug} className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="text-sm font-medium text-[#0f1c2e]">{r.title}</div>
+                    {r.autor && <div className="text-xs text-gray-500">{r.autor} — {r.fuente}</div>}
+                    {r.excerpt && <div className="text-sm text-gray-600 line-clamp-2">{r.excerpt}</div>}
+                  </div>
+                  {/*<a href={`/articles/${r.slug}`} className="text-sm text-[#D4A75D] hover:underline">Ver artículo</a>*/}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </motion.div>
     </div>
   );

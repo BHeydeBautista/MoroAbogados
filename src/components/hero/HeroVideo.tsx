@@ -47,12 +47,12 @@ const HeroVideo: React.FC<HeroVideoProps> = ({ currentIndex, videoList, onEnded 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9 }}
-          className="absolute inset-0 bg-black/40 z-10"
+          className="absolute inset-0 bg-black/20 z-10"
         />
 
         {/* Gradientes */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0F1C2E]/80 via-[#0F1C2E]/60 to-[#D4A75D]/10 z-20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0F1C2E]/50 via-[#0F1C2E]/30 to-[#D4A75D]/5 z-20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-30 pointer-events-none" />
 
         {/* Preload siguiente video invisible */}
         <video

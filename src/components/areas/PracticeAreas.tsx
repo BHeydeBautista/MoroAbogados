@@ -110,7 +110,7 @@ const PracticeAreas = () => {
             768: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}
-          className="!pb-10 [&_.swiper-slide]:flex [&_.swiper-slide]:h-auto"
+          className="!pb-10 !pt-4 [&_.swiper-slide]:flex [&_.swiper-slide]:h-auto"
         >
           {areas.map((area, i) => (
             <SwiperSlide key={i} className="!h-auto">

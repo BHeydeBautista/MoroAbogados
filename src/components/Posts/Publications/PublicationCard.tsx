@@ -77,9 +77,9 @@ export default function PublicationCard({ pub, author, onOpen }: Props) {
           <button
             onClick={() => onOpen?.(pub.id)}
             className="w-full sm:w-auto flex-1 text-sm bg-[#0F1C2E] text-white px-3 py-2 rounded-md shadow-sm hover:brightness-95 transition"
-            aria-label={`Ver ${pub.title}`}
+            aria-label={`Vista rápida: ${pub.title}`}
           >
-            Ver
+            Vista rápida
           </button>
 
           {pub.pdfUrl ? (

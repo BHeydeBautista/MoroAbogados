@@ -51,10 +51,10 @@ export const abogados: TeamMember[] = [
     role: "Abogada",
     image:
       "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
-    bio: "Litigante con foco en resolución alternativa de conflictos y derecho civil.",
+    bio: "Abogada con foco en resolución alternativa de conflictos y derecho civil.",
     role_en: "Lawyer",
     bio_en:
-      "Litigator focused on alternative dispute resolution and civil law.",
+      "Lawyer focused on alternative dispute resolution and civil law.",
     focus: "50%_20%",
   },
   {
@@ -73,11 +73,12 @@ export const abogados: TeamMember[] = [
     role: "Abogada",
     image:
       "https://res.cloudinary.com/di2os0yqc/image/upload/c_crop,g_custom/v1767109818/IMG_4475_rghpno.jpg",
-    bio: "Asesora en derecho laboral y seguridad social con amplia experiencia en pymes.",
+    bio: "Abogada orientada a la resolución alternativa de conflictos",
     role_en: "Lawyer",
     bio_en:
-      "Advisor in labor law and social security with extensive SME experience.",
+      "Lawyer oriented toward alternative dispute resolution",
     focus: "50%_20%",
+    slug: "dra-emilia-vaca"
   },
 ];
 

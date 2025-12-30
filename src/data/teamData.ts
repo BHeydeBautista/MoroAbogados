@@ -60,6 +60,16 @@ export const abogados: TeamMember[] = [
     bio_en: "Advisor in labor law and social security with extensive SME experience.",
     focus: "50%_20%",
   },
+  {
+  name: "Emilia Vaca",
+  role: "Abogada",
+  image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1767111536/Dr-Emilia-Vaca_nu8mcb.jpg",
+  bio: "Asesora en derecho laboral y seguridad social con amplia experiencia en pymes.",
+  role_en: "Lawyer",
+  bio_en: "Advisor in labor law and social security with extensive SME experience.",
+  focus: "50%_20%",
+},
+
 ];
 
 export const pasantes: TeamMember[] = [

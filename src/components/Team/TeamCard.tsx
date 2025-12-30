@@ -15,7 +15,6 @@ interface TeamCardProps {
   index: number;
   bio?: string;
   email?: string;
-  showProfile?: boolean;
   compact?: boolean;
   onOpenBio?: () => void;
   focus?: string;
@@ -41,7 +40,6 @@ export default function TeamCard({
   email,
   compact = false,
   onOpenBio,
-  focus,
   slug,
 }: TeamCardProps) {
   const hasImage = Boolean(image);
@@ -81,7 +79,7 @@ export default function TeamCard({
                 <div
                   className={`${
                     compact ? "w-32 h-32" : "w-44 h-44"
-                  } rounded-full bg-gradient-to-t from-[#2a1620] via-[#0f1012] to-transparent opacity-30 filter blur-2xl`}
+                  } rounded-full bg-gradient-to-t from-[#2a1620] via-[#0f1012] to-transparent opacity-30 blur-2xl`}
                 />
               </div>
 
@@ -92,7 +90,6 @@ export default function TeamCard({
                   fill
                   className="object-cover object-center"
                 />
-
                 <div className="absolute inset-3 rounded-lg pointer-events-none border border-white/6" />
               </div>
             </>
@@ -100,7 +97,7 @@ export default function TeamCard({
             <div className="w-full h-full flex items-center justify-center">
               <div className="flex items-center gap-4 px-6">
                 <div
-                  className={`${initialsSize} rounded-full flex items-center justify-center font-bold text-white flex-shrink-0`}
+                  className={`${initialsSize} rounded-full flex items-center justify-center font-bold text-white`}
                   style={{
                     background:
                       "linear-gradient(135deg,#D4A75D 0%, #0F1C2E 100%)",
@@ -118,6 +115,7 @@ export default function TeamCard({
             </div>
           )}
 
+          {/* Overlay */}
           <div className="absolute inset-0 flex flex-col justify-end p-4">
             <div className="opacity-0 hover:opacity-100 pointer-events-none hover:pointer-events-auto transition-opacity duration-300">
               <div className="backdrop-blur-sm bg-black/30 rounded-md p-3">
@@ -148,26 +146,27 @@ export default function TeamCard({
                     )}
                   </div>
 
-                  {onOpenBio ? (
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onOpenBio();
-                        }}
-                        className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
-                      >
-                        {t.learn_more}
-                      </button>
-                    ) : slug ? (
-                      <Link
-                        href={`/abogados/${slug}`}
-                        className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
-                      >
-                        {t.view_profile}
-                      </Link>
-                    ) : (
-                      <div className="w-24" />
-                    )}
+                  {/* BOTÓN PERFIL / BIO */}
+                  {slug ? (
+                    <Link
+                      href={`/abogados/${slug}`}
+                      className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
+                    >
+                      {t.view_profile}
+                    </Link>
+                  ) : onOpenBio ? (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onOpenBio();
+                      }}
+                      className="text-[13px] px-3 py-1 rounded-md border border-[#D4A75D]/50 text-[#D4A75D] hover:bg-[#D4A75D] hover:text-black transition"
+                    >
+                      {t.learn_more}
+                    </button>
+                  ) : (
+                    <div className="w-24" />
+                  )}
                 </div>
               </div>
             </div>

@@ -42,8 +42,10 @@ export default function TeamSection() {
         <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 py-2">
           {members.map((member, index) => {
             const isActive = activeMember === member.name;
-            const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
-            const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
+            const displayRole =
+              language === "es" ? member.role : member.role_en ?? member.role;
+            const displayBio =
+              language === "es" ? member.bio : member.bio_en ?? member.bio;
 
             return (
               <motion.div
@@ -92,14 +94,19 @@ export default function TeamSection() {
                     }`}
                   >
                     <button
-                            aria-label={t.about_aria.replace("{name}", member.name)}
+                      aria-label={t.about_aria.replace("{name}", member.name)}
                       className="px-3 py-1 text-xs md:text-sm border border-[#D4A75D]/70 text-[#D4A75D] rounded-md bg-black/10 hover:bg-[#D4A75D] hover:text-black transition-all duration-300"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setModalMember(member);
+
+                        if (member.slug) {
+                          window.location.href = `/abogados/${member.slug}`;
+                        } else {
+                          setModalMember(member);
+                        }
                       }}
                     >
-                      {t.learn_more}
+                      {member.slug ? t.view_profile : t.learn_more}
                     </button>
                   </div>
                 </div>
@@ -145,8 +152,10 @@ export default function TeamSection() {
         <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 py-2">
           {members.map((member, index) => {
             const isActive = activeMember === member.name;
-            const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
-            const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
+            const displayRole =
+              language === "es" ? member.role : member.role_en ?? member.role;
+            const displayBio =
+              language === "es" ? member.bio : member.bio_en ?? member.bio;
 
             return (
               <motion.div
@@ -279,22 +288,27 @@ export default function TeamSection() {
             <div className="w-full overflow-x-auto -mx-4 px-4">
               <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
                 {pasantes.map((member, index) => {
-                      const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
-                      const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
-                      return (
-                        <div key={member.name} className="min-w-[180px] sm:min-w-0">
-                          <TeamCard
-                            index={index}
-                            name={member.name}
-                            role={displayRole}
-                            bio={displayBio}
-                            showProfile={false}
-                            compact
-                            onOpenBio={() => setModalMember(member)}
-                          />
-                        </div>
-                      );
-                    })}
+                  const displayRole =
+                    language === "es"
+                      ? member.role
+                      : member.role_en ?? member.role;
+                  const displayBio =
+                    language === "es"
+                      ? member.bio
+                      : member.bio_en ?? member.bio;
+                  return (
+                    <div key={member.name} className="min-w-[180px] sm:min-w-0">
+                      <TeamCard
+                        index={index}
+                        name={member.name}
+                        role={displayRole}
+                        bio={displayBio}
+                        compact
+                        onOpenBio={() => setModalMember(member)}
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -311,8 +325,14 @@ export default function TeamSection() {
             <div className="w-full overflow-x-auto -mx-4 px-4">
               <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
                 {procuradores.map((member, index) => {
-                  const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
-                  const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
+                  const displayRole =
+                    language === "es"
+                      ? member.role
+                      : member.role_en ?? member.role;
+                  const displayBio =
+                    language === "es"
+                      ? member.bio
+                      : member.bio_en ?? member.bio;
                   return (
                     <div key={member.name} className="min-w-[180px] sm:min-w-0">
                       <TeamCard
@@ -320,7 +340,6 @@ export default function TeamSection() {
                         name={member.name}
                         role={displayRole}
                         bio={displayBio}
-                        showProfile={false}
                         compact
                         onOpenBio={() => setModalMember(member)}
                       />
@@ -343,8 +362,14 @@ export default function TeamSection() {
             <div className="w-full overflow-x-auto -mx-4 px-4">
               <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
                 {itAssistants.map((member, index) => {
-                  const displayRole = language === "es" ? member.role : member.role_en ?? member.role;
-                  const displayBio = language === "es" ? member.bio : member.bio_en ?? member.bio;
+                  const displayRole =
+                    language === "es"
+                      ? member.role
+                      : member.role_en ?? member.role;
+                  const displayBio =
+                    language === "es"
+                      ? member.bio
+                      : member.bio_en ?? member.bio;
                   return (
                     <div key={member.name} className="min-w-[180px] sm:min-w-0">
                       <TeamCard
@@ -353,7 +378,6 @@ export default function TeamSection() {
                         role={displayRole}
                         bio={displayBio}
                         slug={member.slug}
-                        showProfile={true}
                         compact
                       />
                     </div>
@@ -365,10 +389,16 @@ export default function TeamSection() {
         </div>
       </div>
 
-      {modalMember && (
+      {modalMember &&
         (() => {
-          const modalRole = language === "es" ? modalMember.role : modalMember.role_en ?? modalMember.role;
-          const modalBio = language === "es" ? modalMember.bio : modalMember.bio_en ?? modalMember.bio;
+          const modalRole =
+            language === "es"
+              ? modalMember.role
+              : modalMember.role_en ?? modalMember.role;
+          const modalBio =
+            language === "es"
+              ? modalMember.bio
+              : modalMember.bio_en ?? modalMember.bio;
 
           return (
             <div
@@ -399,8 +429,7 @@ export default function TeamSection() {
               </div>
             </div>
           );
-        })()
-      )}
+        })()}
     </section>
   );
 }

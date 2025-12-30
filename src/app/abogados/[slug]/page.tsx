@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useParams } from "next/navigation";
 import { lawyerDetails } from "@/data/lawyerData";
@@ -36,12 +37,26 @@ const LawyerProfilePage = () => {
     return lawyer[fieldName] ?? defaultValue;
   };
 
-  const displayTitle = language === "en" && lawyer.title_en ? lawyer.title_en : lawyer.title;
-  const displayUniversity = language === "en" && lawyer.education?.university_en ? lawyer.education.university_en : lawyer.education?.university;
-  const displayBooks = language === "en" && lawyer.books_en ? lawyer.books_en : lawyer.books;
-  const displayArticles = language === "en" && lawyer.articles_en ? lawyer.articles_en : lawyer.articles;
-  const displayOtherRoles = language === "en" && lawyer.otherRoles_en ? lawyer.otherRoles_en : lawyer.otherRoles;
-  const displayOtherAntecedentes = language === "en" && lawyer.otherAntecedentes_en ? lawyer.otherAntecedentes_en : lawyer.otherAntecedentes;
+  const displayTitle =
+    language === "en" && lawyer.title_en ? lawyer.title_en : lawyer.title;
+  const displayUniversity =
+    language === "en" && lawyer.education?.university_en
+      ? lawyer.education.university_en
+      : lawyer.education?.university;
+  const displayBooks =
+    language === "en" && lawyer.books_en ? lawyer.books_en : lawyer.books;
+  const displayArticles =
+    language === "en" && lawyer.articles_en
+      ? lawyer.articles_en
+      : lawyer.articles;
+  const displayOtherRoles =
+    language === "en" && lawyer.otherRoles_en
+      ? lawyer.otherRoles_en
+      : lawyer.otherRoles;
+  const displayOtherAntecedentes =
+    language === "en" && lawyer.otherAntecedentes_en
+      ? lawyer.otherAntecedentes_en
+      : lawyer.otherAntecedentes;
 
   return (
     <div className="min-h-screen bg-[#0F1C2E] text-white">
@@ -170,7 +185,9 @@ const LawyerProfilePage = () => {
           {displayArticles && displayArticles.length > 0 && (
             <div>
               <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                {language === "en" ? "Academic Articles" : "Artículos académicos"}
+                {language === "en"
+                  ? "Academic Articles"
+                  : "Artículos académicos"}
               </h3>
               <div className="grid md:grid-cols-2 gap-12">
                 {displayArticles.map((a: any, idx: number) => (
@@ -179,9 +196,12 @@ const LawyerProfilePage = () => {
                     className="bg-[#F7F7F7] border-2 border-[#D4A75D] p-8 rounded-xl shadow"
                   >
                     <h4 className="font-bold mb-1">{a.title_en || a.title}</h4>
-                    {a.publication_en || a.publication && (
-                      <p className="text-sm">{a.publication_en || a.publication}</p>
-                    )}
+                    {a.publication_en ||
+                      (a.publication && (
+                        <p className="text-sm">
+                          {a.publication_en || a.publication}
+                        </p>
+                      ))}
                     {a.year && (
                       <p className="text-sm text-[#D4A75D] mt-1">({a.year})</p>
                     )}
@@ -270,11 +290,12 @@ const LawyerProfilePage = () => {
           )}
 
           {/* IDIOMAS */}
-          {lawyer.languages.length > 0 && (
+          {lawyer.languages && lawyer.languages.length > 0 && (
             <div>
               <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
                 Idiomas
               </h3>
+
               <ul className="space-y-6">
                 {lawyer.languages.map((lang, idx) => (
                   <li
@@ -282,11 +303,14 @@ const LawyerProfilePage = () => {
                     className="bg-[#F7F7F7] p-5 rounded-xl border-2 border-[#D4A75D] shadow"
                   >
                     <strong>{lang.language}</strong>
-                    <ul className="list-disc ml-6 mt-2 text-sm">
-                      {lang.certificates.map((c, cIdx) => (
-                        <li key={cIdx}>{c}</li>
-                      ))}
-                    </ul>
+
+                    {lang.certificates.length > 0 && (
+                      <ul className="list-disc ml-6 mt-2 text-sm">
+                        {lang.certificates.map((c, cIdx) => (
+                          <li key={cIdx}>{c}</li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -343,28 +367,20 @@ const LawyerProfilePage = () => {
             </div>
           )}
 
-
           {/* OTROS Antecedentes */}
           {displayOtherAntecedentes && displayOtherAntecedentes.length > 0 && (
-
             <div>
-
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">{language === "en" ? "Other Backgrounds" : "Otros Antecedentes"}</h3>
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
+                {language === "en" ? "Other Backgrounds" : "Otros Antecedentes"}
+              </h3>
 
               <ul className="list-disc ml-6 space-y-2">
-
                 {displayOtherAntecedentes.map((r: string, idx: number) => (
-
                   <li key={idx}>{r}</li>
-
                 ))}
-
               </ul>
-
             </div>
-
           )}
-
         </div>
 
         {/* BOTÓN VOLVER */}

@@ -14,21 +14,23 @@ export const socios: TeamMember[] = [
   {
     name: "Carlos E. Moro",
     role: "Abogado",
-    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917793/Dr-Carlos_b652ws.jpg",
+    image:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917793/Dr-Carlos_b652ws.jpg",
     bio: "Abogado, especialista en Derecho Concursal",
     role_en: "Lawyer",
     bio_en: "Lawyer, specialist in Insolvency Law",
-    slug: "dr-carlos-moro"
+    slug: "dr-carlos-moro",
   },
   {
     name: "Emilio F. Moro",
     role: "Abogado",
-    image: "https://res.cloudinary.com/di2os0yqc/image/upload/v1763917798/Dr-Emilio_bb8cwm.jpg",
+    image:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/v1763917798/Dr-Emilio_bb8cwm.jpg",
     bio: "Abogado, especialista en Derecho Comercial, Concursal y Procesal",
     role_en: "Lawyer",
     bio_en: "Lawyer, specialist in Commercial, Insolvency and Procedural Law",
     focus: "50%_35%",
-    slug: "dr-emilio-f-moro"
+    slug: "dr-emilio-f-moro",
   },
 ];
 
@@ -36,40 +38,47 @@ export const abogados: TeamMember[] = [
   {
     name: "Rocío Leites",
     role: "Abogada",
-    image: "https://res.cloudinary.com/di2os0yqc/image/upload/v1764022528/rocio_jnmrfw.jpg",
+    image:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/v1764022528/rocio_jnmrfw.jpg",
     bio: "Especialista en derecho corporativo y compliance. Experiencia en asesoría a empresas familiares.",
     role_en: "Lawyer",
-    bio_en: "Specialist in corporate law and compliance. Experience advising family businesses.",
+    bio_en:
+      "Specialist in corporate law and compliance. Experience advising family businesses.",
     focus: "50%_20%",
   },
   {
     name: "Abril Martinez Figueroa",
     role: "Abogada",
-    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
+    image:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
     bio: "Litigante con foco en resolución alternativa de conflictos y derecho civil.",
     role_en: "Lawyer",
-    bio_en: "Litigator focused on alternative dispute resolution and civil law.",
+    bio_en:
+      "Litigator focused on alternative dispute resolution and civil law.",
     focus: "50%_20%",
   },
   {
     name: "Noelia Torres",
     role: "Abogada",
-    image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917207/Dra-Noelia_bobfsr.jpg",
+    image:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917207/Dra-Noelia_bobfsr.jpg",
     bio: "Asesora en derecho laboral y seguridad social con amplia experiencia en pymes.",
     role_en: "Lawyer",
-    bio_en: "Advisor in labor law and social security with extensive SME experience.",
+    bio_en:
+      "Advisor in labor law and social security with extensive SME experience.",
     focus: "50%_20%",
   },
   {
-  name: "Emilia Vaca",
-  role: "Abogada",
-  image: "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1767111536/Dr-Emilia-Vaca_nu8mcb.jpg",
-  bio: "Asesora en derecho laboral y seguridad social con amplia experiencia en pymes.",
-  role_en: "Lawyer",
-  bio_en: "Advisor in labor law and social security with extensive SME experience.",
-  focus: "50%_20%",
-},
-
+    name: "Emilia Vaca",
+    role: "Abogada",
+    image:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/c_crop,g_custom/v1767109818/IMG_4475_rghpno.jpg",
+    bio: "Asesora en derecho laboral y seguridad social con amplia experiencia en pymes.",
+    role_en: "Lawyer",
+    bio_en:
+      "Advisor in labor law and social security with extensive SME experience.",
+    focus: "50%_20%",
+  },
 ];
 
 export const pasantes: TeamMember[] = [

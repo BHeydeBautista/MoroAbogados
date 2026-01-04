@@ -66,20 +66,57 @@ const LawyerProfilePage = () => {
       {/* CONTENIDO */}
       <section className="bg-white text-[#0F1C2E] rounded-t-3xl px-6 py-20">
         <div className="max-w-4xl mx-auto space-y-20">
-
           {/* DATOS PERSONALES Y ACADÉMICOS */}
           <section>
-            <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
-              Datos personales y académicos
-            </h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* DATOS PERSONALES */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="border border-[#D4A75D]/40 rounded-xl p-6 bg-[#F9F9F9]"
+              >
+                <h4 className="font-serif text-lg font-semibold text-[#D4A75D] mb-4">
+                  Datos personales
+                </h4>
 
-            <div className="space-y-2 text-sm leading-relaxed">
-              <p><strong>Fecha de nacimiento:</strong> {lawyer.personal.birthDate}</p>
-              <p><strong>Lugar de nacimiento:</strong> {lawyer.personal.birthPlace}</p>
-              <p><strong>Universidad:</strong> {lawyer.education.university}</p>
-              {lawyer.education.postgraduate && (
-                <p><strong>Posgrado:</strong> {lawyer.education.postgraduate}</p>
-              )}
+                <div className="space-y-2 text-sm leading-relaxed">
+                  <p>
+                    <strong>Fecha de nacimiento:</strong>{" "}
+                    {lawyer.personal.birthDate}
+                  </p>
+                  <p>
+                    <strong>Lugar de nacimiento:</strong>{" "}
+                    {lawyer.personal.birthPlace}
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* DATOS ACADÉMICOS */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="border border-[#D4A75D]/40 rounded-xl p-6 bg-[#F9F9F9]"
+              >
+                <h4 className="font-serif text-lg font-semibold text-[#D4A75D] mb-4">
+                  Datos académicos
+                </h4>
+
+                <div className="space-y-2 text-sm leading-relaxed">
+                  <p>
+                    <strong>Universidad:</strong> {lawyer.education.university}
+                  </p>
+
+                  {lawyer.education.postgraduate && (
+                    <p>
+                      <strong>Posgrado:</strong> {lawyer.education.postgraduate}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
             </div>
           </section>
 

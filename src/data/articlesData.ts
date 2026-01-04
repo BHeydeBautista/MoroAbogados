@@ -131,7 +131,7 @@ export const articlesData: Article[] = [
 export const carlosArticles: Article[] = [
   {
     slug: "puede-el-juez-regular-el-plazo-de-veinte-dias",
-    title: "¿Puede El Juez Regular El Plazo 'De Veinte Días' Del Art. 11 De La Ley De Concursos?",
+    title: "¿Puede El Juez Regular El Plazo “De Veinte Días” Del Art. 11 De La Ley De Concursos?, Ed, (120-296)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 120-296)",
     fecha: "",
@@ -139,7 +139,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "ni-aqui-ni-alla-notificaciones",
-    title: "Ni Aquí, Ni Allá, Ni En Ningún Lugar. Notificaciones",
+    title: "Ni Aquí, Ni Allá, Ni En Ningún Lugar. Notificaciones, Ed, (174-150)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 174-150)",
     fecha: "",
@@ -147,7 +147,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "es-apelable-la-sentencia-que-rechaza-la-quiebra-pedida-por-acreedor",
-    title: "¿Es Apelable La Sentencia Que Rechaza La Quiebra Pedida Por Acreedor?",
+    title: "¿Es Apelable La Sentencia Que Rechaza La Quiebra Pedida Por Acreedor? Se Renuevan Las Leyes Pero No El Debate, Ed, (176-174)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 176-174)",
     fecha: "",
@@ -155,7 +155,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "reformas-concursales-propuestas",
-    title: "Reformas Concursales Propuestas",
+    title: "Reformas Concursales Propuestas, Ed, (176-892)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 176-892)",
     fecha: "",
@@ -163,7 +163,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "ineficacia-un-caso-por-fortuna-inusua",
-    title: "Ineficacia: Un Caso Por Fortuna Inusual",
+    title: "Ineficacia: Un Caso Por Fortuna Inusual, Ed, (179-395)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 179-395)",
     fecha: "",
@@ -171,7 +171,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "sindico-naturaleza-de-sus-funciones",
-    title: "Síndico: Naturaleza De Sus Funciones – Cosa Juzgada – Límites",
+    title: "Síndico: Naturaleza De Sus Funciones – Cosa Juzgada – Límites, Ed, (181-179)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 181-179)",
     fecha: "",
@@ -179,7 +179,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "si-ella-quiebra-quiebran-ellos",
-    title: "Si Ella Quiebra, Quiebran Ellos: ¿Todos?",
+    title: "Si Ella Quiebra, Quiebran Ellos: ¿Todos?, Ed, (183-38)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 183-38)",
     fecha: "",
@@ -187,7 +187,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "grupo-concurso-competencia",
-    title: "Grupo. Concurso. Competencia",
+    title: "Grupo. Concurso. Competencia, Ed, (183-420)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 183-420)",
     fecha: "",
@@ -195,7 +195,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "verificacion-tardia-en-la-quiebra",
-    title: "Verificación Tardía En La Quiebra",
+    title: "Verificación Tardía En La Quiebra, Ed, (184-167)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 184-167)",
     fecha: "",
@@ -203,7 +203,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "fallidos-por-conveniencia",
-    title: "Fallidos Por Conveniencia. Tercer Acto",
+    title: "Fallidos Por Conveniencia. Tercer Acto, Ed, (184-1403)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 184-1403)",
     fecha: "",
@@ -211,7 +211,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "notificado-ni-personalmente-ni-por-nota-ni-por-cedula",
-    title: "Notificado: Ni Personalmente, Ni Por Nota, Ni Por Cédula... Concursalmente",
+    title: "Notificado: Ni Personalmente, Ni Por Nota, Ni Por Cedula,... Concursalmente, Ed, (187-615)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 187-615)",
     fecha: "",
@@ -219,7 +219,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "nueva-ley-de-quiebra-diario-del-lunes-3-de-junio-de-2002",
-    title: "Nueva Ley De Quiebra Ed, Diario Del Lunes 3 De Junio De 2002",
+    title: "Nueva Ley De Quiebra Ed, Diario Del Lunes 3 De Junio De 2002 En Páginas 2, 3 Y 4)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 202-442)",
     fecha: "",
@@ -227,7 +227,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "ya-no-sos-mi-margarita-ahora-te-llaman-margot",
-    title: "Ya No Sos Mi Margarita... Ahora Te Llaman Margot",
+    title: "Ya No Sos Mi Margarita…Ahora Te Llaman Margot, Ed, (202-442)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 202-442)",
     fecha: "",
@@ -235,7 +235,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "los-bancos-no-se-concursan",
-    title: "Los Bancos No Se Concursan. Los 'Ex' Bancos, Tampoco",
+    title: "Los Bancos No Se Concursan. Los “Ex” Bancos, Tampoco, Ed, (204-976)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 204-976)",
     fecha: "",
@@ -243,7 +243,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "atrapados-sin-salida",
-    title: "Atrapados Sin Salida",
+    title: "Atrapados Sin Salida, Ed, (221-703)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 221-703)",
     fecha: "",
@@ -251,7 +251,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "ayudame-a-que-te-ayude",
-    title: "Ayudame A Que Te Ayude. Bien De Familia",
+    title: "Ayudame A Que Te Ayude. Bien De Familia, Ed, (222-56)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 222-56)",
     fecha: "",
@@ -259,7 +259,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "el-derecho-concursal-somete-al-tributario",
-    title: "El Derecho Concursal Somete Al Tributario. Nos Parece Correcto",
+    title: "El Derecho Concursal Somete Al Tributario. Nos Parece Correcto, Ed, (227-77)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 227-77)",
     fecha: "",
@@ -267,7 +267,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "honorarios-no-regulados-verificacion-en-el-concurso",
-    title: "Honorarios No Regulados. Verificación En El Concurso Del Condenado En Costas",
+    title: "Honorarios No Regulados. Verificación En El Concurso Del Condenado En Costas, Ed, (229-134)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 229-134)",
     fecha: "",
@@ -275,7 +275,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "dos-fallidas-una-quiebra",
-    title: "Dos Fallidas = Una Quiebra. Sólo A Veces. Casi Como Excepción",
+    title: "Dos Fallidas = Una Quiebra. Sólo A Veces. Casi Como Excepción, Ed, (234-315)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 234-315)",
     fecha: "",
@@ -283,7 +283,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "fondo-de-garantias-de-creditos-laborales-23-anos-sin-reglamentar",
-    title: "Fondo De Garantías De Créditos Laborales '23' Años Sin Reglamentar",
+    title: "Fondo De Garantías De Créditos Laborales “23” Años Sin Reglamentar. ¿Nadie Es Responsable De Esta Desidia? ¿No Es Tiempo Acaso De Reglamentarlo?, Ed, (235)",
     autor: "Carlos E. Moro",
     fuente: "El Derecho (Ed. 235)",
     fecha: "",
@@ -293,7 +293,7 @@ export const carlosArticles: Article[] = [
   // ZEUS
   {
     slug: "zeus-el-sindico-es",
-    title: "Y... El síndico... Es...?",
+    title: "Y... El sindico... Es...? (28-D-3)",
     autor: "Carlos E. Moro",
     fuente: "ZEUS",
     fecha: "",
@@ -303,7 +303,7 @@ export const carlosArticles: Article[] = [
   // Jurisprudencia Argentina (Lexis Nexis)
   {
     slug: "derecho-concursal-cuestions-actuales",
-    title: "Derecho Concursal. Cuestiones Actuales Del Régimen De La Ley 25589",
+    title: "Derecho Concursal. Cuestiones Actuales Del Régimen De La Ley 25589. Segunda Parte De Un Nro. Especial Coordinado Por Los Dres. Francisco Junyent Bas Y Carlos A. Molina Sandoval. 10 De Diciembre De 2003/Ja 2003-Iv Fascículo 11, Pág. 20: “Tome Nota: El Interés Concursal Regula, Somete, Limita Y Condiciona Los Intereses De La Dgi (Afip )",
     autor: "Carlos E. Moro",
     fuente: "Jurisprudencia Argentina (Lexis Nexis)",
     fecha: "2003-12-10",
@@ -311,7 +311,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "beneficio-de-litigar-sin-gastos",
-    title: "'Beneficio De Litigar Sin Gastos. Ni Tan Fácil, Ni Para Todas Las Personas'",
+    title: "“Beneficio De Litigar Sin Gastos. Ni Tan Fácil, Ni Para Todas Las Personas”. 16 De Febrero De 2005 Fascículo 7, Pág. 16",
     autor: "Carlos E. Moro",
     fuente: "Jurisprudencia Argentina (Lexis Nexis)",
     fecha: "2005-02-16",
@@ -321,7 +321,7 @@ export const carlosArticles: Article[] = [
   // LA LEY
   {
     slug: "calidad-simulada-y-falsos-titulos",
-    title: "Calidad Simulada Y Falsos Títulos Bajo El Prisma Quiebrista",
+    title: "Calidad Simulada Y Falsos Títulos Bajo El Prisma Quiebrista, Ll, (1985-C-1071)",
     autor: "Carlos E. Moro",
     fuente: "LA LEY",
     fecha: "",
@@ -329,7 +329,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "homologacion-del-concordato",
-    title: "Homologación Del Concordato. Cese De La Prohibición Para Salir Del País",
+    title: "Homologación Del Concordato. Cese De La Prohibición Para Salir Del País, Ll, (1994-D-141)",
     autor: "Carlos E. Moro",
     fuente: "LA LEY",
     fecha: "",
@@ -337,7 +337,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "quiebra-consecuencial-o-indirecta",
-    title: "Quiebra Consecuencial O Indirecta. Trámite De La Apelación",
+    title: "Quiebra Consecuencial O Indirecta. Trámite De La Apelación (1995-A-633)",
     autor: "Carlos E. Moro",
     fuente: "LA LEY",
     fecha: "",
@@ -345,7 +345,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "sindico-concursal-sanciones",
-    title: "Síndico Concursal. Sanciones. Ley 24.432",
+    title: "Sindico Concursal. Sanciones. Ley 24.432 (1995-E-170)",
     autor: "Carlos E. Moro",
     fuente: "LA LEY",
     fecha: "",
@@ -353,7 +353,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "excepcion-de-arraigo",
-    title: "Excepción De Arraigo: ¿Es Posible En Los Concursos?",
+    title: "Excepción De Arraigo: ¿Es Posible En Los Concursos? (1996-A-1091)",
     autor: "Carlos E. Moro",
     fuente: "LA LEY",
     fecha: "1996",
@@ -361,7 +361,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "facultades-del-juez-en-la-designacion-del-sindico-concursal",
-    title: "Facultades Del Juez En La Designación Del Síndico Concursal",
+    title: "Facultades Del Juez En La Designación Del Síndico Concursal. (2003-F-178)",
     autor: "Carlos E. Moro",
     fuente: "LA LEY",
     fecha: "2003",
@@ -370,7 +370,7 @@ export const carlosArticles: Article[] = [
   // ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL) - agregar entradas listadas
   {
     slug: "ERREPAR -un-privilegiado-en-la-ley-concursal",
-    title: "Un Privilegiado En La Ley Concursal, 'Super Privilegiado' Por La Ley De Prenda Con Registro",
+    title: "Un Privilegiado En La Ley Concursal, 'Super Privilegiado' Por La Ley De Prenda Con Registro (T.1-122)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -378,7 +378,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "pedido-de-quiebra-rechazado-e-imposicion-de-costas",
-    title: "Pedido De Quiebra Rechazado E Imposición De Costas",
+    title: "Pedido De Quiebra Rechazado E Imposición De Costas (T.1-147)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -386,7 +386,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "verificacion-de-creditos-y-sentencias-dictadas-en-juicio-ejecutivo",
-    title: "Verificación De Créditos Y Sentencias Dictadas En Juicio Ejecutivo",
+    title: "Verificación De Créditos Y Sentencias Dictadas En Juicio Ejecutivo (T.1-124)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -394,7 +394,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "apoderado-judicial-de-sociedad-anonima-excepcion-de-alta-de-personeria",
-    title: "Apoderado Judicial De Sociedad Anónima. Excepción De Alta De Personería",
+    title: "Apoderado Judicial De Sociedad Anónima. Excepción De Alta De Personería (T.1-248)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -402,7 +402,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "plazo-de-gracia-en-los-concursos",
-    title: "Plazo De Gracia En Los Concursos",
+    title: "Plazo De Gracia En Los Concursos (T II-320)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -410,7 +410,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "impugnacion-al-acuerdo-art-59-lc",
-    title: "Impugnación Al Acuerdo (Art. 59, L.C.)",
+    title: "Impugnación Al Acuerdo (Art. 59, L.C.) (T.II-649)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -418,7 +418,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "concurso-sin-sujeto",
-    title: "Concurso Sin Sujeto",
+    title: "Concurso Sin Sujeto (T.Iv-911)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -426,7 +426,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "administracion-concursal-el-dia-despues",
-    title: "Administración Concursal: 'El Día Después'",
+    title: "Administración Concursal: “El Día Después” (T. Xvii -552)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "",
@@ -434,7 +434,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "verificacion-de-creditos-sentencia-corte-federal-sociedad-comercial-plata",
-    title: "Verificación De Créditos (Tomo Xxii – Nº266 – Enero 2010) La Sentencia De La Corte Federal En 'Sociedad Comercial Del Plata Sa'. Algo Más",
+    title: "Verificación De Créditos (Tomo Xxii – N°266 – Enero 2010)La Sentencia De La Corte Federal En “Sociedad Comercial Del Plata Sa”. Algo Más",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "2010-01",
@@ -442,7 +442,7 @@ export const carlosArticles: Article[] = [
   },
   {
     slug: "que-un-fallo-mas-tomo-xxii",
-    title: "Que Un Fallo Más (Tomo XXII – Nº267 – Febrero 2010)",
+    title: "Que Un Fallo Más. (Tomo Xxii – N°267 – Febrero 2010)",
     autor: "Carlos E. Moro",
     fuente: "ERREPAR (DOCTRINA SOCIETARIA Y CONCURSAL)",
     fecha: "2010-02",

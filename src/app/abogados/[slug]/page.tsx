@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import { useParams } from "next/navigation";
 import { lawyerDetails } from "@/data/lawyerData";
 import Image from "next/image";
@@ -8,386 +9,152 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
 const LawyerProfilePage = () => {
-  const params = useParams();
-  const slug = params?.slug;
+  const { slug } = useParams();
   const { language } = useLanguage();
 
-  if (!slug) return <div className="text-white">Cargando...</div>;
+  if (!slug) return null;
 
   const lawyer = lawyerDetails[slug as string];
+  if (!lawyer) return null;
 
-  if (!lawyer) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center px-4 py-12">
-        <h1 className="text-3xl md:text-5xl font-bold mb-6">
-          Abogado no encontrado
-        </h1>
-        <p className="text-lg">
-          No pudimos encontrar al abogado que estás buscando.
-        </p>
-      </div>
-    );
-  }
-
-  // Helper function to get translated field
-  const getField = (fieldName: keyof typeof lawyer, defaultValue: any = "") => {
-    if (language === "en" && lawyer[`${fieldName}_en` as keyof typeof lawyer]) {
-      return lawyer[`${fieldName}_en` as keyof typeof lawyer];
-    }
-    return lawyer[fieldName] ?? defaultValue;
-  };
-
-  const displayTitle =
-    language === "en" && lawyer.title_en ? lawyer.title_en : lawyer.title;
-  const displayUniversity =
-    language === "en" && lawyer.education?.university_en
-      ? lawyer.education.university_en
-      : lawyer.education?.university;
   const displayBooks =
     language === "en" && lawyer.books_en ? lawyer.books_en : lawyer.books;
+
   const displayArticles =
     language === "en" && lawyer.articles_en
       ? lawyer.articles_en
       : lawyer.articles;
-  const displayOtherRoles =
-    language === "en" && lawyer.otherRoles_en
-      ? lawyer.otherRoles_en
-      : lawyer.otherRoles;
-  const displayOtherAntecedentes =
-    language === "en" && lawyer.otherAntecedentes_en
-      ? lawyer.otherAntecedentes_en
-      : lawyer.otherAntecedentes;
+
+  // Agrupar artículos por publicación (Diarios / Revistas)
+  const articlesByPublication = displayArticles?.reduce(
+    (acc: Record<string, any[]>, a: any) => {
+      const key = a.publication || "Otros";
+      acc[key] = acc[key] || [];
+      acc[key].push(a);
+      return acc;
+    },
+    {}
+  );
 
   return (
     <div className="min-h-screen bg-[#0F1C2E] text-white">
       {/* HERO */}
-      <section className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-14">
+      <section className="pt-32 pb-20 max-w-5xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
           >
             <Image
               src={lawyer.image}
               alt={lawyer.name}
-              width={240}
-              height={240}
-              className="rounded-full border-4 border-[#D4A75D] shadow-xl object-cover"
+              width={200}
+              height={200}
+              className="rounded-full border-4 border-[#D4A75D]"
             />
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center md:text-left max-w-2xl"
-          >
-            <h1 className="text-5xl font-serif font-bold text-[#D4A75D] mb-4">
+          <div className="text-center md:text-left">
+            <h1 className="text-5xl font-serif font-bold text-[#D4A75D]">
               {lawyer.name}
             </h1>
-            <h2 className="text-2xl font-semibold mb-4">{displayTitle}</h2>
-          </motion.div>
+            <p className="text-xl mt-3">{lawyer.title}</p>
+          </div>
         </div>
       </section>
 
-      {/* CONTENIDO DETALLADO */}
-      <section className="bg-white text-[#0F1C2E] rounded-t-3xl mt-20 pt-20 pb-28 px-6">
-        <div className="max-w-6xl mx-auto space-y-20">
-          {/* DATOS PERSONALES + EDUCACIÓN */}
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Datos personales */}
-            <div className="bg-[#F7F7F7] border-2 border-[#D4A75D] p-8 rounded-xl shadow-lg">
-              <h3 className="text-xl font-serif font-bold mb-4 text-[#D4A75D]">
-                Datos personales
-              </h3>
-              <p>
-                <strong>Fecha de nacimiento:</strong>{" "}
-                {lawyer.personal.birthDate}
-              </p>
-              <p>
-                <strong>Lugar de nacimiento:</strong>{" "}
-                {lawyer.personal.birthPlace}
-              </p>
-              {lawyer.personal.civilStatus && (
-                <p>
-                  <strong>Estado civil:</strong> {lawyer.personal.civilStatus}
-                </p>
-              )}
-              {lawyer.personal.address && (
-                <p>
-                  <strong>Domicilio:</strong> {lawyer.personal.address}
-                </p>
-              )}
-              {lawyer.personal.phone && (
-                <p>
-                  <strong>Teléfono:</strong> {lawyer.personal.phone}
-                </p>
-              )}
-            </div>
+      {/* CONTENIDO */}
+      <section className="bg-white text-[#0F1C2E] rounded-t-3xl px-6 py-20">
+        <div className="max-w-4xl mx-auto space-y-20">
 
-            {/* Formación */}
-            <div className="bg-[#F7F7F7] border-2 border-[#D4A75D] p-8 rounded-xl shadow-lg">
-              <h3 className="text-xl font-serif font-bold mb-4 text-[#D4A75D]">
-                Formación académica
-              </h3>
-              {lawyer.education.primary && (
-                <p>
-                  <strong>Primario:</strong> {lawyer.education.primary}
-                </p>
-              )}
-              {lawyer.education.secondary && (
-                <p>
-                  <strong>Secundario:</strong> {lawyer.education.secondary}
-                </p>
-              )}
-              <p>
-                <strong>Universitario:</strong> {displayUniversity}
-              </p>
+          {/* DATOS PERSONALES Y ACADÉMICOS */}
+          <section>
+            <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
+              Datos personales y académicos
+            </h3>
+
+            <div className="space-y-2 text-sm leading-relaxed">
+              <p><strong>Fecha de nacimiento:</strong> {lawyer.personal.birthDate}</p>
+              <p><strong>Lugar de nacimiento:</strong> {lawyer.personal.birthPlace}</p>
+              <p><strong>Universidad:</strong> {lawyer.education.university}</p>
               {lawyer.education.postgraduate && (
-                <p>
-                  <strong>Posgrado:</strong> {lawyer.education.postgraduate}
-                </p>
-              )}
-              {lawyer.education.doctorate && (
-                <p>
-                  <strong>Doctorado:</strong> {lawyer.education.doctorate}
-                </p>
+                <p><strong>Posgrado:</strong> {lawyer.education.postgraduate}</p>
               )}
             </div>
-          </div>
+          </section>
 
-          {/* LIBROS */}
-          {displayBooks && displayBooks.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                {language === "en" ? "Published Books" : "Libros publicados"}
-              </h3>
-              <div className="grid md:grid-cols-2 gap-12">
-                {displayBooks.map((book: any, idx: number) => (
-                  <div
-                    key={idx}
-                    className="bg-[#F7F7F7] border-2 border-[#D4A75D] p-8 rounded-xl shadow"
-                  >
-                    <h4 className="font-bold">{book.title_en || book.title}</h4>
-                    {book.year && (
-                      <p className="text-sm text-[#D4A75D] mt-1">
-                        ({book.year})
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* ARTÍCULOS */}
-          {displayArticles && displayArticles.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                {language === "en"
-                  ? "Academic Articles"
-                  : "Artículos académicos"}
-              </h3>
-              <div className="grid md:grid-cols-2 gap-12">
-                {displayArticles.map((a: any, idx: number) => (
-                  <div
-                    key={idx}
-                    className="bg-[#F7F7F7] border-2 border-[#D4A75D] p-8 rounded-xl shadow"
-                  >
-                    <h4 className="font-bold mb-1">{a.title_en || a.title}</h4>
-                    {a.publication_en ||
-                      (a.publication && (
-                        <p className="text-sm">
-                          {a.publication_en || a.publication}
-                        </p>
-                      ))}
-                    {a.year && (
-                      <p className="text-sm text-[#D4A75D] mt-1">({a.year})</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* CARGOS ACADÉMICOS */}
-          {lawyer.academicPositions.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Cargos académicos
-              </h3>
-              <div className="relative pl-6 border-l-2 border-[#D4A75D]/50 space-y-6">
-                {lawyer.academicPositions.map((pos, idx) => (
-                  <div key={idx} className="ml-4">
-                    <p className="font-bold">{pos.title}</p>
-                    <p className="text-sm">
-                      {pos.institution} —{" "}
-                      <span className="text-[#D4A75D]">{pos.period}</span>
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* ROLES UNIVERSITARIOS */}
-          {lawyer.universityRoles.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Roles universitarios
-              </h3>
-              <ul className="space-y-4">
-                {lawyer.universityRoles.map((r, idx) => (
-                  <li
-                    key={idx}
-                    className="bg-[#F7F7F7] p-5 rounded-xl border-2 border-[#D4A75D] shadow"
-                  >
-                    <strong>{r.title}</strong> —{" "}
-                    <span className="text-[#D4A75D]">{r.year}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* PREMIOS */}
-          {lawyer.awards.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Premios y distinciones
-              </h3>
-              <ul className="space-y-4">
-                {lawyer.awards.map((a, idx) => (
-                  <li
-                    key={idx}
-                    className="bg-[#F7F7F7] p-5 rounded-xl border-2 border-[#D4A75D] shadow"
-                  >
-                    <strong>{a.title}</strong> {a.year && `— (${a.year})`}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* BECAS */}
-          {lawyer.scholarships.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Becas
-              </h3>
-              <ul className="space-y-4">
-                {lawyer.scholarships.map((s, idx) => (
-                  <li
-                    key={idx}
-                    className="bg-[#F7F7F7] p-5 rounded-xl border-2 border-[#D4A75D] shadow"
-                  >
-                    <strong>{s.title}</strong> {s.year && `— (${s.year})`}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* IDIOMAS */}
-          {lawyer.languages && lawyer.languages.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Idiomas
+          {/* INTEGRO */}
+          {lawyer.otherRoles?.length > 0 && (
+            <section>
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
+                Integro
               </h3>
 
-              <ul className="space-y-6">
-                {lawyer.languages.map((lang, idx) => (
-                  <li
-                    key={idx}
-                    className="bg-[#F7F7F7] p-5 rounded-xl border-2 border-[#D4A75D] shadow"
-                  >
-                    <strong>{lang.language}</strong>
-
-                    {lang.certificates.length > 0 && (
-                      <ul className="list-disc ml-6 mt-2 text-sm">
-                        {lang.certificates.map((c, cIdx) => (
-                          <li key={cIdx}>{c}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* CONFERENCIAS */}
-          {lawyer.conferences.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Conferencias y congresos
-              </h3>
-              <ul className="space-y-4">
-                {lawyer.conferences.map((c, idx) => (
-                  <li
-                    key={idx}
-                    className="bg-[#F7F7F7] p-5 rounded-xl border-2 border-[#D4A75D] shadow"
-                  >
-                    <strong>{c.title}</strong> {c.year && `— (${c.year})`}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* OTROS ROLES */}
-          {lawyer.otherRoles.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                Otros Roles
-              </h3>
-
-              {/* Itera sobre los objetos dentro de otherRoles (en tu caso, solo hay uno) */}
-              {lawyer.otherRoles.map((roleObject, roleIdx) => (
-                <div key={roleIdx}>
-                  {/* Muestra el título principal del grupo de roles/artículos */}
-                  {roleObject.title && (
-                    <p className="text-xl font-semibold mb-4 text-gray-700">
-                      {roleObject.title}
-                    </p>
+              {lawyer.otherRoles.map((group: any, i: number) => (
+                <div key={i} className="mb-6">
+                  {group.title && (
+                    <p className="font-semibold mb-2">{group.title}</p>
                   )}
-
-                  {/* Itera sobre el array de strings/artículos individuales */}
-                  {roleObject.string && roleObject.string.length > 0 && (
-                    <ul className="list-disc ml-6 space-y-2">
-                      {roleObject.string.map((article, articleIdx) => (
-                        // Muestra cada artículo como un elemento de lista
-                        <li key={`${roleIdx}-${articleIdx}`}>{article}</li>
-                      ))}
-                    </ul>
-                  )}
+                  <ul className="list-disc ml-6 space-y-1 text-sm">
+                    {group.string?.map((item: string, j: number) => (
+                      <li key={j}>{item}</li>
+                    ))}
+                  </ul>
                 </div>
               ))}
-            </div>
+            </section>
           )}
 
-          {/* OTROS Antecedentes */}
-          {displayOtherAntecedentes && displayOtherAntecedentes.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
-                {language === "en" ? "Other Backgrounds" : "Otros Antecedentes"}
+          {/* LIBROS */}
+          {displayBooks?.length > 0 && (
+            <section>
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
+                Libros
               </h3>
 
-              <ul className="list-disc ml-6 space-y-2">
-                {displayOtherAntecedentes.map((r: string, idx: number) => (
-                  <li key={idx}>{r}</li>
+              <ul className="space-y-3 text-sm">
+                {displayBooks.map((b: any, i: number) => (
+                  <li key={i}>
+                    {b.title} {b.year && `(${b.year})`}
+                  </li>
                 ))}
               </ul>
-            </div>
+            </section>
+          )}
+
+          {/* REVISTAS / DIARIOS */}
+          {articlesByPublication && (
+            <section>
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
+                Publicaciones
+              </h3>
+
+              {Object.entries(articlesByPublication).map(
+                ([publication, items]) => (
+                  <div key={publication} className="mb-10">
+                    <p className="font-semibold uppercase text-sm mb-3">
+                      {publication}
+                    </p>
+
+                    <ul className="space-y-2 text-sm ml-4">
+                      {(items as any[]).map((a, i) => (
+                        <li key={i}>
+                          {a.title} {a.year && `(${a.year})`}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              )}
+            </section>
           )}
         </div>
 
-        {/* BOTÓN VOLVER */}
-        <div className="flex justify-center mt-28">
+        {/* VOLVER */}
+        <div className="flex justify-center mt-24">
           <Link
             href="/Team"
-            className="px-10 py-4 bg-[#D4A75D] text-white rounded-full font-serif font-semibold hover:bg-[#b88c2c] shadow-lg transition text-lg"
+            className="px-10 py-4 bg-[#D4A75D] text-white rounded-full font-serif"
           >
             Volver a Equipo
           </Link>

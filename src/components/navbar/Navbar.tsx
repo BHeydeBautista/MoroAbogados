@@ -178,17 +178,16 @@ const Navbar = () => {
           </div>
         ),
       },
-
       {
         text: "Currículums",
         submenu: (
-          <div className="flex flex-col gap-3 min-w-[220px]">
-            <HoverLink url="/curriculums?persona=carlos" isDark={isDark}>
-              Dr. Carlos Moro
+          <div className="flex flex-col gap-3">
+            <HoverLink url="/abogados/dr-carlos-moro" isDark={isDark}>
+              Dr. Carlos E. Moro
             </HoverLink>
 
-            <HoverLink url="/curriculums?persona=emilio" isDark={isDark}>
-              Dr. Emilio Moro
+            <HoverLink url="/abogados/dr-emilio-f-moro" isDark={isDark}>
+              Dr. Emilio F. Moro
             </HoverLink>
           </div>
         ),

@@ -133,6 +133,10 @@ const Navbar = () => {
         url: "/#PracticeAreas",
       },
       {
+        text: t.referencia,
+        url: "/referencias"
+      },
+      {
         text: t.contenido,
         submenu: (
           <div className="flex flex-col gap-3">

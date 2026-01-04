@@ -6,7 +6,7 @@ import ReferenceBlock from "./ReferenceBlock";
 const references = [
   {
     province: "Provincia de Entre Ríos",
-    image: "/images/references/library-1.jpg",
+    image: "/img/references/library-1.jpg",
     items: [
       "Gualeguay (Dr. Bisso)",
       "Diamante (Dr. Fiorito)",
@@ -23,7 +23,7 @@ const references = [
   },
   {
     province: "Provincia de Santa Fe",
-    image: "/images/references/library-2.jpg",
+    image: "/img/references/library-2.jpg",
     items: [
       "Cañada de Gómez – Las Rosas – San Jorge (Dr. Córdoba)",
       "Venado Tuerto (Dr. Fernández-Carlín)",

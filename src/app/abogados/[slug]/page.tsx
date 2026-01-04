@@ -8,6 +8,21 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 
+/* =========================
+   TIPOS
+========================= */
+
+type IntegratedRoleItem = {
+  title: string;
+  description: string;
+};
+
+type IntegratedRoles = {
+  institutions?: string[];
+  started?: IntegratedRoleItem[];
+  end?: IntegratedRoleItem[];
+};
+
 const LawyerProfilePage = () => {
   const { slug } = useParams();
   const { language } = useLanguage();
@@ -17,24 +32,18 @@ const LawyerProfilePage = () => {
   const lawyer = lawyerDetails[slug as string];
   if (!lawyer) return null;
 
+  /* =========================
+     NORMALIZACIÓN (CLAVE)
+  ========================= */
+
   const displayBooks =
-    language === "en" && lawyer.books_en ? lawyer.books_en : lawyer.books;
+    language === "en" ? lawyer.books_en ?? [] : lawyer.books ?? [];
 
-  const displayArticles =
-    language === "en" && lawyer.articles_en
-      ? lawyer.articles_en
-      : lawyer.articles;
+  const journals = lawyer.journals ?? [];
+  const newspapers = lawyer.newspapers ?? [];
+  const dailyColumns = lawyer.dailyColumns ?? [];
 
-  // Agrupar artículos por publicación (Diarios / Revistas)
-  const articlesByPublication = displayArticles?.reduce(
-    (acc: Record<string, any[]>, a: any) => {
-      const key = a.publication || "Otros";
-      acc[key] = acc[key] || [];
-      acc[key].push(a);
-      return acc;
-    },
-    {}
-  );
+  const integratedRoles: IntegratedRoles = lawyer.integratedRoles ?? {};
 
   return (
     <div className="min-h-screen bg-[#0F1C2E] text-white">
@@ -58,22 +67,25 @@ const LawyerProfilePage = () => {
             <h1 className="text-5xl font-serif font-bold text-[#D4A75D]">
               {lawyer.name}
             </h1>
-            <p className="text-xl mt-3">{lawyer.title}</p>
+            <p className="text-xl mt-3">
+              {language === "en" && lawyer.title_en
+                ? lawyer.title_en
+                : lawyer.title}
+            </p>
           </div>
         </div>
       </section>
 
       {/* CONTENIDO */}
       <section className="bg-white text-[#0F1C2E] rounded-t-3xl px-6 py-20">
-        <div className="max-w-4xl mx-auto space-y-20">
-          {/* DATOS PERSONALES Y ACADÉMICOS */}
+        <div className="max-w-4xl mx-auto space-y-24">
+          {/* DATOS */}
           <section>
             <div className="grid md:grid-cols-2 gap-8">
-              {/* DATOS PERSONALES */}
+              {/* PERSONALES */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
                 className="border border-[#D4A75D]/40 rounded-xl p-6 bg-[#F9F9F9]"
               >
@@ -81,23 +93,20 @@ const LawyerProfilePage = () => {
                   Datos personales
                 </h4>
 
-                <div className="space-y-2 text-sm leading-relaxed">
-                  <p>
-                    <strong>Fecha de nacimiento:</strong>{" "}
-                    {lawyer.personal.birthDate}
-                  </p>
-                  <p>
-                    <strong>Lugar de nacimiento:</strong>{" "}
-                    {lawyer.personal.birthPlace}
-                  </p>
-                </div>
+                <p>
+                  <strong>Fecha de nacimiento:</strong>{" "}
+                  {lawyer.personal.birthDate}
+                </p>
+                <p>
+                  <strong>Lugar de nacimiento:</strong>{" "}
+                  {lawyer.personal.birthPlace}
+                </p>
               </motion.div>
 
-              {/* DATOS ACADÉMICOS */}
+              {/* ACADÉMICOS */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
                 className="border border-[#D4A75D]/40 rounded-xl p-6 bg-[#F9F9F9]"
               >
@@ -105,36 +114,124 @@ const LawyerProfilePage = () => {
                   Datos académicos
                 </h4>
 
-                <div className="space-y-2 text-sm leading-relaxed">
-                  <p>
-                    <strong>Universidad:</strong> {lawyer.education.university}
-                  </p>
+                <p>
+                  <strong>Universidad:</strong>{" "}
+                  {language === "en" && lawyer.education.university_en
+                    ? lawyer.education.university_en
+                    : lawyer.education.university}
+                </p>
 
-                  {lawyer.education.postgraduate && (
-                    <p>
-                      <strong>Posgrado:</strong> {lawyer.education.postgraduate}
-                    </p>
-                  )}
-                </div>
+                {lawyer.education.postgraduate && (
+                  <p>
+                    <strong>Posgrado:</strong> {lawyer.education.postgraduate}
+                  </p>
+                )}
               </motion.div>
             </div>
           </section>
 
-          {/* INTEGRO */}
-          {lawyer.otherRoles?.length > 0 && (
+          {/* INTEGRÓ */}
+          {(integratedRoles.institutions ||
+            integratedRoles.started ||
+            integratedRoles.end) && (
             <section>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
-                Integro
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
+                Integró
               </h3>
 
-              {lawyer.otherRoles.map((group: any, i: number) => (
-                <div key={i} className="mb-6">
-                  {group.title && (
-                    <p className="font-semibold mb-2">{group.title}</p>
+              <div className="space-y-10 text-sm leading-relaxed">
+                {/* INSTITUCIONES */}
+                {integratedRoles.institutions &&
+                  integratedRoles.institutions.length > 0 && (
+                    <ul className="list-disc ml-6 space-y-2">
+                      {integratedRoles.institutions.map(
+                        (item: string, i: number) => (
+                          <li key={i}>{item}</li>
+                        )
+                      )}
+                    </ul>
                   )}
-                  <ul className="list-disc ml-6 space-y-1 text-sm">
-                    {group.string?.map((item: string, j: number) => (
-                      <li key={j}>{item}</li>
+
+                {/* COMENZANDO COMO */}
+                {integratedRoles.started &&
+                  integratedRoles.started.length > 0 && (
+                    <div>
+                      <p className="font-semibold mb-3">Comenzando como</p>
+                      <ul className="list-disc ml-6 space-y-3">
+                        {integratedRoles.started.map(
+                          (item: IntegratedRoleItem, i: number) => (
+                            <li key={i}>
+                              <strong>{item.title}:</strong> {item.description}
+                            </li>
+                          )
+                        )}
+                      </ul>
+                    </div>
+                  )}
+
+                {/* Y COMO */}
+                {integratedRoles.end && integratedRoles.end.length > 0 && (
+                  <div>
+                    <p className="font-semibold mb-3">Y como</p>
+                    <ul className="list-disc ml-6 space-y-3">
+                      {integratedRoles.end.map(
+                        (item: IntegratedRoleItem, i: number) => (
+                          <li key={i}>
+                            <strong>{item.title}:</strong> {item.description}
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </section>
+          )}
+
+          {/* LIBROS */}
+          {displayBooks.length > 0 && (
+            <section>
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
+                Libros
+              </h3>
+
+              <ul className="space-y-6 text-sm leading-relaxed">
+                {displayBooks.map((b: any, i: number) => (
+                  <li key={i}>
+                    <p className="font-semibold">
+                      {language === "en" ? b.title_en : b.title}
+                      {b.year && ` (${b.year})`}
+                    </p>
+                    {b.description && (
+                      <p className="mt-2 text-[#0F1C2E]/80">{b.description}</p>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* REVISTAS */}
+          {journals.length > 0 && (
+            <section>
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
+                Revistas
+              </h3>
+
+              {journals.map((j: any, i: number) => (
+                <div key={i} className="mb-10">
+                  <p className="font-semibold text-sm mb-2">
+                    {j.journal}
+                    {j.publisher && ` – ${j.publisher}`}
+                  </p>
+
+                  <ul className="ml-6 list-disc space-y-2 text-sm">
+                    {j.articles.map((a: any, idx: number) => (
+                      <li key={idx}>
+                        {a.title}
+                        {a.year && ` (${a.year})`}
+                        {a.reference && ` – ${a.reference}`}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -142,47 +239,43 @@ const LawyerProfilePage = () => {
             </section>
           )}
 
-          {/* LIBROS */}
-          {displayBooks?.length > 0 && (
+          {/* DIARIOS */}
+          {newspapers.length > 0 && (
             <section>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
-                Libros
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
+                Diarios
               </h3>
 
-              <ul className="space-y-3 text-sm">
-                {displayBooks.map((b: any, i: number) => (
-                  <li key={i}>
-                    {b.title} {b.year && `(${b.year})`}
-                  </li>
-                ))}
-              </ul>
+              {newspapers.map((n: any, i: number) => (
+                <div key={i} className="mb-10">
+                  <p className="font-semibold text-sm mb-2">{n.newspaper}</p>
+
+                  <ul className="ml-6 list-disc space-y-2 text-sm">
+                    {n.articles.map((a: any, idx: number) => (
+                      <li key={idx}>{a.title}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </section>
           )}
 
-          {/* REVISTAS / DIARIOS */}
-          {articlesByPublication && (
+          {/* COLUMNAS */}
+          {dailyColumns.length > 0 && (
             <section>
-              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-6">
-                Publicaciones
+              <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
+                Diario &quot;El Diario&quot;
               </h3>
 
-              {Object.entries(articlesByPublication).map(
-                ([publication, items]) => (
-                  <div key={publication} className="mb-10">
-                    <p className="font-semibold uppercase text-sm mb-3">
-                      {publication}
-                    </p>
-
-                    <ul className="space-y-2 text-sm ml-4">
-                      {(items as any[]).map((a, i) => (
-                        <li key={i}>
-                          {a.title} {a.year && `(${a.year})`}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )
-              )}
+              <ul className="ml-6 list-disc space-y-2 text-sm">
+                {dailyColumns.flatMap((d: any) =>
+                  d.articles.map((a: any, i: number) => (
+                    <li key={i}>
+                      {a.title} – {a.date}
+                    </li>
+                  ))
+                )}
+              </ul>
             </section>
           )}
         </div>

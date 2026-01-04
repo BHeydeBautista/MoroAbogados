@@ -147,37 +147,38 @@ const Navbar = () => {
       {
         text: "Publicaciones",
         submenu: (
-          <div className="flex flex-col gap-3 min-w-[220px]">
+          <div className="flex flex-col gap-3">
             <HoverLink
-              url="/publicaciones?tipo=libro&autor=carlos"
+              url="/?tab=propias&type=libro&author=Emilio%20F.%20Moro#Contenido"
               isDark={isDark}
             >
-              Libros – Dr. Carlos
+              Libros Dr. Emilio
             </HoverLink>
 
             <HoverLink
-              url="/publicaciones?tipo=libro&autor=emilio"
+              url="/?tab=propias&type=libro&author=Carlos%20E.%20Moro#Contenido"
               isDark={isDark}
             >
-              Libros – Dr. Emilio
+              Libros Dr. Carlos
             </HoverLink>
 
             <HoverLink
-              url="/publicaciones?tipo=articulo&autor=carlos"
+              url="/?tab=propias&type=articulo&author=Emilio%20F.%20Moro#Contenido"
               isDark={isDark}
             >
-              Artículos – Dr. Carlos
+              Artículos Dr. Emilio
             </HoverLink>
 
             <HoverLink
-              url="/publicaciones?tipo=articulo&autor=emilio"
+              url="/?tab=propias&type=articulo&author=Carlos%20E.%20Moro#Contenido"
               isDark={isDark}
             >
-              Artículos – Dr. Emilio
+              Artículos Dr. Carlos
             </HoverLink>
           </div>
         ),
       },
+
       {
         text: "Currículums",
         submenu: (

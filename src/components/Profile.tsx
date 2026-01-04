@@ -51,7 +51,7 @@ const Profile = () => {
         <div className="w-14 h-1 bg-[#D4A75D] mx-auto my-6 rounded" />
 
         <div className="space-y-10 max-w-4xl mx-auto mb-20">
-          {[t.paragraph1, t.paragraph2, t.paragraph3].map((text, index) => (
+          {[t.paragraph1, t.paragraph2, t.paragraph3, t.paragraph4].map((text, index) => (
             <motion.p
               key={index}
               initial={{ opacity: 0, y: 15 }}

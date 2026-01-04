@@ -1,15 +1,13 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 interface Props {
   icon: React.ReactNode;
   title: string;
   points: string[];
-  link: string;
   index: number;
 }
 
@@ -51,6 +49,7 @@ function AnimatedIconBorder({
           className="transition-all duration-700 ease-out"
         />
       </svg>
+
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="w-14 h-14 flex items-center justify-center rounded-full bg-[#D4A75D]/10">
           {children}
@@ -60,8 +59,9 @@ function AnimatedIconBorder({
   );
 }
 
-const AreaCard = ({ icon, title, points, link, index }: Props) => {
+const AreaCard = ({ icon, title, points, index }: Props) => {
   const [isHovered, setIsHovered] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
 
   return (
     <motion.div
@@ -69,55 +69,65 @@ const AreaCard = ({ icon, title, points, link, index }: Props) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group/card bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg transition-all duration-500 relative z-10 hover:z-20 hover:scale-[1.02] hover:brightness-110 hover:border-[#D4A75D]/30 min-h-[320px] flex flex-col justify-between origin-bottom"
+      className="group/card bg-white/5 border border-white/10 rounded-xl p-6 shadow-lg transition-all duration-500 relative z-10 hover:z-20 hover:scale-[1.02] hover:brightness-110 hover:border-[#D4A75D]/30 flex flex-col origin-bottom cursor-pointer"
       aria-label={`Área de práctica: ${title}`}
+      role="button"
+      tabIndex={0}
+      onClick={() => setExpanded((v) => !v)}
+      onKeyDown={(e) => e.key === "Enter" && setExpanded((v) => !v)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Overlay */}
       <div
-        className="absolute inset-0 h-full w-full rounded-xl pointer-events-none transition-all duration-500 z-0 
-    group-hover:blur-sm group-hover:brightness-75 
-    group-hover/card:blur-none group-hover/card:brightness-100"
+        className="absolute inset-0 rounded-xl pointer-events-none transition-all duration-500 
+        group-hover:blur-sm group-hover:brightness-75 
+        group-hover/card:blur-none group-hover/card:brightness-100"
       />
 
-      <div className="flex items-center gap-3 mb-3">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-4 relative z-10">
         <AnimatedIconBorder isHovered={isHovered}>
           {icon}
         </AnimatedIconBorder>
+
         <div className="flex-1">
           <h3 className="text-[#D4A75D] font-serif font-semibold text-xl">
             {title}
           </h3>
-          <div
-            className="flex items-center text-white/60 text-sm 
-            opacity-100 md:opacity-0 md:group-hover/card:opacity-100 
-            transition-opacity duration-300"
-          >
-            <ChevronDown size={18} />
-            <span className="ml-2 uppercase tracking-wider">Ver detalles</span>
+
+          <div className="flex items-center text-white/60 text-sm mt-1">
+            <ChevronDown
+              size={18}
+              className={`transition-transform duration-300 ${
+                expanded ? "rotate-180" : ""
+              }`}
+            />
+            <span className="ml-2 uppercase tracking-wider">
+              {expanded ? "Ocultar detalles" : "Ver detalles"}
+            </span>
           </div>
         </div>
       </div>
 
-      <ul className="mt-4 space-y-2 text-sm text-white/80 flex-1">
-        {points.slice(0, 3).map((point, idx) => (
-          <li key={idx} className="flex items-start gap-2">
-            <span className="text-[#D4A75D] mt-1">✔</span>
-            <span>{point}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-4 relative z-10">
-        <Link href={link}>
-          <span className="text-[#D4A75D] text-sm hover:underline tracking-wide inline-flex items-center gap-2">
-            {points.length > 3 
-              ? `Ver más sobre el área (+ ${points.length - 3} más)` 
-              : 'Ver más sobre el área'} 
-            →
-          </span>
-        </Link>
-      </div>
+      {/* Points */}
+      <AnimatePresence initial={false}>
+        <motion.ul
+          key={expanded ? "expanded" : "collapsed"}
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
+          className="mt-2 space-y-2 text-sm text-white/80 overflow-hidden relative z-10"
+        >
+          {(expanded ? points : points.slice(0, 3)).map((point, idx) => (
+            <li key={idx} className="flex items-start gap-2">
+              <span className="text-[#D4A75D] mt-1">✔</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </motion.ul>
+      </AnimatePresence>
     </motion.div>
   );
 };

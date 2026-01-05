@@ -78,6 +78,7 @@ export interface Lawyer {
     publisher?: string;
     director?: string;
     country?: string;
+    description?: string;
     articles: Array<{
       title: string;
       year?: string;
@@ -165,80 +166,80 @@ export const lawyerDetails: Record<string, Lawyer> = {
         title: "Ley de Concursos. Comentada, Anotada y Concordada",
         year: "1994",
         description:
-          "Con prólogo de Osvaldo Maffía. Editado en Entre Ríos en marzo de 1994 por Delta Editora. La presentación del libro fue declarada de interés académico por la Universidad Nacional de Entre Ríos (Resolución UNER N° 099-94 del 13/04/1994). Comentado favorablemente por Ernesto Eduardo Martorell en Diario La Ley (20/12/1994).",
+          'Con prólogo "de Osvaldo Maffía. Editado en Entre Ríos en Marzo de 1994 por Delta Editora. "…joven entrerriano, que ha logrado vencer ese fatídico sino que hace que -quienes trabajan y escriben en el interior del país- difícilmente alcancen trascendencia a nivel nacional(…)es sumamente valioso que haya otorgado un lugar preponderante a los fallos concebidos en sus pagos(…)las propuestas que formula no son para el topos urano platónico, sino para esta Argentina nuestra de los día que corren(…)obra profunda, solvente y clara"(sic, Bibliografía, Ernesto Eduardo Martorell, Diario La Ley del martes 20 de diciembre de 1994). Presentación del libro que fue declarada de interés académico por la Universidad Nacional de Entre Ríos (Resolución de la UNER número 099-94 de fecha 13/04/1994)',
       },
       {
         title: "Proyectos de Reformas. Ley de Concursos",
         year: "1994",
         description:
-          "Comentario al proyecto luego convertido en Ley 24.522. Editado en Entre Ríos en noviembre de 1994 por Delta Editora. Reformas expuestas junto a los Dres. Adolfo A. N. Roullión y Osvaldo J. Maffía como profesores invitados en la Honorable Cámara de Diputados del Congreso de la Nación en 1995.",
+          'Comentario al proyecto luego Ley 24522. Editado en Entre Ríos en Noviembre de 1994 por Delta Editora. Reformas sobre las cuales expuso junto con los Dres. Adolfo A. N. Roullión y Osvaldo J. Maffía como Profesores invitados en la Honorable Cámara de Diputados del Congreso de la Nación en 1995.',
       },
       {
         title: "Ley de Concursos",
         year: "2005",
         description:
-          "Tres tomos, con prólogo de Jaime Anaya. Editada por Ad-Hoc, Buenos Aires (2005/2007). Obra que recorre la doctrina judicial con especial énfasis en la jurisprudencia de tribunales provinciales y la Suprema Corte de Justicia de Mendoza.",
+          'Tres Tomos, con prólogo de Jaime Anaya. Editada por Ad-Hoc. Buenos Aires 2005/7 "Tal como lo hiciera en su obra de 1994, recorre con acierto la doctrina judicial y pone cuidado en destacar la contribución de los tribunales provinciales, dando particular relieve a los fallos de la Suprema Corte de Justicia de Mendoza, en comprensible muestra de reconocimiento a la notable jurista Aída Kemelmajer de Carlucci, que desde allí viene cumpliendo una destacada tarea. En la "Introducción" a sus comentarios sobre el proyecto de la que sería ley 24.522, Moro se hizo eco de las opiniones de la ilustrada jurista para sostener que se debe otorgar la posibilidad de reconversión, reestructuración mediante, a las empresas cuya perduración sea posible; mientras que a las que no sean viables hay que liquidarlas rápidamente. Al servicio de estas premisas se encuentran los comentarios de esta obra madura de Carlos E. Moro, desenvueltos con una pluma ágil, erudita, vehemente y por momentos áspera, con el énfasis que sabe poner quien está convencido de que la prioridad para la Argentina es salir de su default ético." Jaime L. Anaya',
       },
       {
         title:
           "Ley 26.086. Concursos y Quiebras. Modificación de la Ley 24.522",
         year: "2006",
-        description: "Editada por Ad-Hoc. Buenos Aires.",
+        description: 'Editada por Ad-Hoc. Buenos Aires 2006.',
       },
       {
         title: "El Concurso Preventivo y la Quiebra",
         year: "2004",
         description:
-          "Cinco tomos. Editado por Lexis Nexis (Depalma), Buenos Aires. Obra de Héctor Cámara actualizada bajo la dirección de Ernesto Eduardo Martorell, en coautoría con diversos especialistas.",
+          'Cinco Tomos. Editado por Lexis Nexis (Depalma), Buenos Aires Septiembre 2004. Obra de Héctor CÁMARA actualizada bajo la dirección de Ernesto Eduardo MARTORELL, en coautoría con José Antonio Iglesias, Daniel Truffat, Javier Lorente, Francisco Junyent Bas, Carlos Molina Sandoval, Héctor Arduino y Gustavo Esparza.',
       },
       {
         title: "Anuario de Derecho Concursal",
         year: "2004",
         description:
-          "Obra colectiva. Director Jorge Daniel Grispo. Editada por Ad-Hoc. Años 4 y 5 (2004/2005).",
+          'Obra Colectiva. Director Jorge Daniel Grispo. Editada por Ad-Hoc 2004/5 Años 4/5.',
       },
       {
         title: "Dinámica Judicial y Acciones en las Sociedades y Concursos",
         year: "2007",
         description:
-          "Editada por Advocatus. Obra colectiva en homenaje al Dr. Francisco Junyent Bas. Coordinadores: E. Daniel Truffat y Carlos A. Molina Sandoval. Córdoba.",
+          'ed. Advocatus. Coordinadores: E. Daniel Truffat y Carlos A. Molina Sandoval. Obra Colectiva en Homenaje al Dr. Francisco Junyent Bas. Córdoba 2007',
       },
       {
         title:
           "Resoluciones Alternativas de Conflictos en la Crisis de la Empresa y el Consumidor",
         year: "2010",
         description:
-          "Obra colectiva auspiciada por el Instituto de Derecho Concursal y la Empresa en Crisis del Colegio de Abogados de Tucumán, en reconocimiento a la trayectoria del Dr. Francisco Junyent Bas.",
+          'Obra colectiva auspiciada por el Instituto de Derecho Concursal y la Empresa en Crisis del Colegio de Abogados de Tucumán. Tucumán 2010, como reconocimiento a la trayectoria del Dr. Francisco Junyent Bas.',
       },
       {
         title: "Ensayos de Derecho Empresario",
         year: "2011",
         description:
-          "Obra colectiva in memoriam de Francisco A. Junyent Vélez. Dirección y coordinación: Luisa Isabel Borgarello, Efraín Hugo Richard y José María Rodríguez Pardina. Editorial Advocatus, Córdoba.",
+          'Obra Colectiva in memoriam de Francisco A. Junyent Vélez. Dirección y Coordinación Luisa Isabel Borgarello, Efraín Hugo Richard, José María Rodríguez Pardina. (Fespresa: Fundación para el Estudio de la Empresa), editorial Advocatus. Córdoba 2011',
       },
       {
         title: "Homenaje al Dr. Osvaldo J. Maffía",
         year: "2008",
         description:
-          "Obra colectiva. Editada por la Fundación para la Investigación del Derecho Concursal y la Empresa en Crisis y el Instituto Argentino de Derecho Comercial. Tucumán.",
+          'Obra Colectiva. Editado por la Fundación para la Investigación del Derecho Concursal y la Empresa en Crisis y el Instituto Argentino de Derecho Comercial. Coordinadores: E. Daniel Truffat, Marcelo Barreiro, Carlos Roberto Antoni Piossek y Ramón Vicente Nicastro. Tucumán 2008',
       },
       {
         title: "Ley de Concursos. Introducción y Estudio",
         year: "2011",
         description:
-          "Introducción y reseña al texto ordenado de la Ley 24.522 con sus reformas. Delta Editora, Paraná.",
+          'Introducción y reseña al texto ordenado de la Ley 24.522 con sus reformas: la 25.284, 25.563, 25.589, 25.750, 26.084 y 26.086, Delta editora. Paraná 2011.',
       },
       {
         title: "Ley de Concursos y Quiebras. Comentada",
         year: "2012",
         description:
-          "Cinco tomos. Editada por Editorial La Ley, Buenos Aires. Obra colectiva dirigida por Ernesto Eduardo Martorell.",
+          'Cinco Tomos. Editado por Editorial La Ley, Buenos Aires Octubre 2012. "Obra Monumental realizada por un selecto grupo de magistrados y profesionales, bajo la experta dirección del jurista Ernesto Eduardo Martorell"(sic, Bibliografía, Efraín Hugo Richard, Diario La Ley del lunes 1 de octubre de 2012).',
       },
       {
         title: "Cuestiones Concursales",
         year: "2010",
         description:
-          "Director de esta obra colectiva de magistrados, funcionarios y letrados entrerrianos. Editada por Delta Editora, Paraná.",
+          'Director de esta Obra colectiva de Magistrados, Funcionarios y Letrados de la Matrícula, todos autores entrerrianos, editada por la editorial entrerriana Delta. Paraná 2010',
       },
     ],
 
@@ -327,141 +328,412 @@ export const lawyerDetails: Record<string, Lawyer> = {
 
     journals: [
       {
-        journal: "Derecho Comercial y de las Obligaciones (RDCO)",
+        journal: "DERECHO COMERCIAL Y DE LAS OBLIGACIONES.(RDCO) –)",
         publisher: "LexisNexis - Depalma",
         director: "Raúl A. Etcheverry",
         articles: [
           {
             title:
-              "La reciprocidad: un problema de los unos y los otros. Concurso declarado en el extranjero. Apertura en el país. Sujetos legitimados",
+              "La Reciprocidad: Un problema de los unos y los otros. Concurso Declarado en el extranjero. Apertura en el país. Sujetos Legitimados. ",
             year: "2005",
-            reference: "2005-B, Año 38, p. 881",
+            reference: "(2005-B, año 38, Pág. 881)",
           },
           {
             title:
-              "La propuesta concordataria la aceptan o rechazan los acreedores concurrentes que verificaron… Nadie más",
+              "La propuesta concordataria la aceptan o rechazan los acreedores concurrentes que verificaron… Nadie más.",
             year: "2007",
-            reference: "2007-A, Año 40, p. 387",
+            reference: "(2007-A, año 40, Pág. 387)",
           },
         ],
       },
       {
-        journal: "Derecho y Empresa (DYE)",
-        publisher: "Facultad de Ciencias Empresariales – Universidad Austral",
-        director: "Adolfo A. N. Rouillón",
+        journal: "DYE (DERECHO Y EMPRESA)",
+        publisher: "Facultad de Ciencias Empresariales de la UNIVERSIDAD AUSTRAL",
+        director: "Adolfo A. N. Roullion",
         articles: [
           {
-            title: "Concurso en caso de agrupamiento",
-            reference: "Tomo 4 – Homenaje a Héctor Cámara, p. 167",
+            title: "Concurso en caso de Agrupamiento",
+            reference: "(Tomo 4 en Homenaje a Héctor Cámara, Pág. 167)",
           },
           {
-            title: "Seguros y concursos: asignaturas pendientes",
-            reference: "Tomo 7/8 – Homenaje a J. C. Morandi, p. 65",
+            title: "Seguros y Concursos Asignaturas Pendientes",
+            reference: "(Tomo 7/8 en Homenaje a J. C. Morandi, Pág. 65)",
           },
           {
             title: "Cramdown",
             year: "2004",
             reference:
-              "Homenaje al Juez Guillermo Mosso – Obra Colectiva Derecho Concursal, La Ley",
+              "(En Homenaje al Juez Guillermo Mosso en Obra Colectiva “Derecho Concursal”, editada por La Ley, en octubre del año 2004)",
           },
         ],
       },
       {
-        journal: "Instituto Argentino de Derecho Comercial",
+        journal: "INSTITUTO ARGENTINO DE DERECHO COMERCIAL.",
         publisher: "Editorial Legis",
         director: "Martín Arecha",
+        description: "A lo largo de más de 70 años, se logró congregar un grupo independiente de profesionales dedicados al derecho comercial, trabajando de modo constante y permanente en el seguimiento de las novedades doctrinarias y jurisprudenciales de esta rama en el país y en el mundo. ",
         articles: [
           {
             title:
-              "Aspectos contables, impositivos y previsionales en las sociedades y los concursos",
+              "Aspectos contables, impositivos y previsionales en las sociedades y los concursos.",
             year: "2010",
           },
           {
-            title: "El fideicomiso en las sociedades y los concursos",
+            title: "El Fideicomiso en las Sociedades y los Concursos",
             year: "2011",
           },
           {
             title:
-              "Los derechos de los trabajadores en las sociedades y los concursos",
+              "Los derechos de los Trabajadores en las Sociedades y los Concursos.",
             year: "2012",
           },
           {
             title:
-              "Aspectos contables, impositivos y previsionales en las sociedades y los concursos",
+              "Aspectos Contables, Impositivos y Previsionales en las Sociedades y los Concursos.",
             year: "2013",
           },
           {
-            title: "Cuestiones procesales en las sociedades y los concursos",
+            title: "Cuestiones Procesales en las Sociedades y los Concursos.",
             year: "2014",
           },
           {
             title:
-              "Institutos del Derecho Comercial a la luz del Nuevo Código Civil y Comercial de la Nación",
+              "Institutos del Derecho Comercial a la luz del Nuevo Código Civil y Comercial de la Nación.",
             year: "2016",
           },
           {
-            title: "Crowdfunding y sociedades por acciones simplificadas",
+            title: "Crowfunding y Sociedades por Acciones Simplificadas.",
             year: "2018",
           },
         ],
       },
       {
-        journal: "Derecho Societario y Concursal Panamericano",
-        country: "Costa Rica",
+        journal: "DERECHO SOCIETARIO y CONCURSAL. PANAMERICANO",
+        country: "San José, Costa Rica. 2014",
+        director: "Gabriela F. Boquín – Álvaro Hernández Aguilar",
         articles: [
           {
-            title: "Concursarse es un derecho. Colaborar es un deber",
+            title: "Concursarse es un derecho. Colaborar es un deber.",
             year: "2014",
           },
           {
-            title: "El abuso del derecho en el proceso concursal",
+            title: "El abuso del Derecho en el Proceso Concursal.",
             year: "2017",
           },
         ],
       },
       {
-        journal: "De las Sociedades y Concursos (DSC)",
+        journal: "De las SOCIEDADES Y CONCURSOS (DSC).",
         publisher: "Ad-Hoc / Legis",
         director: "Ricardo A. Nissen",
         articles: [
           {
-            title: "Ni prohibido, ni prescripto; legal y justo",
-            reference: "Revista 21, p. 75",
+            title: "Ni prohibido, ni prescripto; legal y justo.",
+            reference: "(Revista 21 – Página 75)",
           },
           {
-            title: "Juicios contra el concursado: ¿dónde?, ¿cómo?, ¿cuándo?",
-            reference: "Revista 31, p. 49",
+            title: "Juicios contra el concursado. Dónde? Cómo? Cuándo?.",
+            reference: "(Revista 31 – Página 49)",
           },
           {
-            title: "Cosa juzgada concursal. Inexistencia de deuda fiscal",
-            reference: "Revista 47, p. 81",
+            title: "Cosa juzgada concursal. Inexistencia de deuda fiscal. Nula incidencia en el fuero represivo. Condena penal por evasión.",
+            reference: "(Revista 47 – Página 81)",
           },
           {
-            title: "Extensión de quiebra. Simulación e ineficacia",
-            reference: "Revista 48, p. 107",
+            title: "Extensión de quiebra. Simulación e Ineficacia. Legitimación para deducir la acción. Prueba.",
+            reference: "(Revista 48 – Página 107)",
           },
           {
-            title: "Concursos: cuestiones procesales",
-            year: "2010",
+            title: "Concursos: cuestiones procesales.",
+            year: "(Año 11 - 2010 - 1 – 23)",
           },
           {
-            title: "La prescripción desde un prisma concursal",
-            year: "2011",
+            title: "La prescripción desde un prisma concursal.",
+            year: "(Año 12 - 2011- 2 – 165)",
           },
         ],
       },
       {
-        journal: "Revista de Derecho Fiscal",
-        publisher: "LexisNexis",
-        director: "Alberto Tarsitano – Juan Carlos Yemma",
+        journal: "SEGUNDO CONGRESO IBEROAMERICANO DE LA INSOLVENCIA",
+        publisher: "2000",
+        country: "La Cumbre Córdoba",
+        description: "in memoriam de Hector Cámara y Francisco Quintana Ferreyra.",
         articles: [
           {
             title:
-              "Interacción de las sentencias dictadas por los fueros comercial y penal en materia tributaria",
-            year: "2008",
-            reference: "Enero / Febrero",
+              "Responsabilidad De Directivos De La Empresa Frente A Su Quiebra",
+          },
+          {
+            title: "El Enigma Continua: El Caso Del Articulo 43",
           },
         ],
+      },
+      {
+        journal: "DERECHO CONCURSAL ARGENTINO E IBEROAMERICANO",
+        publisher: "Tomo I. ed. Ad-Hoc. 2003",
+        articles: [
+          {
+            title: "Acuerdo Preventivo Extrajudicial. Inconstitucionalidades. Inseguridad Jurídica. Discriminación"
+          },
+        ]
+      },
+      {
+        journal: "VERIFICACION DE CREDITOS.",
+        publisher: "Ad-Hoc. 2004",
+        articles: [
+          {
+            title: "Créditos Fiscales. Los Intereses de la Afip No pueden, Ni deben pasar las barreras concursales"
+          },
+        ]
+      },
+      {
+        journal: "PROBLEMAS Y CUESTIONES SOBRE LOS CONCURSOS.",
+        publisher: "Ad-Hoc. 2006",
+        director: "Daniel R. Vitolo y Marta Pardini.",
+        articles: [
+          {
+            title: "Pronto Pagos Virtuales"
+          },
+          {
+            title: "El Derecho de Voto se atribuye al Acreedor y no a los Créditos"
+          },
+        ]
+      },
+      {
+        journal: "LA TUTELA DE LOS ACREEDORES EN LOS PROCESOS CONCURSALES",
+        publisher: "Ad-Hoc. 2006",
+        articles: [
+          {
+            title: "Fraude Concursal"
+          },
+          
+        ]
+      },
+      {
+        journal: "VI CONGRESO ARGENTINO DE DERECHO CONCURSAL",
+        publisher: "Facultad de derecho y Ciencia Sociales de Rosario de la U.C.A. y la Facultad de Derecho de la U.N.R. - 2006",
+        description: "IV CONGRESO IBEROAMERICANO SOBRE LA INSOLVENCIA. ",
+        articles: [
+          {
+            title: "El Pago por Subrogación no genera “Ope Legis” el Derecho de Voto en quien lo efectúa",
+            reference: "(Tomo I)"
+          },
+          {
+            title: "Una Reforma Unitaria para una Argentina cada vez menos Federal",
+            reference: "(Tomo III)"
+          },
+          
+        ]
+      },
+      {
+        journal: "X CONGRESO ARGENTINO DE DERECHO SOCIETARIO",
+        publisher: "FESPRESA. - 2007",
+        description: "VI CONGRESO IBEROAMERICANO DE DERECHO SOCIETARIO Y DE LA EMPRESA. ",
+        articles: [
+          {
+            title: "La Responsabilidad Solidaria del Art. 31 de la Ley de Contrato de Trabajo. Visión Societaria y Concursal",
+            reference: "(Tomo IV)"
+          },
+        ]
+      },
+      {
+        journal: "X CONGRESO ARGENTINO DE DERECHO SOCIETARIO",
+        country: "Paraná. Entre Ríos",
+        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2007",
+        articles: [
+          {
+            title: "Fondo de Garantías de Créditos Laborales. La creacion de lo que ya existe",
+          },
+          {
+            title: "El Tic Tac de la Prescripción Concursal no se desactiva con la Quiebra Indirecta."
+          },
+          {
+            title: "Verificación de Honorarios. Con condena en costas firme, pero no regulados.",
+          },
+          {
+            title: "La presencia del ausente… la Afip."
+          },
+        ]
+      },
+      {
+        journal: "XV JORNADAS DE INSTITUTOS DE DERECHOS COMERCIAL DE LA REPUBLICA ARGENTINA.",
+        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2008.",
+        articles: [
+          {
+            title: "l Estado de Cesación de Pagos: Un presupuesto que no puede faltar, ni al principio ni al final.",
+          },
+          {
+            title: "Turbulencias en el Iter Concursal"
+          },
+        ]
+      },
+      {
+        journal: "TEMAS ACTUALES DE DERECHO CONCURSAL.",
+        director: "Ricardo A. Nissen, Gabriela F. Boquin, Marta G. Pardini y Daniel R. Vitolo.",
+        publisher: " Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2007.",
+        articles: [
+          {
+            title: "Cuando se condena por lo que no existe… estamos en problemas.",
+          },
+        ]
+      },
+      {
+        journal: "LEX.",
+        publisher: "  Colegio de Abogados y Caja Forense de Entre Ríos. - 2008",
+        articles: [
+          {
+            title: "Verificación de honorarios no regulados en el concurso del condenado en costas",
+          },
+        ]
+      },
+      {
+        journal: "NUEVAS TENDENCIAS EN LA JURISPRUDENCIA SOCIETARIA Y CONCURSAL.",
+        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2009",
+        articles: [
+          {
+            title: "Verificación: un tema siempre conflictivo",
+          },
+        ]
+      },
+      {
+        journal: "EL FRAUDE CONCURSAL Y OTRAS CUESTIONES DE DERECHO FALIMENTARIO",
+        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas - 2010",
+        articles: [
+          {
+            title: "Abuso de derecho",
+          },
+        ]
+      },
+      {
+        journal: "REVISTA DE DERECHO CONCURSAL.",
+        description: "TOMO VII",
+        director: "Miguel A. Raspall.",
+        publisher: "ZEUS. - 2006",
+        articles: [
+          {
+            title: "La Responsabilidad Solidaria del Art. 31 de la LCT. Visión Societaria y Concursal",
+          },
+        ]
+      },
+      {
+        journal: "REVISTA DE DERECHO CONCURSAL.",
+        description: "TOMO VII",
+        director: "Miguel A. Raspall.",
+        publisher: "ZEUS. - 2006",
+        articles: [
+          {
+            title: "La Responsabilidad Solidaria del Art. 31 de la LCT. Visión Societaria y Concursal",
+          },
+        ]
+      },
+      {
+        journal: "ERREPAR (Doctrina Societaria y Concursal)",
+        articles: [
+          {
+            title: 'UN PRIVILEGIADO EN LA LEY CONCURSAL, "SUPER PRIVILEGIADO" POR LA LEY DE PRENDA CON REGISTRO',
+            reference: "( T.1-122)"
+          },
+          {
+            title: "PEDIDO DE QUIEBRA RECHAZADO E IMPOSICION DE COSTAS",
+            reference: "(T.1-147)"
+          },
+          {
+            title: "VERIFICACION DE CREDITOS Y SENTENCIAS DICTADAS EN JUICIO EJECUTIVO",
+            reference: "(T.1-124)"
+          },
+          {
+            title: "APODERADO JUDICIAL DE SOCIEDAD ANONIMA. EXCEPCION DE ALTA DE PERSONERIA ",
+            reference: "(T.1-248)"
+          },
+          {
+            title: "PLAZO DE GRACIA EN LOS CONCURSOS ",
+            reference: "(T II-320)"
+          },
+          {
+            title: "IMPUGNACION AL ACUERDO",
+            reference: "(ART. 59,L.C.) ( T.II-649)"
+          },
+          {
+            title: "CONCURSO SIN SUJETO ",
+            reference: "(T.IV-911)"
+          },
+          {
+            title: "ADMINISTRACION CONCURSAL (el día después) ",
+            reference: "(T. XVII -552)"
+          },
+          {
+            title: "VERIFICACION DE CREDITOS ",
+            reference: "(T. XXII – 14)"
+          },
+          {
+            title: 'LA SENTENCIA DE LA CORTE FEDERAL "SOCIEDAD COMERCIAL DEL PLATA S.A." ALGO MAS QUE UN FALLO MAS',
+            reference: "(T. XXII – 132)"
+          }
+        ]
+      },
+      {
+        journal: "DELTA",
+        articles: [
+          {
+            title: "NUEVA LEY DE QUIEBRAS ¿ES CONSTITUCIONAL? (publicado en separata Delta Editora del año 1995 )",
+            reference: "( Páginas 1,2,3,4 y 5 )"
+          },
+          {
+            title: "QUIEBRA A PEDIDO DE ACREEDOR. RECHAZO – APELABILIDAD UNA CUESTIÓN QUE PARECIA RESUELTA ( publicado en la revista mensual Delta Editora de abril de 1995 ) ",
+            reference: "( Páginas 34,35,36 y 37 "
+          },
+          {
+            title: "VERIFICACION DE CREDITOS - Año: 1991 ",
+            reference: "(Tomo:42 Folio:9)"
+          },
+          {
+            title: " SALIDA DEL PAIS CONCURSOS LIMITACIONES ( Año:1991 )",
+            reference: "(Tomo:43 Folio:343)"
+          },
+          {
+            title: "TASA DE INTERES ACTIVA 0 PASIVA: SENTENCIAS JUDICIALES ( Año:1992 )",
+            reference: "(Tomo:48 Folio:33"
+          },
+          {
+            title: "CESACION DE PAGOS: UNA APROXIMACION  ( AÑO 2005 )",
+            reference: "(114)"
+          },
+          {
+            title: "QUIEBRA: SU DECLARACIÓN  ( AÑO 2005 )",
+            reference: "(114)"
+          },
+          {
+            title: "CAMBIOS EN CONCURSOS Y QUIEBRAS. SINDICOS PREOCUPADOS. SINDICATOS CON MÁS PODER ",
+            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 117 – Pág. 51)"
+          },
+          {
+            title: "NI CONCURSO PREVENTIVO NI A.P.E. PARA BANCOS Y EX BANCOS ",
+            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 118 – Pág. 435)"
+          },
+          {
+            title: "MÁS SOBRE LA VEDA DEL APE A LOS BANCOS ",
+            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 120 – Pág. 9)"
+          },
+          {
+            title: "LA REALIDAD PRIMA SOBRE LA APARIENCIA ",
+            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 121 – Pág. 361)"
+          },
+          {
+            title: "HONORARIOS EN LA QUIEBRA INDIRECTA. UNA O DOS REGULACIONES: UN TEMA POLEMICO. EL FALLO QUE SE ANOTA: UNA APORTE ESCLARECEDOR ",
+            reference: "(publicado en separata Delta Editora del año 2008)"
+          }
+        ]
+      },
+      {
+        journal: "EVISTA DERECHO FISCAL.",
+        director: "Alberto Tarsitano y Juan Carlos Yemma.",
+        publisher: "LexisNexis",
+        articles: [
+          {
+            title: "INTERACCION DE LAS SENTENCIAS DICTADAS POR LOS FUEROS COMERCIAL Y PENAL EN MATERIA TRIBUTARIA Y PENAL TRIBUTARIA.",
+            reference: "(1. Enero/Febrero 2008)"
+          },
+        ]
       },
     ],
 
@@ -471,159 +743,155 @@ export const lawyerDetails: Record<string, Lawyer> = {
         articles: [
           {
             title:
-              "¿Puede el juez regular el plazo “de veinte días” del art. 11 de la Ley de Concursos?",
-            reference: "120-296",
+              "¿PUEDE EL JUEZ REGULAR EL PLAZO “DE VEINTE DIAS” DEL ART. 11 DE LA LEY DE CONCURSOS? ",
+            reference: "(120-296)",
           },
           {
-            title: "Ni aquí, ni allá, ni en ningún lugar",
-            reference: "174-150",
-          },
-          {
-            title:
-              "¿Es apelable la sentencia que rechaza la quiebra pedida por acreedor? Se renuevan las leyes pero no el debate",
-            reference: "176-174",
-          },
-          {
-            title: "Reformas concursales propuestas",
-            reference: "176-892",
-          },
-          {
-            title: "Ineficacia: un caso por fortuna inusual",
-            reference: "179-395",
+            title: "NI AQUÍ, NI ALLÁ, NI EN NINGÚN LUGAR ",
+            reference: "(174-150)",
           },
           {
             title:
-              "Síndico: naturaleza de sus funciones – cosa juzgada – límites",
-            reference: "181-179",
+              "¿ES APELABLE LA SENTENCIA QUE RECHAZA LA QUIEBRA PEDIDA POR ACREEDOR?. SE RENUEVAN LAS LEYES PERO NO EL DEBATE",
+            reference: "(176-174)",
           },
           {
-            title: "Si ella quiebra, quiebran ellos: ¿todos?",
-            reference: "183-38",
+            title: "REFORMAS CONCURSALES PROPUESTAS ",
+            reference: "(176-892)",
           },
           {
-            title: "Grupo. Concurso. Competencia",
-            reference: "183-420",
-          },
-          {
-            title: "Verificación tardía en la quiebra",
-            reference: "184-167",
-          },
-          {
-            title: "Fallidos por conveniencia. Tercer acto",
-            reference: "184-1403",
+            title: "INEFICACIA: UN CASO POR FORTUNA INUSUAL ",
+            reference: "(179-395)",
           },
           {
             title:
-              "Ariel Ángel Dasso. Tendencias actuales del derecho concursal (comentario al libro)",
-            reference: "188-1169",
+              "SÍNDICO: NATURALEZA DE SUS FUNCIONES – COSA JUZGADA – LÍMITES.",
+            reference: "(181-179)",
+          },
+          {
+            title: "SI ELLA QUIEBRA, QUIEBRAN ELLOS: ¿TODOS?",
+            reference: "(183-38)",
+          },
+          {
+            title: "GRUPO. CONCURSO. COMPETENCIA",
+            reference: "(183-420)",
+          },
+          {
+            title: "VERIFICACION TARDIA en la QUIEBRA",
+            reference: "(184-167)",
+          },
+          {
+            title: "FALLIDOS POR CONVENIENCIA. TERCER ACTO",
+            reference: "(184-1403)",
           },
           {
             title:
-              "Notificado: ni personalmente, ni por nota, ni por cédula… concursalmente",
-            reference: "187-615",
-          },
-          {
-            title: "Nueva ley de quiebra",
-            reference: "197-1010",
-          },
-          {
-            title: "Ineficacia de una sentencia: de eso no se habla",
-            reference: "198-262",
-          },
-          {
-            title: "Ya no sos mi Margarita… ahora te llaman Margot",
-            reference: "202-442",
-          },
-          {
-            title: "Los bancos no se concursan. Los “ex” bancos, tampoco",
-            reference: "204-976",
-          },
-          {
-            title: "Ayudame a que te ayude",
-            reference: "222-56",
+              "ARIEL ANGEL DASSO. TENDENCIAS ACTUALES DEL DERECHO CONCURSAL. Comentario al libro ",
+            reference: "(188-1169)",
           },
           {
             title:
-              "El derecho concursal somete al tributario. Nos parece correcto",
-            reference: "227-77",
+              "NOTIFICADO: NI PERSONALMENTE, NI POR NOTA, NI POR CEDULA,... CONCURSALMENTE. ",
+            reference: "(187-615)",
+          },
+          {
+            title: "NUEVA LEY DE QUIEBRA ",
+            reference: "(197-1010)",
+          },
+          {
+            title: "INEFICACIA DE UNA SENTENCIA: DE ESO NO SE HABLA.",
+            reference: "(198-262)",
+          },
+          {
+            title: "YA NO SOS MI MARGARITA…AHORA TE LLAMAN MARGOT ",
+            reference: "(202-442)",
+          },
+          {
+            title: 'LOS BANCOS NO SE CONCURSAN. LOS "EX" BANCOS, TAMPOCO ',
+            reference: "(204-976)",
+          },
+          {
+            title: "AYUDAME A QUE TE AYUDE ",
+            reference: "(222 – 56)",
           },
           {
             title:
-              "Honorarios no regulados. Verificación en el concurso del condenado en costas",
-            reference: "229-134",
+              "EL DERECHO CONCURSAL SOMETE AL TRIBUTARIO. NOS PARECE CORRECTO ",
+            reference: "(227 – 77)",
           },
           {
             title:
-              "Dos fallidas = una quiebra. Solo a veces. Casi como excepción",
+              "HONORARIOS NO REGULADOS. VERIFCACION EN EL CONCURSO DEL CONDENADO EN COSTAS",
+            reference: "(229 – 134)",
+          },
+          {
+            title:
+              "DOS FALLIDAS = UNA QUIEBRA. SOLO A VECES. CASI COMO EXCEPCIÓN (234-51)",
             reference: "234-51",
           },
           {
             title:
-              "Fondo de garantías de créditos laborales: 23 años sin reglamentar. ¿Nadie es responsable de esta desidia?",
-            reference: "234-315",
+              'FONDO DE GARANTÍAS DE CRÉDITOS LABORALES "23" AÑOS SIN REGLAMENTAR. ¿NADIE ES RESPONSABLE DE ESTA DESIDIA? ¿NO ES TIEMPO ACASO DE REGLAMENTARLO? ',
+            reference: "(234-315)",
           },
         ],
       },
       {
-        newspaper: "La Ley",
+        newspaper: "LA LEY",
         articles: [
           {
             title:
-              "Calidad simulada y falsos títulos bajo el prisma quiebrista",
-            reference: "1985-C-1071",
+              "CALIDAD SIMULADA Y FALSOS TÍTULOS BAJO EL PRISMA QUIEBRISTA ",
+            reference: "(1985-C-1071)",
           },
           {
             title:
-              "Homologación del concordato. Cese de la prohibición para salir del país",
-            reference: "1994-D-141",
+              "HOMOLOGACIÓN DEL CONCORDATO. CESE DE LA PROHIBICIÓN PARA SALIR DEL PAÍS ",
+            reference: "(1994-D-141)",
           },
           {
-            title: "Quiebra consecuencial o indirecta. Trámite de la apelación",
-            reference: "1995-A-633",
+            title: "QUIEBRA CONSECUENCIAL O INDIRECTA. TRÁMITE DE LA APELACIÓN ",
+            reference: "(1995-A-633)",
           },
           {
-            title: "Síndico concursal. Sanciones. Ley 24.432",
-            reference: "1995-E-170",
+            title: "SINDICO CONCURSAL. SANCIONES. LEY 24.432 ",
+            reference: "(1995-E-170)",
           },
           {
-            title: "Excepción de arraigo: ¿es posible en los concursos?",
-            reference: "1996-A-1091",
+            title: "EXCEPCIÓN DE ARRAIGO: ¿ES POSIBLE EN LOS CONCURSOS? ",
+            reference: "(1996-A-1091)",
           },
           {
             title:
-              "Facultades del juez en la designación del síndico concursal",
-            reference: "2003-F-178",
+              "FACULTADES DEL JUEZ EN LA DESIGNACION DEL SÍNDICO CONCURSAL. ",
+            reference: "(2003-F-178)",
           },
         ],
       },
       {
-        newspaper: "Jurisprudencia Argentina",
+        newspaper: "JURISPRUDENCIA ARGENTINA",
         articles: [
           {
             title:
-              "Derecho concursal. Cuestiones actuales del régimen de la Ley 25.589. El interés concursal regula, somete y condiciona los intereses de la AFIP",
-            year: "2003",
-            reference: "JA 2003-IV, Fascículo 11, p. 20",
+              "DERECHO CONCURSAL. CUESTIONES ACTUALES DEL RÉGIMEN DE LA LEY 25589. SEGUNDA PARTE DE UN NRO. ESPECIAL COORDINADO POR LOS DRES. FRANCISCO JUNYENT BAS Y CARLOS A. MOLINA SANDOVAL. 10 DE DICIEMBRE DE 2003/JA 2003-IV FASCÍCULO 11, PÁG. 20: TOME NOTA: EL INTERÉS CONCURSAL REGULA, SOMETE, LIMITA Y CONDICIONA LOS INTERESES DE LA DGI (AFIP )",
           },
           {
             title:
-              "Beneficio de litigar sin gastos. Ni tan fácil, ni para todas las personas",
-            year: "2005",
-            reference: "JA Fascículo 7, p. 16",
+              "BENEFICIO DE LITIGAR SIN GASTOS. NI TAN FÁCIL, NI PARA TODAS LAS PERSONAS. 16 DE FEBRERO DE 2005. JA FASCÍCULO 7, PÁG. 16",
           },
         ],
       },
       {
-        newspaper: "Zeus",
+        newspaper: "ZEUS",
         articles: [
           {
-            title: "Y… el síndico… ¿es…?",
-            reference: "28-D-3",
+            title: "Y ...EL SINDICO ...ES ...?",
+            reference: "( 28-D-3)",
           },
         ],
       },
       {
-        newspaper: "Microjuris – Biblioteca Virtual",
+        newspaper: "MICROJURIS – Biblioteca Virtual",
         articles: [],
       },
     ],

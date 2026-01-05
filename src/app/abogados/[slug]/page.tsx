@@ -220,11 +220,21 @@ const LawyerProfilePage = () => {
 
               {journals.map((j: any, i: number) => (
                 <div key={i} className="mb-10">
-                  <p className="font-semibold text-sm mb-2">
+                  {/* Journal + Publisher */}
+                  <p className="font-semibold text-sm">
                     {j.journal}
+                    {j.director && ` – ${j.director}`}
                     {j.publisher && ` – ${j.publisher}`}
                   </p>
 
+                  {/* Description del journal */}
+                  {j.description && (
+                    <p className="text-sm text-gray-600 italic mt-1 mb-3">
+                      {j.description}
+                    </p>
+                  )}
+
+                  {/* Artículos */}
                   <ul className="ml-6 list-disc space-y-2 text-sm">
                     {j.articles.map((a: any, idx: number) => (
                       <li key={idx}>
@@ -252,7 +262,11 @@ const LawyerProfilePage = () => {
 
                   <ul className="ml-6 list-disc space-y-2 text-sm">
                     {n.articles.map((a: any, idx: number) => (
-                      <li key={idx}>{a.title}</li>
+                      <li key={idx}>
+                        {a.title}
+                        {a.year && ` (${a.year})`}
+                        {a.reference && ` – ${a.reference}`}
+                        </li>
                     ))}
                   </ul>
                 </div>

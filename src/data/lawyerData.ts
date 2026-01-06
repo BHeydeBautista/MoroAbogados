@@ -1,5 +1,3 @@
-
-
 export interface Lawyer {
   slug: string;
   name: string;
@@ -37,7 +35,12 @@ export interface Lawyer {
     description?: string;
   }>;
 
-  articles: Array<{ title: string; publication?: string; year?: string }>;
+  articles: Array<{
+    title: string;
+    publication?: string;
+    year?: string;
+    reference?: string;
+  }>;
 
   articles_en?: Array<{
     title_en?: string;
@@ -48,6 +51,9 @@ export interface Lawyer {
   academicPositions: Array<{
     title: string;
     institution: string;
+    descriptiona?: string;
+    descriptionb?: string;
+    descriptionc?: string;
     period: string;
   }>;
 
@@ -103,6 +109,7 @@ export interface Lawyer {
     }>;
   }>;
 
+  course?: Array<{ title: string; year?: string }>;
   otherRoles: Array<{ title: string; string?: string[] }>;
   otherRoles_en?: Array<{ title_en?: string; string_en?: string[] }>;
 
@@ -150,15 +157,17 @@ export const lawyerDetails: Record<string, Lawyer> = {
       started: [
         {
           title: "Expositor",
-          description: "CURSO DE ACTUALIZACIÓN EN DERECHO COMERCIAL organizado en 1988 en la Universidad Notarial Argentina juntamente con los Dres Ernesto Martorell, Salvador Bergel. Francisco Caputo, Edgardo Alberti, Daniel Vitolo, Norberto Benseñor, Eduardo Favier Dubois (h.), Enrique Butty y Ricardo Nissen."
+          description:
+            "CURSO DE ACTUALIZACIÓN EN DERECHO COMERCIAL organizado en 1988 en la Universidad Notarial Argentina juntamente con los Dres Ernesto Martorell, Salvador Bergel. Francisco Caputo, Edgardo Alberti, Daniel Vitolo, Norberto Benseñor, Eduardo Favier Dubois (h.), Enrique Butty y Ricardo Nissen.",
         },
       ],
       end: [
         {
           title: "Profesor",
-          description: "invitado a la Primera CARRERA DE POST-GRADO: de ESPECIALIZACIÓN EN SINDICATURA y en ASESORAMIENTO CONCURSAL, organizada en la Universidad Notarial Argentina dirigida por el Dr. Héctor Cámara, dictada en el año 1.990."
-        }
-      ]
+          description:
+            "invitado a la Primera CARRERA DE POST-GRADO: de ESPECIALIZACIÓN EN SINDICATURA y en ASESORAMIENTO CONCURSAL, organizada en la Universidad Notarial Argentina dirigida por el Dr. Héctor Cámara, dictada en el año 1.990.",
+        },
+      ],
     },
 
     books: [
@@ -172,7 +181,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
         title: "Proyectos de Reformas. Ley de Concursos",
         year: "1994",
         description:
-          'Comentario al proyecto luego Ley 24522. Editado en Entre Ríos en Noviembre de 1994 por Delta Editora. Reformas sobre las cuales expuso junto con los Dres. Adolfo A. N. Roullión y Osvaldo J. Maffía como Profesores invitados en la Honorable Cámara de Diputados del Congreso de la Nación en 1995.',
+          "Comentario al proyecto luego Ley 24522. Editado en Entre Ríos en Noviembre de 1994 por Delta Editora. Reformas sobre las cuales expuso junto con los Dres. Adolfo A. N. Roullión y Osvaldo J. Maffía como Profesores invitados en la Honorable Cámara de Diputados del Congreso de la Nación en 1995.",
       },
       {
         title: "Ley de Concursos",
@@ -184,50 +193,50 @@ export const lawyerDetails: Record<string, Lawyer> = {
         title:
           "Ley 26.086. Concursos y Quiebras. Modificación de la Ley 24.522",
         year: "2006",
-        description: 'Editada por Ad-Hoc. Buenos Aires 2006.',
+        description: "Editada por Ad-Hoc. Buenos Aires 2006.",
       },
       {
         title: "El Concurso Preventivo y la Quiebra",
         year: "2004",
         description:
-          'Cinco Tomos. Editado por Lexis Nexis (Depalma), Buenos Aires Septiembre 2004. Obra de Héctor CÁMARA actualizada bajo la dirección de Ernesto Eduardo MARTORELL, en coautoría con José Antonio Iglesias, Daniel Truffat, Javier Lorente, Francisco Junyent Bas, Carlos Molina Sandoval, Héctor Arduino y Gustavo Esparza.',
+          "Cinco Tomos. Editado por Lexis Nexis (Depalma), Buenos Aires Septiembre 2004. Obra de Héctor CÁMARA actualizada bajo la dirección de Ernesto Eduardo MARTORELL, en coautoría con José Antonio Iglesias, Daniel Truffat, Javier Lorente, Francisco Junyent Bas, Carlos Molina Sandoval, Héctor Arduino y Gustavo Esparza.",
       },
       {
         title: "Anuario de Derecho Concursal",
         year: "2004",
         description:
-          'Obra Colectiva. Director Jorge Daniel Grispo. Editada por Ad-Hoc 2004/5 Años 4/5.',
+          "Obra Colectiva. Director Jorge Daniel Grispo. Editada por Ad-Hoc 2004/5 Años 4/5.",
       },
       {
         title: "Dinámica Judicial y Acciones en las Sociedades y Concursos",
         year: "2007",
         description:
-          'ed. Advocatus. Coordinadores: E. Daniel Truffat y Carlos A. Molina Sandoval. Obra Colectiva en Homenaje al Dr. Francisco Junyent Bas. Córdoba 2007',
+          "ed. Advocatus. Coordinadores: E. Daniel Truffat y Carlos A. Molina Sandoval. Obra Colectiva en Homenaje al Dr. Francisco Junyent Bas. Córdoba 2007",
       },
       {
         title:
           "Resoluciones Alternativas de Conflictos en la Crisis de la Empresa y el Consumidor",
         year: "2010",
         description:
-          'Obra colectiva auspiciada por el Instituto de Derecho Concursal y la Empresa en Crisis del Colegio de Abogados de Tucumán. Tucumán 2010, como reconocimiento a la trayectoria del Dr. Francisco Junyent Bas.',
+          "Obra colectiva auspiciada por el Instituto de Derecho Concursal y la Empresa en Crisis del Colegio de Abogados de Tucumán. Tucumán 2010, como reconocimiento a la trayectoria del Dr. Francisco Junyent Bas.",
       },
       {
         title: "Ensayos de Derecho Empresario",
         year: "2011",
         description:
-          'Obra Colectiva in memoriam de Francisco A. Junyent Vélez. Dirección y Coordinación Luisa Isabel Borgarello, Efraín Hugo Richard, José María Rodríguez Pardina. (Fespresa: Fundación para el Estudio de la Empresa), editorial Advocatus. Córdoba 2011',
+          "Obra Colectiva in memoriam de Francisco A. Junyent Vélez. Dirección y Coordinación Luisa Isabel Borgarello, Efraín Hugo Richard, José María Rodríguez Pardina. (Fespresa: Fundación para el Estudio de la Empresa), editorial Advocatus. Córdoba 2011",
       },
       {
         title: "Homenaje al Dr. Osvaldo J. Maffía",
         year: "2008",
         description:
-          'Obra Colectiva. Editado por la Fundación para la Investigación del Derecho Concursal y la Empresa en Crisis y el Instituto Argentino de Derecho Comercial. Coordinadores: E. Daniel Truffat, Marcelo Barreiro, Carlos Roberto Antoni Piossek y Ramón Vicente Nicastro. Tucumán 2008',
+          "Obra Colectiva. Editado por la Fundación para la Investigación del Derecho Concursal y la Empresa en Crisis y el Instituto Argentino de Derecho Comercial. Coordinadores: E. Daniel Truffat, Marcelo Barreiro, Carlos Roberto Antoni Piossek y Ramón Vicente Nicastro. Tucumán 2008",
       },
       {
         title: "Ley de Concursos. Introducción y Estudio",
         year: "2011",
         description:
-          'Introducción y reseña al texto ordenado de la Ley 24.522 con sus reformas: la 25.284, 25.563, 25.589, 25.750, 26.084 y 26.086, Delta editora. Paraná 2011.',
+          "Introducción y reseña al texto ordenado de la Ley 24.522 con sus reformas: la 25.284, 25.563, 25.589, 25.750, 26.084 y 26.086, Delta editora. Paraná 2011.",
       },
       {
         title: "Ley de Concursos y Quiebras. Comentada",
@@ -239,7 +248,7 @@ export const lawyerDetails: Record<string, Lawyer> = {
         title: "Cuestiones Concursales",
         year: "2010",
         description:
-          'Director de esta Obra colectiva de Magistrados, Funcionarios y Letrados de la Matrícula, todos autores entrerrianos, editada por la editorial entrerriana Delta. Paraná 2010',
+          "Director de esta Obra colectiva de Magistrados, Funcionarios y Letrados de la Matrícula, todos autores entrerrianos, editada por la editorial entrerriana Delta. Paraná 2010",
       },
     ],
 
@@ -348,7 +357,8 @@ export const lawyerDetails: Record<string, Lawyer> = {
       },
       {
         journal: "DYE (DERECHO Y EMPRESA)",
-        publisher: "Facultad de Ciencias Empresariales de la UNIVERSIDAD AUSTRAL",
+        publisher:
+          "Facultad de Ciencias Empresariales de la UNIVERSIDAD AUSTRAL",
         director: "Adolfo A. N. Roullion",
         articles: [
           {
@@ -371,7 +381,8 @@ export const lawyerDetails: Record<string, Lawyer> = {
         journal: "INSTITUTO ARGENTINO DE DERECHO COMERCIAL.",
         publisher: "Editorial Legis",
         director: "Martín Arecha",
-        description: "A lo largo de más de 70 años, se logró congregar un grupo independiente de profesionales dedicados al derecho comercial, trabajando de modo constante y permanente en el seguimiento de las novedades doctrinarias y jurisprudenciales de esta rama en el país y en el mundo. ",
+        description:
+          "A lo largo de más de 70 años, se logró congregar un grupo independiente de profesionales dedicados al derecho comercial, trabajando de modo constante y permanente en el seguimiento de las novedades doctrinarias y jurisprudenciales de esta rama en el país y en el mundo. ",
         articles: [
           {
             title:
@@ -436,11 +447,13 @@ export const lawyerDetails: Record<string, Lawyer> = {
             reference: "(Revista 31 – Página 49)",
           },
           {
-            title: "Cosa juzgada concursal. Inexistencia de deuda fiscal. Nula incidencia en el fuero represivo. Condena penal por evasión.",
+            title:
+              "Cosa juzgada concursal. Inexistencia de deuda fiscal. Nula incidencia en el fuero represivo. Condena penal por evasión.",
             reference: "(Revista 47 – Página 81)",
           },
           {
-            title: "Extensión de quiebra. Simulación e Ineficacia. Legitimación para deducir la acción. Prueba.",
+            title:
+              "Extensión de quiebra. Simulación e Ineficacia. Legitimación para deducir la acción. Prueba.",
             reference: "(Revista 48 – Página 107)",
           },
           {
@@ -457,7 +470,8 @@ export const lawyerDetails: Record<string, Lawyer> = {
         journal: "SEGUNDO CONGRESO IBEROAMERICANO DE LA INSOLVENCIA",
         publisher: "2000",
         country: "La Cumbre Córdoba",
-        description: "in memoriam de Hector Cámara y Francisco Quintana Ferreyra.",
+        description:
+          "in memoriam de Hector Cámara y Francisco Quintana Ferreyra.",
         articles: [
           {
             title:
@@ -473,18 +487,20 @@ export const lawyerDetails: Record<string, Lawyer> = {
         publisher: "Tomo I. ed. Ad-Hoc. 2003",
         articles: [
           {
-            title: "Acuerdo Preventivo Extrajudicial. Inconstitucionalidades. Inseguridad Jurídica. Discriminación"
+            title:
+              "Acuerdo Preventivo Extrajudicial. Inconstitucionalidades. Inseguridad Jurídica. Discriminación",
           },
-        ]
+        ],
       },
       {
         journal: "VERIFICACION DE CREDITOS.",
         publisher: "Ad-Hoc. 2004",
         articles: [
           {
-            title: "Créditos Fiscales. Los Intereses de la Afip No pueden, Ni deben pasar las barreras concursales"
+            title:
+              "Créditos Fiscales. Los Intereses de la Afip No pueden, Ni deben pasar las barreras concursales",
           },
-        ]
+        ],
       },
       {
         journal: "PROBLEMAS Y CUESTIONES SOBRE LOS CONCURSOS.",
@@ -492,117 +508,136 @@ export const lawyerDetails: Record<string, Lawyer> = {
         director: "Daniel R. Vitolo y Marta Pardini.",
         articles: [
           {
-            title: "Pronto Pagos Virtuales"
+            title: "Pronto Pagos Virtuales",
           },
           {
-            title: "El Derecho de Voto se atribuye al Acreedor y no a los Créditos"
+            title:
+              "El Derecho de Voto se atribuye al Acreedor y no a los Créditos",
           },
-        ]
+        ],
       },
       {
         journal: "LA TUTELA DE LOS ACREEDORES EN LOS PROCESOS CONCURSALES",
         publisher: "Ad-Hoc. 2006",
         articles: [
           {
-            title: "Fraude Concursal"
+            title: "Fraude Concursal",
           },
-          
-        ]
+        ],
       },
       {
         journal: "VI CONGRESO ARGENTINO DE DERECHO CONCURSAL",
-        publisher: "Facultad de derecho y Ciencia Sociales de Rosario de la U.C.A. y la Facultad de Derecho de la U.N.R. - 2006",
+        publisher:
+          "Facultad de derecho y Ciencia Sociales de Rosario de la U.C.A. y la Facultad de Derecho de la U.N.R. - 2006",
         description: "IV CONGRESO IBEROAMERICANO SOBRE LA INSOLVENCIA. ",
         articles: [
           {
-            title: "El Pago por Subrogación no genera “Ope Legis” el Derecho de Voto en quien lo efectúa",
-            reference: "(Tomo I)"
+            title:
+              "El Pago por Subrogación no genera “Ope Legis” el Derecho de Voto en quien lo efectúa",
+            reference: "(Tomo I)",
           },
           {
-            title: "Una Reforma Unitaria para una Argentina cada vez menos Federal",
-            reference: "(Tomo III)"
+            title:
+              "Una Reforma Unitaria para una Argentina cada vez menos Federal",
+            reference: "(Tomo III)",
           },
-          
-        ]
+        ],
       },
       {
         journal: "X CONGRESO ARGENTINO DE DERECHO SOCIETARIO",
         publisher: "FESPRESA. - 2007",
-        description: "VI CONGRESO IBEROAMERICANO DE DERECHO SOCIETARIO Y DE LA EMPRESA. ",
+        description:
+          "VI CONGRESO IBEROAMERICANO DE DERECHO SOCIETARIO Y DE LA EMPRESA. ",
         articles: [
           {
-            title: "La Responsabilidad Solidaria del Art. 31 de la Ley de Contrato de Trabajo. Visión Societaria y Concursal",
-            reference: "(Tomo IV)"
+            title:
+              "La Responsabilidad Solidaria del Art. 31 de la Ley de Contrato de Trabajo. Visión Societaria y Concursal",
+            reference: "(Tomo IV)",
           },
-        ]
+        ],
       },
       {
         journal: "X CONGRESO ARGENTINO DE DERECHO SOCIETARIO",
         country: "Paraná. Entre Ríos",
-        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2007",
+        publisher:
+          "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2007",
         articles: [
           {
-            title: "Fondo de Garantías de Créditos Laborales. La creacion de lo que ya existe",
+            title:
+              "Fondo de Garantías de Créditos Laborales. La creacion de lo que ya existe",
           },
           {
-            title: "El Tic Tac de la Prescripción Concursal no se desactiva con la Quiebra Indirecta."
+            title:
+              "El Tic Tac de la Prescripción Concursal no se desactiva con la Quiebra Indirecta.",
           },
           {
-            title: "Verificación de Honorarios. Con condena en costas firme, pero no regulados.",
+            title:
+              "Verificación de Honorarios. Con condena en costas firme, pero no regulados.",
           },
           {
-            title: "La presencia del ausente… la Afip."
+            title: "La presencia del ausente… la Afip.",
           },
-        ]
+        ],
       },
       {
-        journal: "XV JORNADAS DE INSTITUTOS DE DERECHOS COMERCIAL DE LA REPUBLICA ARGENTINA.",
-        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2008.",
+        journal:
+          "XV JORNADAS DE INSTITUTOS DE DERECHOS COMERCIAL DE LA REPUBLICA ARGENTINA.",
+        publisher:
+          "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2008.",
         articles: [
           {
-            title: "l Estado de Cesación de Pagos: Un presupuesto que no puede faltar, ni al principio ni al final.",
+            title:
+              "l Estado de Cesación de Pagos: Un presupuesto que no puede faltar, ni al principio ni al final.",
           },
           {
-            title: "Turbulencias en el Iter Concursal"
+            title: "Turbulencias en el Iter Concursal",
           },
-        ]
+        ],
       },
       {
         journal: "TEMAS ACTUALES DE DERECHO CONCURSAL.",
-        director: "Ricardo A. Nissen, Gabriela F. Boquin, Marta G. Pardini y Daniel R. Vitolo.",
-        publisher: " Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2007.",
+        director:
+          "Ricardo A. Nissen, Gabriela F. Boquin, Marta G. Pardini y Daniel R. Vitolo.",
+        publisher:
+          " Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2007.",
         articles: [
           {
-            title: "Cuando se condena por lo que no existe… estamos en problemas.",
+            title:
+              "Cuando se condena por lo que no existe… estamos en problemas.",
           },
-        ]
+        ],
       },
       {
         journal: "LEX.",
         publisher: "  Colegio de Abogados y Caja Forense de Entre Ríos. - 2008",
         articles: [
           {
-            title: "Verificación de honorarios no regulados en el concurso del condenado en costas",
+            title:
+              "Verificación de honorarios no regulados en el concurso del condenado en costas",
           },
-        ]
+        ],
       },
       {
-        journal: "NUEVAS TENDENCIAS EN LA JURISPRUDENCIA SOCIETARIA Y CONCURSAL.",
-        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2009",
+        journal:
+          "NUEVAS TENDENCIAS EN LA JURISPRUDENCIA SOCIETARIA Y CONCURSAL.",
+        publisher:
+          "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas. - 2009",
         articles: [
           {
             title: "Verificación: un tema siempre conflictivo",
           },
-        ]
+        ],
       },
       {
-        journal: "EL FRAUDE CONCURSAL Y OTRAS CUESTIONES DE DERECHO FALIMENTARIO",
-        publisher: "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas - 2010",
+        journal:
+          "EL FRAUDE CONCURSAL Y OTRAS CUESTIONES DE DERECHO FALIMENTARIO",
+        publisher:
+          "Fundacion para la Investigación y Desarrollo de las Ciencias Jurídicas - 2010",
         articles: [
           {
             title: "Abuso de derecho",
           },
-        ]
+        ],
       },
       {
         journal: "REVISTA DE DERECHO CONCURSAL.",
@@ -611,9 +646,10 @@ export const lawyerDetails: Record<string, Lawyer> = {
         publisher: "ZEUS. - 2006",
         articles: [
           {
-            title: "La Responsabilidad Solidaria del Art. 31 de la LCT. Visión Societaria y Concursal",
+            title:
+              "La Responsabilidad Solidaria del Art. 31 de la LCT. Visión Societaria y Concursal",
           },
-        ]
+        ],
       },
       {
         journal: "REVISTA DE DERECHO CONCURSAL.",
@@ -622,118 +658,133 @@ export const lawyerDetails: Record<string, Lawyer> = {
         publisher: "ZEUS. - 2006",
         articles: [
           {
-            title: "La Responsabilidad Solidaria del Art. 31 de la LCT. Visión Societaria y Concursal",
+            title:
+              "La Responsabilidad Solidaria del Art. 31 de la LCT. Visión Societaria y Concursal",
           },
-        ]
+        ],
       },
       {
         journal: "ERREPAR (Doctrina Societaria y Concursal)",
         articles: [
           {
-            title: 'UN PRIVILEGIADO EN LA LEY CONCURSAL, "SUPER PRIVILEGIADO" POR LA LEY DE PRENDA CON REGISTRO',
-            reference: "( T.1-122)"
+            title:
+              'UN PRIVILEGIADO EN LA LEY CONCURSAL, "SUPER PRIVILEGIADO" POR LA LEY DE PRENDA CON REGISTRO',
+            reference: "( T.1-122)",
           },
           {
             title: "PEDIDO DE QUIEBRA RECHAZADO E IMPOSICION DE COSTAS",
-            reference: "(T.1-147)"
+            reference: "(T.1-147)",
           },
           {
-            title: "VERIFICACION DE CREDITOS Y SENTENCIAS DICTADAS EN JUICIO EJECUTIVO",
-            reference: "(T.1-124)"
+            title:
+              "VERIFICACION DE CREDITOS Y SENTENCIAS DICTADAS EN JUICIO EJECUTIVO",
+            reference: "(T.1-124)",
           },
           {
-            title: "APODERADO JUDICIAL DE SOCIEDAD ANONIMA. EXCEPCION DE ALTA DE PERSONERIA ",
-            reference: "(T.1-248)"
+            title:
+              "APODERADO JUDICIAL DE SOCIEDAD ANONIMA. EXCEPCION DE ALTA DE PERSONERIA ",
+            reference: "(T.1-248)",
           },
           {
             title: "PLAZO DE GRACIA EN LOS CONCURSOS ",
-            reference: "(T II-320)"
+            reference: "(T II-320)",
           },
           {
             title: "IMPUGNACION AL ACUERDO",
-            reference: "(ART. 59,L.C.) ( T.II-649)"
+            reference: "(ART. 59,L.C.) ( T.II-649)",
           },
           {
             title: "CONCURSO SIN SUJETO ",
-            reference: "(T.IV-911)"
+            reference: "(T.IV-911)",
           },
           {
             title: "ADMINISTRACION CONCURSAL (el día después) ",
-            reference: "(T. XVII -552)"
+            reference: "(T. XVII -552)",
           },
           {
             title: "VERIFICACION DE CREDITOS ",
-            reference: "(T. XXII – 14)"
+            reference: "(T. XXII – 14)",
           },
           {
-            title: 'LA SENTENCIA DE LA CORTE FEDERAL "SOCIEDAD COMERCIAL DEL PLATA S.A." ALGO MAS QUE UN FALLO MAS',
-            reference: "(T. XXII – 132)"
-          }
-        ]
+            title:
+              'LA SENTENCIA DE LA CORTE FEDERAL "SOCIEDAD COMERCIAL DEL PLATA S.A." ALGO MAS QUE UN FALLO MAS',
+            reference: "(T. XXII – 132)",
+          },
+        ],
       },
       {
         journal: "DELTA",
         articles: [
           {
-            title: "NUEVA LEY DE QUIEBRAS ¿ES CONSTITUCIONAL? (publicado en separata Delta Editora del año 1995 )",
-            reference: "( Páginas 1,2,3,4 y 5 )"
+            title:
+              "NUEVA LEY DE QUIEBRAS ¿ES CONSTITUCIONAL? (publicado en separata Delta Editora del año 1995 )",
+            reference: "( Páginas 1,2,3,4 y 5 )",
           },
           {
-            title: "QUIEBRA A PEDIDO DE ACREEDOR. RECHAZO – APELABILIDAD UNA CUESTIÓN QUE PARECIA RESUELTA ( publicado en la revista mensual Delta Editora de abril de 1995 ) ",
-            reference: "( Páginas 34,35,36 y 37 "
+            title:
+              "QUIEBRA A PEDIDO DE ACREEDOR. RECHAZO – APELABILIDAD UNA CUESTIÓN QUE PARECIA RESUELTA ( publicado en la revista mensual Delta Editora de abril de 1995 ) ",
+            reference: "( Páginas 34,35,36 y 37 ",
           },
           {
             title: "VERIFICACION DE CREDITOS - Año: 1991 ",
-            reference: "(Tomo:42 Folio:9)"
+            reference: "(Tomo:42 Folio:9)",
           },
           {
             title: " SALIDA DEL PAIS CONCURSOS LIMITACIONES ( Año:1991 )",
-            reference: "(Tomo:43 Folio:343)"
+            reference: "(Tomo:43 Folio:343)",
           },
           {
-            title: "TASA DE INTERES ACTIVA 0 PASIVA: SENTENCIAS JUDICIALES ( Año:1992 )",
-            reference: "(Tomo:48 Folio:33"
+            title:
+              "TASA DE INTERES ACTIVA 0 PASIVA: SENTENCIAS JUDICIALES ( Año:1992 )",
+            reference: "(Tomo:48 Folio:33",
           },
           {
             title: "CESACION DE PAGOS: UNA APROXIMACION  ( AÑO 2005 )",
-            reference: "(114)"
+            reference: "(114)",
           },
           {
             title: "QUIEBRA: SU DECLARACIÓN  ( AÑO 2005 )",
-            reference: "(114)"
+            reference: "(114)",
           },
           {
-            title: "CAMBIOS EN CONCURSOS Y QUIEBRAS. SINDICOS PREOCUPADOS. SINDICATOS CON MÁS PODER ",
-            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 117 – Pág. 51)"
+            title:
+              "CAMBIOS EN CONCURSOS Y QUIEBRAS. SINDICOS PREOCUPADOS. SINDICATOS CON MÁS PODER ",
+            reference:
+              "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 117 – Pág. 51)",
           },
           {
             title: "NI CONCURSO PREVENTIVO NI A.P.E. PARA BANCOS Y EX BANCOS ",
-            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 118 – Pág. 435)"
+            reference:
+              "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 118 – Pág. 435)",
           },
           {
             title: "MÁS SOBRE LA VEDA DEL APE A LOS BANCOS ",
-            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 120 – Pág. 9)"
+            reference:
+              "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 120 – Pág. 9)",
           },
           {
             title: "LA REALIDAD PRIMA SOBRE LA APARIENCIA ",
-            reference: "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 121 – Pág. 361)"
+            reference:
+              "(JURISPRUDENCIA DE ENTRE RIOS Y DE LA CORTE SUPREMA DE JUSTICIA DE LA NACIÓN - Tomo 121 – Pág. 361)",
           },
           {
-            title: "HONORARIOS EN LA QUIEBRA INDIRECTA. UNA O DOS REGULACIONES: UN TEMA POLEMICO. EL FALLO QUE SE ANOTA: UNA APORTE ESCLARECEDOR ",
-            reference: "(publicado en separata Delta Editora del año 2008)"
-          }
-        ]
+            title:
+              "HONORARIOS EN LA QUIEBRA INDIRECTA. UNA O DOS REGULACIONES: UN TEMA POLEMICO. EL FALLO QUE SE ANOTA: UNA APORTE ESCLARECEDOR ",
+            reference: "(publicado en separata Delta Editora del año 2008)",
+          },
+        ],
       },
       {
-        journal: "EVISTA DERECHO FISCAL.",
+        journal: "REVISTA DERECHO FISCAL.",
         director: "Alberto Tarsitano y Juan Carlos Yemma.",
         publisher: "LexisNexis",
         articles: [
           {
-            title: "INTERACCION DE LAS SENTENCIAS DICTADAS POR LOS FUEROS COMERCIAL Y PENAL EN MATERIA TRIBUTARIA Y PENAL TRIBUTARIA.",
-            reference: "(1. Enero/Febrero 2008)"
+            title:
+              "INTERACCION DE LAS SENTENCIAS DICTADAS POR LOS FUEROS COMERCIAL Y PENAL EN MATERIA TRIBUTARIA Y PENAL TRIBUTARIA.",
+            reference: "(1. Enero/Febrero 2008)",
           },
-        ]
+        ],
       },
     ],
 
@@ -850,7 +901,8 @@ export const lawyerDetails: Record<string, Lawyer> = {
             reference: "(1994-D-141)",
           },
           {
-            title: "QUIEBRA CONSECUENCIAL O INDIRECTA. TRÁMITE DE LA APELACIÓN ",
+            title:
+              "QUIEBRA CONSECUENCIAL O INDIRECTA. TRÁMITE DE LA APELACIÓN ",
             reference: "(1995-A-633)",
           },
           {
@@ -1270,48 +1322,149 @@ export const lawyerDetails: Record<string, Lawyer> = {
     books: [
       {
         title: "¿Qué hacer con los principios generales del Derecho?",
+        description: "Editorial Librería Cívica, Santa Fe",
         year: "2003",
       },
-      { title: "La sociedad de capital unipersonal", year: "2006" },
+      {
+        title: "La sociedad de capital unipersonal",
+        description: "Ad-Hoc, Buenos Aires",
+        year: "2006",
+      },
       {
         title: "Impugnación de actos del directorio de sociedades anónimas",
+        description: "Hammurabi, Buenos Aires.",
         year: "2011",
       },
     ],
 
     articles: [
       {
-        title: "La impugnabilidad de actos del directorio…",
+        title:
+          "La impugnabilidad de actos del directorio. La responsabilidad social empresaria, las buenas prácticas del gobierno corporativo y el análisis económico del derecho ",
+        reference: "t. 2009-F, pág. 833 y ss.",
         publication: "La Ley",
         year: "2009",
       },
-      { title: "Las obligaciones de resultado 'fragmentarias'…", year: "2009" },
       {
-        title: "Desde dos prismas: La impugnación de actos del directorio…",
+        title:
+          "Las obligaciones de resultado ‘fragmentarias’, el legado de Demogue y una realidad que se impone en materia de administración societaria, en “XVI Jornadas de Institutos de Derecho Comercial. Responsabilidad Empresarial”",
+        reference: "pág. 179 y ss.",
+        publication: "Santa Fe",
         year: "2009",
       },
-      { title: "Olvidando a Demogue…", year: "2007" },
-      { title: "¿Interesa el rigor técnico-jurídico…?", year: "2010" },
-      { title: "Apostillas sobre la naturaleza del plazo…", year: "2009" },
-      { title: "Responsabilidad del Estado por omisión…", year: "2008" },
-      { title: "Las obligaciones de resultado 'fragmentarias'…", year: "2008" },
-      { title: "¿Debe responder el Estado…?", year: "2008" },
-      { title: "Derecho de información…", year: "2007" },
-      { title: "Estado contable aprobado…", year: "2006" },
       {
-        title: "Por la buena senda: acerca del actual criterio…",
+        title:
+          "Desde dos prismas: La impugnación de actos del directorio a la luz del movimiento de la Responsabilidad Social Empresaria y del Análisis Económico del Derecho, en “XVI Jornadas de Institutos de Derecho Comercial. Responsabilidad Empresarial”",
+        publication: "Santa Fe",
+        reference: "pág. 179 y ss.",
+        year: "2009",
+      },
+      {
+        title:
+          "Olvidando a Demogue (¿Quién dijo que son siempre “de medios” las obligaciones de los administradores societarios?)",
+        publication: "El Derecho",
+        reference: "diario del 06/12/07, págs. 1/6.",
         year: "2007",
       },
-      { title: "Directores afectados en su derecho…", year: "2007" },
-      { title: "¿Corresponde exigir pago de tasa…?", year: "2007" },
       {
-        title: "Breves reflexiones sobre la sociedad unipersonal…",
-        year: "2005",
+        title:
+          "¿Interesa el rigor técnico-jurídico para encarrilar una tendencia en crecimiento? En busca del camino más apropiado para encauzar las pretensiones de extensión de responsabilidad por irregularidades laborales y fraudes societarios en las SRL, ponencia al “IV Congreso Entrerriano de Derecho del Trabajo” ",
+        publication: " Paraná - Delta Editora",
+        year: "3, 4 y 5 de junio de 2010.",
       },
-      { title: "Beneficio de litigar sin gastos…", year: "2005" },
-      { title: "Efectos del concurso preventivo…", year: "2005" },
-      { title: "¿Es la sociedad unipersonal…?", year: "2007" },
-      { title: "Consejo de la Magistratura…", year: "2008" },
+      {
+        title:
+          "Apostillas sobre la naturaleza del plazo de tres meses para cuestionar actos societarios (¿prescripción o caducidad?), en co-autoría con Sandra Ferrari, en “XXII Jornadas Nacionales de Derecho Civil” ",
+        publication: "Córdoba",
+        year: "2009",
+      },
+      {
+        title:
+          "Responsabilidad del Estado por omisión en los controles del servicio penitenciario, fasc. de junio de 2008, y “Revista de Responsabilidad Civil y Seguros”, Año X, Nro. X, en coautoría con Lisandro L. Mársico.",
+        publication: "La Ley Litoral",
+        year: "Octubre 2008",
+      },
+      {
+        title:
+          'Las obligaciones de resultado "fragmentarias": el distingo demoguiano desde la perspectiva negocial actual.',
+        publication: "Delta Editora",
+        reference: "t. 125, 2008, págs. 817/834.",
+        year: "2008",
+      },
+      {
+        title:
+          "¿Debe responder el estado por omisión en los controles relativos al servicio penitenciario?, en coautoría con Marisco, Lisandro, en “VIII Congreso Internacional de Derecho de Daños”",
+        publication: "Buenos Aires, UBA",
+        year: "Octubre de 2005.",
+      },
+      {
+        title:
+          "Derecho de información de los directores de sociedades anónimas, diario del 14/06/2007, en coautoría con Santiago J. Monti",
+        publication: "La Ley",
+        reference: "págs. 1/4.",
+        year: "2007",
+      },
+      {
+        title: "Estado contable aprobado, nota a fallo",
+        publication: "La Ley",
+        reference: "diario del 29/06/08.",
+        year: "2008",
+      },
+      {
+        title:
+          "Por la buena senda: acerca del actual criterio de la IGJ y la jurisprudencia en materia de sociedades de cómodo, “XIV Jornadas de Institutos de Derecho Comercial de la República Argentina”, Mac Tomas ",
+        publication:
+          "Fundación para la Investigación y Desarrollo de las Ciencias Jurídicas - Buenos Aires",
+        reference: "págs. 607/622.",
+        year: "Agosto de 2007",
+      },
+      {
+        title:
+          "Directores afectados en su derecho de información e impugnación de actos del directorio, “XIV Jornadas de Institutos de Derecho Comercial de la República Argentina”, Mac Tomas.",
+        publication:
+          "Fundación para la Investigación y Desarrollo de las Ciencias Jurídicas - Buenos Aires",
+        reference: "págs. 659/672.",
+        year: "Agosto de 2007",
+      },
+      {
+        title:
+          "¿Corresponde exigir el pago de tasa de justicia al promoverse acción social de responsabilidad “uti singuli”?, “XIV Jornadas de Institutos de Derecho Comercial de la República Argentina”, Mac Tomas .",
+        publication:
+          "Fundación para la Investigación y Desarrollo de las Ciencias Jurídicas - Buenos Aires",
+        reference: "págs. 673/682.",
+        year: "Agosto de 2007",
+      },
+      {
+        title:
+          "Breves reflexiones sobre la sociedad unipersonal, en “Revista de Derecho Empresario”, nº 1",
+        publication: "Universidad Austral, Ad – Hoc, Buenos Aires",
+        year: "Mayo de 2005",
+      },
+      {
+        title:
+          "Beneficio de litigar sin gastos. Ni tan fácil, ni para todas las personas, en coautoría junto a Moro, Carlos E., “Jurisprudencia Argentina”.",
+        publication: "LexisNexis",
+        reference: "fasc. 7",
+        year: "Febrero de 2005.",
+      },
+      {
+        title:
+          "Efectos del concurso preventivo sobre los contratos con prestaciones recíprocas pendientes, en coautoría con Carchio, Miguel A., “VII Congreso de Derecho Concursal y V Congreso de Derecho de la Empresa”",
+        publication: "Rosario",
+        year: "Septiembre de 2006.",
+      },
+      {
+        title:
+          "¿Es la sociedad unipersonal la única figura idónea para hacer posible la limitación de responsabilidad del empresario individual?, “VIII Congreso Internacional Derechos y Garantías en el Siglo XXI”",
+        publication: "Buenos Aires, UBA",
+        year: "Septiembre de 2004.",
+      },
+      {
+        title:
+          "Consejo de la Magistratura: Necesidad de acentuar su independencia, en coautoría con Senkman, Gerardo y Massoni, Alejandro, “Congreso de Derecho Pùblico. Del Estado que tenemos al Estado que queremos”",
+        publication: " Universidad Nacional del Litoral, Santa Fe",
+        year: "octubre 2008.",
+      },
     ],
 
     articles_en: [
@@ -1351,58 +1504,85 @@ export const lawyerDetails: Record<string, Lawyer> = {
 
     academicPositions: [
       {
-        title: "Ayudante de Cátedra – Obligaciones",
+        title:
+          "Ayudante de Cátedra en la materia “Obligaciones” (Derecho Civil II – Cátedra del Dr. Enrique C. Muller)",
         institution: "UNL – Facultad de Ciencias Jurídicas",
         period: "2001–actualidad",
+        descriptiona:
+          "Haberse obtenido la beca en el Curso de Introducción a la formación Docente Universitaria llevado a cabo por la Universidad Nacional del Litoral en el año 2000 y conferida a través de Res. del Consejo Superior del 26/04/01 (Expte. 411925);",
+        descriptionb:
+          "Obtención del Segundo lugar en el Concurso llevado a cabo en la FCJS de la Universidad Nacional del Litoral el 09/10/01 en el marco de lo establecido en la Res. 258/01, Consejo Directivo.",
+        descriptionc:
+          "Establecimiento ulterior en régimen sobreviniente de adscripción a Cátedra.",
       },
       {
-        title: "Ayudante de Cátedra – Instituciones de Derecho Privado",
-        institution: "Universidad de Buenos Aires",
-        period: "2004–actualidad",
+        title:
+          "Ayudante de Cátedra en la materia “Instituciones de Derecho Privado” a cargo del Dr. Guillermo E. Ragazzi",
+        institution:
+          "Facultad de Ciencias Económicas de la Universidad de Buenos Aires",
+        period: "desde Mayo de 2004 a la actualidad.",
       },
       {
-        title: "Ayudante de Cátedra – Derecho Comercial I",
-        institution: "UNL",
+        title:
+          "Ayudante de cátedra en la materia “Derecho Comercial I” a cargo del Dr. Eduardo Giménez Lassaga.",
+        institution: "Universidad Nacional del Litoral (Santa Fe).",
         period: "2007–actualidad",
       },
       {
-        title: "Adscripto – Derecho Privado III",
-        institution: "UNER",
+        title:
+          "Adscripto en la materia “Derecho Privado III” a cargo del Dr. Enrique M. Pita.",
+        institution: "Universidad Nacional de Entre Ríos (UNER), Paraná",
         period: "2008–actualidad",
+      },
+      {
+        title:
+          "Desempeño como ayudante de cátedra en la materia “Introducción a la Filosofía” originado en el hecho de haber alcanzado el segundo lugar en un concurso para ayudantes – alumnos realizado en Abril de 2000 en la UNL (Resolución nro. 273/00, Consejo Directivo).",
+        institution: "Universidad Nacional del Litoral, Facultad de Derecho",
+        period: "2000 - 2003",
       },
     ],
 
     universityRoles: [
       {
         title:
-          "Consejero directivo estudiantil – Facultad de Ciencias Jurídicas – UNL",
+          "Consejero directivo estudiantil en la Facultad de Ciencias Jurídicas de la Universidad Nacional del Litoral.",
         year: "2003",
       },
-      { title: "Vocal – Asociación Dante Alighieri", year: "2001" },
+      { title: "Vocal de la Asociación “Dante Alighieri”.", year: "2001" },
       {
         title:
-          "Convencional constituyente estudiantil – Instituto Michelangelo",
+          "Convencional constituyente estudiantil en representación del Instituto Modelo Michelangelo (Paraná – Santa Fe).",
         year: "1994",
       },
     ],
 
     awards: [
       {
-        title: "Medalla de Oro Magíster MDE – Universidad Austral",
-        year: "2005",
+        title:
+          "Medalla de Oro en el Master de Derecho de la Empresa de la Universidad Austral de Buenos Aires (promedio 9,27).",
+        year: "2004/2005",
       },
       {
-        title: "Premio a la Mejor Tesina en el Master en Derecho de la Empresa",
-        year: "2005",
+        title:
+          "Premio a la Mejor Tesina en el Master de Derecho de la Empresa de la Universidad Austral de Buenos Aires  (“La sociedad de capital unipersonal”).",
+        year: "2004/2005",
       },
-      { title: "Primer Puesto Concurso de Ponencias – UNL", year: "2002" },
-      { title: "Premio LexisNexis – FORES", year: "2004" },
+      {
+        title:
+          "Primer puesto en el Concurso de ponencias organizado en el marco de las Jornadas Nacionales sobre Emergencia Económica realizadas en Santa Fe",
+        year: "Octubre de 2002.",
+      },
+      {
+        title:
+          "Premio “LexisNexis” otorgado por FORES (Foro de Estudios sobre la Administración de Justicia) en el marco del Programa de Entrenamiento para Abogados de (Buenos Aires).",
+        year: "Marzo/Octubre de 2004",
+      },
     ],
 
     scholarships: [
       {
         title:
-          "Beca Introducción a la Formación Docente Universitaria – UNL (promedio 7,75, asistencia 83%)",
+          "Beca obtenida en el “Curso de Introducción a la Formación Docente Universitaria” (Coord. Nelly Barbach) llevado a cabo por la Universidad Nacional del Litoral y conferida a través de Res. del Consejo Superior del 26/04/01 (Expte. 411925), promedio 7,75, asistencia 100%/83%.",
         year: "2000",
       },
     ],
@@ -1411,62 +1591,180 @@ export const lawyerDetails: Record<string, Lawyer> = {
       {
         language: "Inglés",
         certificates: [
-          "First Certificate (Cambridge)",
-          "Diploma Advance (Paraná)",
+          "First Certificate in English (Universidad de Cambridge)",
+          "Diploma superior del Instituto de aprendizaje de Inglés “Advance” (Paraná)",
         ],
       },
       {
         language: "Italiano",
         certificates: [
-          "PLIDA (Universidad de Roma)",
-          "Diploma Dante Alighieri",
+          "PLIDA (Societá Dante Alighieri – Universidad de Roma)",
+          "Diploma superior del Instituto “Dante Alighieri”",
         ],
       },
       {
         language: "Francés",
-        certificates: ["DELF A6", "Diploma Alianza Francesa (Santa Fe)"],
+        certificates: [
+          "DELF (nivel A6) ",
+          "(Ministerio de Educación Nacional – París)",
+        ],
       },
       {
         language: "Chino mandarín",
-        certificates: ["1er año Lic. Estudios Orientales – USAL (2006)"],
+        certificates: [
+          "1er. año concluido en el marco de la licenciatura de Estudios Orientales (Universidad del Salvador, Buenos Aires). Año 2006.",
+        ],
       },
     ],
 
     conferences: [
-      { title: "XXIII Congreso Nacional de Derecho Procesal", year: "2003" },
+      {
+        title: "XXII Congreso Nacional de Derecho Procesal  (Paraná)",
+        year: "Junio – 2003",
+      },
       {
         title:
-          "VIII Congreso Nacional y VIII Latinoamericano de Derecho Privado",
-        year: "2002",
+          "Jornadas sobre “Intereses en las Obligaciones Dinerarias”, a cargo del Dr. Trigo Represas y el Dr. Juan Casiello (Santa Fe – Universidad Nacional del Litoral)",
+        year: "6 de abril de 2001",
       },
       {
-        title: "XIV Jornadas de Institutos de Derecho Comercial",
-        year: "2007",
+        title:
+          "IX Congreso Nacional y VIII Latinoamericano de Derecho Privado (Santa Fe)",
+        year: "Octubre – 2003",
       },
-      { title: "XXI Jornadas Nacionales de Derecho Civil", year: "2005" },
-      { title: "IV Congreso Entrerriano de Derecho del Trabajo", year: "2010" },
-      // …y el resto si querés también los cargo completos
+      {
+        title:
+          "Curso de Actualización en Derecho y Emergencia Económica (Santa Fe)",
+        year: "Abril – 2002",
+      },
+      {
+        title: "Jornadas Nacionales sobre Emergencia Económica (Santa Fe)",
+        year: "Octubre – 2002",
+      },
+      {
+        title: "XVII Jornadas Nacionales de Derecho Civil (Santa Fe)",
+        year: "Septiembre – 1999"
+      },
+      {
+        title: "XX Jornadas Nacionales de Derecho Civil (Buenos Aires)",
+        year: "Septiembre – 2005"
+      },
+      {
+        title: "XIII Encuentro Argentino de Profesores de Derecho Civil (Santa Fe)",
+        year: "2000"
+      },
+      {
+        title: "XI Encuentro de Abogados Civilistas (Santa Fe)",
+        year: "Agosto – 2001"
+      },
+      {
+        title: "Jornada de Garantías y privilegios a cargo del Comité de abogados de Bancos de la República Argentina (Paraná)",
+        year: "Agosto – 2001"
+      },
+      {
+        title: "Congreso de Derecho Público Moderno (Santa Fe) (en calidad de ponente).",
+        year: "Octubre – 2000"
+      },
+      {
+        title: "Ciclos de conferencias sobre “Contratos y emergencia económica” (Santa Fe).",
+        year: "Agosto – 2002"
+      },
+      {
+        title: "III Congreso Internacional. Derechos y garantías en el siglo XXI (UBA) (ponente).",
+        year: " Agosto 2004"
+      },
+      {
+        title: "Ciclo de conferencias organizado por el Master Group relativas a Derecho Empresario (Buenos Aires).",
+        year: "Mayo de 2004"
+      },
+      {
+        title: "Ciclo de conferencias organizado por el Master Group atinentes a la Responsabilidad civil por el hecho de los dependientes (Buenos Aires).",
+        year: "Octubre de 2004"
+      },
+      {
+        title: "Jornadas Nacionales sobre el Anteproyecto de reformas a la Ley de Sociedades Comerciales celebradas en Mar del Plata.",
+        year: "14 y 15 de Abril de 2005"
+      },
+      {
+        title: "Congreso sobre negocios y contratos internacionales celebrados en el Hotel Alvear (Buenos Aires) organizado por “Vítolo Abogados”.",
+        year: "Junio de 2004"
+      },
+      {
+        title: "VIII Congreso Internacional de Derecho de Daños (UBA) (ponente)",
+        year: "2005"
+      },
+      {
+        title: "I Jornada Nacional interdisciplinaria sobre sociedades extranjeras y “off shore” (Buenos Aires – Hotel Alvear ).",
+        year: "Agosto de 2005"
+      },
+      {
+        title: "XIV Jornadas de Institutos de Derecho Comercial de la República Argentina (Paraná) (ponente).",
+        year: "2007"
+      },
+      {
+        title: "XXI Jornadas Nacionales de Derecho Civil (Lomas de Zamora, Provincia de Buenos Aires).",
+        year: "2007"
+      },
+      {
+        title: "I Jornadas Nacionales de Derecho Comercial en homenaje al Profesor Doctor Osvaldo Gómez Leo (Universidad Austral ).",
+        year: "2007"
+      },
+      {
+        title: "Jornadas Internacionales sobre “Avance Tecnológico y Derecho de Daños”, Asociación de Abogados de Buenos Aires (realizado en la UBA).",
+        year: "octubre de 2007"
+      },
+      {
+        title: "I Jornada Internacional sobre Prevención de Conflictos Societarios en Sociedades Cerradas, UBA, Dpto. de Derecho Económico y Empresarial.",
+        year: "16 de noviembre de 2007"
+      },
+      {
+        title: "“Narratividad y Derecho”, conferencia a cargo del Dr. Carlos Cárcova, Universidad Nacional del Litoral, Santa Fe.",
+        year: "Julio 2008"
+      },
+      {
+        title: "Jornadas de derecho civil de cordoba",
+        year: "2009"
+      },
+      {
+        title: "“IV Congreso Entrerriano de Derecho del Trabajo”, ponente, Paraná, Entre Ríos, Delta Editora.",
+        year: " 3, 4 y 5 de junio de 2010"
+      },
+      {
+        title: "“V Foro Anual de Competitividad y Desarrollo Sustentable”, Consejo Empresario de Entre Ríos, Paraná, Entre Ríos.",
+        year: "10 de junio de 2010"
+      },
+    ],
+
+    course: [
+      {
+        title: "Programa de Entrenamiento para Abogados (PEA) dictado por FORES (Buenos Aires).",
+        year: "Marzo y Octubre de 2004"
+      },
+      {
+        title: "Programa de Finanzas Corporativa y Dirección de Empresas para Abogados organizado por el CEDEF (Centro de Estudios Derecho – Empresa – Finanzas)  (Buenos Aires).",
+        year: "Marzo de 2005"
+      }
     ],
 
     otherRoles: [
       {
         title: "Artículos de temas varios en periódicos y revistas",
         string: [
-          'Incendio en Bariloche. Falta de compromiso, "El Diario", Paraná, Entre Ríos. 25 de Febrero de 1996.',
-          'Medios a la altura de las circunstancias, "La Razón", Buenos Aires, 25 de Febrero de 1997.',
-          'No lleguemos a Waterloo, "El Diario", Paraná, Entre Ríos, 15 de Marzo de 1998.',
-          'Recortes al espíritu de Sarmiento (I), "El Diario", Paraná, Entre Ríos, 11 de abril de 2001.',
-          'Ideales entre tazas de café, "El Diario", Paraná, Entre Ríos, 10 de mayo 2003.',
-          'La juventud y la política en la crisis, "El Diario", Paraná, Entre Ríos, 8 de Noviembre de 2003.',
-          'El pecado de elogiar a un gobierno en funciones, "El Diario", Paraná, Entre Ríos, 11 de marzo de 2005.',
-          'Cerrar los ojos nunca es bueno, "El Diario", Paraná, Entre Ríos, 19 de Agosto de 2004.',
-          'El último liberal, "El Diario", Paraná, Entre Ríos, 5 de Julio de 2005.',
-          'Patear la pelota afuera, "El Diario", Paraná, Entre Ríos, 3 de Febrero de 2006.',
-          'Recortes al espíritu de Sarmiento (II), "El Diario", Paraná, Entre Ríos, 20 de Noviembre de 2007.',
-          'Cuando el vilipendio histórico no es causalidad: el conflicto con el campo y el legado de Urquiza, "El Diario", Paraná, Entre Ríos, 30 de Marzo de 2008.',
-          'Roma o el sueño imperial que renace, "Revista de la Asociación Dante Alighieri", nro. 1, Paraná, Entre Ríos, 2001.',
-          'Olvidando a Marco Aurelio, "Revista de la Asociación Dante Alighieri", nro. 2, Paraná, Entre Ríos, 2002.',
-          '¡Abajo el Centenario! ¡Viva el Bicentenario!, "El Diario", Paraná, Entre Ríos, 22 de mayo de 2010.',
+          'Incendio en Bariloche. Falta de compromiso, “El Diario”, Paraná, Entre Ríos. 25 de Febrero de 1996',
+          'Medios a la altura de las circunstancias, “La Razón”, , Buenos Aires, 25 de Febrero de 1997.',
+          'No lleguemos a Waterloo, “El Diario”, Paraná, Entre Ríos, 15 de Marzo de 1998.',
+          'Recortes al espíritu de Sarmiento (I), “El Diario”, Paraná, Entre Ríos, 11 de abril de 2001.',
+          'Ideales entre tazas de café, “El Diario”, Paraná, Entre Ríos, 10 de mayo 2003.',
+          'La juventud y la política en la crisis, “El Diario”, Paraná, Entre Ríos, 8 de Noviembre de 2003.',
+          'El pecado de elogiar a un gobierno en funciones, “El Diario”, Paraná, Entre Ríos, 11 de marzo de 2005.',
+          'Cerrar los ojos nunca es bueno, “El Diario”, Paraná, Entre Ríos, 19 de Agosto de 2004.',
+          'El último liberal, “El Diario”, Paraná, Entre Ríos, 5 de Julio de 2005.',
+          'Patear la pelota afuera, “El Diario”, Paraná, Entre Ríos, 3 de Febrero de 2006.',
+          'Recortes al espíritu de Sarmiento (II), “El Diario”, Paraná, Entre Ríos, 20 de Noviembre de 2007.',
+          'Cuando el vilipendio histórico no es causalidad: el conflicto con el campo y el legado de Urquiza, “El Diario”, Paraná, Entre Ríos, 30 de Marzo de 2008.',
+          'Roma o el sueño imperial que renace, “Revista de la Asociación Dante Alighieri”, nro. 1, Paraná, Entre Ríos, 2001.',
+          'Olvidando a Marco Aurelio, “Revista de la Asociación Dante Alighieri”, nro. 2, Paraná, Entre Ríos, 2002.',
+          '¡Abajo el Centenario! ¡Viva el Bicentenario!, “El Diario”, Paraná, Entre Ríos, 22 de mayo de 2010.',
         ],
       },
     ],

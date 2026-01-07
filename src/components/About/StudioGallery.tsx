@@ -55,14 +55,6 @@ export default function StudioGallery() {
 
       {/* CARRUSEL FLIPSTACK - TODAS LAS IMÁGENES */}
       <div className="py-12">
-        <div className="mb-8 text-center">
-          <p className="text-sm uppercase tracking-wider text-gray-500 mb-2">
-            Galería 3D Interactiva
-          </p>
-          <h3 className="text-2xl font-serif font-semibold text-[#0F1C2E]">
-            Nuestras Instalaciones
-          </h3>
-        </div>
         <FlipStackCarousel 
           images={carouselImages} 
           interval={4000}

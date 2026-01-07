@@ -199,9 +199,6 @@ const Navbar = () => {
             <HoverLink url="/?tab=instagram#Contenido" isDark={isDark}>
               {t.pub_instagram}
             </HoverLink>
-            <HoverLink url="/?tab=articulos#Contenido" isDark={isDark}>
-              {t.articulos_doctrinarios}
-            </HoverLink>
           </div>
         ),
       },

@@ -111,7 +111,15 @@ const Navbar = () => {
     };
 
     runSequence();
-  }, [navMotion, emblemMotion, switchMotion, svgMotion, mobileView, isMounted, isDark]);
+  }, [
+    navMotion,
+    emblemMotion,
+    switchMotion,
+    svgMotion,
+    mobileView,
+    isMounted,
+    isDark,
+  ]);
 
   // Build navigation links with submenu
   const navLinks: NavLink[] = useMemo(
@@ -131,6 +139,58 @@ const Navbar = () => {
       {
         text: t.areas,
         url: "/#PracticeAreas",
+      },
+      {
+        text: t.referencia,
+        url: "/referencias",
+      },
+      {
+        text: "Publicaciones",
+        submenu: (
+          <div className="flex flex-col gap-3">
+            <HoverLink
+              url="/?tab=propias&type=libro&author=Emilio%20F.%20Moro#Contenido"
+              isDark={isDark}
+            >
+              Libros Dr. Emilio
+            </HoverLink>
+
+            <HoverLink
+              url="/?tab=propias&type=libro&author=Carlos%20E.%20Moro#Contenido"
+              isDark={isDark}
+            >
+              Libros Dr. Carlos
+            </HoverLink>
+
+            <HoverLink
+              url="/?tab=propias&type=articulo&author=Emilio%20F.%20Moro#Contenido"
+              isDark={isDark}
+            >
+              Artículos Dr. Emilio
+            </HoverLink>
+
+            <HoverLink
+              url="/?tab=propias&type=articulo&author=Carlos%20E.%20Moro#Contenido"
+              isDark={isDark}
+            >
+              Artículos Dr. Carlos
+            </HoverLink>
+          </div>
+        ),
+      },
+      {
+        text: "Currículums",
+        submenu: (
+          <div className="flex flex-col gap-3">
+            <HoverLink url="/abogados/dr-carlos-moro" isDark={isDark}>
+              Dr. Carlos E. Moro
+            </HoverLink>
+
+            <HoverLink url="/abogados/dr-emilio-f-moro" isDark={isDark}>
+              Dr. Emilio F. Moro
+            </HoverLink>
+          </div>
+        ),
       },
       {
         text: t.contenido,

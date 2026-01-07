@@ -252,16 +252,7 @@ export default function PublicationsGrid() {
       {/* =======================
           Modal
       ======================== */}
-      <PublicationModal
-        pub={selected}
-        author={selectedAuthor}
-        onClose={() => setOpenId(null)}
-        onFilterEditorial={(id?: string) => {
-          if (!id) return;
-          setEditorialFilter(id);
-          setOpenId(null);
-        }}
-      />
+      <PublicationModal pub={selected} onClose={() => setOpenId(null)} />
     </section>
   );
 }

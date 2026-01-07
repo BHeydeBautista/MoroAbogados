@@ -46,17 +46,20 @@ export const abogados: TeamMember[] = [
       "Specialist in corporate law and compliance. Experience advising family businesses.",
     focus: "50%_20%",
   },
+    /*
   {
-    name: "Abril Martinez Figueroa",
-    role: "Abogada",
-    image:
-      "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
-    bio: "Abogada con foco en resolución alternativa de conflictos y derecho civil.",
-    role_en: "Lawyer",
-    bio_en:
-      "Lawyer focused on alternative dispute resolution and civil law.",
-    focus: "50%_20%",
+      name: "Abril Martinez Figueroa",
+      role: "Abogada",
+      image:
+        "https://res.cloudinary.com/di2os0yqc/image/upload/c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
+      bio: "Abogada con foco en resolución alternativa de conflictos y derecho civil.",
+      role_en: "Lawyer",
+      bio_en:
+        "Lawyer focused on alternative dispute resolution and civil law.",
+      focus: "50%_20%",
   },
+  */
+
   {
     name: "Noelia Torres",
     role: "Abogada",
@@ -75,10 +78,9 @@ export const abogados: TeamMember[] = [
       "https://res.cloudinary.com/di2os0yqc/image/upload/c_crop,g_custom/v1767109818/IMG_4475_rghpno.jpg",
     bio: "Abogada orientada a la resolución alternativa de conflictos",
     role_en: "Lawyer",
-    bio_en:
-      "Lawyer oriented toward alternative dispute resolution",
+    bio_en: "Lawyer oriented toward alternative dispute resolution",
     focus: "50%_20%",
-    slug: "dra-emilia-vaca"
+    slug: "dra-emilia-vaca",
   },
 ];
 

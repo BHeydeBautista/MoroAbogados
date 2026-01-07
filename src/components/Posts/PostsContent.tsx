@@ -7,7 +7,7 @@ import InstagramPosts, { IGPost } from "./InstagramPosts";
 import PublicationsGrid from "./Publications/PublicationsGrid";
 import { useSearchParams } from "next/navigation";
 import ArticlesList from "../articles/ArticlesList";
-import { articlesData, carlosArticles } from "@/data/articlesData";
+import { allArticles } from "@/data/articlesData";
 import es from "@/locales/es/content.json";
 import en from "@/locales/en/content.json";
 import { useLanguage } from "@/context/LanguageContext";
@@ -183,7 +183,7 @@ export default function PostsContent() {
             {active === "articulos" && (
               <ArticlesList
                 pageSize={4}
-                items={[...articlesData, ...carlosArticles].map((a, i) => {
+                items={[...allArticles].map((a, i) => {
                   const stripHtml = (s?: string) =>
                     s
                       ? s

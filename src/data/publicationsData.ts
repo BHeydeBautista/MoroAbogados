@@ -288,7 +288,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     pages: undefined,
     href: "",
     pdfUrl: "",
-    tags: ["Responsabilidad Civil", "Construcción"],
+    tags: [],
   },
   {
     id: "art2",
@@ -301,7 +301,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     pages: undefined,
     href: "",
     pdfUrl: "",
-    tags: ["Responsabilidad Civil", "Construcción"],
+    tags: [],
   },
   {
     id: "art3",
@@ -314,7 +314,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     pages: undefined,
     href: "",
     pdfUrl: "",
-    tags: ["Responsabilidad Civil", "Construcción"],
+    tags: [],
   },
   {
     id: "art4",
@@ -327,7 +327,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     pages: undefined,
     href: "",
     pdfUrl: "",
-    tags: ["Responsabilidad Civil", "Construcción"],
+    tags: [],
   },
   {
     id: "art5",
@@ -340,6 +340,19 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     pages: undefined,
     href: "",
     pdfUrl: "",
-    tags: ["Responsabilidad Civil", "Construcción"],
+    tags: [],
+  },
+  {
+    id: "art6",
+    title: "ARTÍCULOS",
+    type: "articulo",
+    authorId: "a2",
+    cover: "/mock/articles/EMILIO F. MORO.png",
+    excerpt: "",
+    year: undefined,
+    pages: undefined,
+    href: "",
+    pdfUrl: "",
+    tags: [],
   }
 ];

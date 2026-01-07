@@ -449,3 +449,54 @@ export const carlosArticles: Article[] = [
     excerpt: "Comentario sobre fallo publicado en Tomo XXII.",
   },
 ];
+
+export const emilioArticles: Article[] = [
+  
+  // LA LEY
+  {
+    slug: "calidad-simulada-y-falsos-titulos",
+    title: "La impugnabilidad de actos del directorio. La responsabilidad social empresaria, las buenas prácticas del gobierno corporativo y el análisis económico del derecho, “La Ley”, t. 2009-F, pág. 833 y ss.",
+    autor: "Emilio F. Moro",
+    fuente: "LA LEY",
+    fecha: "",
+    excerpt: "Estudio doctrinario sobre títulos simulados en el marco del derecho concursal.",
+  },
+  {
+    slug: "",
+    title: "Responsabilidad del Estado por omisión en los controles del servicio penitenciario, fasc. de junio de 2008, y “Revista de Responsabilidad Civil y Seguros”, Año X, Nro. X, en coautoría con Lisandro L. Mársico.",
+    autor: "Emilio F. Moro",
+    fuente: "LA LEY",
+    fecha: "Octubre 2008",
+    excerpt: ""
+  },
+  {
+    slug: "",
+    title: "Estado contable aprobado, “La Ley”, nota a fallo, ",
+    autor: "Emilio F. Moro",
+    fuente: "LA LEY",
+    fecha: "29/06/08.",
+    excerpt: "diario del 29/06/08."
+  },
+  {
+    slug: "",
+    title: "Derecho de información de los directores de sociedades anónimas, en coautoría con Santiago J. Monti, págs. 1/4.",
+    autor: "Emilio F. Moro",
+    fuente: "LA LEY",
+    fecha: "14/06/2007",
+    excerpt: "diario del 14/06/2007"
+  },
+  {
+    slug: "",
+    title: "Responsabilidad del Estado por omisión en los controles del servicio penitenciario, fasc. de junio de 2008, y “Revista de Responsabilidad Civil y Seguros”, Año X, Nro. X, en coautoría con Lisandro L. Mársico.",
+    autor: "Emilio F. Moro",
+    fuente: "LA LEY",
+    fecha: "Octubre 2008",
+    excerpt: ""
+  },
+  
+];
+
+export const allArticles: Article[] = [
+  ...carlosArticles,
+  ...emilioArticles,
+];

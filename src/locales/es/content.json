@@ -5,8 +5,7 @@
     "tabs": {
       "instagram": "Instagram",
       "propias": "Publicaciones propias",
-      "noticias": "Noticias",
-      "articulos": "Artículos doctrinarios"
+      "noticias": "Noticias"
     },
     "loading": "Cargando contenido...",
     "ig_fetch_error": "No se pudieron cargar las publicaciones. Mostrando ejemplos.",

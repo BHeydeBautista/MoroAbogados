@@ -41,7 +41,7 @@ const createMockedPosts = (captions: string[]): IGPost[] => [
 function TabSelector({
   setActive,
 }: {
-  setActive: (tab: "instagram" | "propias" | "articulos") => void;
+  setActive: (tab: "instagram" | "propias") => void;
 }) {
   const searchParams = useSearchParams();
 
@@ -49,8 +49,7 @@ function TabSelector({
     const tab = searchParams.get("tab");
     if (
       tab === "instagram" ||
-      tab === "propias" ||
-      tab === "articulos"
+      tab === "propias" 
     ) {
       setActive(tab);
     }
@@ -139,8 +138,7 @@ export default function PostsContent() {
           >
             {[
               { key: "instagram", label: t.tabs.instagram },
-              { key: "propias", label: t.tabs.propias },
-              { key: "articulos", label: t.tabs.articulos },
+              { key: "propias", label: t.tabs.propias }
             ].map((tab) => {
               const isActive = active === (tab.key as any);
               return (

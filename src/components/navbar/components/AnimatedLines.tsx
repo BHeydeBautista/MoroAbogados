@@ -16,7 +16,7 @@ export const AnimatedLines: React.FC<AnimatedLinesProps> = ({
       <motion.svg
         initial={{ opacity: 0 }}
         animate={svgMotion}
-        className="absolute inset-0 w-full h-full z-0 pointer-events-none"
+        className="absolute inset-0 w-full h-full z-0 pointer-events-none opacity-60"
         viewBox="0 0 1400 96"
         preserveAspectRatio="none"
       >
@@ -65,7 +65,7 @@ export const AnimatedLines: React.FC<AnimatedLinesProps> = ({
           strokeWidth="3"
           fill="none"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.8 }}
+          animate={{ pathLength: 1, opacity: 0.45 }}
           transition={{ duration: 2, ease: "easeOut", delay: 1.5 }}
         />
         <motion.path
@@ -75,7 +75,7 @@ export const AnimatedLines: React.FC<AnimatedLinesProps> = ({
           fill="none"
           transform="scale(-1,1) translate(-1400,0)"
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.8 }}
+          animate={{ pathLength: 1, opacity: 0.45 }}
           transition={{ duration: 2, ease: "easeOut", delay: 1.5 }}
         />
         <motion.path
@@ -195,7 +195,7 @@ export const AnimatedLines: React.FC<AnimatedLinesProps> = ({
         strokeWidth="3"
         fill="none"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 0.8 }}
+        animate={{ pathLength: 1, opacity: 0.45 }}
         transition={{ duration: 2, ease: "easeOut", delay: 0.2 }}
       />
       <motion.path
@@ -205,7 +205,7 @@ export const AnimatedLines: React.FC<AnimatedLinesProps> = ({
         fill="none"
         transform="scale(-1,1) translate(-1400,0)"
         initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 0.8 }}
+        animate={{ pathLength: 1, opacity: 0.45 }}
         transition={{ duration: 2, ease: "easeOut", delay: 0.2 }}
       />
       <motion.path

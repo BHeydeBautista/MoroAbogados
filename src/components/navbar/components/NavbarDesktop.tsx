@@ -38,38 +38,52 @@ export const NavbarDesktop: React.FC<NavbarDesktopProps> = ({
 }) => {
   return (
     <div className="hidden md:block">
-      <div className="relative w-full max-w-7xl mx-auto h-24 flex items-center justify-between px-4 lg:px-10">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={emblemMotion}
-          className="z-10 flex-shrink-0"
-        >
-          {emblem}
-        </motion.div>
+      <div className="relative w-full max-w-7xl mx-auto h-24 px-6 lg:px-12">
+        {/* CAPA DECORATIVA (REALMENTE ATRÁS) */}
+        <div className="absolute inset-x-6 lg:inset-x-12 top-0 h-full z-0 pointer-events-none overflow-hidden">
+          <AnimatedLines isDark={isDark} svgMotion={svgMotion} />
+        </div>
 
-        <motion.nav
-          initial={{
-            width: "120px",
-            padding: "8px 20px",
-          }}
-          animate={navMotion}
-          className={`${navbarStyles.navContainer(
-            isDark
-          )} backdrop-blur-sm rounded-full flex items-center justify-center gap-6 lg:gap-12 z-10 flex-shrink-0 transition-all duration-300`}
-          onMouseLeave={() => setSelectedSubmenu(null)}
-        >
-          <NavLinks
-            links={links}
-            isDark={isDark}
-            selectedSubmenu={selectedSubmenu}
-            setSelectedSubmenu={setSelectedSubmenu}
-            sequenceDone={sequenceDone}
-          />
-        </motion.nav>
+        {/* CONTENIDO */}
+        <div className="relative z-20 flex h-full items-center justify-between gap-8 lg:gap-12">
+          {/* LOGO */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={emblemMotion}
+            className="flex-shrink-0"
+          >
+            {emblem}
+          </motion.div>
 
-        <NavbarRight isDark={isDark} switchMotion={switchMotion} />
+          {/* NAV CENTRAL */}
+          <motion.nav
+            initial={{
+              width: "120px",
+              padding: "8px 20px",
+            }}
+            animate={navMotion}
+            className={`${navbarStyles.navContainer(
+              isDark
+            )} backdrop-blur-sm rounded-full
+               flex items-center
+               gap-6 lg:gap-8
+               transition-all duration-300`}
+            onMouseLeave={() => setSelectedSubmenu(null)}
+          >
+            <NavLinks
+              links={links}
+              isDark={isDark}
+              selectedSubmenu={selectedSubmenu}
+              setSelectedSubmenu={setSelectedSubmenu}
+              sequenceDone={sequenceDone}
+            />
+          </motion.nav>
 
-        <AnimatedLines isDark={isDark} svgMotion={svgMotion} />
+          {/* DERECHA */}
+          <div className="flex-shrink-0">
+            <NavbarRight isDark={isDark} switchMotion={switchMotion} />
+          </div>
+        </div>
       </div>
     </div>
   );

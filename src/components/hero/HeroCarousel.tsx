@@ -1,31 +1,57 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import HeroVideo from './HeroVideo';
-import HeroContent from './HeroContent';
-import HeroControls from './HeroControls';
+import HeroVideo from "./HeroVideo";
+import HeroContent from "./HeroContent";
+import HeroControls from "./HeroControls";
 
 const videoList = [
-  "https://res.cloudinary.com/de3x5vn0g/video/upload/v1766844211/Torre_vyd7gl_qihk1i.mp4",
-  "https://res.cloudinary.com/di2os0yqc/video/upload/v1765218380/entrada_uiuork.mov",
-  "https://res.cloudinary.com/de3x5vn0g/video/upload/v1766846317/hold-bosocc_i1tZPKWF_wpeif1.mp4",
-  "https://res.cloudinary.com/di2os0yqc/video/upload/c_fill,g_center,y_-400,ar_16:9/v1765220008/CasaGob_umj8j2.mov"
+  {
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/v1766844211/Torre_vyd7gl_qihk1i.mp4",
+    desktopPosition: "center 30%",
+    mobilePosition: "center center",
+  },
+  {
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/v1767807783/Entrada_nlhovu.mov",
+    desktopPosition: "center 45%",
+    mobilePosition: "center center",
+  },
+  {
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/v1767810072/IMG_4494_i0y3zx.mov",
+    desktopPosition: "center center",
+    mobilePosition: "center center",
+    fit: "contain", // 🔑 quitar zoom
+  },
+  {
+    src: "https://res.cloudinary.com/di2os0yqc/video/upload/c_fill,g_center,y_-400,ar_16:9/v1765220008/CasaGob_umj8j2.mov",
+    desktopPosition: "center 25%",
+    mobilePosition: "center center",
+  },
 ];
+
+
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  // avanzamos cuando el video termina (mejor que forzar con intervalo)
-  const handleVideoEnded = () => setCurrentIndex((prev) => (prev + 1) % videoList.length);
+
+  const handleVideoEnded = () => {
+    setCurrentIndex((prev) => (prev + 1) % videoList.length);
+  };
 
   return (
     <section className="relative w-full h-[calc(100vh-6rem)] min-h-[50vh] overflow-hidden bg-[#0F1C2E]">
-      {/* Componente Video */}
-      <HeroVideo currentIndex={currentIndex} videoList={videoList} onEnded={handleVideoEnded} />
-      
-      {/* Contenido Hero */}
+      <HeroVideo
+        currentIndex={currentIndex}
+        videoList={videoList}
+        onEnded={handleVideoEnded}
+      />
+
       <HeroContent />
-      
-      {/* Controles del carrusel */}
-      <HeroControls setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} videoList={videoList} />
+
+      <HeroControls
+        setCurrentIndex={setCurrentIndex}
+        currentIndex={currentIndex}
+        videoList={videoList}
+      />
     </section>
   );
 };

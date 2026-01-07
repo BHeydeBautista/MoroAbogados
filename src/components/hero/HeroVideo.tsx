@@ -1,17 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HeroVideoProps } from "@/types/hero";
 
-const HeroVideo: React.FC<HeroVideoProps> = ({ currentIndex, videoList, onEnded }) => {
+const HeroVideo: React.FC<HeroVideoProps> = ({
+  currentIndex,
+  videoList,
+  onEnded,
+}) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+
+    return () => {
+      window.removeEventListener("resize", checkDesktop);
+    };
+  }, []);
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load();
-      videoRef.current.play().catch((err) => {
-        console.warn("Error al reproducir video:", err);
-      });
+      videoRef.current
+        .play()
+        .catch((err) => console.warn("Error al reproducir video:", err));
     }
   }, [currentIndex]);
 
@@ -32,16 +51,21 @@ const HeroVideo: React.FC<HeroVideoProps> = ({ currentIndex, videoList, onEnded 
           playsInline
           preload="auto"
           className="w-full h-full object-cover"
-          style={{ objectPosition: "center 30%" }}
-          onEnded={() => {
-            onEnded?.();
+          style={{
+            objectPosition: isDesktop
+              ? videoList[currentIndex].desktopPosition
+              : videoList[currentIndex].mobilePosition,
           }}
+          onEnded={() => onEnded?.()}
         >
-          <source src={videoList[currentIndex]} type="video/mp4" />
+          <source
+            src={videoList[currentIndex].src}
+            type="video/mp4"
+          />
           Tu navegador no soporta video HTML5.
         </video>
 
-        {/* Overlay para bajar intensidad del video */}
+        {/* Overlay */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -54,9 +78,9 @@ const HeroVideo: React.FC<HeroVideoProps> = ({ currentIndex, videoList, onEnded 
         <div className="absolute inset-0 bg-gradient-to-br from-[#0F1C2E]/50 via-[#0F1C2E]/30 to-[#D4A75D]/5 z-20" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-30 pointer-events-none" />
 
-        {/* Preload siguiente video invisible */}
+        {/* Preload siguiente video */}
         <video
-          src={videoList[(currentIndex + 1) % videoList.length]}
+          src={videoList[(currentIndex + 1) % videoList.length].src}
           preload="auto"
           style={{ display: "none" }}
         />

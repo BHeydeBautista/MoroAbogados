@@ -89,17 +89,14 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
   {
     id: "b2",
     title: "Proyecto de Reformas",
-    type: "libro",
+    type: "articulo",
     authorId: "a1",
     cover: "/mock/books/libros4.jpg",
     excerpt: "Propuestas y análisis críticos sobre reformas legales.",
     year: 2001,
     pages: 320,
     href: "",
-    tags: ["Reformas", "Legislación"],
-    editorialId: "e1",
-    clasification: "Derecho Público",
-    format: "Tapa Dura",
+    tags: ["Reformas", "Legislación"]
   },
   {
     id: "b3",

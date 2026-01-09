@@ -6,23 +6,24 @@ import HeroControls from "./HeroControls";
 
 const videoList = [
   {
-    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/v1766844211/Torre_vyd7gl_qihk1i.mp4",
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1766844211/Torre_vyd7gl_qihk1i.mp4",
     desktopPosition: "center 30%",
     mobilePosition: "center center",
   },
   {
-    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/v1767807783/Entrada_nlhovu.mov",
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1767807783/Entrada_nlhovu.mov",
     desktopPosition: "center 45%",
     mobilePosition: "center center",
   },
   {
-    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/v1767810072/IMG_4494_i0y3zx.mov",
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1767810072/IMG_4494_i0y3zx.mov",
     desktopPosition: "center center",
     mobilePosition: "center center",
     fit: "contain", // 🔑 quitar zoom
   },
   {
-    src: "https://res.cloudinary.com/di2os0yqc/video/upload/c_fill,g_center,y_-400,ar_16:9/v1765220008/CasaGob_umj8j2.mov",
+    
+    src: "https://res.cloudinary.com/dfb0e4gdz/video/upload/f_auto,q_auto,c_fill,g_center,y_-400,ar_16:9/v1767969129/casa_gob_cybnts.mov",
     desktopPosition: "center 25%",
     mobilePosition: "center center",
   },

@@ -9,7 +9,7 @@ const references = [
     image: "/img/references/library-1.jpg",
     items: [
       "Gualeguay (Estudio Jurídico Bisso)",
-      "Diamante",
+      "Diamante (Estudio Jurídico Llados)",
       "Victoria (Estudio Jurídico Firpo-Valdamarin)",
       "Concordia (Estudio Jurídico Arigos)",
       "Chajarí (Estudio Jurídico Ponzoni)",

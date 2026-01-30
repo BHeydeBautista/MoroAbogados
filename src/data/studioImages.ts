@@ -5,9 +5,9 @@ export const studioImages: string[] = [
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764182204/logo-despacho_kilfsn.jpg",
 
   // Oficina Emilio
-  "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181720/IMG-20251124-WA0012_lopoyk.jpg",
-  "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181719/IMG-20251124-WA0010_ycv30i.jpg",
-  "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181719/IMG-20251124-WA0011_dmsetl.jpg",
+  "https://res.cloudinary.com/di2os0yqc/image/upload/v1769789544/IMG_4738_famidk.jpg",
+  "https://res.cloudinary.com/di2os0yqc/image/upload/v1769789558/IMG_4739_rfnusz.jpg",
+  "https://res.cloudinary.com/di2os0yqc/image/upload/v1769789564/IMG_4740_kfe0vx.jpg",
 
   // Cielo
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181716/Imagen_de_WhatsApp_2025-11-13_a_las_19.53.17_a7a269f5_gisprx.jpg",

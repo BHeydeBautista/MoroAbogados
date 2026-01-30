@@ -71,7 +71,7 @@ export default function PublicationsGrid() {
       }
 
       if (editorialFilter !== "all") {
-        if ((p as any).editorialId !== editorialFilter) {
+        if (p.editorialId !== editorialFilter) {
           return false;
         }
       }

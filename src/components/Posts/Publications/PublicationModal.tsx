@@ -37,6 +37,17 @@ type GroupedArticles = {
   articles: RelatedArticle[];
 };
 
+type NewspaperArticle = {
+  title: string;
+  year?: string;
+  reference?: string;
+};
+
+type NewspaperGroup = {
+  newspaper?: string;
+  articles?: NewspaperArticle[];
+};
+
 /* =========================
    MAPEO AUTOR → ABOGADO
 ========================= */
@@ -58,6 +69,15 @@ function normalize(value?: string) {
     .trim();
 }
 
+function matchesPublication(a?: string, b?: string) {
+  const na = normalize(a);
+  const nb = normalize(b);
+
+  if (!na || !nb) return false;
+
+  return na === nb || na.includes(nb) || nb.includes(na);
+}
+
 /* =========================
    Obtener artículos
 ========================= */
@@ -75,6 +95,16 @@ function getArticlesFromPublication(pub: Publication): {
   const groupedMap: Record<string, RelatedArticle[]> = {};
   const flat: RelatedArticle[] = [];
 
+  const isGenericAllArticles =
+    pub.type === "articulo" && normalize(pub.title) === "articulos";
+
+  const targetPublication = pub.editorialId
+    ? EDITORIALS.find((e: Editorials) => e.id === pub.editorialId)?.name ??
+      pub.title
+    : pub.title;
+
+  const filterTarget = isGenericAllArticles ? undefined : targetPublication;
+
   /* ======================================================
      CASO 1 → PUBLICACIÓN ES UN ARTÍCULO
      MOSTRAR TODO (journals + articles)
@@ -83,6 +113,10 @@ function getArticlesFromPublication(pub: Publication): {
   if (pub.type === "articulo") {
     // 🔹 Journals (REFERENCIAS IMPORTANTES)
     lawyer.journals?.forEach((journal) => {
+      if (filterTarget && !matchesPublication(journal.journal, filterTarget)) {
+        return;
+      }
+
       journal.articles.forEach((a) => {
         const article: RelatedArticle = {
           title: a.title,
@@ -102,8 +136,40 @@ function getArticlesFromPublication(pub: Publication): {
       });
     });
 
+    // 🔹 Newspapers (LA LEY / ZEUS / JURISPRUDENCIA ARGENTINA, etc.)
+    const newspapers = (lawyer as unknown as { newspapers?: NewspaperGroup[] })
+      .newspapers;
+
+    newspapers?.forEach((paper) => {
+      if (filterTarget && !matchesPublication(paper.newspaper, filterTarget)) {
+        return;
+      }
+
+      paper.articles?.forEach((a) => {
+        const article: RelatedArticle = {
+          title: a.title,
+          publication: paper.newspaper,
+          year: a.year,
+          reference: a.reference,
+          autor: lawyer.name,
+        };
+
+        if (lawyer.slug === "dr-carlos-moro") {
+          const key = paper.newspaper || "Otras publicaciones";
+          if (!groupedMap[key]) groupedMap[key] = [];
+          groupedMap[key].push(article);
+        } else {
+          flat.push(article);
+        }
+      });
+    });
+
     // 🔹 Fallback plano (si existen)
     lawyer.articles?.forEach((a) => {
+      if (filterTarget && !matchesPublication(a.publication, filterTarget)) {
+        return;
+      }
+
       const article: RelatedArticle = {
         title: a.title,
         publication: a.publication,
@@ -137,7 +203,7 @@ function getArticlesFromPublication(pub: Publication): {
 
   // Journals (fuente correcta)
   lawyer.journals?.forEach((journal) => {
-    if (normalize(journal.journal) !== normalize(pub.title)) return;
+    if (!matchesPublication(journal.journal, pub.title)) return;
 
     journal.articles.forEach((a) => {
       const article: RelatedArticle = {
@@ -161,7 +227,7 @@ function getArticlesFromPublication(pub: Publication): {
 
   // Fallback plano
   lawyer.articles?.forEach((a) => {
-    if (normalize(a.publication) !== normalize(pub.title)) return;
+    if (!matchesPublication(a.publication, pub.title)) return;
 
     const article: RelatedArticle = {
       title: a.title,
@@ -196,11 +262,18 @@ function getArticlesFromPublication(pub: Publication): {
 export default function PublicationModal({ pub, onClose }: Props) {
   if (!pub) return null;
 
-  const isBook = (p: Publication): p is PublicationBooks => p.type === "libro";
-
-  const editorialName = isBook(pub)
+  const editorialName = pub.editorialId
     ? EDITORIALS.find((e: Editorials) => e.id === pub.editorialId)?.name ?? ""
     : "";
+
+  const isGenericAllArticles =
+    pub.type === "articulo" && normalize(pub.title) === "articulos";
+
+  const articlesHeading = pub.type === "articulo" ? editorialName || pub.title : pub.title;
+
+  const articlesHeadingText = isGenericAllArticles
+    ? "Artículos publicados"
+    : `Artículos publicados en ${articlesHeading}`;
 
   const { grouped, flat } = getArticlesFromPublication(pub);
 
@@ -260,8 +333,8 @@ export default function PublicationModal({ pub, onClose }: Props) {
 
               <ul className="mt-4 text-sm text-gray-600 space-y-1">
                 {pub.year && <li>Año: {pub.year}</li>}
-                {isBook(pub) && editorialName && (
-                  <li>Editorial: {editorialName}</li>
+                {editorialName && (
+                  <li>{pub.type === "libro" ? "Editorial" : "Medio"}: {editorialName}</li>
                 )}
               </ul>
             </div>
@@ -272,11 +345,14 @@ export default function PublicationModal({ pub, onClose }: Props) {
         {(grouped.length > 0 || flat.length > 0) && (
           <div className="p-4 border-t overflow-y-auto">
             <h4 className="text-sm font-semibold text-[#0F1C2E] mb-3">
-              Artículos publicados en {pub.title}
+              {articlesHeadingText}
             </h4>
 
             {grouped.map((group) => (
               <div key={group.publication} className="mb-4">
+                <h5 className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
+                  {group.publication}
+                </h5>
                 <ul className="space-y-2">
                   {group.articles.map((article, i) => (
                     <li key={i}>

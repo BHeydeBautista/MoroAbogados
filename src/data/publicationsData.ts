@@ -41,6 +41,7 @@ export type PublicationArt = {
   href?: string;
   pdfUrl?: string;
   tags?: string[];
+  editorialId?: string;
 };
 
 // Añadir este export para usar `type Publication` desde otros archivos
@@ -85,18 +86,6 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     editorialId: "e1",
     clasification: "Derecho Concursal",
     format: "Tapa Dura",
-  },
-  {
-    id: "b2",
-    title: "Proyecto de Reformas",
-    type: "articulo",
-    authorId: "a1",
-    cover: "/mock/books/libros4.jpg",
-    excerpt: "Propuestas y análisis críticos sobre reformas legales.",
-    year: 2001,
-    pages: 320,
-    href: "",
-    tags: ["Reformas", "Legislación"]
   },
   {
     id: "b3",
@@ -360,16 +349,17 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
   },
   {
     id: "art5",
-    title: "LA LEY",
+    title: "Proyecto de Reformas",
     type: "articulo",
     authorId: "a1",
-    cover: "/mock/articles/LA_LEY.png",
-    excerpt: "",
-    year: undefined,
-    pages: undefined,
+    cover: "/mock/books/libros4.jpg",
+    excerpt: "Propuestas y análisis críticos sobre reformas legales.",
+    year: 2001,
+    pages: 320,
     href: "",
     pdfUrl: "",
-    tags: [],
+    tags: ["Reformas", "Legislación", "La Ley"],
+    editorialId: "e3",
   },
   {
     id: "art6",

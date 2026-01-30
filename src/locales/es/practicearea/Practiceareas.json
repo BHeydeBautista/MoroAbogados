@@ -1,20 +1,19 @@
 {
-    "areas": {
+  "areas": {
     "title": "Áreas de Práctica",
 
     "societario": "Derecho Societario",
     "societario_desc": "Asesoramiento integral a empresas nacionales e internacionales.",
     "societario_points": [
       "Inscripciones y registros societarios.",
-      "Constitución de sociedades y sucursales.",
+      "Constitución se sociedades y establecimientos de sucursales.",
       "Representación de sociedades.",
       "Convenios de accionistas.",
       "Reorganizaciones societarias.",
       "Fusiones y adquisiciones.",
       "Inversiones extranjeras.",
-      "Planeamiento de contratos y 'joint ventures'.",
-      "Auditorías legales (due diligence).",
-      "Resolución de conflictos societarios."
+      "Planeamiento y estructuración de contratos de colaboración empresaria, uniones transitorias de empresas, 'joint ventures'.",
+      "Auditorías legales (due diligence)."
     ],
 
     "contencioso": "Asuntos Contenciosos",
@@ -40,7 +39,7 @@
       "Contratos domésticos e internacionales.",
       "Transferencia de fondo de comercio.",
       "Comercio internacional: letras de cambio y créditos documentarios.",
-      "Contratos comerciales, incluyendo contratos de distribución y de licencia, de compraventa y de leasing.",
+      "Contratos comerciales, incluyendo contratos de distribución y de licencia, de compraventa y de 'leasing'.",
       "Defensa de la competencia.",
       "Defensa del consumidor y competencia desleal.",
       "Responsabilidad por productos y protección al consumidor."
@@ -49,37 +48,50 @@
     "concursal": "Concursal",
     "concursal_desc": "Gestión estratégica de situaciones de insolvencia y procesos concursales.",
     "concursal_points": [
-      "Concursos preventivos y quiebras.",
-      "Representación de acreedores y deudores.",
-      "Reestructuración de pasivos empresariales.",
-      "Negociación de acuerdos preventivos extrajudiciales."
+      "Reorganización y reestructuración de pasivos.",
+      "Verificación de créditos nacionales e internacionales.",
+      "Acuerdos de mantenimiento de líneas de crédito.",
+      "Concurso de acreedores.",
+      "Quiebras."
     ],
 
     "civil": "Civil",
     "civil_desc": "Responsabilidad civil, daños, sucesiones y relaciones jurídicas privadas.",
     "civil_points": [
       "Contratos civiles.",
-      "Juicios por daños y perjuicios.",
-      "Sucesiones y particiones.",
-      "Relaciones de familia y bienes."
+      "Derechos de la propiedad intelectual.",
+      "Derechos reales.",
+      "Sucesión de patrimonios particulares.",
+      "División de condominios.",
+      "Fundaciones y asociaciones.",
+      "Acciones por cese de uso de marcas.",
+      "Fideicomisos. Negocios Fiduciarios.",
+      "Defensa de la Competencia."
     ],
 
     "laboral": "Derecho Laboral de Empresas",
     "laboral_desc": "Asesoramiento en relaciones laborales, conflictos sindicales y normativa vigente.",
     "laboral_points": [
-      "Contratos laborales y convenios colectivos.",
-      "Despidos y conflictos individuales.",
-      "Negociación con sindicatos.",
-      "Prevención de conflictos y cumplimiento normativo."
+      "Convenios y conflictos colectivos.",
+      "Reestructuración de plantillas de personal.",
+      "Seguridad social.",
+      "Derecho sindical.",
+      "Prevención de riesgos laborales.",
+      "Derecho contencioso laboral.",
+      "Auditorías laborales.",
+      "Liquidación de nóminas confidenciales."
     ],
 
     "administrativo": "Administrativo-Constitucional Económico",
     "administrativo_desc": "Defensa ante organismos públicos, licitaciones, recursos y constitucionalidad.",
     "administrativo_points": [
-      "Procedimientos administrativos y sancionatorios.",
-      "Participación en licitaciones públicas.",
-      "Reclamos por inconstitucionalidad de normas.",
-      "Asesoramiento en regulación estatal."
+      "Recursos de Amparo.",
+      "Hábeas Data.",
+      "Arbritraje.",
+      "Derecho administrativo y constitucional en general, recursos judiciales y administrativos ante organismos diversos en el ámbito municipal, provincial y nacional (A.F.I.P., ENRESS, ANSESS). Recursos extraordinarios provinciales y federales.",
+      "Reclamos administrativos.",
+      "Procedimientos ante organismos recaudadores y seguimiento de acciones judiciales.",
+      "Recursos administrativos y judiciales."
     ]
   }
 }

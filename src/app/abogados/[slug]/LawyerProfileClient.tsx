@@ -1,29 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useState } from "react";
 import { lawyerDetails } from "@/data/lawyerData";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import GalleryModal from "@/components/About/gallery/GalleryModal";
 
 /* =========================
-   TIPOS
+  TIPOS
 ========================= */
-
-type IntegratedRoleItem = {
-  title: string;
-  description: string;
-};
-
-type IntegratedRoles = {
-  institutions?: string[];
-  started?: IntegratedRoleItem[];
-  end?: IntegratedRoleItem[];
-};
 
 const LawyerProfileClient = ({ slug }: { slug: string }) => {
   const { language } = useLanguage();
+
+  const [selectedRecognitionIndex, setSelectedRecognitionIndex] =
+    useState<number | null>(null);
 
   const lawyer = lawyerDetails[slug];
   if (!lawyer) return null;
@@ -74,6 +68,24 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
     return `${src}${src.includes("?") ? "&" : "?"}v=${encodeURIComponent(
       recognitionCacheKey
     )}`;
+  };
+
+  const recognitionModalImages = recognitionImages.map(withCacheKey);
+
+  const closeRecognitionModal = () => setSelectedRecognitionIndex(null);
+  const handlePrevRecognition = () => {
+    if (recognitionModalImages.length === 0) return;
+    setSelectedRecognitionIndex((prev) =>
+      prev === null
+        ? 0
+        : (prev - 1 + recognitionModalImages.length) % recognitionModalImages.length
+    );
+  };
+  const handleNextRecognition = () => {
+    if (recognitionModalImages.length === 0) return;
+    setSelectedRecognitionIndex((prev) =>
+      prev === null ? 0 : (prev + 1) % recognitionModalImages.length
+    );
   };
 
   return (
@@ -228,16 +240,15 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
           {/* RECONOCIMIENTOS (FOTOS) */}
           {recognitionImages.length > 0 && (
             <section>
-              
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                 {recognitionImages.map((src, i) => (
-                  <a
+                  <button
                     key={`${src}-${i}`}
-                    href={withCacheKey(src)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="block"
+                    type="button"
+                    onClick={() => setSelectedRecognitionIndex(i)}
+                    className="block text-left"
+                    aria-label="Abrir reconocimiento"
                   >
                     <div className="relative w-full aspect-[3/4] rounded-xl border border-[#D4A75D]/30 bg-white overflow-hidden">
                       <Image
@@ -248,9 +259,22 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
                         className="object-contain p-2"
                       />
                     </div>
-                  </a>
+                  </button>
                 ))}
               </div>
+
+              <AnimatePresence>
+                {selectedRecognitionIndex !== null && (
+                  <GalleryModal
+                    isOpen={selectedRecognitionIndex !== null}
+                    currentIndex={selectedRecognitionIndex}
+                    images={recognitionModalImages}
+                    onClose={closeRecognitionModal}
+                    onPrev={handlePrevRecognition}
+                    onNext={handleNextRecognition}
+                  />
+                )}
+              </AnimatePresence>
             </section>
           )}
 

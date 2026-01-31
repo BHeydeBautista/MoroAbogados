@@ -6,6 +6,9 @@ export interface Lawyer {
   email: string;
   image: string;
 
+  recognitionImages?: string[];
+  recognitionImagesCacheKey?: string;
+
   personal: {
     birthDate: string;
     birthPlace: string;

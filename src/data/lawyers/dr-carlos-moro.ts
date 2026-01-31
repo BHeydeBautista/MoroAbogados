@@ -8,6 +8,18 @@ export const drCarlosMoro = {
     title_en: "Lawyer, specialist in Insolvency Law",
     image: "/img/lawyers/Dr-Carlos.jpg",
 
+    recognitionImages: [
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802614/IMG_4742_zdjijm.jpg",
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802614/IMG_4743_h2k7xs.jpg",
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802615/IMG_4747_sdm7ub.jpg",
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769877286/IMG_4749_bbbwot.jpg",
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802614/IMG_4745_gly9ni.jpg",
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802614/IMG_4748_p8xs96.jpg",
+    ],
+
+    // Bump this when you edit/overwrite images in Cloudinary but keep the same URLs.
+    recognitionImagesCacheKey: "1769877286",
+
     personal: {
       birthDate: "13 de enero de 1955",
       birthPlace: "Paraná, Entre Ríos",

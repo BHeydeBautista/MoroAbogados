@@ -16,7 +16,7 @@ export const clients: Client[] = [
   { name: "Bulonera del Litoral S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919091/Bulonera_del_Litoral_S.A._dlxqep.jpg", featured: true },
   { name: "Consorcio de Exportación Avícola", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918942/Consorcio_de_Exportaci%C3%B3n_Av%C3%ADcola_leo2gv.png"},
   { name: "Dragados y Construcciones Argentina S.A. (DYCASA)", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919148/Dragados_y_Construcciones_Argentina_S.A._DYCASA_hlarrz.jpg" },
-  { name: "Estancias Chalbaud", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919177/Estancia_Chalbaud_jdnqj3.webp" },
+  { name: "Estancias Chalbaud", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919177/Estancia_Chalbaud_jdnqj3.webp", featured: true },
   { name: "General Motors Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918934/gm_r6tnnx.webp", featured: true },
   { name: "Glencore Cereales S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764605360/Dise%C3%B1o_sin_t%C3%ADtulo_1_xnptb1.png" },
   { name: "Las Margaritas S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919253/Las_Margaritas_S.A._ciwalx.webp" },
@@ -33,8 +33,8 @@ export const clients: Client[] = [
   { name: "LEFFLER & WOLLERT S.R.L.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025022/LEFFLER_WOLLERT_S.R.L._eyweqp.webp" },
   { name: "ALIMENTI S.R.L.", category: "Industria y Producción" },
   { name: "LEFFLER-DIETZ ALUMINIO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025022/LEFFLER-DIETZ_ALUMINIO_ck7ofe.png" },
-  { name: "ROTH HUEVO CAMPO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025023/ROTH_HUEVO_CAMPO_nwulim.png" },
-  { name: "L & B Maquinarias S.A.", category: "Industria y Producción" , logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025131/L_B_Maquinarias_S.A._jv590i.png" },
+  { name: "ROTH HUEVO CAMPO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025023/ROTH_HUEVO_CAMPO_nwulim.png", featured: true },
+  { name: "L & B Maquinarias S.A.", category: "Industria y Producción" , logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025131/L_B_Maquinarias_S.A._jv590i.png", featured: true },
   { name: "ASTILLERO Samuel Gutnisky S.A.", category: "Industria y Producción" },
 
   // ——— SERVICIOS Y OTROS ———

@@ -41,6 +41,7 @@ export type PublicationArt = {
   href?: string;
   pdfUrl?: string;
   tags?: string[];
+  editorialId?: string;
 };
 
 // Añadir este export para usar `type Publication` desde otros archivos
@@ -85,18 +86,6 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     editorialId: "e1",
     clasification: "Derecho Concursal",
     format: "Tapa Dura",
-  },
-  {
-    id: "b2",
-    title: "Proyecto de Reformas",
-    type: "articulo",
-    authorId: "a1",
-    cover: "/mock/books/libros4.jpg",
-    excerpt: "Propuestas y análisis críticos sobre reformas legales.",
-    year: 2001,
-    pages: 320,
-    href: "",
-    tags: ["Reformas", "Legislación"]
   },
   {
     id: "b3",
@@ -272,6 +261,38 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     clasification: "-",
     format: "-",
   },
+  {
+    id: "b14",
+    title: "Situaciones Problemáticas en impugnaciones asablearias",
+    type: "libro",
+    authorId: "a2",
+    cover: "/mock/books/situacionesProblematicas.png",
+    excerpt: "",
+    ISBN: "",
+    year: 2024,
+    pages: 0,
+    href: "",
+    tags: [],
+    editorialId: "e3",
+    clasification: "-",
+    format: "-",
+  },
+  {
+    id: "b15",
+    title: "Ley de Concursos - Ley N° 24.522 con sus reformas 25.563, 25.589, 26.086 y 26.684",
+    type: "libro",
+    authorId: "a1",
+    cover: "/mock/books/ley_concursos3.jpg",
+    excerpt: "",
+    ISBN: "",
+    year: 2011,
+    pages: 148,
+    href: "",
+    tags: [],
+    editorialId: "e1",
+    clasification: "-",
+    format: "-",
+  },
 
   // Artículos
   {
@@ -328,16 +349,17 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
   },
   {
     id: "art5",
-    title: "LA LEY",
+    title: "Proyecto de Reformas",
     type: "articulo",
     authorId: "a1",
-    cover: "/mock/articles/LA_LEY.png",
-    excerpt: "",
-    year: undefined,
-    pages: undefined,
+    cover: "/mock/books/libros4.jpg",
+    excerpt: "Propuestas y análisis críticos sobre reformas legales.",
+    year: 2001,
+    pages: 320,
     href: "",
     pdfUrl: "",
-    tags: [],
+    tags: ["Reformas", "Legislación", "La Ley"],
+    editorialId: "e3",
   },
   {
     id: "art6",

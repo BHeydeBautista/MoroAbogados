@@ -29,6 +29,8 @@ type RelatedArticle = {
   publication?: string;
   year?: string;
   reference?: string;
+  tomo?: string;
+  pagina?: string;
   autor: string;
 };
 
@@ -78,6 +80,68 @@ function matchesPublication(a?: string, b?: string) {
   return na === nb || na.includes(nb) || nb.includes(na);
 }
 
+function parseCitation(reference?: string) {
+  const ref = reference?.trim();
+  if (!ref) return {} as { tomo?: string; pagina?: string; year?: string };
+
+  // Common patterns:
+  // - LA LEY: (1985-C-1071)
+  // - EL DERECHO: (120-296)
+  // - ZEUS: (28-D-3)
+  // - Free text: t. 2009-F, pág. 833
+
+  const clean = ref.replace(/^\(|\)$/g, "").trim();
+
+  // 4-digit year + letter + page: 1985-C-1071
+  const laLey = clean.match(/(\d{4})\s*[-–]\s*([A-Z])\s*[-–]\s*(\d+)/);
+  if (laLey) {
+    const year = laLey[1];
+    const tomo = `${laLey[1]}-${laLey[2]}`;
+    const pagina = laLey[3];
+    return { year, tomo, pagina };
+  }
+
+  // Volume + letter + page: 28-D-3
+  const volLetter = clean.match(/(\d+)\s*[-–]\s*([A-Z])\s*[-–]\s*(\d+)/);
+  if (volLetter) {
+    return { tomo: `${volLetter[1]}-${volLetter[2]}`, pagina: volLetter[3] };
+  }
+
+  // Volume-page: 120-296
+  const volPage = clean.match(/(\d+)\s*[-–]\s*(\d+)/);
+  if (volPage) {
+    return { tomo: volPage[1], pagina: volPage[2] };
+  }
+
+  // Free text with tomo: t. 2009-F or t. 125
+  const tomoMatch = clean.match(/\bt\.?\s*([0-9]{4}-[A-Z]|\d+)\b/i);
+  const tomo = tomoMatch?.[1];
+
+  // Free text with pages: pág. 833 / págs. 817/834
+  const paginaMatch = clean.match(/p[aá]g(?:s)?\.?\s*([0-9]+(?:\/[0-9]+)?)\b/i);
+  const pagina = paginaMatch?.[1];
+
+  // Free text with year: 2008 / 2009
+  const yearMatch = clean.match(/\b(19\d{2}|20\d{2})\b/);
+  const year = yearMatch?.[1];
+
+  return { tomo, pagina, year };
+}
+
+function enrichRelatedArticle(base: RelatedArticle): RelatedArticle {
+  const parsedFromRef = parseCitation(base.reference);
+  const tomo = base.tomo ?? parsedFromRef.tomo;
+  const pagina = base.pagina ?? parsedFromRef.pagina;
+  const year = base.year ?? parsedFromRef.year;
+
+  return {
+    ...base,
+    tomo,
+    pagina,
+    year,
+  };
+}
+
 /* =========================
    Obtener artículos
 ========================= */
@@ -118,13 +182,13 @@ function getArticlesFromPublication(pub: Publication): {
       }
 
       journal.articles.forEach((a) => {
-        const article: RelatedArticle = {
+        const article: RelatedArticle = enrichRelatedArticle({
           title: a.title,
           publication: journal.journal,
           year: a.year,
           reference: a.reference,
           autor: lawyer.name,
-        };
+        });
 
         if (lawyer.slug === "dr-carlos-moro") {
           const key = journal.journal || "Otras publicaciones";
@@ -146,13 +210,13 @@ function getArticlesFromPublication(pub: Publication): {
       }
 
       paper.articles?.forEach((a) => {
-        const article: RelatedArticle = {
+        const article: RelatedArticle = enrichRelatedArticle({
           title: a.title,
           publication: paper.newspaper,
           year: a.year,
           reference: a.reference,
           autor: lawyer.name,
-        };
+        });
 
         if (lawyer.slug === "dr-carlos-moro") {
           const key = paper.newspaper || "Otras publicaciones";
@@ -170,13 +234,13 @@ function getArticlesFromPublication(pub: Publication): {
         return;
       }
 
-      const article: RelatedArticle = {
+      const article: RelatedArticle = enrichRelatedArticle({
         title: a.title,
         publication: a.publication,
         year: a.year,
         reference: a.reference,
         autor: lawyer.name,
-      };
+      });
 
       if (lawyer.slug === "dr-carlos-moro") {
         const key = a.publication || "Otras publicaciones";
@@ -206,13 +270,13 @@ function getArticlesFromPublication(pub: Publication): {
     if (!matchesPublication(journal.journal, pub.title)) return;
 
     journal.articles.forEach((a) => {
-      const article: RelatedArticle = {
+      const article: RelatedArticle = enrichRelatedArticle({
         title: a.title,
         publication: journal.journal,
         year: a.year,
         reference: a.reference,
         autor: lawyer.name,
-      };
+      });
 
       if (lawyer.slug === "dr-carlos-moro") {
         if (!groupedMap[journal.journal]) {
@@ -229,13 +293,13 @@ function getArticlesFromPublication(pub: Publication): {
   lawyer.articles?.forEach((a) => {
     if (!matchesPublication(a.publication, pub.title)) return;
 
-    const article: RelatedArticle = {
+    const article: RelatedArticle = enrichRelatedArticle({
       title: a.title,
       publication: a.publication,
       year: a.year,
       reference: a.reference,
       autor: lawyer.name,
-    };
+    });
 
     if (lawyer.slug === "dr-carlos-moro") {
       const key = a.publication || pub.title;
@@ -363,7 +427,22 @@ export default function PublicationModal({ pub, onClose }: Props) {
                         {article.autor}
                         {article.year && ` · ${article.year}`}
                       </div>
-                      {article.reference && (
+                      {(article.tomo || article.pagina) && (
+                        <div className="text-xs text-gray-600">
+                          {article.tomo && (
+                            <span>
+                              <span className="font-medium">Tomo:</span> {article.tomo}
+                            </span>
+                          )}
+                          {article.tomo && article.pagina && <span> · </span>}
+                          {article.pagina && (
+                            <span>
+                              <span className="font-medium">Página:</span> {article.pagina}
+                            </span>
+                          )}
+                        </div>
+                      )}
+                      {article.reference && !article.tomo && !article.pagina && (
                         <div className="text-xs italic text-gray-600">
                           {article.reference}
                         </div>
@@ -385,7 +464,22 @@ export default function PublicationModal({ pub, onClose }: Props) {
                       {article.autor}
                       {article.year && ` · ${article.year}`}
                     </div>
-                    {article.reference && (
+                    {(article.tomo || article.pagina) && (
+                      <div className="text-xs text-gray-600">
+                        {article.tomo && (
+                          <span>
+                            <span className="font-medium">Tomo:</span> {article.tomo}
+                          </span>
+                        )}
+                        {article.tomo && article.pagina && <span> · </span>}
+                        {article.pagina && (
+                          <span>
+                            <span className="font-medium">Página:</span> {article.pagina}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    {article.reference && !article.tomo && !article.pagina && (
                       <div className="text-xs italic text-gray-600">
                         {article.reference}
                       </div>

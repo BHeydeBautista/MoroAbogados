@@ -44,7 +44,6 @@ export type PublicationArt = {
   editorialId?: string;
 };
 
-// Añadir este export para usar `type Publication` desde otros archivos
 export type Publication = PublicationBooks | PublicationArt;
 
 export const AUTHORS: Author[] = [
@@ -77,7 +76,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     type: "libro",
     authorId: "a1",
     cover: "/mock/books/ley_concursos1.jpg",
-    excerpt: "Comentario y anotaciones con jurisprudencia relevante.",
+    excerpt: 'Con prólogo "de Osvaldo Maffía. Editado en Entre Ríos en Marzo de 1994 por Delta Editora. "…joven entrerriano, que ha logrado vencer ese fatídico sino que hace que -quienes trabajan y escriben en el interior del país- difícilmente alcancen trascendencia a nivel nacional(…)es sumamente valioso que haya otorgado un lugar preponderante a los fallos concebidos en sus pagos(…)las propuestas que formula no son para el topos urano platónico, sino para esta Argentina nuestra de los día que corren(…)obra profunda, solvente y clara"(sic, Bibliografía, Ernesto Eduardo Martorell, Diario La Ley del martes 20 de diciembre de 1994). Presentación del libro que fue declarada de interés académico por la Universidad Nacional de Entre Ríos (Resolución de la UNER número 099-94 de fecha 13/04/1994)',
     year: 1994,
     pages: 461,
     href: "",
@@ -94,7 +93,7 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     type: "libro",
     authorId: "a1",
     cover: "/mock/books/ley_concursos2.jpg",
-    excerpt: "",
+    excerpt: 'Tres Tomos, con prólogo de Jaime Anaya. Editada por Ad-Hoc. Buenos Aires 2005/7 "Tal como lo hiciera en su obra de 1994, recorre con acierto la doctrina judicial y pone cuidado en destacar la contribución de los tribunales provinciales, dando particular relieve a los fallos de la Suprema Corte de Justicia de Mendoza, en comprensible muestra de reconocimiento a la notable jurista Aída Kemelmajer de Carlucci, que desde allí viene cumpliendo una destacada tarea. En la "Introducción" a sus comentarios sobre el proyecto de la que sería ley 24.522, Moro se hizo eco de las opiniones de la ilustrada jurista para sostener que se debe otorgar la posibilidad de reconversión, reestructuración mediante, a las empresas cuya perduración sea posible; mientras que a las que no sean viables hay que liquidarlas rápidamente. Al servicio de estas premisas se encuentran los comentarios de esta obra madura de Carlos E. Moro, desenvueltos con una pluma ágil, erudita, vehemente y por momentos áspera, con el énfasis que sabe poner quien está convencido de que la prioridad para la Argentina es salir de su default ético." Jaime L. Anaya',
     year: 2005,
     pages: 2976,
     href: "",
@@ -353,8 +352,8 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     type: "articulo",
     authorId: "a1",
     cover: "/mock/books/libros4.jpg",
-    excerpt: "Propuestas y análisis críticos sobre reformas legales.",
-    year: 2001,
+    excerpt: "Comentario al proyecto luego Ley 24522. Editado en Entre Ríos en Noviembre de 1994 por Delta Editora. Reformas sobre las cuales expuso junto con los Dres. Adolfo A. N. Roullión y Osvaldo J. Maffía como Profesores invitados en la Honorable Cámara de Diputados del Congreso de la Nación en 1995.",
+    year: 1994,
     pages: 320,
     href: "",
     pdfUrl: "",

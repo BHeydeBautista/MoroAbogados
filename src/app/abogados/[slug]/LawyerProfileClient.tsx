@@ -72,6 +72,24 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
 
   const recognitionModalImages = recognitionImages.map(withCacheKey);
 
+  const fallbackFeaturedIndex = recognitionImages.length >= 5 ? 4 : null;
+  const preferredFeaturedIndex =
+    typeof lawyer.featuredRecognitionImageIndex === "number"
+      ? lawyer.featuredRecognitionImageIndex
+      : fallbackFeaturedIndex;
+
+  const featuredRecognitionIndex =
+    preferredFeaturedIndex !== null &&
+    Number.isInteger(preferredFeaturedIndex) &&
+    preferredFeaturedIndex >= 0 &&
+    preferredFeaturedIndex < recognitionImages.length
+      ? preferredFeaturedIndex
+      : null;
+
+  const recognitionGridItems = recognitionImages
+    .map((src, originalIndex) => ({ src, originalIndex }))
+    .filter((item) => item.originalIndex !== featuredRecognitionIndex);
+
   const closeRecognitionModal = () => setSelectedRecognitionIndex(null);
   const handlePrevRecognition = () => {
     if (recognitionModalImages.length === 0) return;
@@ -190,6 +208,28 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
             integratedRoles.started.length > 0 ||
             integratedRoles.end.length > 0) && (
             <section>
+              {featuredRecognitionIndex !== null && (
+                <div className="flex justify-center mb-10">
+                  <button
+                    type="button"
+                    onClick={() => setSelectedRecognitionIndex(featuredRecognitionIndex)}
+                    className="block w-full max-w-2xl text-left"
+                    aria-label="Abrir reconocimiento"
+                  >
+                    <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#D4A75D]/30 bg-white">
+                      <Image
+                        src={withCacheKey(recognitionImages[featuredRecognitionIndex])}
+                        alt="Reconocimiento"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 768px"
+                        className="object-contain"
+                        priority
+                      />
+                    </div>
+                  </button>
+                </div>
+              )}
+
               <h3 className="text-2xl font-serif font-bold text-[#D4A75D] mb-8">
                 Integró
               </h3>
@@ -242,11 +282,11 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
             <section>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                {recognitionImages.map((src, i) => (
+                {recognitionGridItems.map(({ src, originalIndex }) => (
                   <button
-                    key={`${src}-${i}`}
+                    key={`${src}-${originalIndex}`}
                     type="button"
-                    onClick={() => setSelectedRecognitionIndex(i)}
+                    onClick={() => setSelectedRecognitionIndex(originalIndex)}
                     className="block text-left"
                     aria-label="Abrir reconocimiento"
                   >

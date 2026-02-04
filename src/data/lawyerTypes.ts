@@ -8,6 +8,7 @@ export interface Lawyer {
 
   recognitionImages?: string[];
   recognitionImagesCacheKey?: string;
+  featuredRecognitionImageIndex?: number;
 
   personal: {
     birthDate: string;

@@ -44,23 +44,10 @@ export const drCarlosMoro = {
         "CONSEJO de la MAGISTRATURA de la Provincia, como Jurado en el año 2005, propuesto por el Colegio de Abogados de la Provincia de E.R., en el concurso para Juez de Primera Instancia en lo Civil y Comercial de Concepción del Uruguay.",
         "MIEMBRO TITULAR del INSTITUTO DE LA EMPRESA de la Academia Nacional de Derecho y Ciencias Sociales de Córdoba.",
         "MIEMBRO del CONSEJO de REDACCION de la REVISTA de las SOCIEDADES y CONCURSOS (RSC).",
-        "MIEMBRO fundador y actual Director del INSTITUTO DE DERECHO CONCURSAL del Colegio de Abogados de la Provincia de Entre Ríos.",
+        "MIEMBRO fundador y Director del INSTITUTO DE DERECHO CONCURSAL del Colegio de Abogados de la Provincia de Entre Ríos.",
         "DIRECTOR de la Sección Societaria y Concursal de la Editorial DELTA",
         "MIEMBRO ACTIVO de Jornadas y Congresos Nacionales e Internacionales de Derecho Concursal y de los Institutos de Derecho Comercial de la República Argentina.",
-      ],
-      started: [
-        {
-          title: "Expositor",
-          description:
-            "CURSO DE ACTUALIZACIÓN EN DERECHO COMERCIAL organizado en 1988 en la Universidad Notarial Argentina juntamente con los Dres Ernesto Martorell, Salvador Bergel. Francisco Caputo, Edgardo Alberti, Daniel Vitolo, Norberto Benseñor, Eduardo Favier Dubois (h.), Enrique Butty y Ricardo Nissen.",
-        },
-      ],
-      end: [
-        {
-          title: "Profesor",
-          description:
-            "invitado a la Primera CARRERA DE POST-GRADO: de ESPECIALIZACIÓN EN SINDICATURA y en ASESORAMIENTO CONCURSAL, organizada en la Universidad Notarial Argentina dirigida por el Dr. Héctor Cámara, dictada en el año 1.990.",
-        },
+        "INTEGRO la Primera CARRERA DE POST-GRADO: de ESPECIALIZACIÓN EN SINDICATURA y en ASESORAMIENTO CONCURSAL, organizada por la Universidad Notarial Argentina dirigida por el Dr. Héctor Cámara, dictada en el año 1.990."
       ],
     },
 

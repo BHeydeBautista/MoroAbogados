@@ -6,29 +6,47 @@ import ClientCard from "./ClientCard";
 import { motion } from "framer-motion";
 import TopClientsMarquee from "./TopClientsMarquee";
 import TopClientsOrbitSlider from "./TopClientsOrbitSlider";
+import { useLanguage } from "@/context/LanguageContext";
+import { pickTranslations } from "@/i18n/pickTranslations";
+import es from "@/locales/es/clients.json";
+import en from "@/locales/en/clients.json";
 
-const categories = [
-  "Todos",
-  "Bancos y Finanzas",
-  "Industria y Producción",
-  "Retail y Consumo",
-  "Gobierno y Municipios",
-  "Salud y Farmacéutica",
-  "Tecnología",
-  "Servicios y Otros",
-  "Seguros"
-];
+type CategoryId =
+  | "all"
+  | "banking"
+  | "industry"
+  | "retail"
+  | "government"
+  | "health"
+  | "technology"
+  | "services"
+  | "insurance";
 
 const ITEMS_PER_PAGE = 20;
 
 export default function ClientsSection() {
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const { language } = useLanguage();
+  const t = pickTranslations(language, { es: es.clients, en: en.clients });
+
+  const categories: Array<{ id: CategoryId; dataCategory?: string; label: string }> = [
+    { id: "all", label: t.categories.all },
+    { id: "banking", dataCategory: "Bancos y Finanzas", label: t.categories.banking },
+    { id: "industry", dataCategory: "Industria y Producción", label: t.categories.industry },
+    { id: "retail", dataCategory: "Retail y Consumo", label: t.categories.retail },
+    { id: "government", dataCategory: "Gobierno y Municipios", label: t.categories.government },
+    { id: "health", dataCategory: "Salud y Farmacéutica", label: t.categories.health },
+    { id: "technology", dataCategory: "Tecnología", label: t.categories.technology },
+    { id: "services", dataCategory: "Servicios y Otros", label: t.categories.services },
+    { id: "insurance", dataCategory: "Seguros", label: t.categories.insurance },
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId>("all");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const selected = categories.find((c) => c.id === selectedCategory);
+
   const filteredClients =
-    selectedCategory === "Todos"
-      ? clients
-      : clients.filter((c) => c.category === selectedCategory);
+    !selected?.dataCategory ? clients : clients.filter((c) => c.category === selected.dataCategory);
 
   const totalPages = Math.ceil(filteredClients.length / ITEMS_PER_PAGE);
   const paginatedClients = filteredClients.slice(
@@ -56,7 +74,7 @@ export default function ClientsSection() {
           transition={{ duration: 0.5 }}
           className="text-4xl md:text-5xl font-serif text-center mb-4 text-[#D4A75D]"
         >
-          Nuestros Clientes
+          {t.title}
         </motion.h2>
 
         <motion.p
@@ -65,7 +83,7 @@ export default function ClientsSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center text-gray-300 mb-12 max-w-2xl mx-auto text-lg"
         >
-          Empresas líderes que han confiado en nuestro estudio
+          {t.subtitle}
         </motion.p>
 
         <div className="mb-12">
@@ -83,18 +101,18 @@ export default function ClientsSection() {
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((cat) => (
             <button
-              key={cat}
+              key={cat.id}
               onClick={() => {
-                setSelectedCategory(cat);
+                setSelectedCategory(cat.id);
                 setCurrentPage(1);
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                selectedCategory === cat
+                selectedCategory === cat.id
                   ? "bg-[#D4A75D] text-[#0b1c2c]"
                   : "bg-white/10 hover:bg-white/20"
               }`}
             >
-              {cat}
+              {cat.label}
             </button>
           ))}
         </div>

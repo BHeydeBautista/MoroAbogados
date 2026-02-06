@@ -6,10 +6,11 @@ import { motion } from 'framer-motion';
 import es from '@/locales/es/footer.json';
 import en from '@/locales/en/footer.json';
 import { useLanguage } from '@/context/LanguageContext';
+import { pickTranslations } from '@/i18n/pickTranslations';
 
 const Footer = () => {
   const { language } = useLanguage();
-  const t = language === 'es' ? es.footer : en.footer;
+  const t = pickTranslations(language, { es: es.footer, en: en.footer });
 
   return (
     <motion.footer

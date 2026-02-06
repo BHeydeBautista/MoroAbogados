@@ -7,10 +7,19 @@
     "contenido": "Content",
     "nosotros": "About Us",
     "clientes": "Clients",
+    "contacto": "Contact",
     "language": "EN",
     "socios": "Partners",
     "equipo": "Our team",
     "pub_instagram": "Instagram posts",
-    "articulos_doctrinarios": "Doctrinal Articles"
+    "articulos_doctrinarios": "Doctrinal Articles",
+    "publicaciones": "Publications",
+    "libros_dr_emilio": "Books (Dr. Emilio)",
+    "libros_dr_carlos": "Books (Dr. Carlos)",
+    "articulos_dr_emilio": "Articles (Dr. Emilio)",
+    "articulos_dr_carlos": "Articles (Dr. Carlos)",
+    "curriculums": "CVs",
+    "curriculum_dr_carlos": "Dr. Carlos E. Moro",
+    "curriculum_dr_emilio": "Dr. Emilio F. Moro"
   }
 }

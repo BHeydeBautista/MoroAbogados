@@ -3,12 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Lawyer } from "@/data/lawyerData";
+import { useLanguage } from "@/context/LanguageContext";
+import { pickTranslations } from "@/i18n/pickTranslations";
+import es from "@/locales/es/lawyers.json";
+import en from "@/locales/en/lawyers.json";
 
 interface LawyerCardProps {
   lawyer: Lawyer;
 }
 
 const LawyerCard: React.FC<LawyerCardProps> = ({ lawyer }) => {
+  const { language } = useLanguage();
+  const t = pickTranslations(language, { es: es.lawyers, en: en.lawyers });
+
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
@@ -36,7 +43,7 @@ const LawyerCard: React.FC<LawyerCardProps> = ({ lawyer }) => {
             
           </p>
           <span className="inline-block px-4 py-2 text-sm bg-[#D4A75D] text-white font-semibold rounded-full hover:bg-[#c0953f] transition">
-            Ver perfil completo
+            {t.view_full_profile}
           </span>
         </div>
       </Link>

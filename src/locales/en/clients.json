@@ -1,0 +1,17 @@
+{
+  "clients": {
+    "title": "Our Clients",
+    "subtitle": "Leading companies that have trusted our firm",
+    "categories": {
+      "all": "All",
+      "banking": "Banking & Finance",
+      "industry": "Industry & Manufacturing",
+      "retail": "Retail & Consumer",
+      "government": "Government & Municipalities",
+      "health": "Healthcare & Pharma",
+      "technology": "Technology",
+      "services": "Services & Other",
+      "insurance": "Insurance"
+    }
+  }
+}

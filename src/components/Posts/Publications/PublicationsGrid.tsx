@@ -3,6 +3,10 @@
 
 import React, { useMemo, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
+import { pickTranslations } from "@/i18n/pickTranslations";
+import es from "@/locales/es/publications.json";
+import en from "@/locales/en/publications.json";
 
 import {
   PUBLICATIONS,
@@ -16,6 +20,9 @@ import PublicationModal from "./PublicationModal";
 
 export default function PublicationsGrid() {
   const searchParams = useSearchParams();
+
+  const { language } = useLanguage();
+  const t = pickTranslations(language, { es: es.publications, en: en.publications });
 
   const [authorFilter, setAuthorFilter] = useState<string | "all">("all");
   const [editorialFilter, setEditorialFilter] = useState<string | "all">("all");
@@ -143,7 +150,7 @@ export default function PublicationsGrid() {
                 : "bg-white border"
             }`}
           >
-            Todos
+            {t.filters.all}
           </button>
 
           <button
@@ -154,7 +161,7 @@ export default function PublicationsGrid() {
                 : "bg-white border"
             }`}
           >
-            Libros
+            {t.filters.books}
           </button>
 
           <button
@@ -165,7 +172,7 @@ export default function PublicationsGrid() {
                 : "bg-white border"
             }`}
           >
-            Artículos
+            {t.filters.articles}
           </button>
 
           <select
@@ -173,7 +180,7 @@ export default function PublicationsGrid() {
             onChange={(e) => setAuthorFilter(e.target.value as any)}
             className="ml-auto shrink-0 border rounded px-3 py-2 text-sm bg-white"
           >
-            <option value="all">Todos los autores</option>
+            <option value="all">{t.filters.all_authors}</option>
             {AUTHORS.map((a) => (
               <option key={a.id} value={a.id}>
                 {a.name}
@@ -186,7 +193,7 @@ export default function PublicationsGrid() {
             onChange={(e) => setEditorialFilter(e.target.value as any)}
             className="ml-2 shrink-0 border rounded px-3 py-2 text-sm bg-white"
           >
-            <option value="all">Todas las editoriales</option>
+            <option value="all">{t.filters.all_editorials}</option>
             {EDITORIALS.map((ed) => (
               <option key={ed.id} value={ed.id}>
                 {ed.name}
@@ -211,7 +218,7 @@ export default function PublicationsGrid() {
 
         {pageItems.length === 0 && (
           <div className="col-span-full text-center text-gray-600 py-8">
-            No se encontraron publicaciones.
+            {t.empty}
           </div>
         )}
       </div>

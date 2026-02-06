@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import es from "@/locales/es/hero.json";
 import en from "@/locales/en/hero.json";
 import { useLanguage } from "@/context/LanguageContext";
+import { pickTranslations } from "@/i18n/pickTranslations";
 import AnimatedName from "./AnimatedName";
 import ScrollArrow from "./ScrollArrow";
 
 const HeroContent = () => {
   const { language } = useLanguage();
-  const t = language === "es" ? es.hero : en.hero;
+  const t = pickTranslations(language, { es: es.hero, en: en.hero });
 
   return (
     <div className="relative w-full h-full flex items-center justify-center text-center px-4 md:px-12 z-30">

@@ -6,7 +6,9 @@ import { useAnimation } from "framer-motion";
 
 import es from "@/locales/es/navbar.json";
 import en from "@/locales/en/navbar.json";
+import fr from "@/locales/fr/navbar.json";
 import { useLanguage } from "@/context/LanguageContext";
+import { pickTranslations } from "@/i18n/pickTranslations";
 
 import { useNavbarScroll } from "./hooks/useNavbarScroll";
 import { navbarStyles } from "./styles/navbarStyles";
@@ -22,7 +24,7 @@ interface NavLink {
 
 const Navbar = () => {
   const { language } = useLanguage();
-  const t = language === "es" ? es.navbar : en.navbar;
+  const t = pickTranslations(language, { es: es.navbar, en: en.navbar, fr: fr.navbar });
   const { isDark } = useNavbarScroll();
 
   // Animation states
@@ -129,7 +131,7 @@ const Navbar = () => {
         url: "/#Profile",
       },
       {
-        text: "Equipo",
+        text: t.equipo,
         url: "/Team",
       },
       {
@@ -145,49 +147,49 @@ const Navbar = () => {
         url: "/referencias",
       },
       {
-        text: "Publicaciones",
+        text: t.publicaciones,
         submenu: (
           <div className="flex flex-col gap-3">
             <HoverLink
               url="/?tab=propias&type=libro&author=Emilio%20F.%20Moro#Contenido"
               isDark={isDark}
             >
-              Libros Dr. Emilio
+              {t.libros_dr_emilio}
             </HoverLink>
 
             <HoverLink
               url="/?tab=propias&type=libro&author=Carlos%20E.%20Moro#Contenido"
               isDark={isDark}
             >
-              Libros Dr. Carlos
+              {t.libros_dr_carlos}
             </HoverLink>
 
             <HoverLink
               url="/?tab=propias&type=articulo&author=Emilio%20F.%20Moro#Contenido"
               isDark={isDark}
             >
-              Artículos Dr. Emilio
+              {t.articulos_dr_emilio}
             </HoverLink>
 
             <HoverLink
               url="/?tab=propias&type=articulo&author=Carlos%20E.%20Moro#Contenido"
               isDark={isDark}
             >
-              Artículos Dr. Carlos
+              {t.articulos_dr_carlos}
             </HoverLink>
           </div>
         ),
       },
       {
-        text: "Currículums",
+        text: t.curriculums,
         submenu: (
           <div className="flex flex-col gap-3">
             <HoverLink url="/abogados/dr-carlos-moro" isDark={isDark}>
-              Dr. Carlos E. Moro
+              {t.curriculum_dr_carlos}
             </HoverLink>
 
             <HoverLink url="/abogados/dr-emilio-f-moro" isDark={isDark}>
-              Dr. Emilio F. Moro
+              {t.curriculum_dr_emilio}
             </HoverLink>
           </div>
         ),

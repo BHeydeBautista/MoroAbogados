@@ -13,12 +13,12 @@ export const drCarlosMoro = {
       "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802614/IMG_4743_h2k7xs.jpg",
       "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802615/IMG_4747_sdm7ub.jpg",
       "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802614/IMG_4748_p8xs96.jpg",
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769877286/IMG_4749_bbbwot.jpg",
       "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770231977/poema_haryuk.png",
       "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769802614/IMG_4745_gly9ni.jpg",
-      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1769877286/IMG_4749_bbbwot.jpg",
     ],
 
-    featuredRecognitionImageIndex: 5,
+    featuredRecognitionImageIndex: 6,
 
     // Bump this when you edit/overwrite images in Cloudinary but keep the same URLs.
     recognitionImagesCacheKey: "1769877286",
@@ -1134,28 +1134,9 @@ export const drCarlosMoro = {
 
     languages: [
       { language: "Español", certificates: [] },
-      { language: "Inglés", certificates: [] },
     ],
 
-    conferences: [
-      {
-        title:
-          "XVI Jornadas de Institutos de Derecho Comercial de la República Argentina",
-        year: "2007",
-      },
-      { title: "XV Jornadas de Institutos de Derecho Comercial", year: "" },
-      { title: "II Congreso Iberoamericano de la Insolvencia", year: "2000" },
-      {
-        title: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
-        year: "2004",
-      },
-      {
-        title: "Congreso Iberoamericano de Derecho Concursal – Ad-Hoc",
-        year: "2006",
-      },
-      { title: "DYC – Universidad Austral", year: "" },
-      { title: "Instituto de Derecho Comercial (eventos)", year: "2018" },
-    ],
+    conferences: [],
 
     otherRoles: [
       { title: "Director (Editorial)", string: ["Editorial Delta"] },

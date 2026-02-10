@@ -216,7 +216,7 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
                     className="block w-full max-w-2xl text-left"
                     aria-label="Abrir reconocimiento"
                   >
-                    <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-[#D4A75D]/30 bg-white">
+                    <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden border border-[#D4A75D]/30 bg-white">
                       <Image
                         src={withCacheKey(recognitionImages[featuredRecognitionIndex])}
                         alt="Reconocimiento"

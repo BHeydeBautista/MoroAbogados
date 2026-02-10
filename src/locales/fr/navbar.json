@@ -3,6 +3,7 @@
     "home": "Accueil",
     "profesionales": "Professionnels",
     "areas": "Domaines de pratique",
+    "referencia": "Références",
     "contenido": "Contenu",
     "nosotros": "À propos",
     "clientes": "Clients",
@@ -11,6 +12,14 @@
     "socios": "Associés",
     "equipo": "Notre équipe",
     "pub_instagram": "Publications Instagram",
-    "articulos_doctrinarios": "Articles Doctrinaux"
+    "articulos_doctrinarios": "Articles doctrinaux",
+    "publicaciones": "Publications",
+    "libros_dr_emilio": "Livres (Dr. Emilio)",
+    "libros_dr_carlos": "Livres (Dr. Carlos)",
+    "articulos_dr_emilio": "Articles (Dr. Emilio)",
+    "articulos_dr_carlos": "Articles (Dr. Carlos)",
+    "curriculums": "CVs",
+    "curriculum_dr_carlos": "Dr. Carlos E. Moro",
+    "curriculum_dr_emilio": "Dr. Emilio F. Moro"
   }
 }

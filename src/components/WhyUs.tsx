@@ -3,46 +3,20 @@ import { motion } from 'framer-motion';
 import es from '@/locales/es/whyus.json';
 import en from '@/locales/en/whyus.json';
 import { useLanguage } from '@/context/LanguageContext';
+import { pickTranslations } from '@/i18n/pickTranslations';
 import { FaGavel, FaUserTie, FaGlobeAmericas, FaHandshake } from 'react-icons/fa';
+import type { IconType } from 'react-icons';
 
 const WhyUs = () => {
   const { language } = useLanguage();
-  const t = language === 'es' ? es.whyus : en.whyus;
+  const t = pickTranslations(language, { es: es.whyus, en: en.whyus });
 
-  const reasons = [
-    {
-      icon: FaGavel,
-      title: language === 'es' ? 'Experiencia Jurídica' : 'Legal Experience',
-      description:
-        language === 'es'
-          ? 'Más de dos décadas asesorando en asuntos legales complejos con enfoque estratégico y rigor profesional.'
-          : 'Over two decades advising on complex legal matters with strategic focus and professional rigor.',
-    },
-    {
-      icon: FaUserTie,
-      title: language === 'es' ? 'Liderazgo Personalizado' : 'Personalized Leadership',
-      description:
-        language === 'es'
-          ? 'Participación activa de socios en cada caso relevante. No delegamos lo que requiere visión.'
-          : 'Partners actively involved in each key case. We don’t delegate what demands strategic vision.',
-    },
-    {
-      icon: FaGlobeAmericas,
-      title: language === 'es' ? 'Presencia Global' : 'Global Presence',
-      description:
-        language === 'es'
-          ? 'Vínculos internacionales y membresía en redes jurídicas como LexMundi. Alcance que trasciende fronteras.'
-          : 'International ties and membership in networks like LexMundi. Reach that transcends borders.',
-    },
-    {
-      icon: FaHandshake,
-      title: language === 'es' ? 'Ética y Confianza' : 'Ethics & Trust',
-      description:
-        language === 'es'
-          ? 'Relaciones de largo plazo basadas en integridad, transparencia y vocación por lo justo.'
-          : 'Long-term relationships built on integrity, transparency and commitment to justice.',
-    },
-  ];
+  const iconById: Record<string, IconType> = {
+    experience: FaGavel,
+    leadership: FaUserTie,
+    global: FaGlobeAmericas,
+    ethics: FaHandshake,
+  };
 
   return (
     <motion.section
@@ -70,11 +44,11 @@ const WhyUs = () => {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {reasons.map((r, i) => {
-            const Icon = r.icon;
+          {(t.reasons ?? []).map((r: { id: string; title: string; description: string }, i: number) => {
+            const Icon = iconById[r.id] ?? FaGavel;
             return (
               <motion.div
-                key={i}
+                key={r.id ?? i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}

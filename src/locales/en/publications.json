@@ -1,0 +1,32 @@
+{
+  "publications": {
+    "filters": {
+      "all": "All",
+      "books": "Books",
+      "articles": "Articles",
+      "all_authors": "All authors",
+      "all_editorials": "All publishers"
+    },
+    "empty": "No publications found.",
+    "card": {
+      "no_image": "No image",
+      "book": "Book",
+      "article": "Article",
+      "author_fallback": "Author",
+      "pages_short": "pp.",
+      "quick_view": "Quick view",
+      "quick_view_aria": "Quick view: {title}",
+      "detail": "Details"
+    },
+    "modal": {
+      "articles_published": "Published articles",
+      "articles_published_in": "Articles published in {where}",
+      "other_publications": "Other publications",
+      "year": "Year",
+      "editorial": "Publisher",
+      "medium": "Outlet",
+      "volume": "Volume",
+      "page": "Page"
+    }
+  }
+}

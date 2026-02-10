@@ -1,0 +1,17 @@
+{
+  "clients": {
+    "title": "Nuestros Clientes",
+    "subtitle": "Empresas líderes que han confiado en nuestro estudio",
+    "categories": {
+      "all": "Todos",
+      "banking": "Bancos y Finanzas",
+      "industry": "Industria y Producción",
+      "retail": "Retail y Consumo",
+      "government": "Gobierno y Municipios",
+      "health": "Salud y Farmacéutica",
+      "technology": "Tecnología",
+      "services": "Servicios y Otros",
+      "insurance": "Seguros"
+    }
+  }
+}

@@ -86,7 +86,7 @@ const PracticeAreas = () => {
     >
       <div className="max-w-7xl mx-auto">
         <p className="uppercase tracking-wider text-white/50 text-sm text-center mb-2">
-          ÁREA DE PRÁCTICA
+          {t.subtitle}
         </p>
         <h2 className="text-4xl lg:text-5xl font-serif font-semibold text-[#D4A75D] text-center mb-6">
           {t.title}

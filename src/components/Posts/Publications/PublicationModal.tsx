@@ -1,6 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
+import { pickTranslations } from "@/i18n/pickTranslations";
+import esUI from "@/locales/es/publications.json";
+import enUI from "@/locales/en/publications.json";
 import type {
   PublicationBooks,
   PublicationArt,
@@ -191,7 +195,7 @@ function getArticlesFromPublication(pub: Publication): {
         });
 
         if (lawyer.slug === "dr-carlos-moro") {
-          const key = journal.journal || "Otras publicaciones";
+          const key = journal.journal || "__other__";
           if (!groupedMap[key]) groupedMap[key] = [];
           groupedMap[key].push(article);
         } else {
@@ -219,7 +223,7 @@ function getArticlesFromPublication(pub: Publication): {
         });
 
         if (lawyer.slug === "dr-carlos-moro") {
-          const key = paper.newspaper || "Otras publicaciones";
+          const key = paper.newspaper || "__other__";
           if (!groupedMap[key]) groupedMap[key] = [];
           groupedMap[key].push(article);
         } else {
@@ -243,7 +247,7 @@ function getArticlesFromPublication(pub: Publication): {
       });
 
       if (lawyer.slug === "dr-carlos-moro") {
-        const key = a.publication || "Otras publicaciones";
+        const key = a.publication || "__other__";
         if (!groupedMap[key]) groupedMap[key] = [];
         groupedMap[key].push(article);
       } else {
@@ -329,6 +333,11 @@ export default function PublicationModal({ pub, onClose }: Props) {
   const editorialName = pub.editorialId
     ? EDITORIALS.find((e: Editorials) => e.id === pub.editorialId)?.name ?? ""
     : "";
+  const { language } = useLanguage();
+  const t = pickTranslations(language, {
+    es: esUI.publications,
+    en: enUI.publications,
+  });
 
   const isGenericAllArticles =
     pub.type === "articulo" && normalize(pub.title) === "articulos";
@@ -336,10 +345,13 @@ export default function PublicationModal({ pub, onClose }: Props) {
   const articlesHeading = pub.type === "articulo" ? editorialName || pub.title : pub.title;
 
   const articlesHeadingText = isGenericAllArticles
-    ? "Artículos publicados"
-    : `Artículos publicados en ${articlesHeading}`;
+    ? t.modal.articles_published
+    : t.modal.articles_published_in.replace("{where}", articlesHeading);
 
   const { grouped, flat } = getArticlesFromPublication(pub);
+
+  const groupTitle = (value: string) =>
+    value === "__other__" ? t.modal.other_publications : value;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3">
@@ -385,7 +397,7 @@ export default function PublicationModal({ pub, onClose }: Props) {
                 </div>
               ) : (
                 <div className="h-48 bg-gray-100 flex items-center justify-center rounded-md">
-                  Sin imagen
+                  {t.card.no_image}
                 </div>
               )}
             </div>
@@ -396,9 +408,15 @@ export default function PublicationModal({ pub, onClose }: Props) {
               )}
 
               <ul className="mt-4 text-sm text-gray-600 space-y-1">
-                {pub.year && <li>Año: {pub.year}</li>}
+                {pub.year && (
+                  <li>
+                    {t.modal.year}: {pub.year}
+                  </li>
+                )}
                 {editorialName && (
-                  <li>{pub.type === "libro" ? "Editorial" : "Medio"}: {editorialName}</li>
+                  <li>
+                    {pub.type === "libro" ? t.modal.editorial : t.modal.medium}: {editorialName}
+                  </li>
                 )}
               </ul>
             </div>
@@ -415,7 +433,7 @@ export default function PublicationModal({ pub, onClose }: Props) {
             {grouped.map((group) => (
               <div key={group.publication} className="mb-4">
                 <h5 className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
-                  {group.publication}
+                  {groupTitle(group.publication)}
                 </h5>
                 <ul className="space-y-2">
                   {group.articles.map((article, i) => (
@@ -431,13 +449,13 @@ export default function PublicationModal({ pub, onClose }: Props) {
                         <div className="text-xs text-gray-600">
                           {article.tomo && (
                             <span>
-                              <span className="font-medium">Tomo:</span> {article.tomo}
+                              <span className="font-medium">{t.modal.volume}:</span> {article.tomo}
                             </span>
                           )}
                           {article.tomo && article.pagina && <span> · </span>}
                           {article.pagina && (
                             <span>
-                              <span className="font-medium">Página:</span> {article.pagina}
+                              <span className="font-medium">{t.modal.page}:</span> {article.pagina}
                             </span>
                           )}
                         </div>
@@ -468,13 +486,13 @@ export default function PublicationModal({ pub, onClose }: Props) {
                       <div className="text-xs text-gray-600">
                         {article.tomo && (
                           <span>
-                            <span className="font-medium">Tomo:</span> {article.tomo}
+                            <span className="font-medium">{t.modal.volume}:</span> {article.tomo}
                           </span>
                         )}
                         {article.tomo && article.pagina && <span> · </span>}
                         {article.pagina && (
                           <span>
-                            <span className="font-medium">Página:</span> {article.pagina}
+                            <span className="font-medium">{t.modal.page}:</span> {article.pagina}
                           </span>
                         )}
                       </div>

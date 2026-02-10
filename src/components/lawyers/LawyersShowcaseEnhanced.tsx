@@ -3,6 +3,10 @@ import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
+import { pickTranslations } from "@/i18n/pickTranslations";
+import es from "@/locales/es/lawyers.json";
+import en from "@/locales/en/lawyers.json";
 
 const lawyers = [
 	{
@@ -25,6 +29,8 @@ const lawyers = [
 const LawyersShowcaseEnhanced = () => {
 	const ref = useRef<HTMLElement | null>(null);
 	const [activeIndex, setActiveIndex] = useState(-1);
+	const { language } = useLanguage();
+	const t = pickTranslations(language, { es: es.lawyers, en: en.lawyers });
 
 	const { scrollYProgress } = useScroll({
 		target: ref,
@@ -112,7 +118,7 @@ const LawyersShowcaseEnhanced = () => {
 			ref={ref}
 			className="relative"
 			id="Profesionales"
-			aria-label="Sección de profesionales"
+			aria-label={t.section_aria}
 		>
 			<div className="absolute inset-0 h-full w-full bg-gradient-to-r from-[#0F1C2E] to-black z-0" />
 			<div className="absolute bottom-0 w-full h-[25vh]" />
@@ -129,14 +135,14 @@ const LawyersShowcaseEnhanced = () => {
 					{activeIndex === -1 && (
 						<motion.button
 							onClick={triggerScroll}
-							aria-label="Desplazá hacia abajo para interactuar"
+							aria-label={t.scroll_hint_aria}
 							initial={{ opacity: 1 }}
 							animate={{ y: [0, 8, 0] }}
 							transition={{ repeat: Infinity, duration: 1.6 }}
 							className="absolute bottom-10 flex flex-col items-center gap-2 bg-transparent border-0"
 						>
 							<span className="text-sm text-gray-200/90 select-none">
-								Desplazá para interactuar
+								{t.scroll_hint}
 							</span>
 
 							<span
@@ -205,7 +211,7 @@ const LawyersShowcaseEnhanced = () => {
 											href={`/abogados/${lawyers[activeIndex].slug}`}
 											className="inline-block px-5 py-2 border border-[#D4A75D] text-sm rounded-md hover:bg-[#D4A75D] hover:text-black transition duration-300"
 										>
-											Ver más
+											{t.see_more}
 										</Link>
 									</div>
 								</motion.div>

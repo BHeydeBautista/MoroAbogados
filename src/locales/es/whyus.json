@@ -2,6 +2,28 @@
     "whyus": {
     "title": "Por qué elegirnos",
     "subtitle": "Somos un estudio jurídico con más de 20 años de experiencia brindando soluciones legales integrales. Nos caracteriza el compromiso con la excelencia, la ética profesional y el enfoque personalizado para cada cliente.",
+    "reasons": [
+      {
+        "id": "experience",
+        "title": "Experiencia Jurídica",
+        "description": "Más de dos décadas asesorando en asuntos legales complejos con enfoque estratégico y rigor profesional."
+      },
+      {
+        "id": "leadership",
+        "title": "Liderazgo Personalizado",
+        "description": "Participación activa de socios en cada caso relevante. No delegamos lo que requiere visión."
+      },
+      {
+        "id": "global",
+        "title": "Presencia Global",
+        "description": "Vínculos internacionales y membresía en redes jurídicas como LexMundi. Alcance que trasciende fronteras."
+      },
+      {
+        "id": "ethics",
+        "title": "Ética y Confianza",
+        "description": "Relaciones de largo plazo basadas en integridad, transparencia y vocación por lo justo."
+      }
+    ],
     "expertise": "Especialización jurídica",
     "expertise_desc": "Nuestros socios lideran equipos en áreas clave del derecho corporativo y civil.",
     "personalized": "Atención personalizada",

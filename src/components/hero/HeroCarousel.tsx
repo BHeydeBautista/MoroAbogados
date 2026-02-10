@@ -11,15 +11,24 @@ const videoList = [
     mobilePosition: "center center",
   },
   {
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1770229530/hall_z2hwhj.mp4",
+    desktopPosition: "center 85%",
+    mobilePosition: "center center",
+  },
+  {
     src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1767807783/Entrada_nlhovu.mov",
     desktopPosition: "center 45%",
     mobilePosition: "center center",
   },
   {
-    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1767810072/IMG_4494_i0y3zx.mov",
-    desktopPosition: "center center",
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1770229000/entrada1_chgau7.mp4",
+    desktopPosition: "center 45%",
     mobilePosition: "center center",
-    fit: "contain", // 🔑 quitar zoom
+  },
+  {
+    src: "https://res.cloudinary.com/de3x5vn0g/video/upload/f_auto,q_auto/v1770229227/entrada2_uawi0m.mp4",
+    desktopPosition: "center 45%",
+    mobilePosition: "center center",
   },
   {
     

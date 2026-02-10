@@ -1,9 +1,17 @@
 import React from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaPause, FaPlay, FaRedo } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { HeroControlsProps } from "@/types/hero";
 
-const HeroControls: React.FC<HeroControlsProps> = ({ setCurrentIndex, currentIndex, videoList }) => {
+const HeroControls: React.FC<HeroControlsProps> = ({
+  setCurrentIndex,
+  currentIndex,
+  videoList,
+  isPlaying,
+  onTogglePlay,
+  onRepeat,
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, x: 40 }}
@@ -31,6 +39,30 @@ const HeroControls: React.FC<HeroControlsProps> = ({ setCurrentIndex, currentInd
       >
         <FaChevronRight size={18} />
       </motion.button>
+
+      <motion.button
+        onClick={onTogglePlay}
+        whileHover={{ scale: 1.06 }}
+        whileTap={{ scale: 0.96 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        className="p-3 bg-white/90 hover:bg-[#D4A75D]/80 rounded-full shadow-2xl text-[#0F1C2E] transition-all border border-[#D4A75D]/30"
+        aria-label={isPlaying ? "Pausar video" : "Reanudar video"}
+      >
+        {isPlaying ? <FaPause size={18} /> : <FaPlay size={18} />}
+      </motion.button>
+
+      {!isPlaying && (
+        <motion.button
+          onClick={onRepeat}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="p-3 bg-white/90 hover:bg-[#D4A75D]/80 rounded-full shadow-2xl text-[#0F1C2E] transition-all border border-[#D4A75D]/30"
+          aria-label="Repetir video"
+        >
+          <FaRedo size={18} />
+        </motion.button>
+      )}
     </motion.div>
   );
 };

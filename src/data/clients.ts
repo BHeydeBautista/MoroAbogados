@@ -49,6 +49,7 @@ export const clients: Client[] = [
   { name: "Arce - Trossero", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770735100/arce_trossero_qvvx9n.jpg" },
   { name: "Göte s.a.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770734922/gote_yrfkg7.jpg" },
   { name: "Alejandro Lindt e Hijo", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770734918/alejandro_lindt_drqzd1.jpg" },
+  { name: "Leffler Dietz", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770738632/leffler-dier_huswcz.jpg" },
 
   // ——— BANCOS Y FINANZAS ———
   { name: "Banco Finansur S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919748/Banco_Finansur_S.A._aa1zay.jpg" },

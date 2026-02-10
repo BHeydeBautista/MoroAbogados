@@ -13,6 +13,7 @@ export const studioImages: string[] = [
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181716/Imagen_de_WhatsApp_2025-11-13_a_las_19.53.17_a7a269f5_gisprx.jpg",
 
   // Secretaria
+  "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770734395/Secretaria3_qlb5mx.jpg",
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764182202/despacho-abogadas_z0zwok.jpg",
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1767810917/Despacho-Chicas3_fqipjl.png",
 
@@ -39,6 +40,6 @@ export const studioImages: string[] = [
   // Despacho volante
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181717/IMG-20251124-WA0008_pp5fqd.jpg",
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181718/IMG-20251124-WA0007_nfu4gw.jpg",
-  "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181717/IMG-20251124-WA0006_qxpvf9.jpg",
+  
 
 ];

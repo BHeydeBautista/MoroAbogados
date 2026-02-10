@@ -14,25 +14,9 @@ const useProcessedChars = (text: string) =>
     return text.split("");
   }, [text]);
 
-const useIsTouchDevice = () => {
-  const [isTouch, setIsTouch] = React.useState(false);
-
-  React.useEffect(() => {
-    const check = () =>
-      setIsTouch("ontouchstart" in window || navigator.maxTouchPoints > 0);
-
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-
-  return isTouch;
-};
-
 const AnimatedName: React.FC<Props> = ({ text, className, hoverClassName }) => {
   const chars = useProcessedChars(text);
   const prefersReducedMotion = useReducedMotion();
-  const isTouch = useIsTouchDevice();
 
   const container = {
     hover: {
@@ -54,7 +38,6 @@ const AnimatedName: React.FC<Props> = ({ text, className, hoverClassName }) => {
         className={"relative h-fit uppercase leading-none select-none " + (className ?? "")}
         variants={container}
         initial="initial"
-        whileHover={isTouch ? undefined : "hover"}
         role="text"
         aria-label={text}
         style={{ perspective: 1000 }}

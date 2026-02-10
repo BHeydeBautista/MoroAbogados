@@ -31,8 +31,7 @@ const videoList = [
     mobilePosition: "center center",
   },
   {
-    
-    src: "https://res.cloudinary.com/dfb0e4gdz/video/upload/f_auto,q_auto,c_fill,g_center,y_-400,ar_16:9/v1769621642/iglesia_s7hhhe.mov",
+    src: "https://res.cloudinary.com/dfb0e4gdz/video/upload/f_auto,q_auto,c_fill,g_center,y_-400,ar_16:9/v1770737601/iglesia2_drrtc0.mov",
     desktopPosition: "center 100%",
     mobilePosition: "center center",
   },
@@ -54,6 +53,8 @@ const videoList = [
 
 const HeroCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [repeatToken, setRepeatToken] = useState(0);
 
   const handleVideoEnded = () => {
     setCurrentIndex((prev) => (prev + 1) % videoList.length);
@@ -65,6 +66,8 @@ const HeroCarousel = () => {
         currentIndex={currentIndex}
         videoList={videoList}
         onEnded={handleVideoEnded}
+        isPlaying={isPlaying}
+        repeatToken={repeatToken}
       />
 
       <HeroContent />
@@ -73,6 +76,9 @@ const HeroCarousel = () => {
         setCurrentIndex={setCurrentIndex}
         currentIndex={currentIndex}
         videoList={videoList}
+        isPlaying={isPlaying}
+        onTogglePlay={() => setIsPlaying((prev) => !prev)}
+        onRepeat={() => setRepeatToken((prev) => prev + 1)}
       />
     </section>
   );

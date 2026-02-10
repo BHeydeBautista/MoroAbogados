@@ -7,8 +7,11 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
   currentIndex,
   videoList,
   onEnded,
+  isPlaying = true,
+  repeatToken,
 }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const lastRepeatTokenRef = useRef<number | undefined>(repeatToken);
 
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -28,11 +31,44 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.load();
-      videoRef.current
-        .play()
-        .catch((err) => console.warn("Error al reproducir video:", err));
+      if (isPlaying) {
+        videoRef.current
+          .play()
+          .catch((err) => console.warn("Error al reproducir video:", err));
+      }
     }
   }, [currentIndex]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isPlaying) {
+      video.play().catch((err) => console.warn("Error al reproducir video:", err));
+    } else {
+      video.pause();
+    }
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (repeatToken === undefined) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (lastRepeatTokenRef.current === repeatToken) return;
+    lastRepeatTokenRef.current = repeatToken;
+
+    try {
+      video.currentTime = 0;
+    } catch {
+      // ignore
+    }
+
+    if (isPlaying) {
+      video.play().catch((err) => console.warn("Error al reproducir video:", err));
+    } else {
+      video.pause();
+    }
+  }, [repeatToken, isPlaying]);
 
   return (
     <AnimatePresence mode="wait">
@@ -46,7 +82,7 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
       >
         <video
           ref={videoRef}
-          autoPlay
+          autoPlay={isPlaying}
           muted
           playsInline
           preload="auto"

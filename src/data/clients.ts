@@ -46,7 +46,10 @@ export const clients: Client[] = [
   { name: "Redengas S.A.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918947/Redengas_S.A._ora9lp.png" },
   { name: "SEDESA", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918953/SEDESA_ipbs5f.png" },
   { name: "Bonafide S.A.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919682/Bonafide_S.A_dgjvd6.png" },
-  { name: "Leffler y Wollert S.R.L.", category: "Servicios y Otros" },
+  { name: "Arce - Trossero", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770735100/arce_trossero_qvvx9n.jpg" },
+  { name: "Göte s.a.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770734922/gote_yrfkg7.jpg" },
+  { name: "Alejandro Lindt e Hijo", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770734918/alejandro_lindt_drqzd1.jpg" },
+  { name: "Leffler Dietz", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770738632/leffler-dier_huswcz.jpg" },
 
   // ——— BANCOS Y FINANZAS ———
   { name: "Banco Finansur S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919748/Banco_Finansur_S.A._aa1zay.jpg" },

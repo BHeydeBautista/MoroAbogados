@@ -40,6 +40,6 @@ export const studioImages: string[] = [
   // Despacho volante
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181717/IMG-20251124-WA0008_pp5fqd.jpg",
   "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181718/IMG-20251124-WA0007_nfu4gw.jpg",
-  "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764181717/IMG-20251124-WA0006_qxpvf9.jpg",
+  
 
 ];

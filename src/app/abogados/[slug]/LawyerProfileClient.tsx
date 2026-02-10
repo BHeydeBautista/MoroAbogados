@@ -323,7 +323,7 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
           {amparo && (
             <section className="space-y-8">
               <div className="space-y-8">
-                {/* Página 1 */}
+                {/* Página 1 (unificada) */}
                 <div className="mx-auto w-full max-w-2xl bg-white text-black border border-black/10 rounded-md px-8 md:px-12 py-10">
                   <p className="text-center italic font-semibold leading-relaxed">
                     {amparo.intro}
@@ -359,19 +359,44 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
                   <p className="mt-4 text-sm leading-relaxed">
                     {amparo.sectionIntro}
                   </p>
-                </div>
 
-                {/* Página 2 */}
-                <div className="mx-auto w-full max-w-2xl bg-white text-black border border-black/10 rounded-md px-8 md:px-12 py-10">
-                  <p className="text-sm leading-relaxed whitespace-pre-line">
+                  <p className="mt-8 text-sm leading-relaxed whitespace-pre-line">
                     {amparo.body}
                   </p>
+                </div>
 
-                  <p className="mt-8 text-center text-sm">.-.</p>
+                {/* Página 2 (EL DERECHO) */}
+                <div className="mx-auto w-full max-w-2xl bg-white text-black border border-black/10 rounded-md px-8 md:px-12 py-10">
+                  <h4 className="text-center font-bold text-sm md:text-base">
+                    {amparo.edDerecho?.title ?? amparo.footer}
+                  </h4>
 
-                  <p className="mt-8 text-center text-sm font-semibold">
-                    {amparo.footer}
-                  </p>
+                  {amparo.pdfUrl ? (
+                    <div className="mt-6 space-y-4">
+                      <div className="flex justify-center">
+                        <a
+                          href={amparo.pdfUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center justify-center rounded-md border border-black/20 px-4 py-2 text-sm font-semibold hover:bg-black/5"
+                        >
+                          Ver / Descargar PDF
+                        </a>
+                      </div>
+
+                      <div className="w-full overflow-hidden rounded-md border border-black/10 bg-white">
+                        <iframe
+                          title="EL DERECHO (PDF)"
+                          src={amparo.pdfUrl}
+                          className="w-full h-[75vh]"
+                        />
+                      </div>
+                    </div>
+                  ) : (
+                    <p className="mt-6 text-sm leading-relaxed whitespace-pre-line">
+                      {amparo.edDerecho?.body ?? ""}
+                    </p>
+                  )}
                 </div>
               </div>
             </section>

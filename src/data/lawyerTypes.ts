@@ -133,6 +133,15 @@ export interface Lawyer {
     sectionIntro: string;
     body: string;
     footer: string;
+
+    // Optional: show the original PDF instead of (or in addition to) the text.
+    pdfUrl?: string;
+
+    // Optional: extra page/content (e.g. EL DERECHO t.167).
+    edDerecho?: {
+      title: string;
+      body: string;
+    };
   };
 
   otherAntecedentes: string[];

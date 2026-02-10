@@ -117,6 +117,24 @@ export interface Lawyer {
   otherRoles: Array<{ title: string; string?: string[] }>;
   otherRoles_en?: Array<{ title_en?: string; string_en?: string[] }>;
 
+  amparo?: {
+    intro: string;
+    caseName: string;
+    sentence: {
+      date: string;
+      internalNumber: string;
+      court: string;
+      chamber: string;
+      magistrates: string;
+      saijId: string;
+    };
+    summary: string;
+    sectionTitle: string;
+    sectionIntro: string;
+    body: string;
+    footer: string;
+  };
+
   otherAntecedentes: string[];
   otherAntecedentes_en?: string[];
 }

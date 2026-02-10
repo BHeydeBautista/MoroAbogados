@@ -42,6 +42,7 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
   const conferences = lawyer.conferences ?? [];
   const otherAntecedentes = lawyer.otherAntecedentes ?? [];
   const otherRoles = lawyer.otherRoles ?? [];
+  const amparo = lawyer.amparo;
 
   const articles =
     language === "en" ? lawyer.articles_en ?? [] : lawyer.articles ?? [];
@@ -315,6 +316,64 @@ const LawyerProfileClient = ({ slug }: { slug: string }) => {
                   />
                 )}
               </AnimatePresence>
+            </section>
+          )}
+
+          {/* AMPARO */}
+          {amparo && (
+            <section className="space-y-8">
+              <div className="space-y-8">
+                {/* Página 1 */}
+                <div className="mx-auto w-full max-w-2xl bg-white text-black border border-black/10 rounded-md px-8 md:px-12 py-10">
+                  <p className="text-center italic font-semibold leading-relaxed">
+                    {amparo.intro}
+                  </p>
+
+                  <p className="text-center italic mt-6 leading-relaxed">
+                    {amparo.caseName}
+                  </p>
+
+                  <p className="mt-8 uppercase tracking-wide text-xs font-semibold">
+                    SENTENCIA
+                  </p>
+
+                  <div className="mt-4 space-y-3 text-sm">
+                    <p>{amparo.sentence.date}</p>
+                    <p>{amparo.sentence.internalNumber}</p>
+                    <p>{amparo.sentence.court}</p>
+                    <p>{amparo.sentence.chamber}</p>
+                    <p>{amparo.sentence.magistrates}</p>
+                    <p>{amparo.sentence.saijId}</p>
+                  </div>
+
+                  <p className="mt-8 uppercase tracking-wide text-xs font-semibold">
+                    SUMARIO
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed whitespace-pre-line">
+                    {amparo.summary}
+                  </p>
+
+                  <h4 className="mt-10 text-center font-bold text-sm md:text-base">
+                    {amparo.sectionTitle}
+                  </h4>
+                  <p className="mt-4 text-sm leading-relaxed">
+                    {amparo.sectionIntro}
+                  </p>
+                </div>
+
+                {/* Página 2 */}
+                <div className="mx-auto w-full max-w-2xl bg-white text-black border border-black/10 rounded-md px-8 md:px-12 py-10">
+                  <p className="text-sm leading-relaxed whitespace-pre-line">
+                    {amparo.body}
+                  </p>
+
+                  <p className="mt-8 text-center text-sm">.-.</p>
+
+                  <p className="mt-8 text-center text-sm font-semibold">
+                    {amparo.footer}
+                  </p>
+                </div>
+              </div>
             </section>
           )}
 

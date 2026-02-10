@@ -23,6 +23,31 @@ export const drCarlosMoro = {
     // Bump this when you edit/overwrite images in Cloudinary but keep the same URLs.
     recognitionImagesCacheKey: "1769877286",
 
+    amparo: {
+      intro:
+        'El fallo "MORO Carlos E. c/MUNICIPALIDAD de PARANA s/AMPARO" es un caso emblemático en Argentina sobre amparo colectivo ambiental. Dado que se relaciona con los artículos 41 y 43 de la Constitución Nacional recientemente modificada,',
+      caseName:
+        "Moro, Carlos Emilio y Otros c/ Municipalidad de Paraná s/ Acción de amparo",
+      sentence: {
+        date: "23 de Junio de 1995",
+        internalNumber: "Nro. Interno: 248",
+        court: "SUPERIOR TRIBUNAL DE JUSTICIA. PARANA, ENTRE RÍOS",
+        chamber: "Sala 01",
+        magistrates:
+          "Magistrados: CARLIN-CARUBIA-CHIARA DIAZ EN MAYORIA: CARUBIA SUMARIO I7500520",
+        saijId: "Id SAIJ: FA95085336",
+      },
+      summary:
+        "La ilegitimidad del acto atacado en la demanda aparece evidenciada si mediante ese acto ilegítimo se violenta el derecho de igualdad ante la ley de los vecinos accionantes, quienes se encuentran sometidos a significativas restricciones en el ejercicio de sus derechos de propiedad y a contribuciones tributarias diferenciales para mantener la muy especial característica residencial por excelencia que el Municipio ha asignado al distrito urbano en el que se ubica el cuestionado emplazamiento edilicio, para el cual expresamente ha querido excluir toda posibilidad de asentamiento que implique trastocar la idiosincrasia urbanística de la zona, distinguida por el balance edilicio, el discreto movimiento vehicular y de transportes colectivos, escasez de ruidos e inexistencia de constantes movimientos de grupos de circunstanciales huéspedes del lugar, todo lo cual configura un peculiar equilibrio ambiental que es menester preservar.\n\nLa eventual irrupción, en forma regular, de delegaciones deportivas de temporario alojamiento en el medio, con perspectiva de realizar prácticas deportivas en el sitio, introduce un elemento extraño de suficiente entidad e idoneidad para quebrar aquel equilibrio ambiental, cuya preservación le es garantizada a los vecinos en la norma del artículo 41 de la Constitución Nacional que adopta un concepto abarcativo de \"ambiente\".",
+      sectionTitle:
+        "EL AMPARO COMO GARANTÍA PARA LA DEFENSA DE LOS DERECHOS FUNDAMENTALES",
+      sectionIntro:
+        "Comentario laudatorio en la Revista Jurídica del Centro de Estudiantes de la Facultad de Derecho (UBA) (N°6. pp. 28-34 año 1996), por Daniel Alberto Sabsay. Profesor Titular de Derecho Constitucional, Facultad de Derecho de la Universidad de Buenos Aires; y Director Ejecutivo de la Fundación Ambiente y Recursos Naturales (FARN).",
+      body:
+        "La defensa de los intereses difusos y la ampliación de la legitimación activa para posibilitar la apertura de la justicia, rompiendo con los esquemas procesales clásicos, ha venido de la mano en gran medida, de la defensa del ambiente. En la causa Moro y otros c/Municipalidad de Paraná, recientemente resuelto por el Tribunal Superior entrerriano, los magistrados intervinientes en las dos instancias del juicio adhieren a la postura amplia de consideración del término \"afectado\". En tal sentido su actitud se inscribe en el camino abierto con posterioridad a la reforma constitucional. En el presente fallo, el \"afectado\" aparece de algún modo bajo el ropaje de \"vecino\". Es cierto que en esta sentencia no se utiliza el término, como en sus precedentes, pero de hecho se le reconoce calidad de amparistas a un grupo de personas que en su calidad de ciudadanos y de vecinos próximos al lugar donde se está efectuando la construcción de un albergue deportivo, se sienten agraviados por los efectos que sobre el ambiente producirá dicho emprendimiento. En este caso se extiende la noción de ambiente a la defensa del patrimonio histórico y cultural, ya que la obra que se estaba efectuando atacaba el Parque Urquiza en su fisonomía y modo de utilización y por ello producía un daño grave e irreparable (de llegar a su culminación) en el entorno \"histórico-referencial\" dentro del cual transcurre la existencia de una comunidad humana. . .",
+      footer: "Comentario laudatorio en EL DERECHO (167-61-70) año 1996",
+    },
+
     personal: {
       birthDate: "13 de enero de 1955",
       birthPlace: "Paraná, Entre Ríos",

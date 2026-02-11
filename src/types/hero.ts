@@ -2,6 +2,8 @@ export interface HeroVideoItem {
   src: string;
   desktopPosition: string;
   mobilePosition: string;
+  desktopScale?: number;
+  mobileScale?: number;
 }
 
 export interface HeroVideoProps {

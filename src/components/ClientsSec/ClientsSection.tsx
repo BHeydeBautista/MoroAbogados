@@ -45,8 +45,14 @@ export default function ClientsSection() {
 
   const selected = categories.find((c) => c.id === selectedCategory);
 
+  const normalizeCategory = (value: string) => value.trim().toLowerCase();
+
   const filteredClients =
-    !selected?.dataCategory ? clients : clients.filter((c) => c.category === selected.dataCategory);
+    selectedCategory === "all" || !selected?.dataCategory
+      ? clients
+      : clients.filter(
+          (c) => normalizeCategory(c.category) === normalizeCategory(selected.dataCategory)
+        );
 
   const totalPages = Math.ceil(filteredClients.length / ITEMS_PER_PAGE);
   const paginatedClients = filteredClients.slice(

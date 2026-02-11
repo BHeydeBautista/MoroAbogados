@@ -4,7 +4,6 @@ import { useState } from "react";
 import { clients } from "@/data/clients";
 import ClientCard from "./ClientCard";
 import { motion } from "framer-motion";
-import TopClientsMarquee from "./TopClientsMarquee";
 import TopClientsOrbitSlider from "./TopClientsOrbitSlider";
 import { useLanguage } from "@/context/LanguageContext";
 import { pickTranslations } from "@/i18n/pickTranslations";
@@ -44,14 +43,15 @@ export default function ClientsSection() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const selected = categories.find((c) => c.id === selectedCategory);
+  const selectedDataCategory = selected?.dataCategory;
 
-  const normalizeCategory = (value: string) => value.trim().toLowerCase();
+  const normalizeCategory = (value?: string) => (value ?? "").trim().toLowerCase();
 
   const filteredClients =
-    selectedCategory === "all" || !selected?.dataCategory
+    selectedCategory === "all" || !selectedDataCategory
       ? clients
       : clients.filter(
-          (c) => normalizeCategory(c.category) === normalizeCategory(selected.dataCategory)
+          (c) => normalizeCategory(c.category) === normalizeCategory(selectedDataCategory)
         );
 
   const totalPages = Math.ceil(filteredClients.length / ITEMS_PER_PAGE);
@@ -59,15 +59,6 @@ export default function ClientsSection() {
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
-
-  const featuredWithLogos = clients.filter((c) => c.featured && c.logo);
-  const logoOnly = clients.filter((c) => c.logo);
-  const source =
-    featuredWithLogos.length > 0
-      ? featuredWithLogos
-      : logoOnly.length > 0
-      ? logoOnly
-      : clients;
 
   const topClients = clients.filter((c) => c.featured && c.logo);
 

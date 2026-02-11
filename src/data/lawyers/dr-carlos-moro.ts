@@ -25,7 +25,7 @@ export const drCarlosMoro = {
 
     amparo: {
       intro:
-        'El fallo "MORO Carlos E. c/MUNICIPALIDAD de PARANA s/AMPARO" es un caso emblemático en Argentina sobre amparo colectivo ambiental. Dado que se relaciona con los artículos 41 y 43 de la Constitución Nacional recientemente modificada,',
+        'El fallo "MORO Carlos E. c/MUNICIPALIDAD de PARANA s/AMPARO" es un caso emblemático en Argentina sobre amparo colectivo ambiental. Dado que se relaciona con los artículos 41 y 43 deinstitu la Constitución Nacional recientemente modificada,',
       caseName:
         "Moro, Carlos Emilio y Otros c/ Municipalidad de Paraná s/ Acción de amparo",
       sentence: {

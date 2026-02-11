@@ -80,6 +80,10 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] as any }}
         className="absolute inset-0 w-full h-full z-0"
       >
+        {(() => {
+          const item = videoList[currentIndex];
+          const scale = isDesktop ? item.desktopScale ?? 1 : item.mobileScale ?? 1;
+          return (
         <video
           ref={videoRef}
           autoPlay={isPlaying}
@@ -91,15 +95,18 @@ const HeroVideo: React.FC<HeroVideoProps> = ({
             objectPosition: isDesktop
               ? videoList[currentIndex].desktopPosition
               : videoList[currentIndex].mobilePosition,
+            transform: scale === 1 ? undefined : `scale(${scale})`,
+            transformOrigin: "center",
           }}
           onEnded={() => onEnded?.()}
         >
           <source
             src={videoList[currentIndex].src}
-            type="video/mp4"
           />
           Tu navegador no soporta video HTML5.
         </video>
+          );
+        })()}
 
         {/* Overlay */}
         <motion.div

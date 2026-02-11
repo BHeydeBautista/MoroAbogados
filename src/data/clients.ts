@@ -80,7 +80,7 @@ export const clients: Client[] = [
   { name: "Instituto de Traumatología y Enfermedades Oseas (ITEO)", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763920292/Instituto_de_Traumatolog%C3%ADa_y_Enfermedades_Oseas_ITEO_yhqlxd.png" },
   { name: "Eli Lilly Interamericana", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763920311/Eli_Lilly_Interamericana_xylwij.webp" },
   { name: "Vittal", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918970/Vittal_vrvfgs.webp" },
-  { name: "Galli Instituto Privado de Cirugía Plástica", category: "Salud y Farmacéutica", logo: "" },
+  { name: "Galli Instituto Privado de Cirugía Plástica", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770822939/instituto_galli_eneadz.jpg" },
 
   // ——— TECNOLOGÍA ———
   { name: "Lexis Nexis Argentina S.A.", category: "Tecnología", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763920354/Lexis_Nexis_Argentina_S.A._f6tylw.png" },

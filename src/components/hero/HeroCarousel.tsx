@@ -38,8 +38,9 @@ const videoList = [
   {
     
     src: "https://res.cloudinary.com/dfb0e4gdz/video/upload/f_auto,q_auto,c_fill,g_center,y_-400,ar_16:9/v1767969129/casa_gob_cybnts.mov",
-    desktopPosition: "center 25%",
+    desktopPosition: "center -27%",
     mobilePosition: "center center",
+    desktopScale: 1.28,
   },
   {
     

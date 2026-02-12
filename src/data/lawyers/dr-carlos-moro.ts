@@ -25,7 +25,7 @@ export const drCarlosMoro = {
 
     amparo: {
       intro:
-        'El fallo "MORO Carlos E. c/MUNICIPALIDAD de PARANA s/AMPARO" es un caso emblemático en Argentina sobre amparo colectivo ambiental. Dado que se relaciona con los artículos 41 y 43 deinstitu la Constitución Nacional recientemente modificada,',
+        'El fallo "MORO Carlos E. c/MUNICIPALIDAD de PARANA s/AMPARO" es un caso emblemático en Argentina sobre amparo colectivo ambiental. Dado que se relaciona con los artículos 41 y 43 de la Constitución Nacional recientemente modificada,',
       caseName:
         "Moro, Carlos Emilio y Otros c/ Municipalidad de Paraná s/ Acción de amparo",
       sentence: {
@@ -45,13 +45,13 @@ export const drCarlosMoro = {
         "Comentario laudatorio en la Revista Jurídica del Centro de Estudiantes de la Facultad de Derecho (UBA) (N°6. pp. 28-34 año 1996), por Daniel Alberto Sabsay. Profesor Titular de Derecho Constitucional, Facultad de Derecho de la Universidad de Buenos Aires; y Director Ejecutivo de la Fundación Ambiente y Recursos Naturales (FARN).",
       body:
         "La defensa de los intereses difusos y la ampliación de la legitimación activa para posibilitar la apertura de la justicia, rompiendo con los esquemas procesales clásicos, ha venido de la mano en gran medida, de la defensa del ambiente. En la causa Moro y otros c/Municipalidad de Paraná, recientemente resuelto por el Tribunal Superior entrerriano, los magistrados intervinientes en las dos instancias del juicio adhieren a la postura amplia de consideración del término \"afectado\". En tal sentido su actitud se inscribe en el camino abierto con posterioridad a la reforma constitucional. En el presente fallo, el \"afectado\" aparece de algún modo bajo el ropaje de \"vecino\". Es cierto que en esta sentencia no se utiliza el término, como en sus precedentes, pero de hecho se le reconoce calidad de amparistas a un grupo de personas que en su calidad de ciudadanos y de vecinos próximos al lugar donde se está efectuando la construcción de un albergue deportivo, se sienten agraviados por los efectos que sobre el ambiente producirá dicho emprendimiento. En este caso se extiende la noción de ambiente a la defensa del patrimonio histórico y cultural, ya que la obra que se estaba efectuando atacaba el Parque Urquiza en su fisonomía y modo de utilización y por ello producía un daño grave e irreparable (de llegar a su culminación) en el entorno \"histórico-referencial\" dentro del cual transcurre la existencia de una comunidad humana. . .",
-      footer: "Comentario laudatorio en EL DERECHO (167-61-70) año 1996",
+      footer: "Comentario laudatorio en EL DERECHO (167-61/82) año 1996",
       // Para que se vea el PDF "tal cual", copiar el archivo a:
       // public/pdf/el-derecho-167-61-70.pdf
       // y dejar esta URL apuntando ahí.
       pdfUrl: "/pdf/el-derecho-167-61-70.pdf",
       edDerecho: {
-        title: "Comentario laudatorio en EL DERECHO (167-61-70) año 1996",
+        title: "Comentario laudatorio en EL DERECHO (167-61/82) año 1996",
         body: "Ver PDF adjunto.",
       },
     },

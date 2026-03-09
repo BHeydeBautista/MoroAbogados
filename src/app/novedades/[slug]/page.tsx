@@ -1,16 +1,22 @@
 import { notFound } from "next/navigation";
 import NewsLayout from "@/components/news/NewsLayout";
-import { getNovedadBySlug } from "@/data/novedadesData";
+import { getNovedadBySlug, NOVEDADES } from "@/data/novedadesData";
 import { parseLegalDocument } from "@/lib/parseLegalDocument";
 import path from "node:path";
 import fs from "node:fs/promises";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 };
 
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  return NOVEDADES.map((n) => ({ slug: n.slug }));
+}
+
 export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
+  const { slug } = params;
   const n = getNovedadBySlug(slug);
 
   if (!n) {
@@ -29,7 +35,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function NovedadDetailPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug } = params;
   const n = getNovedadBySlug(slug);
   if (!n) notFound();
 

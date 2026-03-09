@@ -2,14 +2,15 @@ import { notFound } from "next/navigation";
 import NewsLayout from "@/components/news/NewsLayout";
 import { getNovedadBySlug, NOVEDADES } from "@/data/novedadesData";
 import { parseLegalDocument } from "@/lib/parseLegalDocument";
-import path from "node:path";
 import fs from "node:fs/promises";
+import { fileURLToPath } from "node:url";
 
 type Props = {
   params: { slug: string };
 };
 
 export const dynamicParams = false;
+export const dynamic = "force-static";
 
 export async function generateStaticParams() {
   return NOVEDADES.map((n) => ({ slug: n.slug }));
@@ -39,17 +40,25 @@ export default async function NovedadDetailPage({ params }: Props) {
   const n = getNovedadBySlug(slug);
   if (!n) notFound();
 
+  const documentUrlBySlug: Record<string, URL> = {
+    "ley-modernizacion-laboral-27802": new URL(
+      "../../../../docs/novedades/ley-27802.txt",
+      import.meta.url
+    ),
+  };
+
+  const readDocumentText = async (): Promise<string | null> => {
+    const url = documentUrlBySlug[slug];
+    if (!url) return null;
+    return fs.readFile(fileURLToPath(url), "utf8");
+  };
+
   const documentSections =
     n.kind === "document"
       ? n.sections && n.sections.length > 0
         ? n.sections
         : n.contentTextPath
-          ? parseLegalDocument(
-              await fs.readFile(
-                path.join(process.cwd(), n.contentTextPath),
-                "utf8"
-              )
-            )
+          ? parseLegalDocument((await readDocumentText()) ?? "")
           : []
       : [];
 

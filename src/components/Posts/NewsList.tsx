@@ -19,22 +19,7 @@ type Props = {
 };
 
 export default function NewsList({
-  items = [
-    {
-      id: "n1",
-      title: "La firma participa en congreso regional",
-      excerpt: "Resumen de la jornada y conclusiones relevantes.",
-      href: "/noticias/congreso-regional-2025",
-      date: "2025-09-10",
-    },
-    {
-      id: "n2",
-      title: "Nueva guía sobre protección de datos",
-      excerpt: "Lanzamos una guía práctica para pymes.",
-      href: "/noticias/guia-proteccion-datos",
-      date: "2025-06-20",
-    },
-  ],
+  items = [],
   pageSize = 4,
 }: Props) {
   const [page, setPage] = useState(1);

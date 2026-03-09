@@ -95,15 +95,7 @@ export default function PostsContent() {
     setLoading(true);
     setError(null);
 
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL;
-    if (!baseUrl) {
-      setPosts(mockedPosts);
-      setError(t.ig_fetch_error);
-      setLoading(false);
-      return;
-    }
-
-    fetch(`${baseUrl}/instagram`)
+    fetch(`/api/instagram`)
       .then(async (res) => {
         if (!res.ok) throw new Error("No se pudo obtener posts");
         const json = await res.json();

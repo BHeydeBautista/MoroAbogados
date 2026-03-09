@@ -8,7 +8,7 @@ export default function NewsBody({ children }: { children: React.ReactNode }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4, delay: 0.2 }}
-      className="prose max-w-none text-[#0F1C2E] leading-relaxed"
+      className="prose prose-invert max-w-none leading-relaxed"
     >
       {children}
     </motion.article>

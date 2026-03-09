@@ -3,7 +3,6 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image"; // agregado
 
 type NewsItem = {
   id: string;
@@ -68,41 +67,25 @@ export default function NewsList({
         {pageItems.map((n) => (
           <article
             key={n.id}
-            className="flex flex-col sm:flex-row gap-4 rounded-lg border border-[#D4A75D]/30 p-4 bg-white shadow-sm hover:shadow-md transition"
+            className="flex flex-col gap-3 rounded-2xl border border-[#D4A75D]/30 p-5 bg-white shadow-sm hover:shadow-md transition"
           >
-            <div className="w-full sm:w-36 h-36 sm:h-auto flex-shrink-0 bg-gray-100 overflow-hidden rounded-md flex items-center justify-center relative">
-              {n.cover ? (
-                <Image
-                  src={n.cover}
-                  alt={n.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 144px"
-                  className="object-cover rounded-md"
-                />
-              ) : (
-                <div className="text-gray-400 text-sm px-2">Sin imagen</div>
-              )}
+            <div className="flex items-start justify-between gap-3">
+              <h4 className="text-lg font-semibold text-[#0F1C2E] leading-snug">
+                {n.title}
+              </h4>
+              <div className="text-xs text-gray-400 whitespace-nowrap pt-1">
+                {n.date ? new Date(n.date).toLocaleDateString("es-AR") : ""}
+              </div>
             </div>
 
-            <div className="flex-1">
-              <div className="flex items-start justify-between gap-3">
-                <h4 className="text-lg font-semibold text-[#0F1C2E]">
-                  {n.title}
-                </h4>
-                <div className="text-xs text-gray-400 whitespace-nowrap">
-                  {n.date
-                    ? new Date(n.date).toLocaleDateString("es-AR")
-                    : ""}
-                </div>
-              </div>
+            <p className="text-sm text-gray-600 line-clamp-3">
+              {n.excerpt}
+            </p>
 
-              <p className="text-sm text-gray-600 mt-2 line-clamp-3">
-                {n.excerpt}
-              </p>
-
+            <div className="pt-1">
               <Link
                 href={n.href}
-                className="inline-block mt-4 text-sm text-[#D4A75D] font-medium hover:underline"
+                className="inline-flex items-center text-sm text-[#D4A75D] font-medium hover:underline"
               >
                 Leer noticia →
               </Link>

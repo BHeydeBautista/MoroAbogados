@@ -3,7 +3,13 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function NewsFooter() {
+export default function NewsFooter({
+  backHref = "/",
+  backLabel = "← Volver",
+}: {
+  backHref?: string;
+  backLabel?: string;
+}) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -12,10 +18,10 @@ export default function NewsFooter() {
       className="mt-12 border-t border-[#D4A75D]/30 pt-6 flex justify-between items-center"
     >
       <Link
-        href="/"
+        href={backHref}
         className="text-[#D4A75D] hover:underline text-sm font-medium"
       >
-        ← Volver a noticias
+        {backLabel}
       </Link>
 
       <div className="text-xs text-gray-500">

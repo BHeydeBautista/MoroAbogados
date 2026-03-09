@@ -4,7 +4,15 @@ import { motion } from "framer-motion";
 
 type Section = { id: string; title: string };
 
-export default function NewsSidebar({ sections }: { sections?: Section[] }) {
+export default function NewsSidebar({
+  sections,
+  downloadUrl,
+  downloadLabel,
+}: {
+  sections?: Section[];
+  downloadUrl?: string;
+  downloadLabel?: string;
+}) {
   const fallback = [
     { id: "preambulo", title: "Preámbulo" },
     { id: "articulo1", title: "Artículo 1°" },
@@ -35,11 +43,16 @@ export default function NewsSidebar({ sections }: { sections?: Section[] }) {
         ))}
       </ul>
 
-      <div className="mt-8 border-t border-white/10 pt-4">
-        <button className="w-full bg-[#d4a75d] text-[#0f1c2e] font-semibold py-2 rounded-lg hover:bg-[#e1bb7c] transition-colors">
-          Descargar PDF
-        </button>
-      </div>
+      {downloadUrl && (
+        <div className="mt-8 border-t border-white/10 pt-4">
+          <a
+            href={downloadUrl}
+            className="block w-full text-center bg-[#d4a75d] text-[#0f1c2e] font-semibold py-2 rounded-lg hover:bg-[#e1bb7c] transition-colors"
+          >
+            {downloadLabel || "Descargar PDF"}
+          </a>
+        </div>
+      )}
     </motion.aside>
   );
 }

@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState, Suspense, useMemo } from "react";
 import { AnimatePresence } from "framer-motion";
-import InstagramPosts, { IGPost } from "./InstagramPosts";
+import InstagramPosts, { type IGPost } from "./InstagramPosts";
 import PublicationsGrid from "./Publications/PublicationsGrid";
 import { useSearchParams } from "next/navigation";
-import ArticlesList from "../articles/ArticlesList";
-import { allArticles } from "@/data/articlesData";
+import NewsList from "./NewsList";
+import { NOVEDADES } from "@/data/novedadesData";
 import es from "@/locales/es/content.json";
 import en from "@/locales/en/content.json";
 import { useLanguage } from "@/context/LanguageContext";
 
-// Mocked posts de ejemplo (captions localizadas)
 const createMockedPosts = (captions: string[]): IGPost[] => [
   {
     id: "1",
@@ -41,16 +40,13 @@ const createMockedPosts = (captions: string[]): IGPost[] => [
 function TabSelector({
   setActive,
 }: {
-  setActive: (tab: "instagram" | "propias") => void;
+  setActive: (tab: "instagram" | "novedades" | "propias") => void;
 }) {
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const tab = searchParams.get("tab");
-    if (
-      tab === "instagram" ||
-      tab === "propias" 
-    ) {
+    if (tab === "instagram" || tab === "novedades" || tab === "propias") {
       setActive(tab);
     }
   }, [searchParams, setActive]);
@@ -60,14 +56,36 @@ function TabSelector({
 
 export default function PostsContent() {
   const [active, setActive] = useState<
-    "instagram" | "propias" | "articulos"
+    "instagram" | "novedades" | "propias"
   >("instagram");
+
   const [posts, setPosts] = useState<IGPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const { language } = useLanguage();
   const t = language === "es" ? es.content : en.content;
-  const mockedPosts = createMockedPosts(t.mocked_captions || []);
+
+  const mockedPosts = useMemo(
+    () => createMockedPosts(t.mocked_captions || []),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [language]
+  );
+
+  const novedadesItems = useMemo(
+    () =>
+      [...NOVEDADES]
+        .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+        .map((n) => ({
+          id: n.slug,
+          title: n.title,
+          excerpt: n.excerpt,
+          href: `/novedades/${n.slug}`,
+          date: n.date,
+          cover: n.cover,
+        })),
+    []
+  );
 
   // Fetch de posts de Instagram
   useEffect(() => {
@@ -77,23 +95,36 @@ export default function PostsContent() {
     setLoading(true);
     setError(null);
 
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/instagram`;
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (!baseUrl) {
+      setPosts(mockedPosts);
+      setError(t.ig_fetch_error);
+      setLoading(false);
+      return;
+    }
 
-    fetch(url)
+    fetch(`${baseUrl}/instagram`)
       .then(async (res) => {
         if (!res.ok) throw new Error("No se pudo obtener posts");
-        const data = await res.json();
+        const json = await res.json();
 
-        const igPosts: IGPost[] =
-          data?.data?.map((p: any) => ({
-            id: p.id,
-            media_url: p.media_url || "",
-            thumbnail_url: p.thumbnail_url || "",
-            caption: p.caption || "",
-            permalink: p.permalink || `https://www.instagram.com/p/${p.id}/`,
-            media_type: p.media_type,
-            timestamp: p.timestamp,
-          })) || [];
+        const maybeArray =
+          json?.data?.data ??
+          json?.data ??
+          json?.posts ??
+          json;
+
+        const rawPosts: any[] = Array.isArray(maybeArray) ? maybeArray : [];
+
+        const igPosts: IGPost[] = rawPosts.map((p: any) => ({
+          id: String(p.id ?? ""),
+          media_url: p.media_url || "",
+          thumbnail_url: p.thumbnail_url || "",
+          caption: p.caption || "",
+          permalink: p.permalink || `https://www.instagram.com/p/${p.id}/`,
+          media_type: p.media_type,
+          timestamp: p.timestamp,
+        }));
 
         if (mounted) {
           setPosts(igPosts.length ? igPosts : mockedPosts);
@@ -112,7 +143,7 @@ export default function PostsContent() {
     return () => {
       mounted = false;
     };
-  }, [active]);
+  }, [active, mockedPosts, t.ig_fetch_error]);
 
   return (
     <section
@@ -138,7 +169,8 @@ export default function PostsContent() {
           >
             {[
               { key: "instagram", label: t.tabs.instagram },
-              { key: "propias", label: t.tabs.propias }
+              { key: "novedades", label: t.tabs.novedades },
+              { key: "propias", label: t.tabs.propias },
             ].map((tab) => {
               const isActive = active === (tab.key as any);
               return (
@@ -176,38 +208,11 @@ export default function PostsContent() {
               />
             )}
 
-            {active === "propias" && <PublicationsGrid />}
-
-            {active === "articulos" && (
-              <ArticlesList
-                pageSize={4}
-                items={[...allArticles].map((a, i) => {
-                  const stripHtml = (s?: string) =>
-                    s
-                      ? s
-                          .replace(/<[^>]*>/g, "")
-                          .replace(/\s+/g, " ")
-                          .trim()
-                      : "";
-
-                  return {
-                    id: a.slug ?? String(i),
-                    title: a.title,
-                    excerpt:
-                      a.excerpt ||
-                      a.resumen ||
-                      (a.sumario && a.sumario[0]) ||
-                      "",
-
-                    slug: a.slug,
-                    date: a.fecha,
-                    autor: a.autor,
-                    fuente: a.fuente,
-                    sumario: a.sumario,
-                  };
-                })}
-              />
+            {active === "novedades" && (
+              <NewsList items={novedadesItems} pageSize={4} />
             )}
+
+            {active === "propias" && <PublicationsGrid />}
           </AnimatePresence>
         </div>
       </div>

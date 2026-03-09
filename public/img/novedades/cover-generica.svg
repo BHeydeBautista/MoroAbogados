@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f1c2e"/>
+      <stop offset="0.55" stop-color="#16233b"/>
+      <stop offset="1" stop-color="#0f1c2e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d4a75d" stop-opacity="0.15"/>
+      <stop offset="0.5" stop-color="#d4a75d" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#d4a75d" stop-opacity="0.15"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="#FFFFFF" stroke-opacity="0.05"/>
+    </pattern>
+    <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <path d="M-20 470C170 360 320 410 510 510C700 610 900 620 1220 460" stroke="url(#gold)" stroke-width="10"/>
+  <path d="M-10 500C190 390 340 435 520 530C700 625 910 635 1210 485" stroke="#d4a75d" stroke-opacity="0.12" stroke-width="2"/>
+
+  <!-- Center badge (designed to still look good when cropped) -->
+  <g transform="translate(0,0)">
+    <rect x="320" y="135" width="560" height="360" rx="28" fill="url(#badge)" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  </g>
+
+  <!-- Scales icon -->
+  <g opacity="0.9">
+    <!-- Stand -->
+    <path d="M600 225V410" stroke="#d4a75d" stroke-opacity="0.9" stroke-width="10" stroke-linecap="round"/>
+    <path d="M520 420H680" stroke="#d4a75d" stroke-opacity="0.9" stroke-width="12" stroke-linecap="round"/>
+    <path d="M555 410H645" stroke="#d4a75d" stroke-opacity="0.55" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Beam -->
+    <path d="M470 245H730" stroke="#d4a75d" stroke-opacity="0.9" stroke-width="10" stroke-linecap="round"/>
+    <path d="M600 235V260" stroke="#d4a75d" stroke-opacity="0.6" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Hangers -->
+    <path d="M510 245V305" stroke="#d4a75d" stroke-opacity="0.7" stroke-width="6" stroke-linecap="round"/>
+    <path d="M690 245V305" stroke="#d4a75d" stroke-opacity="0.7" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Pans -->
+    <path d="M455 305H565" stroke="#d4a75d" stroke-opacity="0.65" stroke-width="6" stroke-linecap="round"/>
+    <path d="M455 305C470 345 550 345 565 305" stroke="#d4a75d" stroke-opacity="0.65" stroke-width="6" stroke-linecap="round"/>
+
+    <path d="M635 305H745" stroke="#d4a75d" stroke-opacity="0.65" stroke-width="6" stroke-linecap="round"/>
+    <path d="M635 305C650 345 730 345 745 305" stroke="#d4a75d" stroke-opacity="0.65" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Subtle ring decoration -->
+  <g opacity="0.10">
+    <circle cx="600" cy="315" r="150" stroke="#d4a75d" stroke-width="2"/>
+    <circle cx="600" cy="315" r="95" stroke="#d4a75d" stroke-width="2"/>
+  </g>
+</svg>

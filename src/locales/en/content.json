@@ -1,12 +1,13 @@
 {
   "content": {
-    "title": "Content",
-    "description": "Latest posts from Instagram, our own publications and firm news.",
+    "title": "Updates",
+    "description": "Latest news, guides and full documents organized by sections and articles.",
     "tabs": {
-      "instagram": "Instagram",
+      "novedades": "Updates",
       "propias": "Own publications",
-      "noticias": "News",
-      "articulos": "Articles"
+        "instagram": "Instagram posts",
+        "noticias": "News",
+        "articulos": "Articles"
     },
     "loading": "Loading content...",
     "ig_fetch_error": "Could not load posts. Showing examples.",

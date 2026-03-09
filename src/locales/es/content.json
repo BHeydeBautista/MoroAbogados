@@ -1,9 +1,10 @@
 {
   "content": {
-    "title": "Contenido",
-    "description": "Últimas publicaciones desde Instagram, nuestras publicaciones propias y noticias de la firma.",
+    "title": "Novedades",
+    "description": "Últimas noticias, guías y documentos completos organizados por artículos y secciones.",
     "tabs": {
-      "instagram": "Instagram",
+        "instagram": "Publicaciones de Instagram",
+      "novedades": "Novedades",
       "propias": "Publicaciones propias",
       "noticias": "Noticias"
     },

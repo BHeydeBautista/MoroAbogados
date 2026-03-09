@@ -15,6 +15,10 @@ type Props = {
   title: string;
   description?: string;
   date?: string;
+  backHref?: string;
+  backLabel?: string;
+  downloadUrl?: string;
+  downloadLabel?: string;
   metadata?: {
     jurisdiccion?: string;
     tipoNorma?: string;
@@ -30,6 +34,10 @@ export default function NewsLayout({
   title,
   description,
   date,
+  backHref,
+  backLabel,
+  downloadUrl,
+  downloadLabel,
   metadata,
   sections,
 }: Props) {
@@ -53,23 +61,29 @@ export default function NewsLayout({
         className="container mx-auto px-6 lg:px-12 mt-12 grid lg:grid-cols-[1fr_320px] gap-12"
       >
         <div>
-          <NewsMetadata
-            data={{
-              jurisdiccion: metadata?.jurisdiccion,
-              tipoNorma: metadata?.tipoNorma,
-              numeroNorma: metadata?.numeroNorma,
-              emisor: metadata?.emisor,
-              fechaSancion: date,
-              publicacion: metadata?.publicacion,
-            }}
-          />
+          {metadata && (
+            <NewsMetadata
+              data={{
+                jurisdiccion: metadata.jurisdiccion,
+                tipoNorma: metadata.tipoNorma,
+                numeroNorma: metadata.numeroNorma,
+                emisor: metadata.emisor,
+                fechaSancion: date,
+                publicacion: metadata.publicacion,
+              }}
+            />
+          )}
 
           {children ? <NewsBody>{children}</NewsBody> : <NewsContent />}
 
-          <NewsFooter />
+          <NewsFooter backHref={backHref} backLabel={backLabel} />
         </div>
 
-        <NewsSidebar sections={sections} />
+        <NewsSidebar
+          sections={sections}
+          downloadUrl={downloadUrl}
+          downloadLabel={downloadLabel}
+        />
       </motion.div>
     </section>
   );

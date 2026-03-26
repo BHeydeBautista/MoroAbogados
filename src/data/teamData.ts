@@ -84,10 +84,10 @@ export const abogados: TeamMember[] = [
 
 export const pasantes: TeamMember[] = [
   {
-    name: "Isabellia Di Palma",
-    role: "Pasante de Derecho",
-    role_en: "Law Intern",
-    bio: "Estudiante avanzada en derecho. Apoyo en investigaciones y gestión de documentación.",
+    name: "Tomás D. Ormache",
+    role: "Pasante (Convenio UNL)",
+    role_en: "Law Intern (UNL Agreement)",
+    bio: "Estudiante avanzado en derecho. Apoyo en investigaciones y gestión de documentación.",
     bio_en: "Advanced law student. Supports research and document management.",
   },
 ];

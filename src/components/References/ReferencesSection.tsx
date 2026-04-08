@@ -16,9 +16,9 @@ const references = [
       "Nogoyá (Estudio Jurídico Molas)",
       "Villaguay (Estudio Jurídico Federik)",
       "Rosario del Tala ",
-      "La Paz (Estudio Jurídico Maya)",
+      "La Paz (Estudio Jurídico Ponzoni)",
       "Colón ",
-      "Gualeguaychú (Estudio Jurídico Irigoytia)",
+      "Gualeguaychú (Estudio Jurídico Maya)",
     ],
   },
   {

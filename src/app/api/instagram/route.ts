@@ -16,6 +16,10 @@ function jsonError(message: string, status = 500) {
   return NextResponse.json({ error: message }, { status });
 }
 
+function jsonOkWithError(message: string) {
+  return NextResponse.json({ data: [], error: message }, { status: 200 });
+}
+
 function normalizePosts(input: unknown): IGPost[] {
   const arr = Array.isArray(input) ? input : [];
   return arr
@@ -76,18 +80,27 @@ export async function GET() {
     const baseUrl = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
 
     if (baseUrl) {
-      const posts = await fetchFromBackend(baseUrl);
-      return NextResponse.json({ data: posts }, { status: 200 });
+      try {
+        const posts = await fetchFromBackend(baseUrl);
+        return NextResponse.json({ data: posts }, { status: 200 });
+      } catch (err: any) {
+        console.warn("Backend Instagram fetch failed:", err);
+      }
     }
 
-    const posts = await fetchFromInstagramGraph();
-    if (posts.length) {
-      return NextResponse.json({ data: posts }, { status: 200 });
+    try {
+      const posts = await fetchFromInstagramGraph();
+      if (posts.length) {
+        return NextResponse.json({ data: posts }, { status: 200 });
+      }
+    } catch (err: any) {
+      console.warn("Instagram Graph fetch failed:", err);
     }
 
-    return jsonError(
-      "Falta configurar API_URL o credenciales de Instagram (INSTAGRAM_ACCESS_TOKEN e INSTAGRAM_USER_ID).",
-      501
+    return jsonOkWithError(
+      baseUrl
+        ? "No se pudo obtener Instagram desde el backend. Revisá el endpoint /instagram y el token en el backend."
+        : "Falta configurar API_URL/NEXT_PUBLIC_API_URL o credenciales de Instagram (INSTAGRAM_ACCESS_TOKEN e INSTAGRAM_USER_ID)."
     );
   } catch (err: any) {
     return jsonError(err?.message || "Error al obtener datos de Instagram", 502);

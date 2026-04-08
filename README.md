@@ -1,5 +1,17 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment variables
+
+To consume the deployed backend API, set:
+
+- `NEXT_PUBLIC_API_URL=https://moroabogados-backend.onrender.com`
+
+Optionally (server-side only) you can also set:
+
+- `API_URL=https://moroabogados-backend.onrender.com`
+
+See `.env.example`.
+
 ## Getting Started
 
 First, run the development server:

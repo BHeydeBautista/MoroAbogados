@@ -45,6 +45,11 @@ export const drEmilioFMoro = {
         description: "Hammurabi, Buenos Aires.",
         year: "2011",
       },
+      {
+        title: "Derecho Societario y Nuevas Tecnologías",
+        description: "La Ley (Thomson Reuters)",
+        year: "2026",
+      },
     ],
 
     articles: [

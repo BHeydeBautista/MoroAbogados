@@ -19,6 +19,8 @@
       "detail": "Details"
     },
     "modal": {
+      "document": "Full document",
+      "open_pdf": "Open in new tab",
       "articles_published": "Published articles",
       "articles_published_in": "Articles published in {where}",
       "other_publications": "Other publications",

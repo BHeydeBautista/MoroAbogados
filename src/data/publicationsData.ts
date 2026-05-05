@@ -24,7 +24,7 @@ export type PublicationBooks = {
   href?: string;
   pdfUrl?: string;
   tags?: string[];
-  editorialId: string;
+  editorialId?: string;
   clasification: string;
   format: string;
 };
@@ -408,5 +408,22 @@ export const PUBLICATIONS: (PublicationBooks | PublicationArt)[] = [
     href: "",
     pdfUrl: "/pdf/articulo-derecho-consumidor.pdf",
     tags: ["Responsabilidad", "LDC", "Agencias de viaje", "Jurisprudencia"],
-  }
+  },
+  {
+    id: "b17",
+    title:
+      "Institutos del Derecho Comercial a la luz del Nuevo Código Civil y Comercial de la nación",
+    type: "libro",
+    authorId: "a1",
+    cover: "/mock/books/Institutos_del_derecho.jpeg",
+    excerpt: "",
+    year: undefined,
+    pages: undefined,
+    href: "",
+    pdfUrl: "/pdf/institutosdelderecho.pdf",
+    tags: [],
+    editorialId: undefined,
+    clasification: "Derecho Comercial",
+    format: "-",
+  },
 ];

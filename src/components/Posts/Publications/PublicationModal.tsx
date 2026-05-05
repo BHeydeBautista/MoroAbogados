@@ -12,6 +12,12 @@ import type {
 } from "../../../data/publicationsData";
 import { EDITORIALS } from "../../../data/publicationsData";
 import { lawyerDetails } from "../../../data/lawyerData";
+import dynamic from "next/dynamic";
+
+const PdfViewer = dynamic(() => import("@/components/Pdf/PdfViewer"), {
+  ssr: false,
+  loading: () => <div className="text-sm text-gray-600">Cargando visor…</div>,
+});
 
 /* =========================
    Tipos
@@ -382,61 +388,121 @@ export default function PublicationModal({ pub, onClose }: Props) {
           </button>
         </div>
 
-        {/* Contenido */}
-        <div className="p-4 sm:p-6">
-          <div className="flex flex-col sm:flex-row gap-5">
-            <div className="w-full sm:w-48 flex justify-center">
-              {pub.cover ? (
-                <div className="relative w-40 h-56">
-                  <Image
-                    src={pub.cover}
-                    alt={pub.title}
-                    fill
-                    className="object-cover rounded-md"
-                  />
-                </div>
-              ) : (
-                <div className="h-48 bg-gray-100 flex items-center justify-center rounded-md">
-                  {t.card.no_image}
-                </div>
-              )}
-            </div>
-
-            <div className="flex-1">
-              {pub.excerpt && (
-                <p className="text-sm text-gray-700">{pub.excerpt}</p>
-              )}
-
-              <ul className="mt-4 text-sm text-gray-600 space-y-1">
-                {pub.year && (
-                  <li>
-                    {t.modal.year}: {pub.year}
-                  </li>
+        <div className="flex-1 overflow-y-auto">
+          {/* Contenido */}
+          <div className="p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row gap-5">
+              <div className="w-full sm:w-48 flex justify-center">
+                {pub.cover ? (
+                  <div className="relative w-40 h-56">
+                    <Image
+                      src={pub.cover}
+                      alt={pub.title}
+                      fill
+                      className="object-cover rounded-md"
+                    />
+                  </div>
+                ) : (
+                  <div className="h-48 bg-gray-100 flex items-center justify-center rounded-md">
+                    {t.card.no_image}
+                  </div>
                 )}
-                {editorialName && (
-                  <li>
-                    {pub.type === "libro" ? t.modal.editorial : t.modal.medium}: {editorialName}
-                  </li>
+              </div>
+
+              <div className="flex-1">
+                {pub.excerpt && (
+                  <p className="text-sm text-gray-700">{pub.excerpt}</p>
                 )}
-              </ul>
+
+                <ul className="mt-4 text-sm text-gray-600 space-y-1">
+                  {pub.year && (
+                    <li>
+                      {t.modal.year}: {pub.year}
+                    </li>
+                  )}
+                  {editorialName && (
+                    <li>
+                      {pub.type === "libro" ? t.modal.editorial : t.modal.medium}: {editorialName}
+                    </li>
+                  )}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Artículos */}
-        {(grouped.length > 0 || flat.length > 0) && (
-          <div className="p-4 border-t overflow-y-auto">
-            <h4 className="text-sm font-semibold text-[#0F1C2E] mb-3">
-              {articlesHeadingText}
-            </h4>
+          {/* PDF embebido */}
+          {pub.pdfUrl && (
+            <div className="px-4 sm:px-6 pb-6">
+              <div className="flex items-center justify-between gap-4 mb-2">
+                <h4 className="text-sm font-semibold text-[#0F1C2E]">
+                  {t.modal.document}
+                </h4>
+                <a
+                  href={pub.pdfUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-[#0F1C2E] underline"
+                >
+                  {t.modal.open_pdf}
+                </a>
+              </div>
+              <div className="w-full max-h-[60vh] overflow-y-auto border rounded-md bg-gray-50 p-3">
+                <PdfViewer url={pub.pdfUrl} title={pub.title} />
+              </div>
+            </div>
+          )}
 
-            {grouped.map((group) => (
-              <div key={group.publication} className="mb-4">
-                <h5 className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
-                  {groupTitle(group.publication)}
-                </h5>
+          {/* Artículos */}
+          {(grouped.length > 0 || flat.length > 0) && (
+            <div className="p-4 border-t">
+              <h4 className="text-sm font-semibold text-[#0F1C2E] mb-3">
+                {articlesHeadingText}
+              </h4>
+
+              {grouped.map((group) => (
+                <div key={group.publication} className="mb-4">
+                  <h5 className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
+                    {groupTitle(group.publication)}
+                  </h5>
+                  <ul className="space-y-2">
+                    {group.articles.map((article, i) => (
+                      <li key={i}>
+                        <div className="text-sm font-medium">
+                          {article.title}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {article.autor}
+                          {article.year && ` · ${article.year}`}
+                        </div>
+                        {(article.tomo || article.pagina) && (
+                          <div className="text-xs text-gray-600">
+                            {article.tomo && (
+                              <span>
+                                <span className="font-medium">{t.modal.volume}:</span> {article.tomo}
+                              </span>
+                            )}
+                            {article.tomo && article.pagina && <span> · </span>}
+                            {article.pagina && (
+                              <span>
+                                <span className="font-medium">{t.modal.page}:</span> {article.pagina}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                        {article.reference && !article.tomo && !article.pagina && (
+                          <div className="text-xs italic text-gray-600">
+                            {article.reference}
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+              {flat.length > 0 && (
                 <ul className="space-y-2">
-                  {group.articles.map((article, i) => (
+                  {flat.map((article, i) => (
                     <li key={i}>
                       <div className="text-sm font-medium">
                         {article.title}
@@ -468,46 +534,10 @@ export default function PublicationModal({ pub, onClose }: Props) {
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-
-            {flat.length > 0 && (
-              <ul className="space-y-2">
-                {flat.map((article, i) => (
-                  <li key={i}>
-                    <div className="text-sm font-medium">
-                      {article.title}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      {article.autor}
-                      {article.year && ` · ${article.year}`}
-                    </div>
-                    {(article.tomo || article.pagina) && (
-                      <div className="text-xs text-gray-600">
-                        {article.tomo && (
-                          <span>
-                            <span className="font-medium">{t.modal.volume}:</span> {article.tomo}
-                          </span>
-                        )}
-                        {article.tomo && article.pagina && <span> · </span>}
-                        {article.pagina && (
-                          <span>
-                            <span className="font-medium">{t.modal.page}:</span> {article.pagina}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    {article.reference && !article.tomo && !article.pagina && (
-                      <div className="text-xs italic text-gray-600">
-                        {article.reference}
-                      </div>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        )}
+              )}
+            </div>
+          )}
+        </div>
       </motion.div>
     </div>
   );

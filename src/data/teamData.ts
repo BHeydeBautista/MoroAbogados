@@ -82,15 +82,17 @@ export const abogados: TeamMember[] = [
   },
 ];
 
-export const pasantes: TeamMember[] = [
+export const abogadosAsociados: TeamMember[] = [
   {
     name: "Tomás D. Ormache",
-    role: "Pasante (Convenio UNL)",
-    role_en: "Law Intern (UNL Agreement)",
+    role: "Abogado Asociado",
+    role_en: "Associate Lawyer",
     bio: "Estudiante avanzado en derecho. Apoyo en investigaciones y gestión de documentación.",
     bio_en: "Advanced law student. Supports research and document management.",
   },
 ];
+
+export const pasantes: TeamMember[] = [];
 
 export const procuradores: TeamMember[] = [
   {

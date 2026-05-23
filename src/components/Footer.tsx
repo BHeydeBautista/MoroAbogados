@@ -104,7 +104,7 @@ const Footer = () => {
         </div>
 
         <p className="text-xs text-white/40 mt-4">
-          © {new Date().getFullYear()} Moro & Asociados. {t.rights}
+          © {new Date().getFullYear()} Moro Abogados. {t.rights}
         </p>
       </div>
     </motion.footer>

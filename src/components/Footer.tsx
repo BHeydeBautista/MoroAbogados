@@ -37,7 +37,10 @@ const Footer = () => {
         {/* NAVIGATION COLUMNS */}
         {[{
           title: t.navigation,
-          items: [{ label: t.nuestro_equipo, href: '/equipo' }]
+          items: [
+            { label: t.nuestro_equipo, href: '/Team' },
+            { label: t.contact, href: '/contacto' }
+          ]
         }, {
           title: t.areas,
           items: [

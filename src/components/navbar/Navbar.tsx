@@ -147,6 +147,10 @@ const Navbar = () => {
         url: "/referencias",
       },
       {
+        text: t.contacto,
+        url: "/contacto",
+      },
+      {
         text: t.publicaciones,
         submenu: (
           <div className="flex flex-col gap-3">

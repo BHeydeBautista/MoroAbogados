@@ -1,0 +1,12 @@
+{
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Ponte en contacto con nosotros para consultas legales y asesoramiento",
+    "phone_label": "Teléfono",
+    "phone_hours": "Disponible de lunes a viernes",
+    "email_label": "Correo",
+    "email_response": "Responderemos dentro de 24 horas",
+    "description": "En Moro & Asociados estamos disponibles para brindarte asesoramiento legal de calidad. No dudes en contactarnos para consultas sobre nuestras áreas de práctica.",
+    "available": "Estamos disponibles para atenderte"
+  }
+}

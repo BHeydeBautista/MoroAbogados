@@ -128,11 +128,16 @@ const Navbar = () => {
     () => [
       {
         text: t.nosotros,
-        url: "/#Profile",
-      },
-      {
-        text: t.equipo,
-        url: "/Team",
+        submenu: (
+          <div className="flex flex-col gap-3">
+            <HoverLink url="/#Profile" isDark={isDark}>
+              {t.nosotros}
+            </HoverLink>
+            <HoverLink url="/Team" isDark={isDark}>
+              {t.equipo}
+            </HoverLink>
+          </div>
+        ),
       },
       {
         text: t.clientes,
@@ -143,15 +148,15 @@ const Navbar = () => {
         url: "/#PracticeAreas",
       },
       {
-        text: t.referencia,
-        url: "/referencias",
+        text: t.contacto,
+        url: "/contacto",
       },
       {
         text: "Más",
         submenu: (
           <div className="flex flex-col gap-3">
-            <HoverLink url="/contacto" isDark={isDark}>
-              {t.contacto}
+            <HoverLink url="/referencias" isDark={isDark}>
+              {t.referencia}
             </HoverLink>
 
             <hr className="border-white/20" />

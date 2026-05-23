@@ -75,7 +75,7 @@ export default function ContactPage() {
                 </h3>
                 <Link
                   href="mailto:moroabogados@moroabogados.com.ar"
-                  className="text-lg text-gray-300 hover:text-[#D4A75D] transition-colors"
+                  className="text-lg text-gray-300 hover:text-[#D4A75D] transition-colors break-all"
                 >
                   moroabogados@moroabogados.com.ar
                 </Link>
@@ -94,9 +94,6 @@ export default function ContactPage() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="bg-white/5 backdrop-blur-sm border border-[#D4A75D]/30 rounded-lg p-8 text-center"
         >
-          <p className="text-lg text-gray-300 mb-4">
-            {t.description}
-          </p>
           <p className="text-sm text-gray-400">
             {t.available}
           </p>

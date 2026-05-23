@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(Get-ChildItem -Path . -Depth 2)",
-      "Bash(Select-Object FullName)",
-      "Bash(npx tsc *)"
-    ]
-  }
-}

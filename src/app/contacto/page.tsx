@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaPhone, FaEnvelope, FaWhatsapp } from 'react-icons/fa6';
+import { FaPhone, FaEnvelope } from 'react-icons/fa6';
 
 import es from '@/locales/es/contacto.json';
 import en from '@/locales/en/contacto.json';
@@ -185,8 +185,7 @@ export default function ContactPage() {
             >
               <Link
                 href={c.href}
-                target={c.external ? '_blank' : undefined}
-                rel={c.external ? 'noopener noreferrer' : undefined}
+
                 className="group flex flex-col items-center text-center gap-5 h-full
                   bg-white/[0.04] backdrop-blur-sm
                   border border-white/8 hover:border-[#D4A75D]/45

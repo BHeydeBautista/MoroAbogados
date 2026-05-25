@@ -1,11 +1,11 @@
 {
   "contact": {
     "title": "Contacto",
-    "subtitle": "Ponte en contacto con nosotros para consultas legales y asesoramiento",
+    "subtitle": "Ponete en contacto con nosotros para consultas legales y asesoramiento profesional",
     "phone_label": "Teléfono",
-    "phone_hours": "Disponible de lunes a viernes",
+    "phone_hours": "",
     "email_label": "Correo",
-    "email_response": "Responderemos dentro de 24 horas",
-    "available": "Estamos disponibles para atenderte"
+    "email_response": "",
+    "available": "Estamos disponibles para atenderte con la discreción y el profesionalismo que tu consulta merece."
   }
 }

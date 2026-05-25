@@ -7,7 +7,7 @@ import TeamCard from "./TeamCard";
 import {
   socios,
   abogados,
-  pasantes,
+  colaboradores,
   procuradores,
   itAssistants,
 } from "../../data/teamData";
@@ -28,6 +28,15 @@ export default function TeamSection() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const memberInitials = (name: string) =>
+    name
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase();
 
   const CircleGrid = (title: string, members: any[]) => (
     <section className="mb-8 md:mb-14">
@@ -74,20 +83,34 @@ export default function TeamSection() {
                       : "group-hover:scale-105 group-hover:shadow-2xl"
                   }`}
                 >
-                  <Image
-                    src={member.image ?? "/img/lawyer1.jpg"}
-                    alt={member.name}
-                    fill
-                    sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 208px"
-                    className={`object-cover rounded-full ${
-                      member.focus
-                        ? `object-[${member.focus}]`
-                        : "object-center"
-                    }`}
-                  />
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 640px) 128px, (max-width: 768px) 176px, 208px"
+                      className={`object-cover rounded-full ${
+                        member.focus
+                          ? `object-[${member.focus}]`
+                          : "object-center"
+                      }`}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center rounded-full bg-gradient-to-br from-[#D4A75D]/15 via-[#0f1c2e] to-[#071224]">
+                      <span
+                        className="text-2xl sm:text-3xl font-serif font-bold tracking-widest select-none"
+                        style={{
+                          color: "#D4A75D",
+                          textShadow: "0 2px 12px rgba(212,167,93,0.35)",
+                        }}
+                      >
+                        {memberInitials(member.name)}
+                      </span>
+                    </div>
+                  )}
 
                   <div
-                    className={`absolute inset-0 bg-black/40 transition-opacity duration-300 flex items-center justify-center ${
+                    className={`absolute inset-0 bg-black/40 transition-opacity duration-300 flex items-center justify-center rounded-full ${
                       isActive
                         ? "opacity-100 pointer-events-auto"
                         : "opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto"
@@ -274,44 +297,7 @@ export default function TeamSection() {
         <div className="bg-white/5 backdrop-blur-md border border-white/8 rounded-2xl p-4 md:p-8 shadow-lg">
           {SociosGrid(t.partners, socios)}
           {CircleGrid(t.lawyers, abogados)}
-
-          <section className="mb-6 md:mb-10">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">
-              <h3 className="text-lg md:text-xl font-semibold text-white">
-                {t.intern}
-              </h3>
-              <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs md:text-sm text-white/90">
-                {pasantes.length} {t.members}
-              </span>
-            </div>
-
-            <div className="w-full overflow-x-auto -mx-4 px-4">
-              <div className="flex sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2">
-                {pasantes.map((member, index) => {
-                  const displayRole =
-                    language === "es"
-                      ? member.role
-                      : member.role_en ?? member.role;
-                  const displayBio =
-                    language === "es"
-                      ? member.bio
-                      : member.bio_en ?? member.bio;
-                  return (
-                    <div key={member.name} className="min-w-[180px] sm:min-w-0">
-                      <TeamCard
-                        index={index}
-                        name={member.name}
-                        role={displayRole}
-                        bio={displayBio}
-                        compact
-                        onOpenBio={() => setModalMember(member)}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
+          {CircleGrid(t.colaboradores, colaboradores)}
 
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">

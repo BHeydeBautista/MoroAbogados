@@ -47,18 +47,6 @@ export const abogados: TeamMember[] = [
     focus: "50%_20%",
   },
   {
-    name: "Abril Martínez Figueroa",
-    role: "Abogada",
-    image:
-      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto,c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
-    bio: "Abogada con foco en resolución alternativa de conflictos y derecho civil.",
-    role_en: "Lawyer",
-    bio_en:
-      "Lawyer focused on alternative dispute resolution and civil law.",
-    focus: "50%_20%",
-  },
-
-  {
     name: "Noelia Torres",
     role: "Abogada",
     image:
@@ -67,6 +55,17 @@ export const abogados: TeamMember[] = [
     role_en: "Lawyer",
     bio_en:
       "Advisor in labor law and social security with extensive SME experience.",
+    focus: "50%_20%",
+  },
+  {
+    name: "Abril Martínez Figueroa",
+    role: "Abogada",
+    image:
+      "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto,c_fill,g_face,w_800,h_800/v1763917757/Dra-Abril_wjvyks.jpg",
+    bio: "Abogada con foco en resolución alternativa de conflictos y derecho civil.",
+    role_en: "Lawyer",
+    bio_en:
+      "Lawyer focused on alternative dispute resolution and civil law.",
     focus: "50%_20%",
   },
   {
@@ -82,13 +81,13 @@ export const abogados: TeamMember[] = [
   },
 ];
 
-export const pasantes: TeamMember[] = [
+export const colaboradores: TeamMember[] = [
   {
     name: "Tomás D. Ormache",
-    role: "Pasante (Convenio UNL)",
-    role_en: "Law Intern (UNL Agreement)",
-    bio: "Estudiante avanzado en derecho. Apoyo en investigaciones y gestión de documentación.",
-    bio_en: "Advanced law student. Supports research and document management.",
+    role: "Abogado",
+    role_en: "Lawyer",
+    bio: "",
+    bio_en: "",
   },
 ];
 

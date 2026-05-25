@@ -13,12 +13,14 @@
     "equipo": "Nuestro equipo",
     "pub_instagram": "Publicaciones Instagram",
     "publicaciones": "Publicaciones",
-    "libros_dr_emilio": "Libros Dr. Emilio",
-    "libros_dr_carlos": "Libros Dr. Carlos",
-    "articulos_dr_emilio": "Artículos Dr. Emilio",
-    "articulos_dr_carlos": "Artículos Dr. Carlos",
-    "curriculums": "Currículums",
+    "libros_dr_emilio": "Libros Dr. Emilio F. Moro",
+    "libros_dr_carlos": "Libros Dr. Carlos E. Moro",
+    "articulos_dr_emilio": "Artículos Dr. Emilio F. Moro",
+    "articulos_dr_carlos": "Artículos Dr. Carlos E. Moro",
+    "curriculums": "Antecedentes (socios)",
     "curriculum_dr_carlos": "Dr. Carlos E. Moro",
-    "curriculum_dr_emilio": "Dr. Emilio F. Moro"
+    "curriculum_dr_emilio": "Dr. Emilio F. Moro",
+    "sucursales": "Sucursales",
+    "nuestras_redes": "Nuestras redes"
   }
 }

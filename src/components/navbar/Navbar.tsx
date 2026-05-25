@@ -204,8 +204,14 @@ const Navbar = () => {
             <p className="text-sm font-semibold text-[#D4A75D]">
               {t.sucursales}
             </p>
-            <HoverLink url="/referencias" isDark={isDark}>
-              {t.referencia}
+            <HoverLink url="/referencias/entre-rios" isDark={isDark}>
+              {t.sucursal_entre_rios}
+            </HoverLink>
+            <HoverLink url="/referencias/santa-fe" isDark={isDark}>
+              {t.sucursal_santa_fe}
+            </HoverLink>
+            <HoverLink url="/referencias/buenos-aires" isDark={isDark}>
+              {t.sucursal_buenos_aires}
             </HoverLink>
 
             <hr className="border-white/20" />

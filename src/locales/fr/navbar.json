@@ -14,12 +14,14 @@
     "pub_instagram": "Publications Instagram",
     "articulos_doctrinarios": "Articles doctrinaux",
     "publicaciones": "Publications",
-    "libros_dr_emilio": "Livres (Dr. Emilio)",
-    "libros_dr_carlos": "Livres (Dr. Carlos)",
-    "articulos_dr_emilio": "Articles (Dr. Emilio)",
-    "articulos_dr_carlos": "Articles (Dr. Carlos)",
-    "curriculums": "CVs",
+    "libros_dr_emilio": "Livres Dr. Emilio F. Moro",
+    "libros_dr_carlos": "Livres Dr. Carlos E. Moro",
+    "articulos_dr_emilio": "Articles Dr. Emilio F. Moro",
+    "articulos_dr_carlos": "Articles Dr. Carlos E. Moro",
+    "curriculums": "Antécédents (associés)",
     "curriculum_dr_carlos": "Dr. Carlos E. Moro",
-    "curriculum_dr_emilio": "Dr. Emilio F. Moro"
+    "curriculum_dr_emilio": "Dr. Emilio F. Moro",
+    "sucursales": "Succursales",
+    "nuestras_redes": "Nos réseaux"
   }
 }

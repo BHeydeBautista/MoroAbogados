@@ -140,12 +140,12 @@ const Navbar = () => {
         ),
       },
       {
-        text: t.clientes,
-        url: "/clients",
-      },
-      {
         text: t.areas,
         url: "/#PracticeAreas",
+      },
+      {
+        text: t.clientes,
+        url: "/clients",
       },
       {
         text: t.contacto,
@@ -155,12 +155,8 @@ const Navbar = () => {
         text: "Más",
         submenu: (
           <div className="flex flex-col gap-3">
-            <HoverLink url="/referencias" isDark={isDark}>
-              {t.referencia}
-            </HoverLink>
 
-            <hr className="border-white/20" />
-
+            {/* ── Publicaciones ── */}
             <p className="text-sm font-semibold text-[#D4A75D]">
               {t.publicaciones}
             </p>
@@ -170,21 +166,18 @@ const Navbar = () => {
             >
               {t.libros_dr_emilio}
             </HoverLink>
-
             <HoverLink
               url="/?tab=propias&type=libro&author=Carlos%20E.%20Moro#Contenido"
               isDark={isDark}
             >
               {t.libros_dr_carlos}
             </HoverLink>
-
             <HoverLink
               url="/?tab=propias&type=articulo&author=Emilio%20F.%20Moro#Contenido"
               isDark={isDark}
             >
               {t.articulos_dr_emilio}
             </HoverLink>
-
             <HoverLink
               url="/?tab=propias&type=articulo&author=Carlos%20E.%20Moro#Contenido"
               isDark={isDark}
@@ -194,25 +187,37 @@ const Navbar = () => {
 
             <hr className="border-white/20" />
 
+            {/* ── Antecedentes (socios) ── */}
             <p className="text-sm font-semibold text-[#D4A75D]">
               {t.curriculums}
             </p>
             <HoverLink url="/abogados/dr-carlos-moro" isDark={isDark}>
               {t.curriculum_dr_carlos}
             </HoverLink>
-
             <HoverLink url="/abogados/dr-emilio-f-moro" isDark={isDark}>
               {t.curriculum_dr_emilio}
             </HoverLink>
 
             <hr className="border-white/20" />
 
+            {/* ── Sucursales ── */}
             <p className="text-sm font-semibold text-[#D4A75D]">
-              {t.contenido}
+              {t.sucursales}
+            </p>
+            <HoverLink url="/referencias" isDark={isDark}>
+              {t.referencia}
+            </HoverLink>
+
+            <hr className="border-white/20" />
+
+            {/* ── Nuestras redes ── */}
+            <p className="text-sm font-semibold text-[#D4A75D]">
+              {t.nuestras_redes}
             </p>
             <HoverLink url="/?tab=instagram#Contenido" isDark={isDark}>
               {t.pub_instagram}
             </HoverLink>
+
           </div>
         ),
       },

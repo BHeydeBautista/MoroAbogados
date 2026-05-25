@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 interface HoverLinkProps {
   url: string;
@@ -14,7 +15,7 @@ export const HoverLink: React.FC<HoverLinkProps> = ({
   isDark = true,
 }) => {
   return (
-    <a
+    <Link
       href={url}
       onClick={onPress}
       className={`block px-4 py-2 rounded-lg transition-colors ${
@@ -24,6 +25,6 @@ export const HoverLink: React.FC<HoverLinkProps> = ({
       }`}
     >
       {children}
-    </a>
+    </Link>
   );
 };

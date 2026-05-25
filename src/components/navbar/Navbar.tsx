@@ -128,11 +128,16 @@ const Navbar = () => {
     () => [
       {
         text: t.nosotros,
-        url: "/#Profile",
-      },
-      {
-        text: t.equipo,
-        url: "/Team",
+        submenu: (
+          <div className="flex flex-col gap-3">
+            <HoverLink url="/#Profile" isDark={isDark}>
+              {t.nosotros}
+            </HoverLink>
+            <HoverLink url="/Team" isDark={isDark}>
+              {t.equipo}
+            </HoverLink>
+          </div>
+        ),
       },
       {
         text: t.clientes,
@@ -143,13 +148,22 @@ const Navbar = () => {
         url: "/#PracticeAreas",
       },
       {
-        text: t.referencia,
-        url: "/referencias",
+        text: t.contacto,
+        url: "/contacto",
       },
       {
-        text: t.publicaciones,
+        text: "Más",
         submenu: (
           <div className="flex flex-col gap-3">
+            <HoverLink url="/referencias" isDark={isDark}>
+              {t.referencia}
+            </HoverLink>
+
+            <hr className="border-white/20" />
+
+            <p className="text-sm font-semibold text-[#D4A75D]">
+              {t.publicaciones}
+            </p>
             <HoverLink
               url="/?tab=propias&type=libro&author=Emilio%20F.%20Moro#Contenido"
               isDark={isDark}
@@ -177,13 +191,12 @@ const Navbar = () => {
             >
               {t.articulos_dr_carlos}
             </HoverLink>
-          </div>
-        ),
-      },
-      {
-        text: t.curriculums,
-        submenu: (
-          <div className="flex flex-col gap-3">
+
+            <hr className="border-white/20" />
+
+            <p className="text-sm font-semibold text-[#D4A75D]">
+              {t.curriculums}
+            </p>
             <HoverLink url="/abogados/dr-carlos-moro" isDark={isDark}>
               {t.curriculum_dr_carlos}
             </HoverLink>
@@ -191,13 +204,12 @@ const Navbar = () => {
             <HoverLink url="/abogados/dr-emilio-f-moro" isDark={isDark}>
               {t.curriculum_dr_emilio}
             </HoverLink>
-          </div>
-        ),
-      },
-      {
-        text: t.contenido,
-        submenu: (
-          <div className="flex flex-col gap-3">
+
+            <hr className="border-white/20" />
+
+            <p className="text-sm font-semibold text-[#D4A75D]">
+              {t.contenido}
+            </p>
             <HoverLink url="/?tab=instagram#Contenido" isDark={isDark}>
               {t.pub_instagram}
             </HoverLink>

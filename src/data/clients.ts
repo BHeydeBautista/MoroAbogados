@@ -10,7 +10,7 @@ export const clients: Client[] = [
   // ——— INDUSTRIA Y PRODUCCIÓN ———
   { name: "Acindar S.G.R.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918923/acindar_jbc2ik.gif", featured: true },
   { name: "Agroservicios Pampeanos S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918924/Agroservicios_Pampeanos_S.A._lmbuij.jpg" },
-  { name: "Agrotécnica Litoral S.R.L.", category: "Industria y Producción" },
+  { name: "Agrotécnica Litoral S.R.L.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1779651165/Agrot%C3%A9cnica_Litoral_S.R.L_ept4l3.png" },
   { name: "Aberturas Valentinuz S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919034/Aberturas_Valentinuz_S.A._ijopgp.jpg" },
   { name: "Avebe Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919061/Avebe_Argentina_S.A._tqjn9c.jpg" },
   { name: "Bulonera del Litoral S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919091/Bulonera_del_Litoral_S.A._dlxqep.jpg", featured: true },
@@ -31,11 +31,11 @@ export const clients: Client[] = [
 
   // ——— INDUSTRIA (NUEVAS AGREGADAS) ———
   { name: "LEFFLER & WOLLERT S.R.L.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025022/LEFFLER_WOLLERT_S.R.L._eyweqp.webp" },
-  { name: "ALIMENTI S.R.L.", category: "Industria y Producción" },
+  { name: "ALIMENTI S.R.L.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1779651164/ALIMENTI_S.R.L._bpt1ma.png" },
   { name: "LEFFLER-DIETZ ALUMINIO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025022/LEFFLER-DIETZ_ALUMINIO_ck7ofe.png" },
-  { name: "ROTH HUEVO CAMPO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025023/ROTH_HUEVO_CAMPO_nwulim.png", featured: true },
+  { name: "ROTH HUEVO CAMPO", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025023/ROTH_HUEVO_CAMPO_nwulim.png" },
   { name: "L & B Maquinarias S.A.", category: "Industria y Producción" , logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764025131/L_B_Maquinarias_S.A._jv590i.png", featured: true },
-  { name: "ASTILLERO Samuel Gutnisky S.A.", category: "Industria y Producción" },
+  { name: "ASTILLERO Samuel Gutnisky S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1779651161/ASTILLERO_Samuel_Gutnisky_S.A._ihxs3d.png" },
 
   // ——— SERVICIOS Y OTROS ———
   { name: "Automóvil Club Argentino", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919494/Autom%C3%B3vil_Club_Argentino_hcjem3.jpg", featured: true },
@@ -74,7 +74,7 @@ export const clients: Client[] = [
   { name: "Municipalidad de Paraná", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763920205/Municipalidad_de_Paran%C3%A1_yvqylq.jpg" },
   { name: "Municipalidad de Crespo", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764605358/Dise%C3%B1o_sin_t%C3%ADtulo_2_bbt8vp.png" },
   { name: "Municipalidad de San José de Feliciano", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918945/Municipalidad_de_Feliciano_wkqmbe.webp" },
-  { name: "Instituto del Seguro de Entre Ríos (IAPSER)", category: "Gobierno y Municipios", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918935/IAPSER_ufte9f.png", featured: true },
+  { name: "Instituto del Seguro de Entre Ríos (IAPSER)", category: "Seguros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918935/IAPSER_ufte9f.png", featured: true },
 
   // ——— SALUD Y FARMACÉUTICA ———
   { name: "Instituto de Traumatología y Enfermedades Oseas (ITEO)", category: "Salud y Farmacéutica", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763920292/Instituto_de_Traumatolog%C3%ADa_y_Enfermedades_Oseas_ITEO_yhqlxd.png" },

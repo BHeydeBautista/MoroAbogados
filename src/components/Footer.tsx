@@ -37,7 +37,10 @@ const Footer = () => {
         {/* NAVIGATION COLUMNS */}
         {[{
           title: t.navigation,
-          items: [{ label: t.nuestro_equipo, href: '/equipo' }]
+          items: [
+            { label: t.nuestro_equipo, href: '/Team' },
+            { label: t.contact, href: '/contacto' }
+          ]
         }, {
           title: t.areas,
           items: [
@@ -101,7 +104,7 @@ const Footer = () => {
         </div>
 
         <p className="text-xs text-white/40 mt-4">
-          © {new Date().getFullYear()} Moro & Asociados. {t.rights}
+          © {new Date().getFullYear()} Moro Abogados. {t.rights}
         </p>
       </div>
     </motion.footer>

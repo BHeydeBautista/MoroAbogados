@@ -1,0 +1,34 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="680" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F1C2E"/>
+      <stop offset="0.5" stop-color="#1B3148"/>
+      <stop offset="1" stop-color="#D4A75D"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="250" y1="420" x2="550" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E3345"/>
+      <stop offset="1" stop-color="#0A1322"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(395 220) rotate(90) scale(200 260)">
+      <stop stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="800" height="800" rx="64" fill="url(#bg)"/>
+  <circle cx="395" cy="220" r="180" fill="url(#glow)"/>
+  <ellipse cx="400" cy="525" rx="165" ry="115" fill="url(#shirt)"/>
+
+  <path d="M331 315C331 257.8 376.8 212 434 212H466C523.2 212 569 257.8 569 315V370C569 405.4 542.4 434.8 507.6 434.8H392.4C357.6 434.8 331 405.4 331 370V315Z" fill="#E9D5B5"/>
+  <path d="M256 460C285.2 400.4 335 358.4 400 353.2C467.2 347.8 533.6 387.2 565.2 457.6L543.2 482C515.6 429.2 464.8 401.2 400 405.2C336 409.2 286.8 437.2 263.2 489.2L256 460Z" fill="#E3C18E"/>
+  <path d="M357 314C357 265.2 396.2 226 445 226H455C503.8 226 543 265.2 543 314V354C543 391.8 513.4 422.8 475.8 422.8H424.2C386.6 422.8 357 391.8 357 354V314Z" fill="#13273A"/>
+  <path d="M406 264C437.4 264 463 289.6 463 321V357H349V321C349 289.6 374.6 264 406 264Z" fill="#0D1A2B"/>
+  <path d="M394 380C430.4 380 460 409.6 460 446V580H328V446C328 409.6 357.6 380 394 380Z" fill="#E9D5B5"/>
+  <path d="M392 373C447.8 373 493 418.2 493 474V583H291V474C291 418.2 336.2 373 392 373Z" fill="#E9D5B5"/>
+
+  <circle cx="394" cy="250" r="82" fill="#F0D9B9"/>
+  <path d="M390 176C432.4 176 466 209.6 466 252V260H314V252C314 209.6 347.6 176 390 176Z" fill="#1F3248"/>
+  <path d="M368 209C383 195 404 188 425 188C446 188 467 195 482 209" stroke="#0A1322" stroke-width="12" stroke-linecap="round"/>
+  <path d="M370 333C385 344 404 350 425 350C446 350 464 344 479 333" stroke="#F4E5D4" stroke-width="8" stroke-linecap="round"/>
+  <rect x="274" y="592" width="252" height="18" rx="9" fill="#0F1C2E" fill-opacity="0.28"/>
+</svg>

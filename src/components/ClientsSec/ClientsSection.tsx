@@ -29,14 +29,14 @@ export default function ClientsSection() {
 
   const categories: Array<{ id: CategoryId; dataCategory?: string; label: string }> = [
     { id: "all", label: t.categories.all },
-    { id: "banking", dataCategory: "Bancos y Finanzas", label: t.categories.banking },
-    { id: "industry", dataCategory: "Industria y Producción", label: t.categories.industry },
     { id: "retail", dataCategory: "Retail y Consumo", label: t.categories.retail },
     { id: "government", dataCategory: "Gobierno y Municipios", label: t.categories.government },
+    { id: "insurance", dataCategory: "Seguros", label: t.categories.insurance },
+    { id: "banking", dataCategory: "Bancos y Finanzas", label: t.categories.banking },
+    { id: "industry", dataCategory: "Industria y Producción", label: t.categories.industry },
     { id: "health", dataCategory: "Salud y Farmacéutica", label: t.categories.health },
     { id: "technology", dataCategory: "Tecnología", label: t.categories.technology },
     { id: "services", dataCategory: "Servicios y Otros", label: t.categories.services },
-    { id: "insurance", dataCategory: "Seguros", label: t.categories.insurance },
   ];
 
   const [selectedCategory, setSelectedCategory] = useState<CategoryId>("all");

@@ -38,6 +38,7 @@ export const clients: Client[] = [
   { name: "ASTILLERO Samuel Gutnisky S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1779651161/ASTILLERO_Samuel_Gutnisky_S.A._ihxs3d.png" },
 
   // ——— SERVICIOS Y OTROS ———
+  { name: "Transener S.A.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/v1779850472/transener_pyddvp.webp", featured: true },
   { name: "Automóvil Club Argentino", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919494/Autom%C3%B3vil_Club_Argentino_hcjem3.jpg", featured: true },
   { name: "CEMYC S.R.L.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919520/CEMYC_S.R.L._andk05.jpg" },
   { name: "CGM Leasing S.A.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919546/CGM_Leasing_S.A._dq6smn.jpg" },

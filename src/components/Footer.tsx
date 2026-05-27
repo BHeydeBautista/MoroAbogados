@@ -35,45 +35,97 @@ const Footer = () => {
         </div>
 
         {/* NAVIGATION COLUMNS */}
-        {[{
-          title: t.navigation,
-          items: [
-            { label: t.nuestro_equipo, href: '/Team' },
-            { label: t.contact, href: '/contacto' }
-          ]
-        }, {
-          title: t.areas,
-          items: [
-            { label: t.administrativo, href: '/areas/Administrativo-Constitucional' },
-            { label: t.contencioso, href: '/areas/Asuntos-Contenciosos' },
-            { label: t.civil, href: '/areas/Civil' },
-            { label: t.concursal, href: '/areas/Concursal' },
-            { label: t.laboral, href: '/areas/Derecho-Laboral-de-Empresas' },
-            { label: t.mercantil, href: '/areas/Mercantil' },
-            { label: t.societario, href: '/areas/derecho-societario' }
-          ]
-        }, {
-          title: t.content,
-          items: [
-            { label: t.novedades, href: '/novedades' },
-            { label: t.insights, href: '/insights' },
-            { label: t.eventos, href: '/eventos' },
-            { label: t.podcast, href: '/podcast' }
-          ]
-        }].map((section) => (
-          <div key={section.title} className="space-y-3">
-            <h4 className="font-bold text-[#D4A75D] font-serif text-lg">{section.title}</h4>
-            <ul className="space-y-2">
-              {section.items.map((item) => (
-                <li key={item.label}>
-                  <Link href={item.href} className="text-gray-400 hover:text-[#D4A75D] transition">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {/* — Profesionales — */}
+        <div className="space-y-3">
+          <h4 className="font-bold text-[#D4A75D] font-serif text-lg">{t.navigation}</h4>
+          <ul className="space-y-2">
+            {[
+              { label: t.nuestro_equipo, href: '/Team' },
+              { label: t.contact,        href: '/contacto' },
+            ].map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-gray-400 hover:text-[#D4A75D] transition">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* — Áreas de Práctica — */}
+        <div className="space-y-3">
+          <h4 className="font-bold text-[#D4A75D] font-serif text-lg">{t.areas}</h4>
+          <ul className="space-y-2">
+            {[
+              { label: t.societario,     href: '/areas/derecho-societario' },
+              { label: t.contencioso,    href: '/areas/Asuntos-Contenciosos' },
+              { label: t.civil,          href: '/areas/Civil' },
+              { label: t.concursal,      href: '/areas/Concursal' },
+              { label: t.laboral,        href: '/areas/Derecho-Laboral-de-Empresas' },
+              { label: t.mercantil,      href: '/areas/Mercantil' },
+              { label: t.administrativo, href: '/areas/Administrativo-Constitucional' },
+            ].map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-gray-400 hover:text-[#D4A75D] transition">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* — Contenido (con sub-secciones igual que el navbar) — */}
+        <div className="space-y-4">
+          <h4 className="font-bold text-[#D4A75D] font-serif text-lg">{t.content}</h4>
+
+          {([
+            {
+              heading: t.f_publicaciones,
+              links: [
+                { label: t.f_libros_emilio, href: '/?tab=propias&type=libro&author=Emilio%20F.%20Moro#Contenido' },
+                { label: t.f_libros_carlos, href: '/?tab=propias&type=libro&author=Carlos%20E.%20Moro#Contenido' },
+                { label: t.f_art_emilio,    href: '/?tab=propias&type=articulo&author=Emilio%20F.%20Moro#Contenido' },
+                { label: t.f_art_carlos,    href: '/?tab=propias&type=articulo&author=Carlos%20E.%20Moro#Contenido' },
+              ],
+            },
+            {
+              heading: t.f_antecedentes,
+              links: [
+                { label: t.f_cv_carlos, href: '/abogados/dr-carlos-moro' },
+                { label: t.f_cv_emilio, href: '/abogados/dr-emilio-f-moro' },
+              ],
+            },
+            {
+              heading: t.f_sucursales,
+              links: [
+                { label: t.f_entre_rios,    href: '/referencias/entre-rios' },
+                { label: t.f_santa_fe,      href: '/referencias/santa-fe' },
+                { label: t.f_buenos_aires,  href: '/referencias/buenos-aires' },
+              ],
+            },
+            {
+              heading: t.f_redes,
+              links: [
+                { label: t.f_instagram, href: '/?tab=instagram#Contenido' },
+              ],
+            },
+          ] as Array<{ heading: string; links: { label: string; href: string }[] }>).map((group) => (
+            <div key={group.heading} className="space-y-1.5">
+              <p className="text-[10px] uppercase tracking-[0.15em] text-[#D4A75D]/55 font-semibold">
+                {group.heading}
+              </p>
+              <ul className="space-y-1.5">
+                {group.links.map((item) => (
+                  <li key={item.href}>
+                    <Link href={item.href} className="text-gray-400 hover:text-[#D4A75D] transition text-xs">
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
 
         {/* SOCIAL */}
         <div className="space-y-4">

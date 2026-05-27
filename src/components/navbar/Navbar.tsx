@@ -148,11 +148,7 @@ const Navbar = () => {
         url: "/clients",
       },
       {
-        text: t.contacto,
-        url: "/contacto",
-      },
-      {
-        text: "Más",
+        text: "Contenido",
         submenu: (
           <div className="flex flex-col gap-3">
 
@@ -226,6 +222,10 @@ const Navbar = () => {
 
           </div>
         ),
+      },
+      {
+        text: t.contacto,
+        url: "/contacto",
       },
     ],
     [t, isDark]

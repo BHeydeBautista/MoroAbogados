@@ -3,6 +3,8 @@ import NewsLayout from "@/components/news/NewsLayout";
 import { getNovedadBySlug, NOVEDADES } from "@/data/novedadesData";
 import { parseLegalDocument } from "@/lib/parseLegalDocument";
 import { LEY_27802_RAW } from "@/data/novedades/ley-27802.raw";
+import { DECRETO_408_2026_RAW } from "@/data/novedades/decreto-408-2026.raw";
+import { DECRETO_407_2026_RAW } from "@/data/novedades/decreto-407-2026.raw";
 
 type Props = {
   params: Promise<{ slug: string }> | { slug: string };
@@ -41,6 +43,8 @@ export default async function NovedadDetailPage({ params }: Props) {
 
   const documentTextBySlug: Record<string, string> = {
     "ley-modernizacion-laboral-27802": LEY_27802_RAW,
+    "decreto-fal-408-2026": DECRETO_408_2026_RAW,
+    "decreto-reglamentacion-laboral-407-2026": DECRETO_407_2026_RAW,
   };
 
   const documentSections =

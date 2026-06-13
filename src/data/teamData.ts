@@ -81,6 +81,16 @@ export const abogados: TeamMember[] = [
   },
 ];
 
+export const pasantes: TeamMember[] = [
+  {
+    name: "Dariana Ré",
+    role: "Pasante (Convenio U.N.L.)",
+    role_en: "Intern (U.N.L. Agreement)",
+    bio: "",
+    bio_en: "",
+  },
+];
+
 export const colaboradores: TeamMember[] = [
   {
     name: "Tomás D. Ormache",

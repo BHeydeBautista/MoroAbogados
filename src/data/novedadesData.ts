@@ -47,6 +47,29 @@ export type Novedad = NovedadNews | NovedadDocument;
 export const NOVEDADES: Novedad[] = [
   {
     kind: "document",
+    slug: "resolucion-igj-5-2026",
+    title: "Resolución General IGJ 5/2026 - Inscripción Registral con Plancha Digital",
+    excerpt:
+      "La IGJ establece el procedimiento de inscripción registral con generación y remisión de la plancha de inscripción en soporte digital firmada digitalmente, eximiendo la obligación de presentar copias en papel y habilitando la remisión electrónica al autorizado.",
+    date: "2026-06-02",
+    metadata: {
+      jurisdiccion: "Nacional",
+      tipoNorma: "Resolución General",
+      numeroNorma: "5/2026",
+      emisor: "Inspección General de Justicia",
+      fechaSancion: "01-06-2026",
+      publicacionBO: "02-06-2026",
+    },
+    contentTextPath: "docs/novedades/Procedimiento de Inscripción Registral con Generación y Remisión de la Plancha-de-Inscripción-en-Soporte-Digital",
+    related: [
+      {
+        title: "Área: Derecho Societario",
+        href: "/areas/derecho-societario",
+      },
+    ],
+  },
+  {
+    kind: "document",
     slug: "decreto-fal-408-2026",
     title: "Decreto 408/2026 - Reglamentación del Fondo de Asistencia Laboral (Título II Ley 27.802)",
     excerpt:

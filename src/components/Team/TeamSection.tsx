@@ -8,6 +8,7 @@ import {
   socios,
   abogados,
   colaboradores,
+  pasantes,
   procuradores,
   itAssistants,
 } from "../../data/teamData";
@@ -298,6 +299,7 @@ export default function TeamSection() {
           {SociosGrid(t.partners, socios)}
           {CircleGrid(t.lawyers, abogados)}
           {CircleGrid(t.colaboradores, colaboradores)}
+          {CircleGrid(t.pasantes, pasantes)}
 
           <section className="mb-6 md:mb-10">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 gap-2">

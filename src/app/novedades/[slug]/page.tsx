@@ -6,6 +6,7 @@ import { LEY_27802_RAW } from "@/data/novedades/ley-27802.raw";
 import { DECRETO_408_2026_RAW } from "@/data/novedades/decreto-408-2026.raw";
 import { DECRETO_407_2026_RAW } from "@/data/novedades/decreto-407-2026.raw";
 import { RESOLUCION_IGJ_5_2026_RAW } from "@/data/novedades/resolucion-igj-5-2026.raw";
+import { DECRETO_612_2026_RAW } from "@/data/novedades/decreto-612-2026.raw";
 
 type Props = {
   params: Promise<{ slug: string }> | { slug: string };
@@ -47,6 +48,7 @@ export default async function NovedadDetailPage({ params }: Props) {
     "decreto-fal-408-2026": DECRETO_408_2026_RAW,
     "decreto-reglamentacion-laboral-407-2026": DECRETO_407_2026_RAW,
     "resolucion-igj-5-2026": RESOLUCION_IGJ_5_2026_RAW,
+    "decreto-612-2026": DECRETO_612_2026_RAW,
   };
 
   const documentSections =

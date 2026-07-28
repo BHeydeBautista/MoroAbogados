@@ -47,6 +47,37 @@ export type Novedad = NovedadNews | NovedadDocument;
 export const NOVEDADES: Novedad[] = [
   {
     kind: "document",
+    slug: "decreto-612-2026",
+    title: "Decreto 612/2026 - Modificación del Decreto N° 199/1988 (Base de Cálculo de Aportes y Contribuciones Sindicales)",
+    excerpt:
+      "El Poder Ejecutivo precisa la base de cálculo del límite del artículo 9° de la Ley N° 14.250 (salario básico convencional más sumas remunerativas normales, habituales y mensuales) y reafirma que las contribuciones patronales pactadas en CCT en favor de las asociaciones sindicales deben destinarse a obras sociales, asistenciales, previsionales o culturales, con administración separada.",
+    date: "2026-07-20",
+    metadata: {
+      jurisdiccion: "Nacional",
+      tipoNorma: "Decreto",
+      numeroNorma: "612/2026",
+      emisor: "Poder Ejecutivo",
+      fechaSancion: "17-07-2026",
+      publicacionBO: "20-07-2026",
+    },
+    contentTextPath: "docs/novedades/Modificacion-del-Decreto-199-1988.txt",
+    related: [
+      {
+        title: "Decreto 407/2026 (Reglamentación y Modificaciones del Régimen Laboral)",
+        href: "/novedades/decreto-reglamentacion-laboral-407-2026",
+      },
+      {
+        title: "Ley 27.802 (Modernización Laboral)",
+        href: "/novedades/ley-modernizacion-laboral-27802",
+      },
+      {
+        title: "Área: Derecho Laboral de Empresas",
+        href: "/areas/Derecho-Laboral-de-Empresas",
+      },
+    ],
+  },
+  {
+    kind: "document",
     slug: "resolucion-igj-5-2026",
     title: "Resolución General IGJ 5/2026 - Inscripción Registral con Plancha Digital",
     excerpt:

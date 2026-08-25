@@ -83,7 +83,7 @@ export const abogados: TeamMember[] = [
 
 export const pasantes: TeamMember[] = [
   {
-    name: "Dariana Ré",
+    name: "Lucía Rey Leyes",
     role: "Pasante (Convenio U.N.L.)",
     role_en: "Intern (U.N.L. Agreement)",
     bio: "",

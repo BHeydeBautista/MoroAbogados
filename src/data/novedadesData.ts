@@ -176,6 +176,54 @@ export const NOVEDADES: Novedad[] = [
       },
     ],
   },
+  {
+    kind: "document",
+    slug: "fallo-cascante-anac-csjn-2025",
+    title:
+      "CSJN: \"Cascante, Alejandro Eduardo c. EN - ANAC s/proceso de conocimiento\" - Improcedencia de reiterar la gestión procesal del art. 48 del CPCCN",
+    excerpt:
+      "La Corte Suprema desestimó la queja al advertir que el letrado patrocinante ya había hecho uso de la facultad del art. 48 del CPCCN al interponer el recurso extraordinario federal, por lo que no podía volver a invocarla como gestor al deducir la presentación directa: dicha facultad solo puede ejercerse una vez en el curso del proceso, y el escrito firmado solo por el gestor constituye un acto jurídico inexistente, no susceptible de convalidación posterior.",
+    date: "2025-10-07",
+    metadata: {
+      jurisdiccion: "Nacional",
+      tipoNorma: "Fallo",
+      numeroNorma: "Cita Digital: ED-VI-CDVIII-779",
+      emisor: "Corte Suprema de Justicia de la Nación",
+      fechaSancion: "07-10-2025",
+      publicacionBO: "El Derecho - Diario, Tomo 317",
+    },
+    sections: [
+      {
+        id: "sumario",
+        title: "Sumario",
+        paragraphs: [
+          "Toda vez que de las constancias de la causa surge que el letrado patrocinante del actor había hecho uso de la facultad acordada en el art. 48 del CPCCN en oportunidad de interponer el recurso extraordinario federal, el mencionado profesional no podía recurrir nuevamente a esa facultad al deducir la presentación directa ante la Corte Suprema, pues, en atención a los claros términos del precepto, solo podrá ejercerse una vez en el curso del proceso.",
+          "Corresponde considerar que el recurso de queja firmado solo por el letrado patrocinante en calidad de gestor constituye un acto jurídico inexistente y no susceptible de convalidación posterior, en tanto el abogado en oportunidad de interponer el recurso extraordinario federal había hecho uso de la facultad acordada en el art. 48 del CPCCN.",
+          "El art. 48 del CPCCN establece que cuando deban realizarse actos procesales urgentes y existan hechos o circunstancias que impidan la actuación de la parte que ha de cumplirlos, podrá ser admitida la comparecencia en juicio de quien no tuviere representación conferida. Si dentro de los 40 días hábiles, contados desde la primera presentación del gestor, no fueren acompañados los instrumentos que acrediten la personalidad o la parte no ratificase la gestión, será nulo todo lo actuado por el gestor y este deberá satisfacer el importe de las costas, sin perjuicio de su responsabilidad por el daño que hubiere producido. (M.A.R.)",
+          "Comentado por Mabel De los Santos: \"El gestor procesal y la inadmisibilidad de la queja\".",
+        ],
+      },
+      {
+        id: "texto-del-fallo",
+        title: "Texto del Fallo",
+        paragraphs: [
+          "Buenos Aires, 7 de octubre de 2025.",
+          "Autos y Vistos; Considerando:",
+          "1º) Que el doctor J. R. L. interpuso el presente recurso de hecho invocando la calidad de gestor del actor, de conformidad con la facultad prevista en el art. 48 del Código Procesal Civil y Comercial de la Nación.",
+          "2º) Que el mencionado artículo establece que \"Cuando deban realizarse actos procesales urgentes y existan hechos o circunstancias que impidan la actuación de la parte que ha de cumplirlos, podrá ser admitida la comparecencia en juicio de quien no tuviere representación conferida. Si dentro de los CUARENTA (40) días hábiles, contados desde la primera presentación del gestor, no fueren acompañados los instrumentos que acrediten la personalidad o la parte no ratificase la gestión, será nulo todo lo actuado por el gestor y éste deberá satisfacer el importe de las costas, sin perjuicio de su responsabilidad por el daño que hubiere producido. En su presentación, el gestor, además de indicar la parte en cuyo beneficio pretende actuar, deberá expresar las razones que justifiquen la seriedad del pedido. La nulidad, en su caso, se producirá por el solo vencimiento del plazo sin que se requiera intimación previa. La facultad acordada por este artículo sólo podrá ejercerse UNA (1) vez en el curso del proceso\".",
+          "3º) Que de las constancias de la causa resulta que el letrado patrocinante del actor, en oportunidad de interponer el recurso extraordinario federal, hizo uso de la facultad acordada en el mencionado artículo 48. En consecuencia, y en atención a los claros términos del precepto transcripto en el considerando que antecede, el mencionado profesional no podía recurrir nuevamente a esa facultad al deducir la presentación directa ante esta Corte.",
+          "4º) En consecuencia, y toda vez que el escrito de interposición del recurso de queja solo cuenta con la firma del letrado patrocinante, constituye un acto jurídico inexistente y no susceptible de convalidación posterior.",
+          "Por ello, se desestima la queja. Notifíquese y archívese. – Horacio D. Rosatti. – Carlos F. Rosenkrantz. – Ricardo L. Lorenzetti.",
+        ],
+      },
+    ],
+    related: [
+      {
+        title: "Área: Asuntos Contenciosos",
+        href: "/areas/Asuntos-Contenciosos",
+      },
+    ],
+  },
 ];
 
 export function getNovedadBySlug(slug: string): Novedad | undefined {

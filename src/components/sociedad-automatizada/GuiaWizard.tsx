@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { ArrowLeft, ArrowRight, Check, ChevronDown, Pencil, RotateCcw } from "lucide-react";
 import RenderBloque from "./Bloques";
+import { StepperHorizontal } from "@/components/ui/steps";
+import { Button } from "@/components/ui/button";
 import {
   CAMPOS,
   EJEMPLO,
@@ -112,27 +114,6 @@ export default function GuiaWizard() {
   const usandoEjemplo = CAMPOS.every((c) => !datos[c.id]?.trim());
   const nombreActivo = datos.nombre?.trim() || EJEMPLO.nombre;
 
-  /* En móvil las píldoras son una tira horizontal: si no la centramos, el
-     paso activo queda fuera de vista y hay que buscarlo a mano. Movemos sólo
-     el scroll del contenedor, nunca el de la página. */
-  const tiraRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const tira = tiraRef.current;
-    const activa = tira?.querySelector<HTMLElement>('[aria-current="step"]');
-    if (!tira || !activa) return;
-
-    // Asignación directa, no scrollTo({behavior:"smooth"}): el scroll suave
-    // depende del pipeline de animación y no ocurre si está frenado, con lo
-    // que la píldora activa quedaría fuera de pantalla sin aviso.
-    // offsetLeft es relativo al offsetParent, así que lo pasamos a
-    // coordenadas del contenedor con getBoundingClientRect.
-    const caja = tira.getBoundingClientRect();
-    const cajaActiva = activa.getBoundingClientRect();
-    const centro =
-      tira.scrollLeft + (cajaActiva.left - caja.left) - caja.width / 2 + cajaActiva.width / 2;
-    tira.scrollLeft = Math.max(0, centro);
-  }, [pasoId]);
-
   return (
     <div id="guia" className={`scroll-mt-6 ${claseDePista(trackActivo)}`}>
       {/* ── Datos de la sociedad ─────────────────────────────────── */}
@@ -235,34 +216,43 @@ export default function GuiaWizard() {
             {posEnPista}/{totalPista} · {estado.completos} de {PASOS.length} completos
           </p>
         </div>
-        <div className="progreso-pista mt-2">
-          <div className="progreso-relleno" style={{ width: `${estado.porcentaje}%` }} />
-        </div>
-        <div
-          ref={tiraRef}
-          className="-mx-4 mt-3 flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {PASOS.map((p) => {
-            const activo = p.id === paso.id;
-            const hecho = estado.porPaso[p.id].completo;
+        {/* Sólo los pasos de la pista activa: los once marcadores juntos no
+            entran en un teléfono y se cortaban. Para saltar de pista están
+            los botones de abajo y los cruces dentro de cada paso. */}
+        <StepperHorizontal
+          className="mt-4"
+          activo={posEnPista - 1}
+          onIr={(i) => irA(pasosDePista(trackActivo)[i].id)}
+          pasos={pasosDePista(trackActivo).map((p) => ({
+            id: p.id,
+            label: p.corto,
+            pista: p.track,
+            completo: estado.porPaso[p.id].completo,
+          }))}
+        />
+
+        <div className="mt-4 flex gap-2">
+          {TRACKS.map((t) => {
+            const activa = t.id === trackActivo;
+            const lista = pasosDePista(t.id);
+            const hechos = lista.filter((p) => estado.porPaso[p.id].completo).length;
             return (
               <button
-                key={p.id}
+                key={t.id}
                 type="button"
-                onClick={() => irA(p.id)}
-                aria-current={activo ? "step" : undefined}
-                className={`${claseDePista(p.track)} flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs transition-colors ${
-                  activo
+                onClick={() => irA(lista[0].id)}
+                aria-pressed={activa}
+                className={`${claseDePista(t.id)} flex flex-1 items-center justify-center gap-2 rounded-lg border px-3 py-2 text-xs transition-colors ${
+                  activa
                     ? "border-transparent bg-[var(--tinta)] font-medium text-white"
                     : "border-[var(--linea)] bg-white text-[var(--tinta-media)]"
                 }`}
               >
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${
-                    hecho ? "bg-[var(--pista)]" : activo ? "bg-white/40" : "bg-[var(--linea)]"
-                  }`}
-                />
-                {p.corto}
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--pista)]" />
+                {t.nombre.replace("Pista ", "")}
+                <span className="mono tabular text-[10px] opacity-60">
+                  {hechos}/{lista.length}
+                </span>
               </button>
             );
           })}
@@ -396,10 +386,11 @@ export default function GuiaWizard() {
           {/* ── Anterior / siguiente ─────────────────────────────── */}
           <div className="mt-14 flex items-center justify-between gap-4 border-t border-[var(--linea)] pt-6">
             {indice > 0 ? (
-              <button
+              <Button
                 type="button"
+                variant="outline"
                 onClick={() => irA(PASOS[indice - 1].id)}
-                className="group inline-flex min-w-0 items-center gap-2.5 rounded-xl border border-[var(--linea)] bg-white px-4 py-3 text-left transition-all hover:border-[var(--tinta)]/25 hover:shadow-[var(--sombra-baja)]"
+                className="group h-auto min-w-0 justify-start gap-2.5 rounded-xl border-[var(--linea)] bg-white px-4 py-3 text-left hover:border-[var(--tinta)]/25 hover:shadow-[var(--sombra-baja)]"
               >
                 <ArrowLeft
                   size={15}
@@ -413,16 +404,16 @@ export default function GuiaWizard() {
                     {PASOS[indice - 1].corto}
                   </span>
                 </span>
-              </button>
+              </Button>
             ) : (
               <span />
             )}
 
             {indice < PASOS.length - 1 ? (
-              <button
+              <Button
                 type="button"
                 onClick={() => irA(PASOS[indice + 1].id)}
-                className="group inline-flex min-w-0 items-center gap-2.5 rounded-xl bg-[var(--tinta)] px-5 py-3 text-left text-white transition-all hover:shadow-[var(--sombra-alta)]"
+                className="group h-auto min-w-0 justify-start gap-2.5 rounded-xl bg-[var(--tinta)] px-5 py-3 text-left text-white hover:bg-[#1b3350] hover:shadow-[var(--sombra-alta)]"
               >
                 <span className="min-w-0">
                   <span className="mono block text-[10px] uppercase tracking-[0.12em] text-white/45">
@@ -436,7 +427,7 @@ export default function GuiaWizard() {
                   size={15}
                   className="shrink-0 transition-transform group-hover:translate-x-0.5"
                 />
-              </button>
+              </Button>
             ) : (
               <span className="text-sm text-[var(--tinta-suave)]">Fin de la guía</span>
             )}

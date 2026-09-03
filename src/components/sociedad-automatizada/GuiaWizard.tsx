@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, Check, ChevronDown, Pencil, RotateCcw } from "lu
 import RenderBloque from "./Bloques";
 import { StepperHorizontal } from "@/components/ui/steps";
 import { Button } from "@/components/ui/button";
+import PixelReveal from "@/components/ui/pixel-reveal";
 import {
   CAMPOS,
   EJEMPLO,
@@ -360,7 +361,13 @@ export default function GuiaWizard() {
               </div>
 
               <h2 className="mt-3 text-3xl font-semibold leading-[1.14] sm:text-[2.6rem]">
-                {paso.titulo}
+                {/* `clave` con el id del paso: el efecto se vuelve a disparar
+                    en cada cambio, sin agregar scroll. */}
+                <PixelReveal
+                  text={paso.titulo}
+                  clave={paso.id}
+                  colorAcento={trackActivo === "juridico" ? "#D4A75D" : "#2A6B7C"}
+                />
               </h2>
               <p className="mt-4 max-w-[62ch] text-[17px] leading-relaxed text-[var(--tinta-media)]">
                 {paso.bajada}

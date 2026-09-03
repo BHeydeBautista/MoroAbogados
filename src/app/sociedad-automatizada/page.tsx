@@ -1,7 +1,7 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import GuiaWizard from "@/components/sociedad-automatizada/GuiaWizard";
-import PixelReveal from "@/components/ui/pixel-reveal";
-import { EJEMPLO, PASOS } from "@/data/sociedadAutomatizada";
+import TextReveal from "@/components/ui/text-reveal";
+import { EJEMPLO, PASOS, trackHabilitado } from "@/data/sociedadAutomatizada";
 import "./guia.css";
 
 /* Serif para títulos (autoridad de documento), Plex Sans para lectura y
@@ -29,7 +29,7 @@ const mono = IBM_Plex_Mono({
 export const metadata = {
   title: "Cómo constituir una Sociedad Automatizada | Moro Abogados",
   description:
-    "Guía paso a paso para constituir una Sociedad Automatizada: los cinco pasos del trámite y los seis de la documentación técnica del sistema, con ejemplos de cláusulas y prompts listos para usar.",
+    "Guía paso a paso para armar la documentación técnica del sistema que exige la constitución de una Sociedad Automatizada: qué decide el agente, con qué datos, qué puede ejecutar y quién lo supervisa.",
 };
 
 /** Estado del proyecto legislativo. Actualizar junto con la versión de la guía. */
@@ -57,24 +57,22 @@ export default function SociedadAutomatizadaPage() {
         <p className="eyebrow text-[var(--oro-hondo)]">Guía paso a paso</p>
 
         <h1 className="mt-3 max-w-[19ch] text-[2.1rem] font-semibold leading-[1.06] sm:text-[2.9rem]">
-          <PixelReveal text="Cómo constituir una Sociedad Automatizada" />
+          <TextReveal text="Cómo constituir una Sociedad Automatizada" />
         </h1>
 
         <p className="mt-4 max-w-[62ch] text-[17px] leading-relaxed text-[var(--tinta-media)]">
-          Once pasos: <strong className="font-medium text-[var(--tinta)]">cinco jurídicos</strong>{" "}
-          con las cláusulas que se firman, y{" "}
-          <strong className="font-medium text-[var(--tinta)]">seis técnicos</strong> que arman la
-          documentación del sistema que el trámite pide y ningún modelo de estatuto trae.
+          {cuenta("tecnico")} pasos para armar la{" "}
+          <strong className="font-medium text-[var(--tinta)]">
+            documentación técnica del sistema
+          </strong>{" "}
+          que el trámite pide y ningún modelo de estatuto trae: qué decide el agente, con
+          qué datos, qué puede tocar y quién lo supervisa.
         </p>
 
         {/* Estado y caso, en una sola línea de metadatos en vez de dos bloques. */}
         <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[var(--linea)] pt-4 text-[13px] text-[var(--tinta-suave)]">
           <span className="mono rounded-md bg-[var(--tinta)] px-2 py-0.5 text-[11px] font-medium text-[var(--oro)]">
             {ESTADO.version} · {ESTADO.fecha}
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--oro)]" />
-            {cuenta("juridico")} pasos jurídicos
           </span>
           <span className="flex items-center gap-1.5">
             <span className="h-1.5 w-1.5 rounded-full bg-[var(--teal)]" />
@@ -85,6 +83,18 @@ export default function SociedadAutomatizadaPage() {
             billetera que otorga microcréditos
           </span>
         </div>
+
+        {/* La pista jurídica está escrita pero apagada hasta que la revise el
+            abogado. Se avisa en vez de omitirla en silencio: quien llegue por
+            el ebook va a buscar la parte de las cláusulas. */}
+        {!trackHabilitado("juridico") && (
+          <p className="mt-4 max-w-[74ch] rounded-xl bg-[var(--atencion)]/8 px-4 py-3 text-[13px] leading-relaxed text-[#7a5218] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--atencion)_20%,transparent)]">
+            <strong className="font-semibold">Los pasos jurídicos todavía no están
+            publicados.</strong>{" "}
+            Las cláusulas de estatuto, el encuadre y el trámite de inscripción están en
+            revisión profesional y se suman en una próxima versión de esta guía.
+          </p>
+        )}
 
         <p className="mt-3 max-w-[80ch] text-xs leading-relaxed text-[var(--tinta-suave)]">
           {ESTADO.leyenda}

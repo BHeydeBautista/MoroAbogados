@@ -4,6 +4,7 @@ import React from "react";
 import { ArrowRight, Check, CornerDownRight, Info, Scale, TriangleAlert } from "lucide-react";
 import BloquePrompt from "./BloquePrompt";
 import {
+  pasoVisible,
   type Bloque,
   type CampoDatos,
   type Riesgo,
@@ -368,7 +369,11 @@ export default function RenderBloque({
     case "flow":
       return <Flujo {...bloque} />;
     case "crosslink":
-      return <Cruce texto={bloque.texto} destino={bloque.hacia} onIr={onIr} />;
+      // Un cruce hacia una pista apagada no se muestra: llevaría a un paso
+      // que hoy no existe en la guía.
+      return pasoVisible(bloque.hacia) ? (
+        <Cruce texto={bloque.texto} destino={bloque.hacia} onIr={onIr} />
+      ) : null;
     case "prompt":
       return (
         <BloquePrompt

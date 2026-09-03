@@ -91,6 +91,13 @@ export type Track = {
   nombre: string;
   descripcion: string;
   responsable: string;
+  /**
+   * Si es false, la pista no se muestra en la guía: no aparece en el riel, ni
+   * en el stepper, ni en el avance, y los cruces que apuntan a sus pasos se
+   * omiten. El contenido queda intacto en PASOS — esto es un interruptor,
+   * no un borrado.
+   */
+  habilitada: boolean;
 };
 
 export const TRACKS: Track[] = [
@@ -100,6 +107,8 @@ export const TRACKS: Track[] = [
     descripcion:
       "Los cinco pasos formales de constitución: del encuadre a la inscripción registral.",
     responsable: "Contenido del estudio",
+    // Apagada hasta que el abogado revise las cláusulas y los descargos.
+    habilitada: false,
   },
   {
     id: "tecnico",
@@ -107,8 +116,14 @@ export const TRACKS: Track[] = [
     descripcion:
       "Cómo se arma y se documenta el sistema que opera la sociedad. Es el respaldo de las cláusulas.",
     responsable: "Documentación del sistema",
+    habilitada: true,
   },
 ];
+
+export const TRACKS_VISIBLES = TRACKS.filter((t) => t.habilitada);
+
+export const trackHabilitado = (id: TrackId) =>
+  TRACKS.find((t) => t.id === id)?.habilitada ?? false;
 
 /** Caso que atraviesa toda la guía. Un solo ejemplo, repetido en los once pasos. */
 export const EJEMPLO = {
@@ -1021,6 +1036,11 @@ Devolvé el protocolo completo corregido.`,
 
 export const PASOS_POR_TRACK = (track: TrackId) =>
   PASOS.filter((p) => p.track === track);
+
+/** Los pasos que la guía muestra hoy: sólo los de pistas habilitadas. */
+export const PASOS_VISIBLES = PASOS.filter((p) => trackHabilitado(p.track));
+
+export const pasoVisible = (id: string) => PASOS_VISIBLES.some((p) => p.id === id);
 
 export const getPaso = (id: string) => PASOS.find((p) => p.id === id);
 

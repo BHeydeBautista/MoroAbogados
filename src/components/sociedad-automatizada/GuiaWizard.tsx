@@ -5,12 +5,12 @@ import { ArrowLeft, ArrowRight, Check, ChevronDown, Pencil, RotateCcw } from "lu
 import RenderBloque from "./Bloques";
 import { StepperHorizontal } from "@/components/ui/steps";
 import { Button } from "@/components/ui/button";
-import PixelReveal from "@/components/ui/pixel-reveal";
+import TextReveal from "@/components/ui/text-reveal";
 import {
   CAMPOS,
   EJEMPLO,
-  PASOS,
-  TRACKS,
+  PASOS_VISIBLES,
+  TRACKS_VISIBLES,
   type CampoDatos,
   type Paso,
   type TrackId,
@@ -33,7 +33,7 @@ function clavesDePaso(paso: Paso): string[] {
 }
 
 export default function GuiaWizard() {
-  const [pasoId, setPasoId] = useState<string>(PASOS[0].id);
+  const [pasoId, setPasoId] = useState<string>(PASOS_VISIBLES[0].id);
   const [datos, setDatos] = useState<Partial<Record<CampoDatos, string>>>({});
   const [marcados, setMarcados] = useState<Set<string>>(new Set());
   const [formAbierto, setFormAbierto] = useState(false);
@@ -50,7 +50,7 @@ export default function GuiaWizard() {
       // Almacenamiento bloqueado: la guía funciona igual, sin recordar el avance.
     }
     const desdeUrl = new URLSearchParams(window.location.search).get("paso");
-    if (desdeUrl && PASOS.some((p) => p.id === desdeUrl)) setPasoId(desdeUrl);
+    if (desdeUrl && PASOS_VISIBLES.some((p) => p.id === desdeUrl)) setPasoId(desdeUrl);
     setMontado(true);
   }, []);
 
@@ -69,22 +69,22 @@ export default function GuiaWizard() {
   }, [marcados, montado]);
 
   /* ── Estado derivado ────────────────────────────────────────────── */
-  const indice = useMemo(() => PASOS.findIndex((p) => p.id === pasoId), [pasoId]);
-  const paso = PASOS[indice] ?? PASOS[0];
+  const indice = useMemo(() => PASOS_VISIBLES.findIndex((p) => p.id === pasoId), [pasoId]);
+  const paso = PASOS_VISIBLES[indice] ?? PASOS_VISIBLES[0];
   const trackActivo = paso.track;
 
   const estado = useMemo(() => {
     const porPaso: Record<string, { total: number; hechos: number; completo: boolean }> = {};
-    PASOS.forEach((p) => {
+    PASOS_VISIBLES.forEach((p) => {
       const claves = clavesDePaso(p);
       const hechos = claves.filter((c) => marcados.has(c)).length;
       porPaso[p.id] = { total: claves.length, hechos, completo: claves.length > 0 && hechos === claves.length };
     });
-    const completos = PASOS.filter((p) => porPaso[p.id].completo).length;
-    return { porPaso, completos, porcentaje: Math.round((completos / PASOS.length) * 100) };
+    const completos = PASOS_VISIBLES.filter((p) => porPaso[p.id].completo).length;
+    return { porPaso, completos, porcentaje: Math.round((completos / PASOS_VISIBLES.length) * 100) };
   }, [marcados]);
 
-  const pasosDePista = useCallback((t: TrackId) => PASOS.filter((p) => p.track === t), []);
+  const pasosDePista = useCallback((t: TrackId) => PASOS_VISIBLES.filter((p) => p.track === t), []);
   const posEnPista = pasosDePista(trackActivo).findIndex((p) => p.id === paso.id) + 1;
   const totalPista = pasosDePista(trackActivo).length;
 
@@ -211,10 +211,10 @@ export default function GuiaWizard() {
       <div className="mb-6 lg:hidden">
         <div className="flex items-baseline justify-between gap-3">
           <p className="eyebrow text-[var(--pista-hondo)]">
-            {TRACKS.find((t) => t.id === trackActivo)?.nombre}
+            {TRACKS_VISIBLES.find((t) => t.id === trackActivo)?.nombre}
           </p>
           <p className="mono tabular text-xs text-[var(--tinta-suave)]">
-            {posEnPista}/{totalPista} · {estado.completos} de {PASOS.length} completos
+            {posEnPista}/{totalPista} · {estado.completos} de {PASOS_VISIBLES.length} completos
           </p>
         </div>
         {/* Sólo los pasos de la pista activa: los once marcadores juntos no
@@ -233,7 +233,7 @@ export default function GuiaWizard() {
         />
 
         <div className="mt-4 flex gap-2">
-          {TRACKS.map((t) => {
+          {TRACKS_VISIBLES.map((t) => {
             const activa = t.id === trackActivo;
             const lista = pasosDePista(t.id);
             const hechos = lista.filter((p) => estado.porPaso[p.id].completo).length;
@@ -271,7 +271,7 @@ export default function GuiaWizard() {
             <div className="flex items-baseline justify-between">
               <p className="eyebrow text-[var(--tinta-suave)]">Tu avance</p>
               <p className="mono tabular text-xs text-[var(--tinta-media)]">
-                {estado.completos}/{PASOS.length}
+                {estado.completos}/{PASOS_VISIBLES.length}
               </p>
             </div>
             <div className="progreso-pista mt-2">
@@ -280,7 +280,7 @@ export default function GuiaWizard() {
           </div>
 
           <div className="flex flex-col gap-7">
-            {TRACKS.map((track) => {
+            {TRACKS_VISIBLES.map((track) => {
               const lista = pasosDePista(track.id);
               const hechosPista = lista.filter((p) => estado.porPaso[p.id].completo).length;
               return (
@@ -342,11 +342,11 @@ export default function GuiaWizard() {
         <div className="min-w-0">
           {/* key remonta el bloque para que la animación CSS de entrada
               vuelva a correr en cada cambio de paso. */}
-          <article key={paso.id} className="paso-entra">
+          <article key={paso.id}>
             <header className="mb-9">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                 <p className="eyebrow text-[var(--pista-hondo)]">
-                  {TRACKS.find((t) => t.id === trackActivo)?.nombre}
+                  {TRACKS_VISIBLES.find((t) => t.id === trackActivo)?.nombre}
                 </p>
                 <span className="h-3 w-px bg-[var(--linea)]" />
                 <p className="mono tabular text-[11px] text-[var(--tinta-suave)]">
@@ -361,20 +361,18 @@ export default function GuiaWizard() {
               </div>
 
               <h2 className="mt-3 text-3xl font-semibold leading-[1.14] sm:text-[2.6rem]">
-                {/* `clave` con el id del paso: el efecto se vuelve a disparar
-                    en cada cambio, sin agregar scroll. */}
-                <PixelReveal
-                  text={paso.titulo}
-                  clave={paso.id}
-                  colorAcento={trackActivo === "juridico" ? "#D4A75D" : "#2A6B7C"}
-                />
+                {/* El <article> de arriba lleva key={paso.id}: al cambiar de paso
+                    se remonta y la animación CSS vuelve a correr sola. */}
+                <TextReveal text={paso.titulo} />
               </h2>
               <p className="mt-4 max-w-[62ch] text-[17px] leading-relaxed text-[var(--tinta-media)]">
                 {paso.bajada}
               </p>
             </header>
 
-            <div className="flex flex-col gap-7">
+            {/* El encabezado no entra con paso-entra: el título ya tiene su
+                propio revelado por palabra y se superponían dos movimientos. */}
+            <div className="paso-entra flex flex-col gap-7">
               {paso.bloques.map((bloque, i) => (
                 <RenderBloque
                   key={`${paso.id}-${i}`}
@@ -396,7 +394,7 @@ export default function GuiaWizard() {
               <Button
                 type="button"
                 variant="outline"
-                onClick={() => irA(PASOS[indice - 1].id)}
+                onClick={() => irA(PASOS_VISIBLES[indice - 1].id)}
                 className="group h-auto min-w-0 justify-start gap-2.5 rounded-xl border-[var(--linea)] bg-white px-4 py-3 text-left hover:border-[var(--tinta)]/25 hover:shadow-[var(--sombra-baja)]"
               >
                 <ArrowLeft
@@ -408,7 +406,7 @@ export default function GuiaWizard() {
                     Anterior
                   </span>
                   <span className="block truncate text-sm font-medium">
-                    {PASOS[indice - 1].corto}
+                    {PASOS_VISIBLES[indice - 1].corto}
                   </span>
                 </span>
               </Button>
@@ -416,10 +414,10 @@ export default function GuiaWizard() {
               <span />
             )}
 
-            {indice < PASOS.length - 1 ? (
+            {indice < PASOS_VISIBLES.length - 1 ? (
               <Button
                 type="button"
-                onClick={() => irA(PASOS[indice + 1].id)}
+                onClick={() => irA(PASOS_VISIBLES[indice + 1].id)}
                 className="group h-auto min-w-0 justify-start gap-2.5 rounded-xl bg-[var(--tinta)] px-5 py-3 text-left text-white hover:bg-[#1b3350] hover:shadow-[var(--sombra-alta)]"
               >
                 <span className="min-w-0">
@@ -427,7 +425,7 @@ export default function GuiaWizard() {
                     Siguiente
                   </span>
                   <span className="block truncate text-sm font-medium">
-                    {PASOS[indice + 1].corto}
+                    {PASOS_VISIBLES[indice + 1].corto}
                   </span>
                 </span>
                 <ArrowRight

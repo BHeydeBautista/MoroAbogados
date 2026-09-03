@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
 import {
   Check,
   Copy,
@@ -437,12 +436,7 @@ function PromptBloque({
               </button>
 
               {verCorreccion && (
-                <motion.div
-                  initial={{ opacity: 0, y: -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="mt-3"
-                >
+                <div className="mt-3">
                   <pre className="max-h-56 overflow-auto whitespace-pre-wrap break-words rounded-xl border border-[#B4762A]/30 bg-[#B4762A]/8 px-4 py-3 font-mono text-[12.5px] leading-relaxed text-[#5c3d12]">
                     {completarPlantilla(correccion, datos)}
                   </pre>
@@ -452,7 +446,7 @@ function PromptBloque({
                       label="Copiar ajuste"
                     />
                   </div>
-                </motion.div>
+                </div>
               )}
             </>
           )}

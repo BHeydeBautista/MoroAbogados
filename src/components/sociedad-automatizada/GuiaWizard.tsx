@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -164,15 +163,14 @@ export default function GuiaWizard() {
           </span>
         </button>
 
-        <AnimatePresence initial={false}>
-          {formAbierto && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.22 }}
-              className="overflow-hidden"
-            >
+        {/* Colapso por CSS (grid-rows 0fr→1fr): si el navegador no corre
+            transiciones, igual queda en el estado correcto. */}
+        <div
+          className={`grid transition-[grid-template-rows] duration-200 ease-out ${
+            formAbierto ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="overflow-hidden">
               <div className="grid grid-cols-1 gap-4 border-t border-gray-100 p-5 md:grid-cols-2">
                 {CAMPOS.map((campo) => (
                   <div
@@ -227,9 +225,8 @@ export default function GuiaWizard() {
                   </button>
                 </div>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        </div>
       </section>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[280px_1fr]">
@@ -306,14 +303,9 @@ export default function GuiaWizard() {
 
         {/* ── Contenido del paso ─────────────────────────────────── */}
         <div className="min-w-0">
-          <AnimatePresence mode="wait">
-            <motion.article
-              key={paso.id}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.24 }}
-            >
+          {/* Sin animación de entrada/salida a propósito: el contenido del paso
+              tiene que estar visible aunque el navegador no anime. */}
+          <article key={paso.id}>
               <header className="mb-8">
                 <p
                   className="text-[11px] font-semibold uppercase tracking-[0.14em]"
@@ -347,8 +339,7 @@ export default function GuiaWizard() {
                   />
                 ))}
               </div>
-            </motion.article>
-          </AnimatePresence>
+          </article>
 
           {/* ── Anterior / siguiente ─────────────────────────────── */}
           <div className="mt-12 flex items-center justify-between gap-4 border-t border-gray-200 pt-6">

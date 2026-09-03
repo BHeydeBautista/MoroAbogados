@@ -1035,3 +1035,42 @@ export function completarPlantilla(
     return valor || EJEMPLO[key] || match;
   });
 }
+
+export type SegmentoPrompt = {
+  text: string;
+  /** Presente si el fragmento salió de un {{campo}}, para poder resaltarlo. */
+  campo?: CampoDatos;
+  /** true si el valor lo cargó el lector; false si cayó al ejemplo. */
+  propio?: boolean;
+};
+
+/**
+ * Igual que completarPlantilla, pero devuelve el texto partido en fragmentos
+ * para poder resaltar en pantalla los valores que se inyectaron. Sirve para
+ * que el lector vea que sus datos entraron de verdad en el prompt.
+ */
+export function segmentarPlantilla(
+  template: string,
+  datos: Partial<Record<CampoDatos, string>>
+): SegmentoPrompt[] {
+  const salida: SegmentoPrompt[] = [];
+  const re = /\{\{(\w+)\}\}/g;
+  let ultimo = 0;
+  let m: RegExpExecArray | null;
+
+  while ((m = re.exec(template)) !== null) {
+    if (m.index > ultimo) salida.push({ text: template.slice(ultimo, m.index) });
+
+    const campo = m[1] as CampoDatos;
+    const propio = datos[campo]?.trim();
+    const valor = propio || EJEMPLO[campo];
+
+    if (valor) salida.push({ text: valor, campo, propio: Boolean(propio) });
+    else salida.push({ text: m[0] });
+
+    ultimo = m.index + m[0].length;
+  }
+
+  if (ultimo < template.length) salida.push({ text: template.slice(ultimo) });
+  return salida;
+}

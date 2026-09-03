@@ -23,10 +23,16 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Va en @layer base para que las utilidades de Tailwind (capa utilities)
+   le ganen. Sin capa, esta regla es CSS "unlayered": en la cascada de v4
+   gana sobre cualquier utilidad y pisa el bg-[#0F1C2E] text-white que el
+   layout aplica al body. */
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }
 
 /* Small noise overlay to give subtle texture (works well con bg oscuro) */

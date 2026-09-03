@@ -1,5 +1,29 @@
+import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import GuiaWizard from "@/components/sociedad-automatizada/GuiaWizard";
-import { EJEMPLO } from "@/data/sociedadAutomatizada";
+import { EJEMPLO, PASOS } from "@/data/sociedadAutomatizada";
+import "./guia.css";
+
+/* Serif para títulos (autoridad de documento), Plex Sans para lectura y
+   Plex Mono para prompts y etiquetas. El par Plex refuerza la doble
+   naturaleza de la guía: jurídica y técnica. */
+const serif = Source_Serif_4({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--fuente-serif",
+  display: "swap",
+});
+const sans = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--fuente-sans",
+  display: "swap",
+});
+const mono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--fuente-mono",
+  display: "swap",
+});
 
 export const metadata = {
   title: "Cómo constituir una Sociedad Automatizada | Moro Abogados",
@@ -15,77 +39,109 @@ const ESTADO = {
     "Contenido a futuro: asume la sanción del proyecto en su redacción actual. Sujeto a modificaciones legislativas.",
 };
 
+const cuenta = (track: "juridico" | "tecnico") =>
+  PASOS.filter((p) => p.track === track).length;
+
 export default function SociedadAutomatizadaPage() {
   return (
-    // bg-linear-* es el nombre de la utilidad de gradiente en Tailwind v4.
-    // `bg-gradient-to-*` (v3) no genera nada y la página hereda el fondo oscuro del body.
-    <main className="min-h-screen bg-linear-to-b from-white to-[#F4F6F9] pt-24 pb-24 text-black">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* ── Encabezado ───────────────────────────────────────────── */}
-        <header className="mb-12 max-w-3xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4A75D]">
-            Guía paso a paso
-          </p>
-          <h1 className="mt-3 font-serif text-4xl font-semibold leading-[1.12] text-[#0F1C2E] sm:text-5xl">
-            Cómo constituir una Sociedad Automatizada
-          </h1>
-          <p className="mt-5 text-lg leading-relaxed text-gray-600">
-            Como antes se buscaba el modelo de estatuto para armar una S.R.L., esta guía
-            muestra cómo se vería cada paso: las cláusulas que se firman y la
-            documentación técnica que las respalda.
-          </p>
+    <main
+      className={`guia ${serif.variable} ${sans.variable} ${mono.variable} min-h-screen pb-24`}
+    >
+      {/* ── Portada ──────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-[#0F1C2E]">
+        {/* Trama sutil: no compite con el texto y le da materia al fondo. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.35]"
+          style={{
+            backgroundImage:
+              "radial-gradient(60% 80% at 78% 12%, rgba(212,167,93,0.16), transparent 62%), radial-gradient(50% 60% at 4% 96%, rgba(42,107,124,0.20), transparent 60%)",
+          }}
+        />
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-xl border border-[#B4762A]/30 bg-[#B4762A]/8 px-4 py-3">
-            <span className="rounded-md bg-[#0F1C2E] px-2 py-0.5 font-mono text-[11px] font-medium text-[#D4A75D]">
-              {ESTADO.version} · {ESTADO.fecha}
-            </span>
-            <span className="text-sm leading-relaxed text-[#7a5218]">{ESTADO.leyenda}</span>
-          </div>
-        </header>
-
-        {/* ── Qué es cada pista ────────────────────────────────────── */}
-        <section className="mb-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-[#D4A75D]/30 bg-white p-6 shadow-sm">
-            <h2 className="text-base font-semibold text-[#0F1C2E]">
-              Cinco pasos jurídicos
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
-              Del encuadre a la inscripción registral: qué se firma, qué dice cada
-              cláusula y qué se presenta ante el Registro Público.
+        {/* El padding superior deja lugar a la navbar del sitio, para que la
+            portada oscura arranque a ras y no quede una franja blanca. */}
+        <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="eyebrow text-[#D4A75D]">Guía paso a paso</p>
+            <h1 className="mt-4 text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-[3.4rem]">
+              Cómo constituir una Sociedad Automatizada
+            </h1>
+            <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-white/70">
+              Como antes se buscaba el modelo de estatuto para armar una S.R.L., esta
+              guía muestra cómo se vería cada paso: las cláusulas que se firman y la
+              documentación técnica que las respalda.
             </p>
-          </div>
-          <div className="rounded-2xl border border-[#2A6B7C]/30 bg-white p-6 shadow-sm">
-            <h2 className="text-base font-semibold text-[#0F1C2E]">
-              Seis pasos técnicos
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
-              El trámite pide un archivo que ningún modelo de estatuto trae:{" "}
-              <span className="font-mono text-[13px] text-[#2A6B7C]">
-                Documentación técnica del sistema.pdf
+
+            <div className="mt-8 inline-flex flex-wrap items-center gap-x-3 gap-y-2 rounded-xl border border-[#D4A75D]/25 bg-[#D4A75D]/8 px-4 py-3">
+              <span className="mono rounded-md bg-[#D4A75D] px-2 py-0.5 text-[11px] font-medium text-[#0F1C2E]">
+                {ESTADO.version} · {ESTADO.fecha}
               </span>
-              . Estos seis pasos lo arman.
+              <span className="max-w-[52ch] text-sm leading-relaxed text-white/60">
+                {ESTADO.leyenda}
+              </span>
+            </div>
+          </div>
+
+          {/* El caso que atraviesa la guía */}
+          <div className="mt-14 border-t border-white/10 pt-8">
+            <p className="eyebrow text-white/40">El caso que usamos en los once pasos</p>
+            <p className="mt-3 max-w-[70ch] text-[15px] leading-relaxed text-white/75">
+              <strong className="font-semibold text-white">{EJEMPLO.nombre}</strong> —{" "}
+              {EJEMPLO.sistema}{" "}
+              <span className="text-white/50">
+                Es un caso deliberadamente común: si funciona para una billetera que
+                presta plata, funciona para casi cualquier operación automatizada.
+              </span>
             </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ── Ejemplo que atraviesa la guía ────────────────────────── */}
-        <section className="mb-12 rounded-2xl bg-[#0F1C2E] p-6 sm:p-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#D4A75D]">
-            El caso que usamos en los once pasos
-          </p>
-          <p className="mt-3 max-w-[68ch] text-[15px] leading-relaxed text-white/85">
-            <strong className="font-semibold text-white">{EJEMPLO.nombre}</strong> —{" "}
-            {EJEMPLO.sistema} Es un caso deliberadamente común: si funciona para una
-            billetera que presta plata, funciona para casi cualquier operación
-            automatizada.
-          </p>
-        </section>
+      {/* ── Las dos pistas ───────────────────────────────────────────── */}
+      <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-[var(--linea)] md:grid-cols-2">
+          <article className="pista-juridico bg-white p-7">
+            <div className="flex items-center gap-2.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-[var(--pista)]" />
+              <p className="eyebrow text-[var(--oro-hondo)]">Pista jurídica</p>
+              <span className="mono tabular ml-auto text-xs text-[var(--tinta-suave)]">
+                {cuenta("juridico")} pasos
+              </span>
+            </div>
+            <h2 className="mt-4 text-xl font-semibold">Qué se firma y qué se presenta</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-[var(--tinta-media)]">
+              Del encuadre a la inscripción registral: si tu operación califica, cómo se
+              llama la sociedad, qué dice cada cláusula y quién responde.
+            </p>
+          </article>
 
+          <article className="pista-tecnico bg-white p-7">
+            <div className="flex items-center gap-2.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-[var(--pista)]" />
+              <p className="eyebrow text-[var(--teal-hondo)]">Pista técnica</p>
+              <span className="mono tabular ml-auto text-xs text-[var(--tinta-suave)]">
+                {cuenta("tecnico")} pasos
+              </span>
+            </div>
+            <h2 className="mt-4 text-xl font-semibold">El archivo que nadie sabe armar</h2>
+            <p className="mt-2 text-[15px] leading-relaxed text-[var(--tinta-media)]">
+              El trámite pide un{" "}
+              <span className="mono text-[13px] text-[var(--teal-hondo)]">
+                Documentación técnica del sistema.pdf
+              </span>{" "}
+              que ningún modelo de estatuto trae. Estos seis pasos lo arman.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* ── Wizard ───────────────────────────────────────────────────── */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <GuiaWizard />
 
-        {/* ── Cierre ───────────────────────────────────────────────── */}
-        <footer className="mt-20 border-t border-gray-200 pt-8">
-          <p className="max-w-[70ch] text-sm leading-relaxed text-gray-500">
+        <footer className="mt-20 border-t border-[var(--linea)] pt-8">
+          <p className="max-w-[70ch] text-sm leading-relaxed text-[var(--tinta-suave)]">
             Documento elaborado con fines informativos y de discusión profesional. Las
             cláusulas y pantallas son ilustrativas y requieren redacción y validación
             profesional. No constituye asesoramiento legal.

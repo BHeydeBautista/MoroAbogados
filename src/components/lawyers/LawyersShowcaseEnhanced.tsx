@@ -120,7 +120,7 @@ const LawyersShowcaseEnhanced = () => {
 			id="Profesionales"
 			aria-label={t.section_aria}
 		>
-			<div className="absolute inset-0 h-full w-full bg-gradient-to-r from-[#0F1C2E] to-black z-0" />
+			<div className="absolute inset-0 h-full w-full bg-linear-to-r from-[#0F1C2E] to-black z-0" />
 			<div className="absolute bottom-0 w-full h-[25vh]" />
 			<div className="sticky top-0 left-0 w-full h-[100dvh] py-8 flex items-center justify-center z-10 overflow-hidden">
 				<div className="flex flex-col items-center justify-center w-full h-full relative">
@@ -184,7 +184,7 @@ const LawyersShowcaseEnhanced = () => {
 									transition={{ duration: 0.45 }}
 									className="w-full max-w-xl mx-auto"
 								>
-									<div className="flex flex-col items-center text-center bg-gradient-to-b from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60 p-6 md:p-8">
+									<div className="flex flex-col items-center text-center bg-linear-to-b from-[#0F1C2E] to-black rounded-lg overflow-hidden shadow-2xl border-2 border-[#D4A75D]/60 p-6 md:p-8">
 										<div className="w-28 h-28 mb-4 md:mb-6">
 											<Image
 												src={lawyers[activeIndex].image}

@@ -52,7 +52,7 @@ const GalleryGrid: React.FC<GalleryGridProps> = ({ images, onImageClick }) => {
             </div>
 
             {/* Overlay con gradiente */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
             {/* Overlay de hover con ícono */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">

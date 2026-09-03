@@ -99,7 +99,7 @@ const GalleryModal: React.FC<GalleryModalProps> = ({
         {/* Indicadores de progreso */}
         <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-64 h-1 bg-white/10 rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#D4A75D] to-[#E5C081]"
+            className="h-full bg-linear-to-r from-[#D4A75D] to-[#E5C081]"
             initial={{ width: 0 }}
             animate={{ width: `${((currentIndex + 1) / images.length) * 100}%` }}
             transition={{ duration: 0.3 }}

@@ -7,7 +7,7 @@ export default function AreaHeader({ title, subtitle }: Props) {
   return (
     <header
       role="banner"
-      className="max-w-7xl mx-auto px-6 py-12 mt-8 rounded-lg bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-500 shadow-lg"
+      className="max-w-7xl mx-auto px-6 py-12 mt-8 rounded-lg bg-linear-to-r from-yellow-400 via-orange-400 to-yellow-500 shadow-lg"
     >
       <h1 className="text-center text-6xl font-extrabold tracking-tight text-gray-900 drop-shadow-lg">
         {title}

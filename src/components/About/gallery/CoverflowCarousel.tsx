@@ -30,7 +30,7 @@ const CoverflowCarousel: React.FC<CoverflowCarouselProps> = ({ images, interval 
   };
 
   return (
-    <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0F1C2E]/5 to-transparent rounded-3xl">
+    <div className="relative w-full h-[500px] flex items-center justify-center overflow-hidden bg-linear-to-b from-[#0F1C2E]/5 to-transparent rounded-3xl">
       {/* Contenedor 3D */}
       <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: "1200px" }}>
         {images.map((src, i) => {
@@ -92,7 +92,7 @@ const CoverflowCarousel: React.FC<CoverflowCarouselProps> = ({ images, interval 
               />
 
               {/* Efecto de luz 3D */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/0 to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/0 to-black/20 pointer-events-none" />
             </motion.div>
           );
         })}
@@ -131,10 +131,10 @@ const CoverflowCarousel: React.FC<CoverflowCarouselProps> = ({ images, interval 
 
       {/* Controles suaves (opcional) */}
       <div className="absolute inset-y-0 left-0 flex items-center justify-start pl-6 pointer-events-none">
-        <div className="w-24 h-full bg-gradient-to-r from-white/5 to-transparent" />
+        <div className="w-24 h-full bg-linear-to-r from-white/5 to-transparent" />
       </div>
       <div className="absolute inset-y-0 right-0 flex items-center justify-end pr-6 pointer-events-none">
-        <div className="w-24 h-full bg-gradient-to-l from-white/5 to-transparent" />
+        <div className="w-24 h-full bg-linear-to-l from-white/5 to-transparent" />
       </div>
     </div>
   );

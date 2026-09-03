@@ -119,7 +119,7 @@ export default function ContactPage() {
           }}
         />
         {/* bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#071224] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-linear-to-t from-[#071224] to-transparent" />
       </div>
 
       {/* ── Content ── */}
@@ -167,11 +167,11 @@ export default function ContactPage() {
           className="flex items-center gap-3 mb-16 w-full max-w-xs"
           style={{ transformOrigin: 'center' }}
         >
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
+          <div className="flex-1 h-px bg-linear-to-r from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
           <div className="w-1 h-1 rounded-full bg-[#D4A75D]" />
           <div className="w-2 h-2 rounded-full border border-[#D4A75D]/70" />
           <div className="w-1 h-1 rounded-full bg-[#D4A75D]" />
-          <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
+          <div className="flex-1 h-px bg-linear-to-l from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
         </motion.div>
 
         {/* Cards */}

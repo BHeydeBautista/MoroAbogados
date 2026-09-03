@@ -60,7 +60,7 @@ export const NavbarMobile: React.FC<NavbarMobileProps> = ({
       <div
         className={`top-0 z-50 w-full border-b ${
           isDark
-            ? "border-[#D4A75D]/20 bg-gradient-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40"
+            ? "border-[#D4A75D]/20 bg-linear-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40"
             : "border-gray-200 bg-white"
         } backdrop-blur relative transition-all duration-300`}
       >

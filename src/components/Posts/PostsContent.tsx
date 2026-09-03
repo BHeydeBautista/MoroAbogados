@@ -140,7 +140,7 @@ export default function PostsContent() {
   return (
     <section
       id="Contenido"
-      className="bg-gradient-to-b from-white to-white/95 py-20 px-4 sm:px-6 lg:px-24 text-black"
+      className="bg-linear-to-b from-white to-white/95 py-20 px-4 sm:px-6 lg:px-24 text-black"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}

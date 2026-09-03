@@ -55,7 +55,7 @@ export default function AreaPageTemplate({
   }, [activeTab]);
 
   return (
-    <main className="bg-gradient-to-b from-white to-gray-50 text-neutral-900 min-h-screen pt-20">
+    <main className="bg-linear-to-b from-white to-gray-50 text-neutral-900 min-h-screen pt-20">
       <AreaTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
 
       <div className="max-w-7xl mx-auto px-6">

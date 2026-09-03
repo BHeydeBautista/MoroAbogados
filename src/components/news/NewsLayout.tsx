@@ -42,7 +42,7 @@ export default function NewsLayout({
   sections,
 }: Props) {
   return (
-    <section className="relative bg-gradient-to-b from-[#0f1c2e] via-[#16233b] to-[#0f1c2e] text-white pt-28 pb-16 overflow-hidden z-20">
+    <section className="relative bg-linear-to-b from-[#0f1c2e] via-[#16233b] to-[#0f1c2e] text-white pt-28 pb-16 overflow-hidden z-20">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}

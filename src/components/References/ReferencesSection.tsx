@@ -142,7 +142,7 @@ function ProvinceCard({
               </span>
             )}
           </div>
-          <div className="h-px bg-gradient-to-r from-[#D4A75D]/40 via-[#D4A75D]/15 to-transparent" />
+          <div className="h-px bg-linear-to-r from-[#D4A75D]/40 via-[#D4A75D]/15 to-transparent" />
         </div>
       </div>
 
@@ -244,11 +244,11 @@ export default function ReferencesSection() {
           className="flex items-center gap-3 w-full max-w-xs"
           style={{ transformOrigin: "center" }}
         >
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
+          <div className="flex-1 h-px bg-linear-to-r from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
           <div className="w-1 h-1 rounded-full bg-[#D4A75D]" />
           <div className="w-2 h-2 rounded-full border border-[#D4A75D]/70" />
           <div className="w-1 h-1 rounded-full bg-[#D4A75D]" />
-          <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
+          <div className="flex-1 h-px bg-linear-to-l from-transparent via-[#D4A75D]/50 to-[#D4A75D]/50" />
         </motion.div>
       </div>
 

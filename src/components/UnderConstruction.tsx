@@ -17,7 +17,7 @@ export default function UnderConstruction() {
   });
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-100 to-gray-300 text-center p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-linear-to-b from-gray-100 to-gray-300 text-center p-6">
       <div className="w-full max-w-5xl">
         <div className="relative w-full h-[60vh] mb-8">
           <Image

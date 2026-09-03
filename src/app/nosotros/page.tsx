@@ -23,7 +23,7 @@ export default function NosotrosPage() {
       </section>
 
       {/* Equipo */}
-      <section className="bg-gradient-to-b from-[#0A1320] to-[#071224] py-24">
+      <section className="bg-linear-to-b from-[#0A1320] to-[#071224] py-24">
         <TeamSection />
       </section>
 

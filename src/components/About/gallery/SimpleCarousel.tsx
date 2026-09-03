@@ -32,7 +32,7 @@ const SimpleCarousel: React.FC<SimpleCarouselProps> = ({ images, interval = 4000
   };
 
   return (
-    <div className="relative h-[420px] md:h-[520px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0F1C2E]/5 to-transparent rounded-2xl">
+    <div className="relative h-[420px] md:h-[520px] flex items-center justify-center overflow-hidden bg-linear-to-br from-[#0F1C2E]/5 to-transparent rounded-2xl">
       {images.map((src, i) => {
         const state = getSlide(i);
 

@@ -77,12 +77,12 @@ const Profile = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="bg-gradient-to-br from-white to-gray-50 border border-gray-100 
+                className="bg-linear-to-br from-white to-gray-50 border border-gray-100 
                    rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:-translate-y-1 
                    transition transform flex flex-col items-center text-center space-y-5"
               >
                 <div
-                  className="bg-gradient-to-br from-[#D4A75D]/30 to-[#D4A75D]/10 
+                  className="bg-linear-to-br from-[#D4A75D]/30 to-[#D4A75D]/10 
                         p-4 rounded-full text-[#D4A75D] shadow-inner"
                 >
                   <Icon size={32} />

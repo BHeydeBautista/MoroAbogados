@@ -1,19 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { ArrowRight, Check, CornerDownRight, Info, Scale, TriangleAlert } from "lucide-react";
+import BloquePrompt from "./BloquePrompt";
 import {
-  ArrowRight,
-  Check,
-  Copy,
-  CornerDownRight,
-  Info,
-  Scale,
-  Sparkles,
-  TriangleAlert,
-} from "lucide-react";
-import {
-  completarPlantilla,
-  segmentarPlantilla,
   type Bloque,
   type CampoDatos,
   type Riesgo,
@@ -30,72 +20,6 @@ const TONO = {
   warn: { color: "var(--atencion)", Icono: TriangleAlert },
   legal: { color: "var(--tinta)", Icono: Scale },
 } as const;
-
-/* ── Botón de copiado ───────────────────────────────────────────────── */
-
-function BotonCopiar({
-  texto,
-  label = "Copiar prompt",
-  tono = "claro",
-}: {
-  texto: string;
-  label?: string;
-  tono?: "claro" | "oscuro";
-}) {
-  const [copiado, setCopiado] = useState(false);
-
-  const copiar = async () => {
-    try {
-      await navigator.clipboard.writeText(texto);
-    } catch {
-      // Navegadores sin permiso de portapapeles: copia por selección.
-      const ta = document.createElement("textarea");
-      ta.value = texto;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand("copy");
-      document.body.removeChild(ta);
-    }
-    setCopiado(true);
-    setTimeout(() => setCopiado(false), 2000);
-  };
-
-  const base =
-    "inline-flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 active:scale-[0.97]";
-
-  return (
-    <button
-      type="button"
-      onClick={copiar}
-      className={
-        copiado
-          ? `${base} bg-[var(--ok)] text-white`
-          : tono === "oscuro"
-          ? `${base} bg-white/10 text-white hover:bg-white/18`
-          : `${base} bg-[var(--tinta)] text-white hover:shadow-[var(--sombra-media)]`
-      }
-    >
-      <span className="relative flex h-[15px] w-[15px] items-center justify-center">
-        <Copy
-          size={15}
-          className={`absolute transition-all duration-200 ${
-            copiado ? "scale-50 opacity-0" : "scale-100 opacity-100"
-          }`}
-        />
-        <Check
-          size={15}
-          strokeWidth={3}
-          className={`absolute transition-all duration-200 ${
-            copiado ? "scale-100 opacity-100" : "scale-50 opacity-0"
-          }`}
-        />
-      </span>
-      {copiado ? "Copiado" : label}
-    </button>
-  );
-}
 
 /* ── Bloques de lectura ─────────────────────────────────────────────── */
 
@@ -407,145 +331,6 @@ function Cruce({
   );
 }
 
-/* ── Prompt: la pieza central ───────────────────────────────────────── */
-
-function PromptBloque({
-  title,
-  intro,
-  template,
-  verificar,
-  correccion,
-  datos,
-  marcados,
-  alternar,
-  claveBase,
-}: Extract<Bloque, { type: "prompt" }> & {
-  datos: Partial<Record<CampoDatos, string>>;
-  marcados: Set<string>;
-  alternar: (clave: string) => void;
-  claveBase: string;
-}) {
-  const [verCorreccion, setVerCorreccion] = useState(false);
-  const texto = completarPlantilla(template, datos);
-  const segmentos = segmentarPlantilla(template, datos);
-  const claves = verificar.map((_, i) => `${claveBase}:v${i}`);
-  const hechos = claves.filter((c) => marcados.has(c)).length;
-  const listo = hechos === claves.length;
-
-  return (
-    <section className="overflow-hidden rounded-2xl bg-white shadow-[var(--sombra-media)]">
-      <div className="flex flex-wrap items-start justify-between gap-4 p-6 pb-5">
-        <div className="min-w-0">
-          <p className="eyebrow flex items-center gap-1.5 text-[var(--pista-hondo)]">
-            <Sparkles size={12} />
-            Preguntale a la IA
-          </p>
-          <h3 className="mt-2 text-[17px] font-semibold">{title}</h3>
-          {intro && (
-            <p className="mt-1.5 max-w-[58ch] text-sm text-[var(--tinta-suave)]">{intro}</p>
-          )}
-        </div>
-        <BotonCopiar texto={texto} />
-      </div>
-
-      {/* El prompt, con los datos inyectados resaltados */}
-      <div className="prompt-cuerpo relative">
-        <pre className="mono max-h-[22rem] overflow-auto whitespace-pre-wrap break-words px-6 py-5 text-[12.5px] leading-[1.75]">
-          {segmentos.map((s, i) =>
-            s.campo ? (
-              <span key={i} className="prompt-var" title={s.propio ? "Tu dato" : "Dato del ejemplo"}>
-                {s.text}
-              </span>
-            ) : (
-              <React.Fragment key={i}>{s.text}</React.Fragment>
-            )
-          )}
-        </pre>
-        <p className="mono border-t border-white/10 px-6 py-2.5 text-[10px] tracking-[0.1em] text-white/35">
-          Resaltado = completado con tus datos
-        </p>
-      </div>
-
-      {/* Verificación: reemplaza al "si la respuesta es la esperada" */}
-      <div className="p-6">
-        <div className="flex items-baseline justify-between gap-4">
-          <p className="eyebrow text-[var(--tinta-suave)]">Antes de avanzar, revisá la respuesta</p>
-          <span className="mono tabular shrink-0 text-xs text-[var(--tinta-suave)]">
-            {hechos}/{verificar.length}
-          </span>
-        </div>
-
-        <ul className="mt-3.5 flex flex-col gap-1">
-          {verificar.map((v, i) => {
-            const clave = claves[i];
-            const activo = marcados.has(clave);
-            return (
-              <li key={clave}>
-                <button
-                  type="button"
-                  onClick={() => alternar(clave)}
-                  aria-pressed={activo}
-                  className="item-tilde flex w-full items-start gap-3 rounded-lg px-2.5 py-2 text-left hover:bg-[var(--papel)]"
-                >
-                  <span className="tilde mt-px h-[19px] w-[19px]">
-                    <Check size={12} strokeWidth={3} />
-                  </span>
-                  <span
-                    className={`text-[15px] leading-[1.55] ${
-                      activo ? "text-[var(--tinta)]" : "text-[var(--tinta-media)]"
-                    }`}
-                  >
-                    {v}
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-
-        <div className="mt-5 border-t border-[var(--linea-suave)] pt-5">
-          {listo ? (
-            <p className="flex items-center gap-2 text-sm font-medium text-[var(--ok)]">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[var(--ok)] text-white">
-                <Check size={12} strokeWidth={3} />
-              </span>
-              La respuesta sirve. Seguí al paso siguiente.
-            </p>
-          ) : (
-            <>
-              <button
-                type="button"
-                onClick={() => setVerCorreccion((v) => !v)}
-                className="text-sm font-medium text-[var(--atencion)] underline decoration-dotted underline-offset-4 transition-colors hover:text-[var(--alerta)]"
-              >
-                {verCorreccion
-                  ? "Ocultar el prompt de ajuste"
-                  : "¿Falta algo de la lista? Usá el prompt de ajuste"}
-              </button>
-
-              <div className="colapso" data-abierto={verCorreccion ? "si" : "no"}>
-                <div>
-                  <div className="pt-4">
-                    <pre className="mono max-h-56 overflow-auto whitespace-pre-wrap break-words rounded-xl bg-[var(--atencion)]/8 px-4 py-3.5 text-[12.5px] leading-[1.7] text-[#5c3d12] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--atencion)_22%,transparent)]">
-                      {completarPlantilla(correccion, datos)}
-                    </pre>
-                    <div className="mt-3">
-                      <BotonCopiar
-                        texto={completarPlantilla(correccion, datos)}
-                        label="Copiar ajuste"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ── Despachador ────────────────────────────────────────────────────── */
 
 export default function RenderBloque({
@@ -586,7 +371,7 @@ export default function RenderBloque({
       return <Cruce texto={bloque.texto} destino={bloque.hacia} onIr={onIr} />;
     case "prompt":
       return (
-        <PromptBloque
+        <BloquePrompt
           {...bloque}
           datos={datos}
           marcados={marcados}

@@ -1,32 +1,28 @@
 /**
  * Guía paso a paso — Sociedad Automatizada
  *
- * Contenido de la guía interactiva. Dos pistas paralelas:
- *   - "juridico": qué documentos hay que firmar y presentar (contenido del estudio).
- *   - "tecnico":  cómo se construye y documenta el sistema que opera la sociedad.
+ * Todo el texto de la guía vive acá. Para corregirla no hace falta tocar
+ * componentes.
  *
- * Todo el texto vive acá. Para corregir la guía no hace falta tocar componentes.
+ * La guía está ordenada como un aprendizaje, no como un formulario. Arranca
+ * explicando qué es el régimen, sigue evaluando si le sirve al lector, después
+ * lo ayuda a mirar los procesos que YA tiene y elegir cuál automatizar, y
+ * recién entonces entra a diseñar el agente. Ese orden importa: la versión
+ * anterior daba por sabido que el lector ya tenía un sistema automatizado, que
+ * es justo lo que viene a averiguar.
  *
  * ⚠ Contenido a futuro: asume la sanción del proyecto en su redacción actual.
  */
 
-export type TrackId = "juridico" | "tecnico";
+export type TrackId = "juridico" | "entender" | "elegir" | "disenar" | "responder";
 
-/** Variables que el lector carga una sola vez y se inyectan en todos los prompts. */
+/** Variables que el lector carga y se inyectan en los prompts. */
 export type CampoDatos = "nombre" | "actividad" | "jurisdiccion" | "sistema";
 
-export type ClausulaParte = {
-  text: string;
-  /** Resaltado en dorado, como en el modelo de estatuto. */
-  strong?: boolean;
-};
+export type ClausulaParte = { text: string; strong?: boolean };
+export type ClausulaArticulo = { numero: string; partes: ClausulaParte[] };
 
-export type ClausulaArticulo = {
-  numero: string;
-  partes: ClausulaParte[];
-};
-
-/** Nivel de atención jurídica que merece un dato o una herramienta. */
+/** Nivel de atención que merece un dato, herramienta o criterio. */
 export type Riesgo = "ok" | "atencion" | "alerta";
 
 export type FilaCampo = {
@@ -36,11 +32,7 @@ export type FilaCampo = {
   nivel: Riesgo;
 };
 
-export type FilaPantalla = {
-  label: string;
-  estado: string;
-  cargado?: boolean;
-};
+export type FilaPantalla = { label: string; estado: string; cargado?: boolean };
 
 export type Bloque =
   | { type: "prose"; text: string }
@@ -63,12 +55,10 @@ export type Bloque =
   | {
       type: "prompt";
       title: string;
-      intro?: string;
       /** Usa {{nombre}}, {{actividad}}, {{jurisdiccion}}, {{sistema}}. */
       template: string;
-      /** Qué tiene que contener la respuesta para poder avanzar. */
+      intro?: string;
       verificar: string[];
-      /** Prompt de ajuste si falta algo de la lista anterior. */
       correccion: string;
     }
   | { type: "screen"; url: string; caption?: string; filas: FilaPantalla[]; cta: string }
@@ -90,33 +80,45 @@ export type Track = {
   id: TrackId;
   nombre: string;
   descripcion: string;
-  responsable: string;
   /**
-   * Si es false, la pista no se muestra en la guía: no aparece en el riel, ni
-   * en el stepper, ni en el avance, y los cruces que apuntan a sus pasos se
-   * omiten. El contenido queda intacto en PASOS — esto es un interruptor,
-   * no un borrado.
+   * Si es false la parte no se muestra: no aparece en el riel, ni en el
+   * avance, y los cruces que apunten a sus pasos se omiten. El contenido
+   * queda intacto — esto es un interruptor, no un borrado.
    */
   habilitada: boolean;
 };
 
 export const TRACKS: Track[] = [
   {
-    id: "juridico",
-    nombre: "Pista jurídica",
-    descripcion:
-      "Los cinco pasos formales de constitución: del encuadre a la inscripción registral.",
-    responsable: "Contenido del estudio",
-    // Apagada hasta que el abogado revise las cláusulas y los descargos.
-    habilitada: false,
+    id: "entender",
+    nombre: "Entender",
+    descripcion: "Qué es este régimen y si tu negocio da para esto.",
+    habilitada: true,
   },
   {
-    id: "tecnico",
-    nombre: "Pista técnica",
-    descripcion:
-      "Cómo se arma y se documenta el sistema que opera la sociedad. Es el respaldo de las cláusulas.",
-    responsable: "Documentación del sistema",
+    id: "elegir",
+    nombre: "Elegir qué automatizar",
+    descripcion: "Mirar los procesos que ya tenés y elegir por cuál empezar.",
     habilitada: true,
+  },
+  {
+    id: "disenar",
+    nombre: "Diseñar el agente",
+    descripcion: "Qué decide, con qué datos, con qué reglas y qué puede ejecutar.",
+    habilitada: true,
+  },
+  {
+    id: "responder",
+    nombre: "Responder por él",
+    descripcion: "Qué queda registrado y quién puede intervenirlo.",
+    habilitada: true,
+  },
+  {
+    id: "juridico",
+    nombre: "El trámite",
+    descripcion: "Los cinco pasos formales de constitución.",
+    // Apagada hasta que el abogado revise las cláusulas y los descargos.
+    habilitada: false,
   },
 ];
 
@@ -125,13 +127,18 @@ export const TRACKS_VISIBLES = TRACKS.filter((t) => t.habilitada);
 export const trackHabilitado = (id: TrackId) =>
   TRACKS.find((t) => t.id === id)?.habilitada ?? false;
 
-/** Caso que atraviesa toda la guía. Un solo ejemplo, repetido en los once pasos. */
+/**
+ * Caso que atraviesa toda la guía.
+ *
+ * Importante que sea una empresa que YA existe y ya opera a mano: la guía
+ * empieza mirando procesos existentes, no partiendo de cero.
+ */
 export const EJEMPLO = {
   nombre: "Nexus Automatizada S.A.",
-  actividad: "Otorgamiento de microcréditos desde una billetera virtual",
+  actividad: "Billetera virtual que otorga microcréditos a sus usuarios",
   jurisdiccion: "Entre Ríos",
   sistema:
-    "Un agente evalúa solicitudes de microcrédito de hasta $500.000 y decide aprobar, rechazar o derivar a revisión humana, sin que un analista intervenga en cada caso.",
+    "Evaluar solicitudes de microcrédito de hasta $500.000 y decidir aprobar, rechazar o derivar a revisión humana.",
 } satisfies Record<CampoDatos, string>;
 
 export const CAMPOS: {
@@ -139,392 +146,424 @@ export const CAMPOS: {
   label: string;
   ayuda: string;
   multilinea?: boolean;
+  /** El lector todavía no puede saberlo al empezar: lo define durante la guía. */
+  seDefineEnPaso?: string;
 }[] = [
   {
     id: "nombre",
     label: "Nombre de la sociedad",
-    ayuda: "Tiene que incluir la palabra “Automatizada”. Lo vemos en el Paso 2.",
+    ayuda: "El que tengas, o el que tengas pensado. Todavía no hace falta que sea el definitivo.",
   },
   {
     id: "actividad",
-    label: "A qué se dedica",
+    label: "A qué se dedica tu empresa hoy",
     ayuda: "En una línea, como se lo explicarías a alguien en un ascensor.",
   },
   {
     id: "jurisdiccion",
-    label: "Provincia donde se inscribe",
+    label: "Provincia",
     ayuda: "Define ante qué Registro Público se presenta el trámite.",
   },
   {
     id: "sistema",
-    label: "Qué hace el sistema automatizado",
+    label: "El proceso que vas a automatizar",
     ayuda:
-      "La decisión concreta que toma solo, sin que una persona intervenga en cada caso.",
+      "Si todavía no sabés cuál, dejalo vacío. Es lo que vas a elegir en el Paso 4, y podés volver a completarlo después.",
     multilinea: true,
+    seDefineEnPaso: "elegir-proceso",
   },
 ];
 
 export const PASOS: Paso[] = [
-  /* ─────────────────────────── PISTA JURÍDICA ─────────────────────────── */
+  /* ═══════════════════ PARTE 1 — ENTENDER ═══════════════════ */
   {
-    id: "encuadre",
-    track: "juridico",
-    titulo: "¿Tu operación califica?",
-    corto: "Encuadre",
+    id: "que-es",
+    track: "entender",
+    titulo: "Qué es una Sociedad Automatizada",
+    corto: "Qué es",
     bajada:
-      "Antes de armar cualquier documento, respondé estas tres preguntas. Si tu negocio cumple las tres, calificás para este régimen.",
+      "Un tipo societario nuevo, hoy en debate en el Congreso, pensado para empresas cuya operación diaria la ejecuta un sistema y no un equipo de personas.",
     bloques: [
       {
         type: "prose",
-        text: "El régimen no es para cualquier empresa que “use inteligencia artificial”. Es para las que operan sin que una persona intervenga en cada transacción. La diferencia importa: un estudio contable que usa IA para redactar informes no califica; una billetera que aprueba créditos sola, sí.",
+        text: "Hasta ahora, cuando alguien armaba una empresa elegía entre una S.R.L., una S.A. y algunas variantes más. Todas asumen lo mismo: que adentro hay personas ejecutando el trabajo. El proyecto de Sociedad Automatizada parte de otro supuesto — que la operación ordinaria la ejecuta un sistema, y que las personas están para supervisarlo, no para atender cada caso.",
       },
       {
-        type: "checklist",
-        title: "Cuestionario de autoevaluación",
-        items: [
-          "El negocio opera todos los días sin que una persona intervenga constantemente",
-          "La actividad puede ejecutarse íntegramente mediante algoritmos o agentes de IA",
-          "No hacen falta empleados en relación de dependencia para operar",
+        type: "fields",
+        title: "Qué cambia respecto de una sociedad común",
+        intro: "Las diferencias que importan en la práctica, no la letra chica.",
+        columnas: ["Aspecto", "S.A. o S.R.L. común", "Sociedad Automatizada"],
+        filas: [
+          {
+            label: "Quién ejecuta la operación",
+            origen: "Empleados y administradores, caso por caso",
+            riesgo: "Sistemas algorítmicos autónomos, sin intervención en cada caso",
+            nivel: "ok",
+          },
+          {
+            label: "Empleados en relación de dependencia",
+            origen: "Necesarios para operar",
+            riesgo: "No se requieren para la operación ordinaria",
+            nivel: "ok",
+          },
+          {
+            label: "La denominación",
+            origen: "Nombre libre más el tipo social",
+            riesgo: "Debe incluir la palabra “Automatizada”, para que un tercero lo sepa al leerla",
+            nivel: "atencion",
+          },
+          {
+            label: "Quién responde por los daños",
+            origen: "Régimen general de responsabilidad",
+            riesgo:
+              "La sociedad responde con su patrimonio por lo que hagan sus sistemas, en régimen equiparado al de la S.A.",
+            nivel: "atencion",
+          },
+          {
+            label: "Qué se presenta al inscribir",
+            origen: "Estatuto y documentación societaria",
+            riesgo:
+              "Además, una declaración de carácter automatizado y la documentación técnica del sistema",
+            nivel: "alerta",
+          },
         ],
-        conclusion: "Calificás para constituir una Sociedad Automatizada",
       },
       {
         type: "note",
         tone: "info",
-        title: "Si respondiste que no a alguna",
-        text: "No es un rechazo definitivo. Muchas operaciones califican después de rediseñar el proceso: lo que hoy hace una persona revisando caso por caso, mañana lo puede hacer el sistema con derivación a revisión humana sólo en los casos límite. Eso es exactamente lo que vemos en la pista técnica.",
+        title: "No es “una empresa que usa inteligencia artificial”",
+        text: "Esta es la confusión más común y conviene sacarla de encima ya. Un estudio contable que usa IA para redactar informes no califica: sigue habiendo un contador que revisa y firma cada uno. Lo que define al régimen no es la herramienta que usás, es si la operación puede correr sin que una persona intervenga en cada transacción.",
       },
-      {
-        type: "prompt",
-        title: "Prompt 1 — Encuadre de tu operación",
-        intro:
-          "Pegá esto en ChatGPT, Claude o Gemini. Ya viene completado con los datos que cargaste arriba.",
-        template: `Actuá como analista de negocios. Te voy a describir una operación y necesito que evalúes si funciona de forma automatizada.
-
-Sociedad: {{nombre}}
-Actividad: {{actividad}}
-Jurisdicción: {{jurisdiccion}}
-Sistema automatizado: {{sistema}}
-
-Respondé estas tres preguntas por separado, con una justificación de dos o tres líneas cada una:
-
-1. ¿La operación puede funcionar todos los días sin que una persona intervenga en cada caso? Si no, indicá exactamente en qué momento hace falta una persona.
-2. ¿Qué partes de la actividad NO se pueden automatizar hoy y por qué?
-3. ¿Qué tareas seguirían necesitando un empleado en relación de dependencia?
-
-Cerrá con un veredicto: "opera de forma automatizada" o "todavía depende de intervención humana constante", y en este segundo caso listá los tres cambios concretos que habría que hacer.`,
-        verificar: [
-          "Respondió las tres preguntas por separado, no en un párrafo único",
-          "En la pregunta 2 nombró al menos una parte que NO se puede automatizar",
-          "Cerró con un veredicto explícito, no con un “depende”",
-        ],
-        correccion: `Tu respuesta no cerró con un veredicto claro. Volvé a responder y terminá obligatoriamente con una de estas dos frases exactas, sin matices:
-
-"VEREDICTO: opera de forma automatizada"
-"VEREDICTO: todavía depende de intervención humana constante"
-
-Si elegís la segunda, listá abajo los tres cambios concretos que habría que hacer.`,
-      },
-      {
-        type: "crosslink",
-        hacia: "decision",
-        texto:
-          "El veredicto que te devolvió la IA es materia prima del primer paso técnico: definir qué decide el agente.",
-      },
-    ],
-  },
-
-  {
-    id: "denominacion",
-    track: "juridico",
-    titulo: "Denominación social",
-    corto: "Denominación",
-    bajada:
-      "Hay una sola condición obligatoria: el nombre debe incluir la palabra “Automatizada”. Así, cualquier tercero sabe cómo opera la empresa con solo leer la razón social.",
-    bloques: [
       {
         type: "prose",
-        text: "El sufijo cumple la misma función que “S.A.” o “S.R.L.”: le avisa a quien contrata con la sociedad bajo qué régimen de responsabilidad está entrando. No es una etiqueta comercial ni algo que se pueda dejar para el logo — forma parte del requisito formal.",
-      },
-      {
-        type: "screen",
-        url: "rpc.gob.ar › consulta-denominacion",
-        caption: "Pantalla ilustrativa del trámite de consulta de nombre.",
-        filas: [{ label: "Nexus Automatizada S.A.", estado: "Disponible", cargado: true }],
-        cta: "Reservar nombre",
-      },
-      {
-        type: "note",
-        tone: "warn",
-        title: "El sufijo es obligatorio, no opcional",
-        text: "Forma parte del requisito formal del Art. 14. Una denominación sin la palabra “Automatizada” se observa en el registro y frena todo el trámite.",
-      },
-      {
-        type: "prompt",
-        title: "Prompt 2 — Opciones de denominación",
-        template: `Necesito opciones de denominación social para una sociedad argentina.
-
-Actividad: {{actividad}}
-Provincia de inscripción: {{jurisdiccion}}
-
-Reglas obligatorias:
-- Toda opción debe terminar en "Automatizada S.A."
-- Sin palabras en inglés
-- Sin términos reservados: banco, seguro, financiera, mutual, cooperativa, bolsa, universidad
-- Sin nombres de personas físicas
-- Máximo cuatro palabras antes del sufijo
-
-Dame 8 opciones en una lista numerada. Para cada una, una línea explicando de dónde sale el nombre. Al final, marcá cuáles tienen riesgo de confundirse con marcas conocidas del rubro.`,
-        verificar: [
-          "Las 8 opciones terminan en “Automatizada S.A.”",
-          "Ninguna usa palabras reservadas (banco, seguro, financiera…)",
-          "Cerró con la advertencia sobre marcas parecidas",
-        ],
-        correccion: `Varias opciones no cumplen las reglas. Revisá tu propia lista y descartá toda opción que:
-(a) no termine exactamente en "Automatizada S.A.",
-(b) contenga banco, seguro, financiera, mutual, cooperativa, bolsa o universidad,
-(c) incluya un nombre propio de persona.
-
-Devolvé sólo las que sobreviven y completá hasta llegar a 8.`,
+        text: "La contracara es que el régimen te pide algo que ninguna sociedad común te pide: explicar cómo funciona tu sistema. No basta con decir “opera automáticamente”; hay que documentar qué decide, con qué información, qué puede ejecutar por su cuenta y quién puede frenarlo. Esa documentación es la mitad del trabajo, y es de lo que trata la mayor parte de esta guía.",
       },
       {
         type: "note",
         tone: "legal",
-        title: "Esto no reserva nada",
-        text: "La disponibilidad real se verifica únicamente en el Registro Público de tu jurisdicción. Una lista generada por IA es un punto de partida para la consulta, nunca una reserva.",
+        title: "Esto todavía no es ley",
+        text: "El proyecto está en debate legislativo. Todo lo que sigue asume su redacción actual y puede cambiar. Nada de esto reemplaza la consulta con un abogado: la guía sirve para que llegues a esa consulta sabiendo qué preguntar y con la parte técnica ya pensada.",
       },
     ],
   },
 
   {
-    id: "estatuto",
-    track: "juridico",
-    titulo: "El estatuto técnico",
-    corto: "Estatuto",
+    id: "te-conviene",
+    track: "entender",
+    titulo: "¿Le sirve a tu negocio?",
+    corto: "¿Te sirve?",
     bajada:
-      "Acá se documenta cómo funciona el sistema: su carácter automatizado y quién lo supervisa. Este es un ejemplo de cláusula — el texto final se ajusta con tu abogado.",
+      "Automatizar no es gratis ni siempre conviene. Antes de seguir, tres preguntas honestas sobre tu operación.",
     bloques: [
       {
-        type: "clause",
-        docTitle: "ESTATUTO SOCIAL — NEXUS AUTOMATIZADA S.A.",
-        articulos: [
-          {
-            numero: "ARTÍCULO 4°",
-            partes: [
-              { text: "La sociedad reviste el carácter de " },
-              { text: "Sociedad Automatizada", strong: true },
-              {
-                text: " en los términos del artículo 14 de la Ley General de Sociedades, desarrollando su objeto social mediante ",
-              },
-              { text: "sistemas algorítmicos autónomos", strong: true },
-              {
-                text: ", sin requerir trabajadores en relación de dependencia para su operación ordinaria.",
-              },
-            ],
-          },
-          {
-            numero: "ARTÍCULO 5°",
-            partes: [
-              { text: "La sociedad contará en todo momento con una instancia de " },
-              { text: "supervisión humana", strong: true },
-              {
-                text: " con facultad de intervención sobre los sistemas automatizados que ejecutan su operación.",
-              },
-            ],
-          },
-        ],
-      },
-      {
         type: "prose",
-        text: "El Artículo 5 parece una declaración de principios, pero no lo es: es un requisito de producto. Si mañana te reclaman, vas a tener que mostrar quién puede frenar el sistema, desde dónde y en cuánto tiempo. Una cláusula sin ese mecanismo detrás es una cláusula vacía.",
+        text: "La automatización rinde cuando hay muchas decisiones parecidas repitiéndose. Si tu negocio hace pocas operaciones grandes y cada una es distinta, vas a gastar más en armar el sistema que lo que te ahorra. No hay premio por automatizar: el premio es operar mejor.",
       },
       {
-        type: "crosslink",
-        hacia: "supervision",
-        texto:
-          "En la pista técnica armamos el mecanismo concreto que hace verdadero al Artículo 5: umbrales, responsables y botón de freno.",
-      },
-      {
-        type: "prompt",
-        title: "Prompt 3 — Borrador de cláusula de objeto",
-        intro:
-          "Ojo con este paso: lo que devuelve la IA es un borrador para llevarle al abogado, no un estatuto.",
-        template: `Actuá como redactor de documentos societarios argentinos. Necesito un borrador de cláusula de objeto social.
-
-Sociedad: {{nombre}}
-Actividad: {{actividad}}
-Sistema automatizado: {{sistema}}
-
-Redactá el artículo de objeto social con estas condiciones:
-- Lenguaje de estatuto argentino, en tercera persona ("La sociedad tiene por objeto...")
-- Debe describir la actividad de forma precisa pero no tan estrecha que impida crecer
-- Debe mencionar expresamente que la operación se ejecuta mediante sistemas algorítmicos autónomos
-- Un solo párrafo, sin incisos
-
-Después del artículo, listá aparte:
-1. Las tres decisiones de redacción que tomaste y por qué
-2. Las dos preguntas que un abogado necesitaría hacerme antes de firmar esto`,
-        verificar: [
-          "Es un solo párrafo redactado en tercera persona",
-          "Menciona expresamente los sistemas algorítmicos autónomos",
-          "Incluye las dos preguntas para el abogado al final",
+        type: "checklist",
+        title: "Señales de que sí te conviene",
+        intro: "Cuantas más marques, más sentido tiene. Con menos de tres, conviene esperar.",
+        items: [
+          "Hay una tarea que tu equipo repite decenas o cientos de veces por mes",
+          "Esa tarea se resuelve casi siempre con el mismo criterio",
+          "La información para decidir ya existe en algún lado (formulario, base, servicio externo)",
+          "Podés describir en qué casos la respuesta es sí y en cuáles es no",
+          "Cuando alguien se equivoca, el daño es acotado y reparable",
         ],
-        correccion: `Te faltó la parte más importante. Volvé a tu borrador y agregá al final, obligatoriamente:
-
-"PREGUNTAS PARA EL ABOGADO:" seguido de dos preguntas concretas sobre puntos que no podés resolver sin conocer el caso real.
-
-No reformules la cláusula: sólo agregá esa sección.`,
+        conclusion: "Tu operación tiene con qué automatizarse",
       },
       {
-        type: "note",
-        tone: "legal",
-        title: "Cláusulas ilustrativas",
-        text: "Los textos de esta pantalla son ejemplos con fines didácticos. Requieren redacción y validación profesional antes de presentarse.",
-      },
-    ],
-  },
-
-  {
-    id: "responsabilidad",
-    track: "juridico",
-    titulo: "Quién responde y por qué",
-    corto: "Responsabilidad",
-    bajada:
-      "Esta cláusula define quién responde si algo sale mal: la propia sociedad, con su patrimonio — no una persona a título personal.",
-    bloques: [
-      {
-        type: "clause",
-        docTitle: "ESTATUTO SOCIAL — NEXUS AUTOMATIZADA S.A. (continuación)",
-        articulos: [
-          {
-            numero: "ARTÍCULO 8°",
-            partes: [
-              { text: "La sociedad " },
-              { text: "responde con su patrimonio social", strong: true },
-              {
-                text: " frente a terceros por los daños que ocasionen los sistemas algorítmicos o agentes de inteligencia artificial utilizados en su operación, en un régimen equiparado al de la sociedad anónima.",
-              },
-            ],
-          },
-        ],
-      },
-      {
-        type: "prose",
-        text: "Traducido: si el agente rechaza sistemáticamente solicitudes de un barrio entero, o aprueba un crédito que nunca debió aprobar, el reclamo va contra la sociedad. No contra el programador que escribió el código ni contra el proveedor del modelo.",
-      },
-      {
-        type: "prose",
-        text: "Eso tiene una consecuencia práctica que casi nadie anticipa: en un reclamo vas a tener que explicar por qué el sistema decidió lo que decidió, en ese caso puntual, en esa fecha. Si el sistema no dejó rastro, no hay defensa posible — no porque hayas hecho algo mal, sino porque no podés demostrar que no lo hiciste.",
-      },
-      {
-        type: "crosslink",
-        hacia: "evidencia",
-        texto:
-          "Por eso el paso técnico de salida y evidencia no es opcional: es lo que hace defendible al Artículo 8.",
-      },
-      {
-        type: "prompt",
-        title: "Prompt 4 — Mapa de daños posibles",
-        template: `Actuá como analista de riesgo. Mi sociedad opera este sistema automatizado:
-
-{{sistema}}
-Actividad: {{actividad}}
-
-Listá los 8 daños concretos que este sistema le podría causar a un tercero. Para cada uno, una fila con:
-
-1. Qué sale mal (en una frase, en lenguaje común)
-2. A quién perjudica
-3. Qué tuvo que fallar para que pase (dato de entrada, regla, herramienta, o falta de supervisión)
-4. Qué registro necesitaría yo para demostrar qué pasó
-
-Ordená la lista del daño más probable al menos probable. No incluyas riesgos genéricos de cualquier empresa (incendio, robo, etc.): sólo los que nacen de que la decisión sea automática.`,
-        verificar: [
-          "Los 8 daños nacen de la automatización, no son riesgos genéricos de empresa",
-          "Cada fila dice qué registro haría falta para demostrar lo ocurrido",
-          "Está ordenada por probabilidad, no en orden arbitrario",
-        ],
-        correccion: `Varios de los riesgos que listaste le pasan a cualquier empresa, automatizada o no. Descartá todos los que no dependan de que la decisión la tome un sistema y reemplazalos por riesgos específicos de la automatización: decisiones sesgadas, errores replicados a escala, datos de entrada mal interpretados, herramientas ejecutadas sin control.`,
-      },
-    ],
-  },
-
-  {
-    id: "inscripcion",
-    track: "juridico",
-    titulo: "La inscripción registral",
-    corto: "Inscripción",
-    bajada:
-      "El paso final es presentar todo ante el Registro Público, junto con la documentación técnica de respaldo, mediante el trámite electrónico.",
-    bloques: [
-      {
-        type: "screen",
-        url: "rpc.gob.ar › inscripcion-electronica",
-        caption: "Paso 3 de 4 — Carga de documentación.",
+        type: "fields",
+        title: "Cuándo conviene NO automatizar",
+        intro: "Vale tanto como lo anterior. Reconocerlo temprano te ahorra meses.",
+        columnas: ["Situación", "Por qué frena", "Qué hacer en su lugar"],
         filas: [
-          { label: "Estatuto social.pdf", estado: "Cargado", cargado: true },
-          { label: "Declaración de carácter automatizado.pdf", estado: "Cargado", cargado: true },
-          { label: "Documentación técnica del sistema.pdf", estado: "Cargado", cargado: true },
+          {
+            label: "Volumen bajo",
+            origen: "Pocas operaciones por mes",
+            riesgo: "El costo de armar y mantener el sistema no se recupera. Seguí a mano.",
+            nivel: "atencion",
+          },
+          {
+            label: "Cada caso es distinto",
+            origen: "No hay patrón repetido",
+            riesgo:
+              "El sistema no tiene de qué aprender ni qué regla aplicar. Automatizá partes, no el todo.",
+            nivel: "atencion",
+          },
+          {
+            label: "El error es grave o irreversible",
+            origen: "Salud, seguridad, montos muy altos",
+            riesgo:
+              "Podés automatizar el análisis, pero la decisión final debería quedar en manos de una persona.",
+            nivel: "alerta",
+          },
+          {
+            label: "No tenés los datos",
+            origen: "La información está en papel, en la cabeza de alguien o dispersa",
+            riesgo:
+              "Primero ordenar los datos. Un agente sin datos confiables decide mal más rápido.",
+            nivel: "alerta",
+          },
         ],
-        cta: "Enviar inscripción",
-      },
-      {
-        type: "note",
-        tone: "warn",
-        title: "El tercer archivo es el que frena los trámites",
-        text: "Los dos primeros los redacta el abogado. El tercero, no: es la descripción del sistema, y no existe un modelo estándar para copiar. Los seis pasos de la pista técnica están ordenados para que, al terminarlos, ese PDF quede armado.",
-      },
-      {
-        type: "crosslink",
-        hacia: "decision",
-        texto: "Empezá la pista técnica para armar la documentación del sistema.",
       },
       {
         type: "prompt",
-        title: "Prompt 5 — Índice de la documentación técnica",
-        template: `Necesito armar el documento "Documentación técnica del sistema" para presentar ante el Registro Público de {{jurisdiccion}}, en la constitución de una Sociedad Automatizada.
+        title: "Prompt 1 — ¿Tu negocio da para esto?",
+        intro:
+          "Pegalo en ChatGPT, Claude o Gemini. Sólo necesita saber a qué se dedica tu empresa.",
+        template: `Actuá como analista de operaciones, con criterio conservador. Te describo una empresa:
 
-Sociedad: {{nombre}}
+Empresa: {{nombre}}
 Actividad: {{actividad}}
-Sistema: {{sistema}}
+Provincia: {{jurisdiccion}}
 
-Proponé el índice del documento. Para cada sección indicá:
-- Título de la sección
-- Qué tiene que demostrar ante un tercero que no conoce el sistema
-- Qué evidencia concreta va adentro (diagrama, tabla, captura, registro)
-- Extensión estimada en páginas
+Necesito saber si esta operación es candidata a automatizarse en serio, no si "se podría usar IA".
 
-El documento debe permitirle a un funcionario sin formación técnica entender qué decide el sistema, con qué datos, y quién puede frenarlo. Máximo 10 secciones.`,
+Respondé en tres secciones:
+
+1. TAREAS REPETITIVAS: listá las tareas que una empresa así probablemente repite muchas veces por mes. Para cada una, estimá cuántas veces y con qué criterio se resuelve.
+
+2. CANDIDATAS REALES: de esa lista, cuáles cumplen las cuatro condiciones (volumen alto, criterio repetido, datos disponibles, error acotado y reparable). Justificá cada una en dos líneas.
+
+3. DESCARTADAS: cuáles NO conviene automatizar y por qué. Sé explícito si el motivo es volumen bajo, falta de datos, o que el error sea grave.
+
+Cerrá con una recomendación de una línea: "conviene avanzar" o "todavía no conviene", y el motivo principal.`,
         verificar: [
-          "Cada sección dice qué evidencia concreta lleva adentro",
-          "Hay una sección dedicada a la supervisión humana",
-          "Hay una sección sobre los datos de entrada",
+          "Listó tareas concretas de tu rubro, no generalidades como “atención al cliente”",
+          "La sección de descartadas no está vacía",
+          "Cerró con una recomendación explícita, no con un “depende”",
         ],
-        correccion: `Falta cubrir los dos puntos que el registro va a mirar primero. Agregá al índice, si no están:
+        correccion: `Tu respuesta dejó vacía la sección de descartadas, o te recomendó automatizar todo. Eso casi nunca es cierto.
 
-- Una sección sobre los datos de entrada: cuáles son, de dónde salen y cuáles permiten inferir características personales.
-- Una sección sobre supervisión humana: quién puede intervenir el sistema, desde dónde y en cuánto tiempo.
-
-Devolvé el índice completo actualizado.`,
+Volvé sobre tu propia lista y para cada tarea respondé: ¿cuántas veces por mes pasa realmente, y qué pasa si el sistema se equivoca? Descartá explícitamente las de volumen bajo y las de error grave, y devolvé las tres secciones corregidas.`,
       },
     ],
   },
 
-  /* ─────────────────────────── PISTA TÉCNICA ─────────────────────────── */
+  /* ═══════════════════ PARTE 2 — ELEGIR ═══════════════════ */
   {
-    id: "decision",
-    track: "tecnico",
-    titulo: "Qué decide el agente",
-    corto: "La decisión",
+    id: "mapear",
+    track: "elegir",
+    titulo: "Mapeá lo que ya hacés",
+    corto: "Mapear",
     bajada:
-      "Un agente no “hace tareas”: toma una decisión, muchas veces, con el mismo criterio. Definir cuál es esa decisión es el primer paso, y el que más gente saltea.",
+      "No se puede automatizar lo que no se puede describir. Antes de pensar en agentes, hay que poner por escrito los procesos que tu empresa ya ejecuta todos los días.",
     bloques: [
       {
         type: "prose",
-        text: "Antes de elegir herramientas, modelos o proveedores, tenés que poder completar esta frase sin titubear: “el sistema decide ____, entre estas opciones ____, usando estos datos ____”. Si no te sale, todavía no tenés un agente: tenés una idea.",
+        text: "Casi ninguna empresa chica tiene sus procesos escritos. Funcionan porque las personas que los hacen se los saben de memoria. Ese conocimiento no escrito es exactamente lo que un sistema no puede heredar: si no está en algún lado, no hay forma de programarlo ni de explicárselo a una IA.",
+      },
+      {
+        type: "prose",
+        text: "Mapear no es hacer un manual de calidad. Es responder cuatro preguntas por cada cosa que hacés seguido: qué lo dispara, qué pasos siguen, dónde hay una decisión, y con qué termina.",
       },
       {
         type: "flow",
-        title: "La decisión en Nexus Automatizada",
+        title: "Cómo se ve un proceso mapeado",
+        nodos: [
+          {
+            label: "Disparador",
+            detalle:
+              "Qué hace que el proceso arranque. En Nexus: una persona pide $180.000 desde la app.",
+          },
+          {
+            label: "Pasos",
+            detalle:
+              "Qué se hace, en orden. Se miran los datos declarados, se consulta el BCRA, se pide un informe al bureau.",
+          },
+          {
+            label: "Decisión",
+            detalle:
+              "El momento en que alguien elige entre opciones. Un analista aprueba, rechaza o pide más información.",
+          },
+          {
+            label: "Resultado",
+            detalle:
+              "Con qué termina y qué queda registrado. Se acredita el dinero y se avisa a la persona.",
+          },
+        ],
+      },
+      {
+        type: "note",
+        tone: "info",
+        title: "El paso de la decisión es el que importa",
+        text: "De los cuatro, ese es el que después va a ejecutar el agente. Los otros tres son contexto: de dónde viene la información y qué pasa después. Si al mapear un proceso no encontrás un momento claro de decisión, probablemente no sea un buen candidato — es una tarea, no una decisión.",
+      },
+      {
+        type: "checklist",
+        title: "Para cada proceso que anotes",
+        intro: "Con cuatro o cinco procesos mapeados alcanza para elegir. No hace falta mapear todo.",
+        items: [
+          "Escribiste qué lo dispara, en una frase",
+          "Anotaste cuántas veces por mes ocurre, aunque sea a ojo",
+          "Identificaste el momento exacto en que alguien decide algo",
+          "Sabés qué información se mira para decidir y de dónde sale",
+          "Anotaste qué pasa cuando la decisión sale mal",
+        ],
+      },
+      {
+        type: "prompt",
+        title: "Prompt 2 — Sacar tus procesos a la luz",
+        intro:
+          "Este es el prompt que convierte “tengo una empresa que hace tal cosa” en una lista concreta de procesos.",
+        template: `Actuá como consultor de procesos. Te describo mi empresa y quiero que me ayudes a poner por escrito lo que hacemos, porque nunca lo documentamos.
+
+Empresa: {{nombre}}
+Actividad: {{actividad}}
+
+Deduci los procesos operativos que una empresa así ejecuta de forma recurrente. Para cada uno devolveme una ficha con exactamente estos campos:
+
+PROCESO: nombre corto
+DISPARADOR: qué hace que arranque
+PASOS: la secuencia, numerada, en lenguaje común
+DECISIÓN: el momento puntual en que una persona elige entre opciones, y cuáles son esas opciones
+INFORMACIÓN QUE SE MIRA: qué datos se consultan para decidir y de dónde salen
+FRECUENCIA ESTIMADA: cuántas veces por mes
+SI SALE MAL: qué consecuencia tiene una decisión equivocada
+
+Dame entre 5 y 8 procesos. Ordenalos del más frecuente al menos frecuente.
+
+Importante: si algún proceso no tiene un momento de decisión claro, marcalo con "SIN DECISIÓN" y explicá por qué. No lo fuerces.`,
+        verificar: [
+          "Cada ficha tiene los siete campos, no un párrafo suelto",
+          "Los procesos son de tu rubro, no genéricos de cualquier empresa",
+          "Al menos uno tiene identificado un momento de decisión con opciones concretas",
+        ],
+        correccion: `A varias fichas les falta el campo de DECISIÓN o está puesto de forma vaga ("se evalúa el caso").
+
+Volvé sobre cada proceso y contestá literalmente: ¿en qué momento exacto una persona elige, y entre qué opciones cerradas elige? Escribí las opciones como una lista, por ejemplo: aprobar / rechazar / pedir más datos. Si un proceso no tiene ese momento, marcalo SIN DECISIÓN.`,
+      },
+    ],
+  },
+
+  {
+    id: "elegir-proceso",
+    track: "elegir",
+    titulo: "Cuál automatizar primero",
+    corto: "Elegir uno",
+    bajada:
+      "De todos los procesos que mapeaste, uno solo. El objetivo no es automatizar la empresa: es que el primero funcione y enseñe.",
+    bloques: [
+      {
+        type: "prose",
+        text: "El error clásico es empezar por el proceso más importante. Ese es justamente el peor candidato: es el que más duele si sale mal y el que más resistencia genera. Empezá por uno que sea aburrido, frecuente y de bajo riesgo. Si funciona, te compra la confianza para ir por el siguiente.",
+      },
+      {
+        type: "fields",
+        title: "Los seis criterios para puntuar",
+        intro:
+          "Puntuá cada proceso mapeado del 1 al 5 en cada criterio. El que más suma es por donde empezás.",
+        columnas: ["Criterio", "Puntúa alto cuando…", "Por qué importa"],
+        filas: [
+          {
+            label: "Volumen",
+            origen: "Ocurre muchas veces por mes",
+            riesgo: "Es lo que hace que el esfuerzo se pague. Sin volumen, no hay caso.",
+            nivel: "ok",
+          },
+          {
+            label: "Repetitividad",
+            origen: "Casi siempre se resuelve igual",
+            riesgo: "Si cada caso es único, no hay criterio que el sistema pueda seguir.",
+            nivel: "ok",
+          },
+          {
+            label: "Reglas explicitables",
+            origen: "Podés escribir en qué casos es sí y en cuáles es no",
+            riesgo: "Lo que no podés escribir, no se lo podés pedir a un sistema ni a una IA.",
+            nivel: "ok",
+          },
+          {
+            label: "Datos disponibles",
+            origen: "La información ya está en un sistema, no en papel ni en la memoria de alguien",
+            riesgo: "Sin datos accesibles el proyecto se convierte en otro proyecto: ordenar datos.",
+            nivel: "atencion",
+          },
+          {
+            label: "Error acotado",
+            origen: "Si sale mal, se puede corregir y el daño es chico",
+            riesgo:
+              "Es el criterio que define cuánta autonomía podés darle. Puntaje bajo acá no descarta el proceso, pero obliga a más supervisión humana.",
+            nivel: "alerta",
+          },
+          {
+            label: "Poco criterio humano",
+            origen: "No hace falta juicio, contexto ni negociación",
+            riesgo:
+              "Cuanto más se apoye en la sensibilidad de una persona, peor candidato es — y más expuesta queda la sociedad si el sistema decide solo.",
+            nivel: "alerta",
+          },
+        ],
+      },
+      {
+        type: "note",
+        tone: "warn",
+        title: "Uno solo, y escribilo",
+        text: "Cuando lo elijas, escribí en una frase la decisión que va a tomar el sistema y cargala arriba, en “El proceso que vas a automatizar”. A partir de acá todos los prompts de la guía la usan. En el ejemplo: “Evaluar solicitudes de microcrédito de hasta $500.000 y decidir aprobar, rechazar o derivar a revisión humana”.",
+      },
+      {
+        type: "prompt",
+        title: "Prompt 3 — Puntuar y elegir",
+        intro: "Pegale abajo la lista de procesos que te devolvió el prompt anterior.",
+        template: `Actuá como consultor de automatización, con criterio conservador. Voy a pegarte una lista de procesos de mi empresa ({{actividad}}).
+
+Puntuá cada proceso del 1 al 5 en estos seis criterios:
+- Volumen (cuántas veces por mes)
+- Repetitividad (si se resuelve siempre igual)
+- Reglas explicitables (si se puede escribir cuándo es sí y cuándo es no)
+- Datos disponibles (si la información ya está en algún sistema)
+- Error acotado (si equivocarse es barato y reversible)
+- Poco criterio humano (si no hace falta juicio ni negociación)
+
+Devolvelo como tabla, con el total de cada proceso y ordenado de mayor a menor.
+
+Después de la tabla:
+
+1. RECOMENDADO: cuál automatizaría primero y por qué. Si el más puntuado tiene 2 o menos en "Error acotado", recomendá el segundo y explicá el motivo.
+2. LA DECISIÓN: para el recomendado, escribí en UNA frase la decisión que tomaría el sistema, empezando con un verbo, e incluyendo las opciones posibles.
+3. POR QUÉ NO LOS OTROS: en una línea por proceso descartado.
+
+Acá va mi lista de procesos:
+[PEGÁ ACÁ LA RESPUESTA DEL PROMPT ANTERIOR]`,
+        verificar: [
+          "Devolvió una tabla con los seis criterios puntuados y un total",
+          "El punto 2 tiene la decisión en UNA frase, empezando con un verbo y con las opciones",
+          "Explicó por qué descartó los otros, no sólo cuál eligió",
+        ],
+        correccion: `Necesito el punto 2 mejor formulado, porque es lo que uso en toda la guía de acá en adelante.
+
+Reescribí sólo ese punto con esta forma exacta, sin agregar nada más:
+
+"El sistema decide [verbo en infinitivo] ..., eligiendo entre: [opción 1] / [opción 2] / derivar a revisión humana."
+
+Que sea una sola frase y que las opciones sean una lista cerrada.`,
+      },
+      {
+        type: "crosslink",
+        hacia: "decision",
+        texto:
+          "Con el proceso elegido y la decisión escrita, ya se puede diseñar el agente que la va a ejecutar.",
+      },
+    ],
+  },
+
+  /* ═══════════════════ PARTE 3 — DISEÑAR ═══════════════════ */
+  {
+    id: "decision",
+    track: "disenar",
+    titulo: "Qué decide el agente",
+    corto: "La decisión",
+    bajada:
+      "Un agente no “hace tareas”: toma una decisión, muchas veces, con el mismo criterio. Acá se convierte el proceso que elegiste en una ficha que se puede construir.",
+    bloques: [
+      {
+        type: "prose",
+        text: "Antes de elegir herramientas o proveedores, tenés que poder completar esta frase sin titubear: “el sistema decide ____, entre estas opciones ____, mirando estos datos ____”. Si te sale, tenés un agente. Si no, todavía tenés una intención.",
+      },
+      {
+        type: "flow",
+        title: "La decisión, en Nexus Automatizada",
         nodos: [
           {
             label: "Entra una solicitud",
@@ -548,7 +587,7 @@ Devolvé el índice completo actualizado.`,
         type: "note",
         tone: "info",
         title: "La tercera opción es la más importante",
-        text: "“Derivar a revisión humana” es lo que convierte al Artículo 5 del estatuto en algo real. Un agente que sólo puede aprobar o rechazar no tiene por dónde escaparse cuando el caso es raro — y los casos raros existen siempre.",
+        text: "“Derivar a revisión humana” es lo que hace posible todo lo demás. Un agente que sólo puede aprobar o rechazar no tiene por dónde escaparse cuando el caso es raro — y los casos raros existen siempre. Esa opción también es la que después vuelve verdadera la cláusula de supervisión humana del estatuto.",
       },
       {
         type: "checklist",
@@ -559,45 +598,47 @@ Devolvé el índice completo actualizado.`,
           "Cuáles son las opciones posibles, listadas y cerradas",
           "Cuántas veces por día se toma esa decisión",
           "Cuánto cuesta equivocarse, en plata y en reputación",
-          "Qué pasa si el sistema no puede decidir",
+          "Qué pasa si al sistema le faltan datos para decidir",
         ],
       },
       {
         type: "prompt",
-        title: "Prompt 6 — Ficha de operación",
-        template: `Actuá como diseñador de sistemas automatizados. Te describo un negocio y necesito que aisles la decisión que va a tomar el agente.
+        title: "Prompt 4 — La ficha de operación",
+        template: `Actuá como diseñador de sistemas automatizados.
 
-Sociedad: {{nombre}}
+Empresa: {{nombre}}
 Actividad: {{actividad}}
-Sistema: {{sistema}}
+Decisión a automatizar: {{sistema}}
 
 Devolveme una ficha con exactamente estos campos:
 
-DECISIÓN: (una sola frase, empezando con un verbo)
-OPCIONES POSIBLES: (lista cerrada; incluí siempre una opción de derivación a revisión humana)
-FRECUENCIA ESTIMADA: (cuántas veces por día)
-COSTO DEL ERROR: (qué pasa si decide mal, separando el caso "aprobó y no debía" del caso "rechazó y debía aprobar")
-CASO SIN DECISIÓN: (qué hace el sistema cuando le faltan datos para decidir)
+DECISIÓN: una sola frase, empezando con un verbo.
+OPCIONES POSIBLES: lista cerrada. Incluí siempre una opción de derivación a revisión humana.
+FRECUENCIA ESTIMADA: cuántas veces por día.
+COSTO DEL ERROR: separá los dos casos.
+  - FALSO POSITIVO (actuó y no debía): consecuencia concreta, quién la sufre, cuánto cuesta.
+  - FALSO NEGATIVO (no actuó y debía): lo mismo.
+CASO SIN DECISIÓN: qué hace el sistema cuando le faltan datos.
 
-No agregues secciones que no pedí. Si algún campo no se puede completar con la información que te di, escribí "FALTA DEFINIR" y explicá qué necesitás saber.`,
+No agregues secciones que no pedí. Si algún campo no se puede completar con lo que te di, escribí "FALTA DEFINIR" y decime qué necesitás saber.`,
         verificar: [
           "La decisión está en una sola frase y empieza con un verbo",
           "Entre las opciones aparece la derivación a revisión humana",
-          "Separó los dos tipos de error (aprobar de más y rechazar de más)",
+          "Separó los dos tipos de error, que tienen consecuencias distintas",
         ],
-        correccion: `Te faltó separar los dos errores, que son muy distintos entre sí. Rehacé sólo el campo COSTO DEL ERROR con esta estructura:
+        correccion: `Te faltó separar los dos errores, y son muy distintos entre sí: uno le cuesta plata a la empresa, el otro le niega algo a una persona que lo merecía.
 
-FALSO POSITIVO (aprobó y no debía): consecuencia concreta, quién la sufre, cuánto cuesta.
-FALSO NEGATIVO (rechazó y debía aprobar): consecuencia concreta, quién la sufre, cuánto cuesta.
+Rehacé sólo el campo COSTO DEL ERROR con esta estructura, dejando el resto igual:
 
-Dejá el resto de la ficha como está.`,
+FALSO POSITIVO (actuó y no debía): consecuencia, quién la sufre, cuánto cuesta.
+FALSO NEGATIVO (no actuó y debía): consecuencia, quién la sufre, cuánto cuesta.`,
       },
     ],
   },
 
   {
     id: "entradas",
-    track: "tecnico",
+    track: "disenar",
     titulo: "Los datos de entrada",
     corto: "Entradas",
     bajada:
@@ -666,29 +707,25 @@ Dejá el resto de la ficha como está.`,
         type: "note",
         tone: "legal",
         title: "Por qué las dos últimas filas importan tanto",
-        text: "Ubicación y ortografía no son datos sensibles por sí mismos, pero funcionan como sustitutos de características que sí lo son. Un sistema que las usa puede producir un patrón discriminatorio sin que nadie lo haya decidido: nadie escribió “rechazar a los de ese barrio”, y sin embargo eso es lo que termina pasando. Como la sociedad responde con su patrimonio (Artículo 8), esto no se resuelve borrando la fila de la tabla: se resuelve documentándola, midiendo el efecto y pudiendo explicarlo. Es una conversación para tener con el abogado antes de salir a producción, no después del primer reclamo.",
-      },
-      {
-        type: "crosslink",
-        hacia: "responsabilidad",
-        texto: "Repasá el Artículo 8 para ver de dónde sale esta exigencia.",
+        text: "Ubicación y ortografía no son datos sensibles por sí mismos, pero funcionan como sustitutos de características que sí lo son. Un sistema que las usa puede producir un patrón discriminatorio sin que nadie lo haya decidido: nadie escribió “rechazar a los de ese barrio”, y sin embargo eso es lo que termina pasando. Como la sociedad responde con su patrimonio, esto no se resuelve borrando la fila de la tabla: se resuelve documentándola, midiendo el efecto y pudiendo explicarlo. Es una conversación para tener con el abogado antes de salir a producción, no después del primer reclamo.",
       },
       {
         type: "prompt",
-        title: "Prompt 7 — Auditoría de tus datos de entrada",
-        intro: "Este es el prompt que más veces vas a correr. Guardá la respuesta: va casi tal cual a la documentación técnica.",
-        template: `Actuá como auditor de datos. Mi sistema automatizado hace lo siguiente:
+        title: "Prompt 5 — Auditoría de tus datos de entrada",
+        intro:
+          "Este es el prompt que más veces vas a correr. Guardá la respuesta: va casi tal cual a la documentación técnica.",
+        template: `Actuá como auditor de datos.
 
-{{sistema}}
-Actividad de la sociedad: {{actividad}}
+Actividad de la empresa: {{actividad}}
+Decisión que toma el sistema: {{sistema}}
 
 Listá todos los datos de entrada que ese sistema necesita para decidir. Devolvelo como tabla con estas cuatro columnas:
 
 DATO | DE DÓNDE SALE | ¿DECLARADO O INFERIDO? | ¿QUÉ PERMITE INFERIR SOBRE LA PERSONA?
 
-Para la cuarta columna, respondé explícitamente por cada dato: ¿permite aproximar nivel socioeconómico, nivel educativo, edad, género, origen, estado de salud o creencias? Si la respuesta es sí, escribí "PROXY DE: ..." y explicá el mecanismo en una línea.
+Para la cuarta columna respondé explícitamente por cada dato: ¿permite aproximar nivel socioeconómico, nivel educativo, edad, género, origen, estado de salud o creencias? Si la respuesta es sí, escribí "PROXY DE: ..." y explicá el mecanismo en una línea.
 
-Después de la tabla, agregá dos secciones:
+Después de la tabla, dos secciones:
 - DATOS QUE ELIMINARÍA: cuáles sacarías y qué perdería el sistema si los sacás.
 - QUÉ PASA SI FALTA: para los tres datos más importantes, qué debería hacer el sistema si ese dato no está disponible.
 
@@ -698,9 +735,9 @@ No inventes datos que el sistema no necesita.`,
           "Al menos un dato quedó marcado como “PROXY DE: …”",
           "Están las dos secciones del final, no sólo la tabla",
         ],
-        correccion: `No marcaste ningún proxy, y es muy poco probable que no haya ninguno. Revisá tu tabla dato por dato y respondé explícitamente para cada uno:
+        correccion: `No marcaste ningún proxy, y es muy poco probable que no haya ninguno.
 
-"¿Este dato permite aproximar el nivel socioeconómico, educativo o de salud de la persona? SÍ/NO, y por qué."
+Revisá tu tabla dato por dato y respondé explícitamente para cada uno: "¿este dato permite aproximar el nivel socioeconómico, educativo o de salud de la persona? SÍ/NO, y por qué."
 
 Prestá especial atención a: ubicación, domicilio, código postal, dispositivo usado, horario de uso, forma de escribir, y cualquier dato de comportamiento. Devolvé la tabla corregida.`,
       },
@@ -709,7 +746,7 @@ Prestá especial atención a: ubicación, domicilio, código postal, dispositivo
 
   {
     id: "proceso",
-    track: "tecnico",
+    track: "disenar",
     titulo: "Qué hace con esos datos",
     corto: "Proceso",
     bajada:
@@ -758,12 +795,13 @@ Prestá especial atención a: ubicación, domicilio, código postal, dispositivo
       },
       {
         type: "prompt",
-        title: "Prompt 8 — Separar reglas de criterio",
-        template: `Actuá como arquitecto de sistemas. Mi agente hace esto:
+        title: "Prompt 6 — Separar reglas de criterio",
+        template: `Actuá como arquitecto de sistemas.
 
-{{sistema}}
+Decisión que toma el sistema: {{sistema}}
+Actividad de la empresa: {{actividad}}
 
-Separá su lógica en dos capas y devolvelas así:
+Separá su lógica en capas y devolvela así:
 
 REGLAS DURAS (se evalúan siempre, en código, antes que cualquier modelo):
 Numeralas. Cada una tiene que poder responderse con sí o no, sin ambigüedad, y decir qué pasa cuando no se cumple.
@@ -772,10 +810,10 @@ CRITERIO EVALUATIVO (lo que queda para el modelo):
 Qué señales evalúa y por qué no se pueden escribir como regla fija.
 
 UMBRAL DE DERIVACIÓN:
-En qué condiciones concretas el sistema NO debe decidir solo y tiene que derivar a una persona. Dame al menos tres condiciones.
+En qué condiciones concretas el sistema NO debe decidir solo. Dame al menos tres.
 
 MODO DEGRADADO:
-Qué hace el sistema si el modelo no responde o el servicio externo está caído.
+Qué hace el sistema si el modelo no responde o un servicio externo está caído.
 
 Al final, marcá qué reglas del criterio evaluativo se podrían convertir en reglas duras con un poco más de trabajo.`,
         verificar: [
@@ -783,14 +821,16 @@ Al final, marcá qué reglas del criterio evaluativo se podrían convertir en re
           "Hay al menos tres condiciones de derivación",
           "Contestó qué pasa si el modelo no está disponible",
         ],
-        correccion: `Algunas de tus "reglas duras" no son duras: usan palabras como "adecuado", "razonable", "suficiente" o "bajo riesgo", que no se pueden evaluar sin criterio. Reescribilas con números y condiciones exactas, o movelas al criterio evaluativo. Devolvé las dos listas corregidas.`,
+        correccion: `Algunas de tus "reglas duras" no son duras: usan palabras como "adecuado", "razonable", "suficiente" o "bajo riesgo", que no se pueden evaluar sin criterio.
+
+Reescribilas con números y condiciones exactas, o movelas al criterio evaluativo. Devolvé las dos listas corregidas.`,
       },
     ],
   },
 
   {
     id: "herramientas",
-    track: "tecnico",
+    track: "disenar",
     titulo: "Qué puede tocar el agente",
     corto: "Herramientas",
     bajada:
@@ -828,7 +868,7 @@ Al final, marcá qué reglas del criterio evaluativo se podrían convertir en re
             label: "Notificar a la persona",
             origen: "Envía el resultado por push o mail",
             riesgo:
-              "No se puede deshacer: un mensaje enviado por error ya fue leído. Conviene ejecutarla último.",
+              "No se puede deshacer: un mensaje enviado por error ya fue leído. Conviene ejecutarla última.",
             nivel: "atencion",
           },
           {
@@ -848,10 +888,11 @@ Al final, marcá qué reglas del criterio evaluativo se podrían convertir en re
       },
       {
         type: "prompt",
-        title: "Prompt 9 — Inventario de herramientas",
-        template: `Actuá como arquitecto de sistemas. Mi agente hace esto:
+        title: "Prompt 7 — Inventario de herramientas",
+        template: `Actuá como arquitecto de sistemas.
 
-{{sistema}}
+Decisión que toma el sistema: {{sistema}}
+Actividad de la empresa: {{actividad}}
 
 Listá todas las herramientas que necesita para ejecutar su trabajo. Devolvelo como tabla:
 
@@ -861,28 +902,29 @@ Después de la tabla:
 
 1. Ordená las herramientas de escritura de más reversible a menos reversible, y proponé el orden en que deberían ejecutarse.
 2. Para cada herramienta irreversible, proponé una condición previa que el sistema deba verificar antes de ejecutarla.
-3. Indicá cuáles de estas herramientas NO debería poder ejecutar el agente por su cuenta, y por qué.
+3. Indicá cuáles NO debería poder ejecutar el agente por su cuenta, y por qué.
 
 Distinguí bien entre "leer un dato" y "modificar el mundo".`,
         verificar: [
           "Cada herramienta está clasificada como lectura o escritura",
           "Las irreversibles tienen una condición previa propuesta",
-          "Hay al menos una herramienta que la IA recomendó no dejar en manos del agente",
+          "Hay al menos una herramienta que recomendó no dejar en manos del agente",
         ],
-        correccion: `Marcaste todas las herramientas como aptas para que el agente las ejecute solo. Revisá el criterio: en un sistema con efecto patrimonial casi siempre hay al menos una acción que conviene dejar detrás de una confirmación humana o de un tope automático.
+        correccion: `Marcaste todas las herramientas como aptas para que el agente las ejecute solo. En un sistema con efecto patrimonial casi siempre hay al menos una acción que conviene dejar detrás de una confirmación humana o de un tope automático.
 
 Volvé a responder el punto 3 y nombrá al menos una herramienta que restringirías, con el motivo.`,
       },
     ],
   },
 
+  /* ═══════════════════ PARTE 4 — RESPONDER ═══════════════════ */
   {
     id: "evidencia",
-    track: "tecnico",
+    track: "responder",
     titulo: "La salida y la evidencia",
     corto: "Evidencia",
     bajada:
-      "El agente no termina cuando decide: termina cuando deja registrado por qué decidió. Sin eso, el Artículo 8 no se puede defender.",
+      "El agente no termina cuando decide: termina cuando deja registrado por qué decidió. Sin eso, no hay defensa posible.",
     bloques: [
       {
         type: "prose",
@@ -891,7 +933,8 @@ Volvé a responder el punto 3 y nombrá al menos una herramienta que restringir�
       {
         type: "checklist",
         title: "El registro mínimo de cada decisión",
-        intro: "Ninguno de estos campos es opcional. Los cinco se guardan siempre, incluso cuando el sistema derivó en lugar de decidir.",
+        intro:
+          "Ninguno de estos campos es opcional. Los cinco se guardan siempre, incluso cuando el sistema derivó en lugar de decidir.",
         items: [
           "Qué decidió y en qué fecha y hora exacta",
           "Qué datos de entrada tenía a la vista en ese momento",
@@ -907,16 +950,12 @@ Volvé a responder el punto 3 y nombrá al menos una herramienta que restringir�
         text: "No son el mismo texto, y conviene tener los dos. El interno es técnico y detallado, para poder reconstruir la decisión. El externo es el que lee la persona, y tiene que ser comprensible y no revelar cómo evadir el sistema. Guardá ambos, vinculados al mismo caso.",
       },
       {
-        type: "crosslink",
-        hacia: "responsabilidad",
-        texto: "Este paso es la contracara técnica del Artículo 8 del estatuto.",
-      },
-      {
         type: "prompt",
-        title: "Prompt 10 — Estructura del registro",
-        template: `Actuá como responsable de auditoría. Mi sistema automatizado hace esto:
+        title: "Prompt 8 — Estructura del registro",
+        template: `Actuá como responsable de auditoría.
 
-{{sistema}}
+Decisión que toma el sistema: {{sistema}}
+Actividad de la empresa: {{actividad}}
 
 Diseñá la estructura del registro que debe quedar guardado por cada decisión, pensando en que dentro de dos años alguien va a reclamar por una decisión puntual y voy a tener que explicarla.
 
@@ -933,7 +972,7 @@ El registro tiene que permitir reconstruir la decisión sin acceso al sistema or
           "Distingue el motivo interno del motivo comunicado, con ejemplos de ambos",
           "Marcó qué campos contienen datos personales",
         ],
-        correccion: `Falta el campo más importante para una auditoría a futuro: la versión. Sin saber qué versión del sistema tomó la decisión, no se puede reconstruir nada, porque las reglas cambian con el tiempo.
+        correccion: `Falta el campo más importante para una auditoría a futuro: la versión. Sin saber qué versión del sistema tomó la decisión no se puede reconstruir nada, porque las reglas cambian con el tiempo.
 
 Agregá a la estructura los campos de versión del sistema, versión del modelo y fecha de la última modificación de reglas. Devolvé la estructura completa.`,
       },
@@ -942,15 +981,15 @@ Agregá a la estructura los campos de versión del sistema, versión del modelo 
 
   {
     id: "supervision",
-    track: "tecnico",
+    track: "responder",
     titulo: "La supervisión humana",
     corto: "Supervisión",
     bajada:
-      "El Artículo 5 del estatuto, convertido en algo que se puede mostrar: quién interviene, desde dónde y en cuánto tiempo.",
+      "Que haya una persona con facultad de intervenir, convertido en algo que se puede mostrar: quién, desde dónde y en cuánto tiempo.",
     bloques: [
       {
         type: "prose",
-        text: "“Supervisión humana con facultad de intervención” suena a declaración. Para el registro, y sobre todo para un reclamo, tiene que ser algo concreto: una persona con nombre, un lugar desde donde apretar el botón, y un tiempo máximo de respuesta.",
+        text: "“Supervisión humana con facultad de intervención” suena a declaración de principios. Para el registro, y sobre todo para un reclamo, tiene que ser algo concreto: una persona con nombre, un lugar desde donde apretar el botón, y un tiempo máximo de respuesta.",
       },
       {
         type: "fields",
@@ -988,27 +1027,22 @@ Agregá a la estructura los campos de versión del sistema, versión del modelo 
       {
         type: "checklist",
         title: "Para cerrar la documentación técnica",
-        intro: "Con estos puntos resueltos, el PDF del Paso 5 jurídico queda armado.",
+        intro: "Con estos puntos resueltos, tenés el documento que pide el trámite.",
         items: [
           "Hay una persona identificada por nivel de intervención, con nombre y rol",
           "El freno total se puede activar sin pedir autorización a nadie",
           "Cada intervención queda registrada igual que una decisión del agente",
-          "Está definido qué pasa con las solicitudes en curso cuando el sistema se frena",
+          "Está definido qué pasa con las operaciones en curso cuando el sistema se frena",
           "Alguien revisa periódicamente si aparecieron patrones de rechazo por zona o perfil",
         ],
       },
       {
-        type: "crosslink",
-        hacia: "inscripcion",
-        texto: "Volvé al trámite de inscripción para presentar todo junto.",
-      },
-      {
         type: "prompt",
-        title: "Prompt 11 — Protocolo de supervisión",
-        template: `Actuá como responsable de riesgo operativo. Mi sistema automatizado hace esto:
+        title: "Prompt 9 — Protocolo de supervisión",
+        template: `Actuá como responsable de riesgo operativo.
 
-{{sistema}}
-Sociedad: {{nombre}}
+Empresa: {{nombre}}
+Decisión que toma el sistema: {{sistema}}
 
 Escribí el protocolo de supervisión humana, pensado para adjuntar a la documentación de constitución de una Sociedad Automatizada. Tiene que cubrir:
 
@@ -1020,10 +1054,11 @@ Escribí el protocolo de supervisión humana, pensado para adjuntar a la documen
 Escribilo en lenguaje claro, para que lo entienda alguien sin formación técnica. Evitá el condicional: usá "el responsable activa", no "el responsable podría activar".`,
         verificar: [
           "El freno total no requiere autorización previa de nadie",
-          "Cada nivel tiene un tiempo máximo de respuesta, no un “a la brevedad”",
+          "Cada nivel tiene un tiempo máximo concreto, no un “a la brevedad”",
           "El punto 4 dice qué se mira concretamente en la revisión periódica",
         ],
         correccion: `El protocolo está escrito en condicional y con plazos vagos ("a la brevedad", "lo antes posible"). Reescribilo con:
+
 - Verbos en presente: "el responsable activa", no "podría activar".
 - Plazos en horas o días concretos para cada nivel.
 - Un nombre de rol por nivel, no "el equipo".
@@ -1032,17 +1067,173 @@ Devolvé el protocolo completo corregido.`,
       },
     ],
   },
+
+  /* ═══════════════════ EL TRÁMITE (apagado) ═══════════════════ */
+  {
+    id: "encuadre",
+    track: "juridico",
+    titulo: "¿Tu operación califica?",
+    corto: "Encuadre",
+    bajada:
+      "Antes de armar cualquier documento, respondé estas tres preguntas. Si tu negocio cumple las tres, calificás para este régimen.",
+    bloques: [
+      {
+        type: "checklist",
+        title: "Cuestionario de autoevaluación",
+        items: [
+          "El negocio opera todos los días sin que una persona intervenga constantemente",
+          "La actividad puede ejecutarse íntegramente mediante algoritmos o agentes de IA",
+          "No hacen falta empleados en relación de dependencia para operar",
+        ],
+        conclusion: "Calificás para constituir una Sociedad Automatizada",
+      },
+    ],
+  },
+
+  {
+    id: "denominacion",
+    track: "juridico",
+    titulo: "Denominación social",
+    corto: "Denominación",
+    bajada:
+      "Hay una sola condición obligatoria: el nombre debe incluir la palabra “Automatizada”.",
+    bloques: [
+      {
+        type: "screen",
+        url: "rpc.gob.ar › consulta-denominacion",
+        caption: "Pantalla ilustrativa del trámite de consulta de nombre.",
+        filas: [{ label: "Nexus Automatizada S.A.", estado: "Disponible", cargado: true }],
+        cta: "Reservar nombre",
+      },
+      {
+        type: "note",
+        tone: "warn",
+        title: "El sufijo es obligatorio, no opcional",
+        text: "Forma parte del requisito formal del Art. 14. Una denominación sin la palabra “Automatizada” se observa en el registro y frena todo el trámite.",
+      },
+    ],
+  },
+
+  {
+    id: "estatuto",
+    track: "juridico",
+    titulo: "El estatuto técnico",
+    corto: "Estatuto",
+    bajada:
+      "Acá se documenta cómo funciona el sistema: su carácter automatizado y quién lo supervisa.",
+    bloques: [
+      {
+        type: "clause",
+        docTitle: "ESTATUTO SOCIAL — NEXUS AUTOMATIZADA S.A.",
+        articulos: [
+          {
+            numero: "ARTÍCULO 4°",
+            partes: [
+              { text: "La sociedad reviste el carácter de " },
+              { text: "Sociedad Automatizada", strong: true },
+              {
+                text: " en los términos del artículo 14 de la Ley General de Sociedades, desarrollando su objeto social mediante ",
+              },
+              { text: "sistemas algorítmicos autónomos", strong: true },
+              {
+                text: ", sin requerir trabajadores en relación de dependencia para su operación ordinaria.",
+              },
+            ],
+          },
+          {
+            numero: "ARTÍCULO 5°",
+            partes: [
+              { text: "La sociedad contará en todo momento con una instancia de " },
+              { text: "supervisión humana", strong: true },
+              {
+                text: " con facultad de intervención sobre los sistemas automatizados que ejecutan su operación.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: "note",
+        tone: "legal",
+        title: "Cláusulas ilustrativas",
+        text: "Los textos de esta pantalla son ejemplos con fines didácticos. Requieren redacción y validación profesional antes de presentarse.",
+      },
+    ],
+  },
+
+  {
+    id: "responsabilidad",
+    track: "juridico",
+    titulo: "Quién responde y por qué",
+    corto: "Responsabilidad",
+    bajada:
+      "Esta cláusula define quién responde si algo sale mal: la propia sociedad, con su patrimonio.",
+    bloques: [
+      {
+        type: "clause",
+        docTitle: "ESTATUTO SOCIAL — NEXUS AUTOMATIZADA S.A. (continuación)",
+        articulos: [
+          {
+            numero: "ARTÍCULO 8°",
+            partes: [
+              { text: "La sociedad " },
+              { text: "responde con su patrimonio social", strong: true },
+              {
+                text: " frente a terceros por los daños que ocasionen los sistemas algorítmicos o agentes de inteligencia artificial utilizados en su operación, en un régimen equiparado al de la sociedad anónima.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: "crosslink",
+        hacia: "evidencia",
+        texto: "El paso de evidencia es lo que hace defendible a este artículo.",
+      },
+    ],
+  },
+
+  {
+    id: "inscripcion",
+    track: "juridico",
+    titulo: "La inscripción registral",
+    corto: "Inscripción",
+    bajada:
+      "El paso final es presentar todo ante el Registro Público, junto con la documentación técnica de respaldo.",
+    bloques: [
+      {
+        type: "screen",
+        url: "rpc.gob.ar › inscripcion-electronica",
+        caption: "Paso 3 de 4 — Carga de documentación.",
+        filas: [
+          { label: "Estatuto social.pdf", estado: "Cargado", cargado: true },
+          { label: "Declaración de carácter automatizado.pdf", estado: "Cargado", cargado: true },
+          { label: "Documentación técnica del sistema.pdf", estado: "Cargado", cargado: true },
+        ],
+        cta: "Enviar inscripción",
+      },
+      {
+        type: "note",
+        tone: "warn",
+        title: "El tercer archivo es el que frena los trámites",
+        text: "Los dos primeros los redacta el abogado. El tercero, no: es la descripción del sistema, y no existe un modelo estándar para copiar. Los pasos técnicos de esta guía están ordenados para que, al terminarlos, ese PDF quede armado.",
+      },
+    ],
+  },
 ];
 
-export const PASOS_POR_TRACK = (track: TrackId) =>
-  PASOS.filter((p) => p.track === track);
+/* ── Selectores ─────────────────────────────────────────────────────── */
 
-/** Los pasos que la guía muestra hoy: sólo los de pistas habilitadas. */
+export const PASOS_POR_TRACK = (track: TrackId) => PASOS.filter((p) => p.track === track);
+
+/** Los pasos que la guía muestra hoy: sólo los de partes habilitadas. */
 export const PASOS_VISIBLES = PASOS.filter((p) => trackHabilitado(p.track));
 
 export const pasoVisible = (id: string) => PASOS_VISIBLES.some((p) => p.id === id);
 
 export const getPaso = (id: string) => PASOS.find((p) => p.id === id);
+
+/* ── Plantillas de prompt ───────────────────────────────────────────── */
 
 /** Reemplaza {{campo}} por lo que cargó el lector, con fallback al ejemplo. */
 export function completarPlantilla(
@@ -1051,8 +1242,7 @@ export function completarPlantilla(
 ): string {
   return template.replace(/\{\{(\w+)\}\}/g, (match, campo: string) => {
     const key = campo as CampoDatos;
-    const valor = datos[key]?.trim();
-    return valor || EJEMPLO[key] || match;
+    return datos[key]?.trim() || EJEMPLO[key] || match;
   });
 }
 
@@ -1065,9 +1255,8 @@ export type SegmentoPrompt = {
 };
 
 /**
- * Igual que completarPlantilla, pero devuelve el texto partido en fragmentos
- * para poder resaltar en pantalla los valores que se inyectaron. Sirve para
- * que el lector vea que sus datos entraron de verdad en el prompt.
+ * Igual que completarPlantilla pero devuelve el texto partido en fragmentos,
+ * para poder mostrar en pantalla qué valores se inyectaron.
  */
 export function segmentarPlantilla(
   template: string,

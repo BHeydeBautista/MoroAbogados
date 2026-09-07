@@ -3,6 +3,7 @@
 import { Steps } from "@ark-ui/react/steps";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { TrackId } from "@/data/sociedadAutomatizada";
 
 /**
  * Stepper horizontal sobre @ark-ui/react (patrón de 21st.dev), repintado con
@@ -14,8 +15,8 @@ import { cn } from "@/lib/utils";
 export type PasoStepper = {
   id: string;
   label: string;
-  /** Pinta el marcador con el color de su pista. */
-  pista: "juridico" | "tecnico";
+  /** Pinta el marcador con el color de su parte. */
+  pista: TrackId;
   completo: boolean;
 };
 

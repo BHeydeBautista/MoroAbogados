@@ -131,8 +131,8 @@ export default function GuiaWizard() {
               {usandoEjemplo ? (
                 <>
                   Estás viendo el ejemplo de{" "}
-                  <strong className="font-medium text-[var(--tinta)]">{EJEMPLO.nombre}</strong>. Cargá
-                  los tuyos y los once prompts se completan solos.
+                  <strong className="font-medium text-[var(--tinta)]">{EJEMPLO.nombre}</strong>.
+                  Cargá lo que sepas de tu empresa — lo que falte lo vas definiendo en la guía.
                 </>
               ) : (
                 <>
@@ -159,8 +159,23 @@ export default function GuiaWizard() {
                   key={campo.id}
                   className={`flex flex-col gap-1.5 ${campo.multilinea ? "md:col-span-2" : ""}`}
                 >
-                  <label htmlFor={`campo-${campo.id}`} className="text-sm font-medium">
+                  <label
+                    htmlFor={`campo-${campo.id}`}
+                    className="flex flex-wrap items-center gap-2 text-sm font-medium"
+                  >
                     {campo.label}
+                    {/* Hay campos que el lector todavía no puede contestar al
+                        empezar: la guía misma se los hace descubrir. Decirlo
+                        acá evita que se trabe en un formulario vacío. */}
+                    {campo.seDefineEnPaso && (
+                      <button
+                        type="button"
+                        onClick={() => irA(campo.seDefineEnPaso!)}
+                        className="rounded-full bg-[var(--pista-tenue)] px-2 py-0.5 text-[11px] font-normal text-[var(--pista-hondo)] transition-colors hover:bg-[var(--pista)]/25"
+                      >
+                        ¿No sabés todavía? Lo definís acá →
+                      </button>
+                    )}
                   </label>
                   {campo.multilinea ? (
                     <textarea

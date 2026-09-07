@@ -1,12 +1,18 @@
 import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import GuiaWizard from "@/components/sociedad-automatizada/GuiaWizard";
 import TextReveal from "@/components/ui/text-reveal";
-import { EJEMPLO, PASOS, trackHabilitado } from "@/data/sociedadAutomatizada";
+import {
+  EJEMPLO,
+  PASOS,
+  TRACKS_VISIBLES,
+  trackHabilitado,
+  type TrackId,
+} from "@/data/sociedadAutomatizada";
 import "./guia.css";
 
 /* Serif para títulos (autoridad de documento), Plex Sans para lectura y
-   Plex Mono para prompts y etiquetas. El par Plex refuerza la doble
-   naturaleza de la guía: jurídica y técnica. */
+   Plex Mono para prompts y etiquetas. El par Plex mezcla lectura larga con
+   la técnica, que es de lo que trata la guía. */
 const serif = Source_Serif_4({
   subsets: ["latin"],
   weight: ["400", "600"],
@@ -40,8 +46,7 @@ const ESTADO = {
     "Contenido a futuro: asume la sanción del proyecto en su redacción actual. Sujeto a modificaciones legislativas.",
 };
 
-const cuenta = (track: "juridico" | "tecnico") =>
-  PASOS.filter((p) => p.track === track).length;
+const cuenta = (track: TrackId) => PASOS.filter((p) => p.track === track).length;
 
 export default function SociedadAutomatizadaPage() {
   return (
@@ -60,27 +65,43 @@ export default function SociedadAutomatizadaPage() {
           <TextReveal text="Cómo constituir una Sociedad Automatizada" />
         </h1>
 
-        <p className="mt-4 max-w-[62ch] text-[17px] leading-relaxed text-[var(--tinta-media)]">
-          {cuenta("tecnico")} pasos para armar la{" "}
-          <strong className="font-medium text-[var(--tinta)]">
-            documentación técnica del sistema
-          </strong>{" "}
-          que el trámite pide y ningún modelo de estatuto trae: qué decide el agente, con
-          qué datos, qué puede tocar y quién lo supervisa.
+        <p className="mt-4 max-w-[64ch] text-[17px] leading-relaxed text-[var(--tinta-media)]">
+          Empieza por lo básico —{" "}
+          <strong className="font-medium text-[var(--tinta)]">qué es este régimen</strong> y si le
+          sirve a tu negocio — sigue ayudándote a mirar los procesos que{" "}
+          <strong className="font-medium text-[var(--tinta)]">ya tenés</strong> y elegir cuál
+          automatizar, y recién entonces entra a diseñar y documentar el agente.
         </p>
 
-        {/* Estado y caso, en una sola línea de metadatos en vez de dos bloques. */}
-        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-[var(--linea)] pt-4 text-[13px] text-[var(--tinta-suave)]">
+        <p className="mt-3 max-w-[64ch] text-[15px] leading-relaxed text-[var(--tinta-suave)]">
+          No hace falta que tengas nada armado. Se puede arrancar sabiendo sólo a qué se
+          dedica tu empresa.
+        </p>
+
+        {/* Las partes, como recorrido: dice de dónde a dónde te lleva. */}
+        <ol className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-2 border-t border-[var(--linea)] pt-5">
+          {TRACKS_VISIBLES.map((t, i) => (
+            <li key={t.id} className="flex items-center gap-2">
+              {i > 0 && <span className="text-[var(--linea)]">→</span>}
+              <span className="rounded-lg bg-white px-3 py-1.5 text-[13px] shadow-[var(--sombra-baja)]">
+                <span className="mono mr-1.5 text-[11px] text-[var(--tinta-suave)]">{i + 1}</span>
+                {t.nombre}
+                <span className="mono tabular ml-2 text-[11px] text-[var(--tinta-suave)]">
+                  {cuenta(t.id)}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ol>
+
+        <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-[var(--tinta-suave)]">
           <span className="mono rounded-md bg-[var(--tinta)] px-2 py-0.5 text-[11px] font-medium text-[var(--oro)]">
             {ESTADO.version} · {ESTADO.fecha}
           </span>
-          <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-[var(--teal)]" />
-            {cuenta("tecnico")} pasos técnicos
-          </span>
           <span className="min-w-0 flex-1 truncate">
-            Ejemplo: <span className="text-[var(--tinta-media)]">{EJEMPLO.nombre}</span>, una
-            billetera que otorga microcréditos
+            Ejemplo que atraviesa la guía:{" "}
+            <span className="text-[var(--tinta-media)]">{EJEMPLO.nombre}</span>, una billetera
+            que ya opera y quiere automatizar sus microcréditos
           </span>
         </div>
 

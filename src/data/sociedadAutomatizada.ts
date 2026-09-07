@@ -242,7 +242,7 @@ export const PASOS: Paso[] = [
         type: "note",
         tone: "legal",
         title: "Esto todavía no es ley",
-        text: "El proyecto está en debate legislativo. Todo lo que sigue asume su redacción actual y puede cambiar. Nada de esto reemplaza la consulta con un abogado: la guía sirve para que llegues a esa consulta sabiendo qué preguntar y con la parte técnica ya pensada.",
+        text: "El proyecto está en debate legislativo. Todo lo que sigue asume su redacción actual y puede cambiar antes de la sanción. Esta guía se ocupa de la parte técnica: qué hace el sistema, con qué datos decide y quién lo controla.",
       },
     ],
   },
@@ -652,7 +652,7 @@ FALSO NEGATIVO (no actuó y debía): consecuencia, quién la sufre, cuánto cues
         type: "fields",
         title: "Datos de entrada de Nexus Automatizada",
         intro:
-          "Así se ve la tabla que va en la documentación técnica. La tercera columna es la que va a leer el abogado.",
+          "Así se ve la tabla que va en la documentación técnica. La tercera columna es la que más pesa si algún día hay que explicar una decisión.",
         columnas: ["Dato", "De dónde sale", "Qué permite inferir"],
         filas: [
           {
@@ -707,7 +707,7 @@ FALSO NEGATIVO (no actuó y debía): consecuencia, quién la sufre, cuánto cues
         type: "note",
         tone: "legal",
         title: "Por qué las dos últimas filas importan tanto",
-        text: "Ubicación y ortografía no son datos sensibles por sí mismos, pero funcionan como sustitutos de características que sí lo son. Un sistema que las usa puede producir un patrón discriminatorio sin que nadie lo haya decidido: nadie escribió “rechazar a los de ese barrio”, y sin embargo eso es lo que termina pasando. Como la sociedad responde con su patrimonio, esto no se resuelve borrando la fila de la tabla: se resuelve documentándola, midiendo el efecto y pudiendo explicarlo. Es una conversación para tener con el abogado antes de salir a producción, no después del primer reclamo.",
+        text: "Ubicación y ortografía no son datos sensibles por sí mismos, pero funcionan como sustitutos de características que sí lo son. Un sistema que las usa puede producir un patrón discriminatorio sin que nadie lo haya decidido: nadie escribió “rechazar a los de ese barrio”, y sin embargo eso es lo que termina pasando. Como la sociedad responde con su patrimonio, esto no se resuelve borrando la fila de la tabla: se resuelve documentándola, midiendo el efecto y pudiendo explicarlo. Y conviene resolverlo antes de salir a producción, no después del primer reclamo.",
       },
       {
         type: "prompt",
@@ -962,7 +962,7 @@ Diseñá la estructura del registro que debe quedar guardado por cada decisión,
 Devolveme:
 
 1. La lista de campos a guardar, con el tipo de dato de cada uno y por qué hace falta.
-2. Cuáles de esos campos contienen datos personales y por lo tanto tienen un plazo de conservación a definir con el abogado.
+2. Cuáles de esos campos contienen datos personales y por lo tanto necesitan un plazo de conservación definido.
 3. Un ejemplo completo del registro de una decisión rechazada, con datos ficticios realistas.
 4. La diferencia entre el motivo interno (para auditoría) y el motivo comunicado a la persona, con un ejemplo de cada uno para el mismo caso.
 
@@ -1156,7 +1156,7 @@ Devolvé el protocolo completo corregido.`,
         type: "note",
         tone: "legal",
         title: "Cláusulas ilustrativas",
-        text: "Los textos de esta pantalla son ejemplos con fines didácticos. Requieren redacción y validación profesional antes de presentarse.",
+        text: "Los textos de esta pantalla son ejemplos con fines didácticos. La redacción definitiva se ajusta a cada caso concreto.",
       },
     ],
   },
@@ -1216,7 +1216,7 @@ Devolvé el protocolo completo corregido.`,
         type: "note",
         tone: "warn",
         title: "El tercer archivo es el que frena los trámites",
-        text: "Los dos primeros los redacta el abogado. El tercero, no: es la descripción del sistema, y no existe un modelo estándar para copiar. Los pasos técnicos de esta guía están ordenados para que, al terminarlos, ese PDF quede armado.",
+        text: "Los dos primeros son documentos societarios estándar. El tercero no lo es: es la descripción del sistema, y no existe un modelo para copiar. Los pasos técnicos de esta guía están ordenados para que, al terminarlos, ese PDF quede armado.",
       },
     ],
   },

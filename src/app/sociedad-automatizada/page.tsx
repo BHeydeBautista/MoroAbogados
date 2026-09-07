@@ -112,8 +112,8 @@ export default function SociedadAutomatizadaPage() {
           <p className="mt-4 max-w-[74ch] rounded-xl bg-[var(--atencion)]/8 px-4 py-3 text-[13px] leading-relaxed text-[#7a5218] shadow-[inset_0_0_0_1px_color-mix(in_srgb,var(--atencion)_20%,transparent)]">
             <strong className="font-semibold">Los pasos jurídicos todavía no están
             publicados.</strong>{" "}
-            Las cláusulas de estatuto, el encuadre y el trámite de inscripción están en
-            revisión profesional y se suman en una próxima versión de esta guía.
+            Las cláusulas de estatuto, el encuadre y el trámite de inscripción se suman
+            en una próxima versión de esta guía.
           </p>
         )}
 
@@ -126,11 +126,14 @@ export default function SociedadAutomatizadaPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <GuiaWizard />
 
+        {/* Descargo mínimo. Se deja sólo la frase que corresponde a una
+            publicación de un estudio jurídico; el resto se sacó porque se
+            repetía a lo largo de la guía y porque hoy no hay cláusulas en
+            pantalla a las que referirse. */}
         <footer className="mt-20 border-t border-[var(--linea)] pt-8">
           <p className="max-w-[70ch] text-sm leading-relaxed text-[var(--tinta-suave)]">
-            Documento elaborado con fines informativos y de discusión profesional. Las
-            cláusulas y pantallas son ilustrativas y requieren redacción y validación
-            profesional. No constituye asesoramiento legal.
+            Documento elaborado con fines informativos. Las pantallas de trámite que
+            aparecen en la guía son ilustrativas. No constituye asesoramiento legal.
           </p>
         </footer>
       </div>

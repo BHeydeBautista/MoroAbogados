@@ -13,7 +13,7 @@ import {
 const NIVEL: Record<Riesgo, { color: string; label: string }> = {
   ok: { color: "var(--ok)", label: "Sin observaciones" },
   atencion: { color: "var(--atencion)", label: "Requiere atención" },
-  alerta: { color: "var(--alerta)", label: "Consultar al abogado" },
+  alerta: { color: "var(--alerta)", label: "Riesgo alto" },
 };
 
 const TONO = {

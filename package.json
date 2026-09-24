@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "guia:on": "node scripts/guia-visibilidad.mjs on",
+    "guia:off": "node scripts/guia-visibilidad.mjs off",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import { IBM_Plex_Mono, IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import GuiaWizard from "@/components/sociedad-automatizada/GuiaWizard";
 import TextReveal from "@/components/ui/text-reveal";
@@ -50,11 +49,6 @@ const ESTADO = {
 const cuenta = (track: TrackId) => PASOS.filter((p) => p.track === track).length;
 
 export default function SociedadAutomatizadaPage() {
-  /* La guia todavia no se publica. Sin GUIA_SOCIEDAD_VISIBLE=1 la ruta
-     devuelve 404, asi que no se llega ni conociendo la URL.
-     Para trabajarla en local: GUIA_SOCIEDAD_VISIBLE=1 en .env.local */
-  if (process.env.GUIA_SOCIEDAD_VISIBLE !== "1") notFound();
-
   return (
     <main
       className={`guia ${serif.variable} ${sans.variable} ${mono.variable} min-h-screen pb-24`}

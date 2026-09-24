@@ -51,6 +51,9 @@ export const clients: Client[] = [
   { name: "Göte s.a.", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770734922/gote_yrfkg7.jpg" },
   { name: "Alejandro Lindt e Hijo", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770734918/alejandro_lindt_drqzd1.jpg" },
   { name: "Leffler Dietz", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1770738632/leffler-dier_huswcz.jpg" },
+  // El PNG original trae el damero de transparencia bakeado (#fff/#eee alternados).
+  // e_replace_color lo aplana a blanco sin tener que resubir el asset.
+  { name: "KPMG", category: "Servicios y Otros", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/e_replace_color:ffffff:25:eeeeee/f_auto,q_auto/v1790215445/KPMG_tk85u0.png", featured: true },
 
   // ——— BANCOS Y FINANZAS ———
   { name: "Banco Finansur S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919748/Banco_Finansur_S.A._aa1zay.jpg" },

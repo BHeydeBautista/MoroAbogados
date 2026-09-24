@@ -93,7 +93,7 @@ export default function InstagramPosts({
                 />
 
                 {/* GRADIENTE HOVER */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
                 {/* TEXTO EN HOVER */}
                 <div className="absolute left-0 bottom-0 p-3 w-full opacity-0 group-hover:opacity-100 transition-opacity duration-200">

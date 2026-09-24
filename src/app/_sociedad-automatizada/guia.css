@@ -1,0 +1,307 @@
+/**
+ * Sistema visual de la Guía Sociedad Automatizada.
+ *
+ * Alcance: todo cuelga de .guia, así que no toca el resto del sitio.
+ *
+ * Regla de movimiento: ninguna animación puede esconder contenido. Las
+ * entradas van dentro de `prefers-reduced-motion: no-preference`, de modo que
+ * el estado por defecto siempre es visible. Si el navegador no anima —pestaña
+ * en segundo plano, ahorro de energía— el contenido igual se lee.
+ */
+
+.guia {
+  --tinta: #0f1c2e;
+  --tinta-media: #46566b;
+  --tinta-suave: #6b7a8d;
+
+  --papel: #f6f7f9;
+  --papel-alto: #ffffff;
+  --linea: #e3e7ec;
+  --linea-suave: #eef1f4;
+
+  --oro: #d4a75d;
+  --oro-hondo: #a97e33;
+  --teal: #2a6b7c;
+  --teal-hondo: #1d4d5a;
+
+  --ok: #2f6b4f;
+  --atencion: #b4762a;
+  --alerta: #a3342b;
+
+  --sombra-baja: 0 1px 2px rgb(15 28 46 / 0.04), 0 1px 3px rgb(15 28 46 / 0.06);
+  --sombra-media: 0 2px 4px rgb(15 28 46 / 0.04), 0 8px 24px rgb(15 28 46 / 0.07);
+  --sombra-alta: 0 4px 8px rgb(15 28 46 / 0.05), 0 16px 48px rgb(15 28 46 / 0.11);
+
+  font-family: var(--fuente-sans), ui-sans-serif, system-ui, sans-serif;
+  color: var(--tinta);
+  background: var(--papel);
+}
+
+.guia :is(h1, h2, h3) {
+  font-family: var(--fuente-serif), Georgia, "Times New Roman", serif;
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+}
+
+.guia .mono {
+  font-family: var(--fuente-mono), ui-monospace, "Cascadia Code", monospace;
+  font-feature-settings: "calt" 0;
+}
+
+/* Etiquetas de sección: versalitas espaciadas. */
+.guia .eyebrow {
+  font-family: var(--fuente-mono), ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.guia .tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Tokens por pista ──────────────────────────────────────────────── */
+
+.pista-juridico {
+  --pista: var(--oro);
+  --pista-hondo: var(--oro-hondo);
+  --pista-tenue: #d4a75d1f;
+}
+
+.pista-tecnico {
+  --pista: var(--teal);
+  --pista-hondo: var(--teal-hondo);
+  --pista-tenue: #2a6b7c1a;
+}
+
+/* ── Riel de pasos ─────────────────────────────────────────────────── */
+
+.riel-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 9px 12px 9px 10px;
+  border-radius: 10px;
+  text-align: left;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.riel-item:hover {
+  background: #0f1c2e0a;
+}
+
+.riel-item[aria-current="step"] {
+  background: var(--tinta);
+  box-shadow: var(--sombra-media);
+}
+
+/* Conector vertical entre marcadores.
+   El ítem mide 44px (26 de marcador + 9 de padding arriba y abajo), así que
+   el borde inferior del marcador anterior cae en -9px y el superior de este
+   en 9px: el conector tiene que cubrir exactamente ese tramo. */
+.riel-item::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: -9px;
+  width: 2px;
+  height: 18px;
+  background: var(--linea);
+  transition: background-color 300ms ease;
+}
+
+.riel-item:first-child::before {
+  display: none;
+}
+
+/* Se rellena cuando el paso anterior quedó completo. */
+.riel-item[data-previo-hecho="si"]::before {
+  background: var(--pista);
+}
+
+.riel-marca {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1.5px solid var(--linea);
+  background: var(--papel-alto);
+  color: var(--tinta-suave);
+  font-size: 11px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: background-color 200ms ease, border-color 200ms ease,
+    color 200ms ease, transform 200ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.riel-item[data-hecho="si"] .riel-marca {
+  background: var(--pista);
+  border-color: var(--pista);
+  color: var(--tinta);
+}
+
+.riel-item[aria-current="step"] .riel-marca {
+  border-color: var(--pista);
+  background: transparent;
+  color: #fff;
+  transform: scale(1.06);
+}
+
+.riel-item[aria-current="step"][data-hecho="si"] .riel-marca {
+  background: var(--pista);
+  color: var(--tinta);
+}
+
+/* ── Barra de progreso ─────────────────────────────────────────────── */
+
+.progreso-pista {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--linea);
+  overflow: hidden;
+}
+
+.progreso-relleno {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--pista, var(--oro));
+  transition: width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Revelado de títulos ───────────────────────────────────────────── */
+
+.revelado-palabra {
+  display: inline-block;
+  /* Sin will-change: son pocas palabras y una sola vez; reservar capas de
+     composición acá cuesta más de lo que rinde. */
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .revelado .revelado-palabra {
+    animation: asentar 780ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* El desenfoque hace el trabajo: la palabra llega "sin resolver" y se
+     define. La subida es mínima a propósito — 0.3em ya se lee como peso,
+     más que eso se lee como rebote. */
+  @keyframes asentar {
+    from {
+      opacity: 0;
+      transform: translateY(0.3em);
+      filter: blur(9px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: blur(0);
+    }
+  }
+}
+
+/* ── Entrada del contenido del paso ────────────────────────────────── */
+/* Fuera del media query no hay animación: el contenido nace visible.   */
+
+@media (prefers-reduced-motion: no-preference) {
+  .paso-entra > * {
+    animation: subir 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .paso-entra > *:nth-child(1) { animation-delay: 0ms; }
+  .paso-entra > *:nth-child(2) { animation-delay: 45ms; }
+  .paso-entra > *:nth-child(3) { animation-delay: 90ms; }
+  .paso-entra > *:nth-child(4) { animation-delay: 135ms; }
+  .paso-entra > *:nth-child(5) { animation-delay: 165ms; }
+  .paso-entra > *:nth-child(n + 6) { animation-delay: 190ms; }
+
+  @keyframes subir {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 10px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ── Tildes ────────────────────────────────────────────────────────── */
+
+.tilde {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: 7px;
+  border: 1.5px solid var(--linea);
+  background: var(--papel-alto);
+  color: transparent;
+  transition: background-color 170ms ease, border-color 170ms ease,
+    color 170ms ease, transform 220ms cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+
+.item-tilde[aria-pressed="true"] .tilde {
+  background: var(--pista, var(--oro));
+  border-color: var(--pista, var(--oro));
+  color: var(--tinta);
+  transform: scale(1.08);
+}
+
+.item-tilde {
+  transition: background-color 170ms ease, border-color 170ms ease;
+}
+
+.item-tilde:hover .tilde {
+  border-color: var(--pista, var(--oro));
+}
+
+/* ── Prompt ────────────────────────────────────────────────────────── */
+
+.prompt-cuerpo {
+  background:
+    radial-gradient(120% 100% at 0% 0%, #1b3350 0%, transparent 60%),
+    #0f1c2e;
+  color: #d9e0e9;
+}
+
+/* Los valores que salieron de los datos del lector, resaltados dentro
+   del prompt: hace visible que el generador realmente los inyectó. */
+.prompt-var {
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin: 0 -1px;
+  background: #d4a75d24;
+  color: #f0d5a4;
+  box-shadow: inset 0 0 0 1px #d4a75d40;
+}
+
+/* ── Colapso sin JS de altura ──────────────────────────────────────── */
+
+.colapso {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.colapso[data-abierto="si"] {
+  grid-template-rows: 1fr;
+}
+
+.colapso > div {
+  overflow: hidden;
+}
+
+/* ── Foco visible y consistente ────────────────────────────────────── */
+
+.guia :is(button, a, input, textarea):focus-visible {
+  outline: 2px solid var(--pista, var(--oro));
+  outline-offset: 2px;
+  border-radius: 8px;
+}

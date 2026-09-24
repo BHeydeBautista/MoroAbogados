@@ -73,7 +73,7 @@ export default function ReferenciasPage() {
                       className="object-cover group-hover:scale-[1.04] transition-transform duration-500"
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0d2040] via-[#0F1C2E] to-[#071224]">
+                    <div className="absolute inset-0 bg-linear-to-br from-[#0d2040] via-[#0F1C2E] to-[#071224]">
                       {/* decorative rings for BA */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-30">
                         <div className="w-56 h-56 rounded-full border border-[#D4A75D]/15" />
@@ -83,7 +83,7 @@ export default function ReferenciasPage() {
                   )}
 
                   {/* Dark gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-black/10" />
 
                   {/* Number watermark */}
                   <span className="absolute top-5 right-5 text-7xl font-serif font-bold text-white/[0.06] leading-none select-none">

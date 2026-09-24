@@ -18,7 +18,7 @@ export default function NovedadesPage() {
   }));
 
   return (
-    <main className="bg-gradient-to-b from-white to-white/95 py-24 px-4 sm:px-6 lg:px-24 text-black">
+    <main className="bg-linear-to-b from-white to-white/95 py-24 px-4 sm:px-6 lg:px-24 text-black">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[#0F1C2E]">

@@ -1,7 +1,7 @@
 export const navbarStyles = {
   navBg: (isDark: boolean) =>
     isDark
-      ? "bg-gradient-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40 backdrop-blur-md shadow-none"
+      ? "bg-linear-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40 backdrop-blur-md shadow-none"
       : "bg-white shadow-md transition-all duration-300",
 
   navItem: (isDark: boolean) =>
@@ -31,12 +31,12 @@ export const navbarStyles = {
 
   mobileNav: (isDark: boolean) =>
     isDark
-      ? "border-[#D4A75D]/20 bg-gradient-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40"
+      ? "border-[#D4A75D]/20 bg-linear-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40"
       : "border-gray-200 bg-white",
 
   mobileBorder: (isDark: boolean) =>
     isDark
-      ? "border-[#D4A75D]/20 bg-gradient-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40"
+      ? "border-[#D4A75D]/20 bg-linear-to-b from-[#0F1C2E]/50 to-[#0F1C2E]/40"
       : "border-gray-200 bg-white",
 
   langButton: (isDark: boolean, isActive: boolean) => {

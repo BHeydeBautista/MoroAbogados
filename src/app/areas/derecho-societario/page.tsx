@@ -35,7 +35,7 @@ export default function DerechoSocietarioPage() {
   }, [activeTab]);
 
   return (
-    <main className="bg-gradient-to-b from-white to-gray-50 text-neutral-900 min-h-screen pt-20">
+    <main className="bg-linear-to-b from-white to-gray-50 text-neutral-900 min-h-screen pt-20">
       {/* Tabs */}
       <AreaTabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />
 

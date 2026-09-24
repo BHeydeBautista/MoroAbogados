@@ -34,7 +34,7 @@ export default function ProvincePageClient({ province }: { province: Province })
           />
         ) : (
           // Buenos Aires — sin imagen: fondo con anillos decorativos
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0d2040] via-[#0F1C2E] to-[#071224]">
+          <div className="absolute inset-0 bg-linear-to-br from-[#0d2040] via-[#0F1C2E] to-[#071224]">
             <div className="absolute inset-0 flex items-center justify-center opacity-20">
               <div className="w-96 h-96 rounded-full border border-[#D4A75D]/20" />
               <div className="w-64 h-64 rounded-full border border-[#D4A75D]/30 absolute" />
@@ -44,7 +44,7 @@ export default function ProvincePageClient({ province }: { province: Province })
         )}
 
         {/* Overlay — más pronunciado en el fondo para legibilidad del texto */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#071224]/30 via-[#071224]/45 to-[#071224]" />
+        <div className="absolute inset-0 bg-linear-to-b from-[#071224]/30 via-[#071224]/45 to-[#071224]" />
 
         {/* Hero content */}
         <div className="absolute inset-0 flex flex-col justify-between max-w-5xl mx-auto px-6 py-8">
@@ -92,7 +92,7 @@ export default function ProvincePageClient({ province }: { province: Province })
               Oficina propia
             </span>
           )}
-          <div className="flex-1 h-px bg-gradient-to-r from-[#D4A75D]/30 to-transparent" />
+          <div className="flex-1 h-px bg-linear-to-r from-[#D4A75D]/30 to-transparent" />
         </div>
 
         {/* Reference list or placeholder */}

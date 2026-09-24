@@ -63,7 +63,7 @@ export default function ClientsSection() {
   const topClients = clients.filter((c) => c.featured && c.logo);
 
   return (
-    <section className="pt-40 pb-24 bg-gradient-to-b from-[#0b1c2c] to-[#112e45] text-white">
+    <section className="pt-40 pb-24 bg-linear-to-b from-[#0b1c2c] to-[#112e45] text-white">
       <div className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}

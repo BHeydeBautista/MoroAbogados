@@ -48,7 +48,7 @@ export default function Timeline() {
     setIndex((prev) => (prev === 0 ? events.length - 1 : prev - 1));
 
   return (
-    <div className="relative py-20 px-6 bg-gradient-to-b from-[#0A1320] to-[#071224] overflow-hidden">
+    <div className="relative py-20 px-6 bg-linear-to-b from-[#0A1320] to-[#071224] overflow-hidden">
 
       {/* Fondo glow */}
       <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_50%_20%,rgba(212,167,93,0.18),transparent_70%)]" />

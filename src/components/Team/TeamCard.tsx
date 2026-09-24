@@ -68,8 +68,8 @@ export default function TeamCard({
         viewport={{ once: true }}
         className={`w-full rounded-xl overflow-hidden border border-white/6 shadow-lg transition-all duration-300 ${
           hasImage
-            ? "bg-gradient-to-b from-[#071224] to-[#0B1624]"
-            : "bg-gradient-to-b from-white/5 to-white/3"
+            ? "bg-linear-to-b from-[#071224] to-[#0B1624]"
+            : "bg-linear-to-b from-white/5 to-white/3"
         }`}
       >
         <div className={mediaClass}>
@@ -79,7 +79,7 @@ export default function TeamCard({
                 <div
                   className={`${
                     compact ? "w-32 h-32" : "w-44 h-44"
-                  } rounded-full bg-gradient-to-t from-[#2a1620] via-[#0f1012] to-transparent opacity-30 blur-2xl`}
+                  } rounded-full bg-linear-to-t from-[#2a1620] via-[#0f1012] to-transparent opacity-30 blur-2xl`}
                 />
               </div>
 

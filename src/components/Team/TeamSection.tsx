@@ -97,7 +97,7 @@ export default function TeamSection() {
                       }`}
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center rounded-full bg-gradient-to-br from-[#D4A75D]/15 via-[#0f1c2e] to-[#071224]">
+                    <div className="w-full h-full flex items-center justify-center rounded-full bg-linear-to-br from-[#D4A75D]/15 via-[#0f1c2e] to-[#071224]">
                       <span
                         className="text-2xl sm:text-3xl font-serif font-bold tracking-widest select-none"
                         style={{
@@ -222,7 +222,7 @@ export default function TeamSection() {
                   />
 
                   <div
-                    className={`absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center transition-opacity duration-300 ${
+                    className={`absolute inset-0 bg-linear-to-t from-black/60 via-black/30 to-transparent flex items-center justify-center transition-opacity duration-300 ${
                       isActive
                         ? "opacity-100 pointer-events-auto"
                         : "opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto"

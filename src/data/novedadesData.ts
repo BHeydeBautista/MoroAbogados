@@ -47,6 +47,23 @@ export type Novedad = NovedadNews | NovedadDocument;
 export const NOVEDADES: Novedad[] = [
   {
     kind: "document",
+    slug: "resolucion-arca-5902-2026",
+    title: "Resolución General ARCA 5902/2026 - Diferimiento de la caracterización como \"Pequeño Contribuyente\" (RG 5.321)",
+    excerpt:
+      "ARCA difiere excepcionalmente al 23 de octubre de 2026 el proceso sistémico de caracterización como \"Pequeño Contribuyente\" del régimen de facilidades de pago de la RG 5.321, previsto originalmente para septiembre, en virtud de la prórroga al 13 de octubre para presentar la DDJJ de Ganancias del período fiscal 2025.",
+    date: "2026-09-29",
+    metadata: {
+      jurisdiccion: "Nacional",
+      tipoNorma: "Resolución General",
+      numeroNorma: "5902/2026",
+      emisor: "ARCA - Agencia de Recaudación y Control Aduanero",
+      fechaSancion: "28-09-2026",
+      publicacionBO: "29-09-2026",
+    },
+    contentTextPath: "docs/novedades/Diferimiento-Caracterizacion-Pequeno-Contribuyente-RG-5902-2026.txt",
+  },
+  {
+    kind: "document",
     slug: "decreto-612-2026",
     title: "Decreto 612/2026 - Modificación del Decreto N° 199/1988 (Base de Cálculo de Aportes y Contribuciones Sindicales)",
     excerpt:

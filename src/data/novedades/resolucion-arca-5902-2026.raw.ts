@@ -1,0 +1,29 @@
+export const RESOLUCION_ARCA_5902_2026_RAW = `Resolución General 5902/2026
+
+CONSIDERANDO:
+
+Que mediante la Resolución General N° 5.321 y sus modificatorias, se estableció un régimen de facilidades de pago de carácter permanente destinado a la regularización de determinadas obligaciones impositivas, aduaneras y de los recursos de la seguridad social, contemplando distintas condiciones de adhesión según el tipo de contribuyente de que se trate.
+
+Que, en particular, el inciso a) del artículo 4° de la citada norma dispuso los parámetros para la identificación de los sujetos que revisten la calidad de "Pequeños Contribuyentes", cuya determinación se efectúa a través de un proceso sistémico de caracterización que se realiza el anteúltimo día hábil del mes de septiembre de cada año y que considera, entre otros datos, la información proveniente de la declaración jurada del impuesto a las ganancias correspondiente al período fiscal anterior al año en que se lleva a cabo dicho proceso.
+
+Que, por otra parte, por medio de la Resolución General N° 5.898 se extendió, hasta el 13 de octubre de 2026, el plazo para que las personas humanas y sucesiones indivisas comprendidas en la Resolución General N° 5.692, su modificatoria y sus complementarias, presenten la declaración jurada del impuesto a las ganancias del período fiscal 2025.
+
+Que, en virtud de ello, resulta pertinente diferir, con carácter excepcional, la ejecución del proceso sistémico correspondiente al año 2026, a fin de contar con la información necesaria para efectuar, de corresponder, la caracterización de cada sujeto como "Pequeño Contribuyente".
+
+Que han tomado la intervención que les compete la Dirección de Legislación y las Subdirecciones Generales de Asuntos Jurídicos, Recaudación y Sistemas y Telecomunicaciones.
+
+Que la presente se dicta en ejercicio de las facultades conferidas por el artículo 7° del Decreto N° 618 del 10 de julio de 1997, sus modificatorios y sus complementarios, por el Decreto N° 953 del 24 de octubre de 2024 y por el artículo 8° del Decreto N° 13 del 6 de enero de 2025 y su modificatorio.
+
+Por ello,
+
+EL DIRECTOR EJECUTIVO DE LA AGENCIA DE RECAUDACIÓN Y CONTROL ADUANERO
+
+RESUELVE:
+
+ARTÍCULO 1 [arriba] .- Diferir, con carácter excepcional, al día 23 de octubre de 2026, la ejecución del proceso sistémico de caracterización como "Pequeño Contribuyente" en los términos del inciso a) del artículo 4° de la Resolución General N° 5.321 y sus modificatorias, cuya ejecución se encontraba originalmente prevista para el mes de septiembre de 2026.
+
+ARTÍCULO 2 [arriba] .- La presente resolución general entrará en vigencia el día de su publicación en el Boletín Oficial.
+
+ARTÍCULO 3 [arriba] .- Comuníquese, dese a la DIRECCIÓN NACIONAL DEL REGISTRO OFICIAL para su publicación en el Boletín Oficial y archívese.
+
+Andres Edgardo Vazquez`;

@@ -520,10 +520,12 @@ PASOS_VISIBLES.forEach((paso, idx) => {
       fontFace: SANS, fontSize: 16, color: "AAB6C4", lineSpacingMultiple: 1.3,
     }
   );
-  s.addText("moroabogados.com.ar/sociedad-automatizada", {
+  // Sin URL: la guia todavia no esta publicada. Anunciar una direccion que
+  // no existe en un documento que ve el estudio es peor que no poner nada.
+  s.addText("Versión interactiva en preparación", {
     x: M, y: 4.8, w: 9, h: 0.45,
     isTextBox: true, margin: 0,
-    fontFace: MONO, fontSize: 16, color: ORO,
+    fontFace: MONO, fontSize: 15, color: ORO,
   });
   s.addText(
     "Documento elaborado con fines informativos. Las pantallas de trámite que aparecen en la guía son ilustrativas. No constituye asesoramiento legal.",

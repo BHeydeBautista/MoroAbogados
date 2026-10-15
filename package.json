@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "guia:on": "node scripts/guia-visibilidad.mjs on",
-    "guia:off": "node scripts/guia-visibilidad.mjs off",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export"
+    "export": "next export",
+    "deck": "tsx scripts/deck-guia.ts"
   },
   "dependencies": {
     "@ark-ui/react": "^5.39.1",
@@ -44,6 +43,7 @@
     "pptxgenjs": "^4.0.1",
     "shadcn": "^4.21.5",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   },
   "overrides": {

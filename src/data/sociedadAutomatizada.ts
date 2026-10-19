@@ -128,17 +128,21 @@ export const trackHabilitado = (id: TrackId) =>
   TRACKS.find((t) => t.id === id)?.habilitada ?? false;
 
 /**
- * Caso que atraviesa toda la guía.
+ * Caso que atraviesa toda la guía: una holding que arma sociedades
+ * subsidiarias de las que ella misma es socia.
  *
- * Importante que sea una empresa que YA existe y ya opera a mano: la guía
- * empieza mirando procesos existentes, no partiendo de cero.
+ * Dos cosas lo hacen buen ejemplo. Primero, es una empresa que YA existe y ya
+ * hace esto a mano, así que la guía puede empezar mirando un proceso real en
+ * lugar de partir de cero. Segundo, la sociedad trabaja para sí misma: no hay
+ * clientes externos, con lo cual el agente no redacta documentos para terceros
+ * y queda fuera del terreno del ejercicio profesional.
  */
 export const EJEMPLO = {
-  nombre: "Nexus Automatizada S.A.",
-  actividad: "Billetera virtual que otorga microcréditos a sus usuarios",
+  nombre: "Grupo Paraná S.A.",
+  actividad: "Holding familiar con tres unidades de negocio: agro, logística y alquileres",
   jurisdiccion: "Entre Ríos",
   sistema:
-    "Evaluar solicitudes de microcrédito de hasta $500.000 y decidir aprobar, rechazar o derivar a revisión humana.",
+    "Armar el expediente para constituir una sociedad subsidiaria de la que Grupo Paraná sea socia, y determinar qué figura societaria corresponde.",
 } satisfies Record<CampoDatos, string>;
 
 export const CAMPOS: {
@@ -151,8 +155,8 @@ export const CAMPOS: {
 }[] = [
   {
     id: "nombre",
-    label: "Nombre de la sociedad",
-    ayuda: "El que tengas, o el que tengas pensado. Todavía no hace falta que sea el definitivo.",
+    label: "Nombre de tu empresa",
+    ayuda: "La sociedad que ya tenés y que va a operar el sistema automatizado.",
   },
   {
     id: "actividad",
@@ -365,22 +369,22 @@ Volvé sobre tu propia lista y para cada tarea respondé: ¿cuántas veces por m
           {
             label: "Disparador",
             detalle:
-              "Qué hace que el proceso arranque. En Nexus: una persona pide $180.000 desde la app.",
+              "Qué hace que el proceso arranque. En Grupo Paraná: una unidad de negocio necesita operar bajo su propia sociedad.",
           },
           {
             label: "Pasos",
             detalle:
-              "Qué se hace, en orden. Se miran los datos declarados, se consulta el BCRA, se pide un informe al bureau.",
+              "Qué se hace, en orden. Se define la actividad, se cuenta cuántos socios va a haber, se busca un modelo de contrato parecido.",
           },
           {
             label: "Decisión",
             detalle:
-              "El momento en que alguien elige entre opciones. Un analista aprueba, rechaza o pide más información.",
+              "El momento en que alguien elige entre opciones. El contador decide qué figura societaria usar.",
           },
           {
             label: "Resultado",
             detalle:
-              "Con qué termina y qué queda registrado. Se acredita el dinero y se avisa a la persona.",
+              "Con qué termina y qué queda registrado. Queda el contrato firmado y archivado con fecha cierta.",
           },
         ],
       },
@@ -500,7 +504,7 @@ Volvé sobre cada proceso y contestá literalmente: ¿en qué momento exacto una
         type: "note",
         tone: "warn",
         title: "Uno solo, y escribilo",
-        text: "Cuando lo elijas, escribí en una frase la decisión que va a tomar el sistema y cargala arriba, en “El proceso que vas a automatizar”. A partir de acá todos los prompts de la guía la usan. En el ejemplo: “Evaluar solicitudes de microcrédito de hasta $500.000 y decidir aprobar, rechazar o derivar a revisión humana”.",
+        text: "Cuando lo elijas, escribí en una frase la decisión que va a tomar el sistema y cargala arriba, en “El proceso que vas a automatizar”. A partir de acá todos los prompts de la guía la usan. En el ejemplo: “Armar el expediente para constituir una sociedad subsidiaria de la que Grupo Paraná sea socia, y determinar qué figura societaria corresponde”.",
       },
       {
         type: "prompt",
@@ -563,23 +567,25 @@ Que sea una sola frase y que las opciones sean una lista cerrada.`,
       },
       {
         type: "flow",
-        title: "La decisión, en Nexus Automatizada",
+        title: "La decisión, en Grupo Paraná",
         nodos: [
           {
-            label: "Entra una solicitud",
-            detalle: "Una persona pide $180.000 desde la app de la billetera.",
+            label: "Entra un pedido",
+            detalle:
+              "La unidad de logística va a arrancar una operación nueva y necesita su propia sociedad.",
           },
           {
-            label: "El agente evalúa",
-            detalle: "Cruza los datos declarados con fuentes externas y su propio historial.",
+            label: "El agente encuadra",
+            detalle:
+              "Mira la actividad, cuántos socios va a haber y en qué provincia, y cruza eso con las figuras disponibles.",
           },
           {
             label: "Elige una de tres",
-            detalle: "Aprobar · Rechazar · Derivar a revisión humana.",
+            detalle: "Generar el expediente · Generarlo con observaciones · Derivar a revisión.",
           },
           {
             label: "Deja rastro",
-            detalle: "Guarda la decisión, el motivo y los datos que la produjeron.",
+            detalle: "Guarda qué figura eligió, por qué descartó las otras y con qué datos lo decidió.",
           },
         ],
       },
@@ -646,59 +652,67 @@ FALSO NEGATIVO (no actuó y debía): consecuencia, quién la sufre, cuánto cues
     bloques: [
       {
         type: "prose",
-        text: "Cada dato que entra al sistema es una fuente de decisión y, por lo tanto, una fuente de responsabilidad. Algunos son inofensivos. Otros parecen inofensivos y no lo son: no porque digan algo prohibido, sino porque permiten inferirlo.",
+        text: "Cada dato que entra al sistema es una fuente de decisión y, por lo tanto, una fuente de responsabilidad. Pero no todos pesan igual, y la diferencia no se nota mirando el formulario: hay campos que sólo rellenan el documento y campos que deciden si el documento sirve o no sirve.",
       },
       {
         type: "fields",
-        title: "Datos de entrada de Nexus Automatizada",
+        title: "Datos de entrada del constituidor de sociedades",
         intro:
           "Así se ve la tabla que va en la documentación técnica. La tercera columna es la que más pesa si algún día hay que explicar una decisión.",
-        columnas: ["Dato", "De dónde sale", "Qué permite inferir"],
+        columnas: ["Dato", "De dónde sale", "Qué consecuencia tiene"],
         filas: [
           {
-            label: "Monto solicitado",
-            origen: "Formulario de la app",
-            riesgo: "Nada. Es un dato directo, declarado por la persona.",
+            label: "CUIT de la sociedad madre",
+            origen: "Padrón de ARCA (consulta)",
+            riesgo: "Ninguna. Confirma que existe, está activa y puede ser socia.",
             nivel: "ok",
           },
           {
-            label: "Ingresos declarados",
-            origen: "Formulario de la app",
-            riesgo: "Nada, pero no está verificado: el sistema no puede tratarlo como un hecho.",
+            label: "Nombre tentativo de la subsidiaria",
+            origen: "Formulario interno",
+            riesgo: "Ninguna en esta instancia. La disponibilidad recién importa si se inscribe.",
             nivel: "ok",
           },
           {
-            label: "Situación en el BCRA",
-            origen: "Central de Deudores (consulta oficial)",
-            riesgo: "Nada. Es información pública y objetiva.",
-            nivel: "ok",
-          },
-          {
-            label: "Antecedentes en bureau privado",
-            origen: "Servicio externo de informes",
+            label: "Capital y cómo se integra",
+            origen: "Formulario interno",
             riesgo:
-              "Arrastra los errores del proveedor. Si el bureau se equivoca, el agente hereda el error y decide mal.",
+              "Define el mínimo legal según la figura y si hace falta constancia bancaria de depósito.",
             nivel: "atencion",
           },
           {
-            label: "Tiempo de completado del formulario",
-            origen: "Telemetría de la app",
+            label: "Datos personales de los socios humanos",
+            origen: "Formulario interno",
             riesgo:
-              "Puede penalizar a personas mayores o con alguna discapacidad, que tardan más por motivos ajenos a su solvencia.",
+              "DNI, domicilio y estado civil son datos personales: hay que definir plazo de conservación y quién accede (Ley 25.326).",
             nivel: "atencion",
           },
           {
-            label: "Ubicación del domicilio",
-            origen: "Formulario o geolocalización del dispositivo",
+            label: "Provincia de la sede",
+            origen: "Formulario interno",
             riesgo:
-              "Aproxima el nivel socioeconómico del barrio. Usado como variable de scoring, puede producir el rechazo sistemático de una zona entera.",
+              "Define el registro competente y qué figuras admite. Las reglas no son iguales en todas las jurisdicciones.",
+            nivel: "atencion",
+          },
+          {
+            label: "Quién firma por la sociedad madre",
+            origen: "Estatuto y actas de la madre",
+            riesgo:
+              "Sin acta que autorice la participación, el acto queda atacable. Es el dato que más se olvida.",
             nivel: "alerta",
           },
           {
-            label: "Ortografía en los campos libres",
-            origen: "Análisis del texto que escribió la persona",
+            label: "Objeto: a qué se va a dedicar",
+            origen: "Formulario interno",
             riesgo:
-              "Aproxima el nivel educativo. No mide capacidad de pago: mide escolaridad, que es otra cosa.",
+              "El dato de mayor consecuencia. Si la actividad está regulada, hace falta autorización previa y la figura elegida puede ser inválida.",
+            nivel: "alerta",
+          },
+          {
+            label: "Cuántos socios va a tener",
+            origen: "Formulario interno",
+            riesgo:
+              "Un solo dato que cierra ramas enteras: con un único socio la sociedad es unipersonal y las figuras sin inscribir dejan de estar disponibles.",
             nivel: "alerta",
           },
         ],
@@ -707,7 +721,7 @@ FALSO NEGATIVO (no actuó y debía): consecuencia, quién la sufre, cuánto cues
         type: "note",
         tone: "legal",
         title: "Por qué las dos últimas filas importan tanto",
-        text: "Ubicación y ortografía no son datos sensibles por sí mismos, pero funcionan como sustitutos de características que sí lo son. Un sistema que las usa puede producir un patrón discriminatorio sin que nadie lo haya decidido: nadie escribió “rechazar a los de ese barrio”, y sin embargo eso es lo que termina pasando. Como la sociedad responde con su patrimonio, esto no se resuelve borrando la fila de la tabla: se resuelve documentándola, midiendo el efecto y pudiendo explicarlo. Y conviene resolverlo antes de salir a producción, no después del primer reclamo.",
+        text: "Las dos últimas no son un campo más del formulario: deciden si el documento sirve o no sirve. Si la actividad está regulada —banca, seguros, salud, transporte— hace falta autorización previa y la figura elegida puede ser directamente inválida. Y la cantidad de socios es el dato que más ramas cierra: con un solo socio la sociedad es unipersonal, y eso obliga a figuras de inscripción obligatoria. Un agente que trata estos dos campos como texto libre produce documentos que no se pueden usar, sin avisar que algo salió mal.",
       },
       {
         type: "prompt",
@@ -721,25 +735,28 @@ Decisión que toma el sistema: {{sistema}}
 
 Listá todos los datos de entrada que ese sistema necesita para decidir. Devolvelo como tabla con estas cuatro columnas:
 
-DATO | DE DÓNDE SALE | ¿DECLARADO O INFERIDO? | ¿QUÉ PERMITE INFERIR SOBRE LA PERSONA?
+DATO | DE DÓNDE SALE | ¿DECLARADO O VERIFICABLE? | ¿QUÉ CONSECUENCIA TIENE SI VIENE MAL?
 
-Para la cuarta columna respondé explícitamente por cada dato: ¿permite aproximar nivel socioeconómico, nivel educativo, edad, género, origen, estado de salud o creencias? Si la respuesta es sí, escribí "PROXY DE: ..." y explicá el mecanismo en una línea.
+Para la cuarta columna clasificá cada dato en uno de tres niveles y decí por qué:
+- DECIDE VALIDEZ: si viene mal, el resultado no sirve o es inválido.
+- AFECTA EL CONTENIDO: cambia lo que dice el documento, pero no lo invalida.
+- COSMÉTICO: no cambia nada sustancial.
 
 Después de la tabla, dos secciones:
-- DATOS QUE ELIMINARÍA: cuáles sacarías y qué perdería el sistema si los sacás.
+- DATOS QUE CIERRAN RAMAS: cuáles, con un solo valor, descartan opciones enteras. Explicá cuál valor y qué descarta.
 - QUÉ PASA SI FALTA: para los tres datos más importantes, qué debería hacer el sistema si ese dato no está disponible.
 
 No inventes datos que el sistema no necesita.`,
         verificar: [
-          "Cada fila dice si el dato es declarado por la persona o inferido por el sistema",
-          "Al menos un dato quedó marcado como “PROXY DE: …”",
+          "Cada dato está clasificado en uno de los tres niveles, sin quedar a mitad de camino",
+          "Al menos un dato quedó marcado como “DECIDE VALIDEZ”",
           "Están las dos secciones del final, no sólo la tabla",
         ],
-        correccion: `No marcaste ningún proxy, y es muy poco probable que no haya ninguno.
+        correccion: `No marcaste ningún dato como "DECIDE VALIDEZ", y es muy poco probable que no haya ninguno: casi todo sistema tiene al menos un campo que, mal cargado, arruina el resultado entero.
 
-Revisá tu tabla dato por dato y respondé explícitamente para cada uno: "¿este dato permite aproximar el nivel socioeconómico, educativo o de salud de la persona? SÍ/NO, y por qué."
+Revisá tu tabla dato por dato y respondé explícitamente: "si este dato viene mal, ¿el resultado sigue sirviendo? SÍ/NO, y por qué."
 
-Prestá especial atención a: ubicación, domicilio, código postal, dispositivo usado, horario de uso, forma de escribir, y cualquier dato de comportamiento. Devolvé la tabla corregida.`,
+Prestá especial atención a los datos que definen qué camino toma el sistema, no a los que sólo rellenan el resultado. Devolvé la tabla corregida.`,
       },
     ],
   },
@@ -763,17 +780,17 @@ Prestá especial atención a: ubicación, domicilio, código postal, dispositivo
           {
             label: "1. Reglas duras (código)",
             detalle:
-              "Mayor de 18. Situación BCRA 1 o 2. Monto dentro del tope. Si falla alguna, rechaza y termina: el modelo ni se ejecuta.",
+              "Un solo socio descarta las figuras sin inscribir. Actividad regulada obliga a autorización previa. Capital por debajo del mínimo, rechaza. Si falla alguna, termina ahí: el modelo ni se ejecuta.",
           },
           {
             label: "2. Criterio (modelo)",
             detalle:
-              "Sobre los casos que pasaron el filtro, evalúa el resto de las señales y devuelve una recomendación con su nivel de confianza.",
+              "Sobre los casos que pasaron el filtro, redacta el objeto social y elige las cláusulas de administración, con su nivel de confianza.",
           },
           {
             label: "3. Umbral de derivación",
             detalle:
-              "Si la confianza es baja o el monto supera el límite, no decide: deriva a una persona.",
+              "Objeto ambiguo, algún socio extranjero, o la madre con menos del 100%: no decide, deriva a una persona.",
           },
         ],
       },
@@ -838,44 +855,57 @@ Reescribilas con números y condiciones exactas, o movelas al criterio evaluativ
     bloques: [
       {
         type: "prose",
-        text: "La diferencia entre un chatbot y un agente es esta lista. Un chatbot te dice “convendría aprobar el crédito”. Un agente acredita la plata. Todo lo que el agente pueda ejecutar sin preguntar es, literalmente, algo por lo que la sociedad responde.",
+        text: "La diferencia entre un chatbot y un agente es esta lista. Un chatbot te dice “convendría usar una S.R.L.”. Un agente deja el expediente armado y listo para firmar. Todo lo que el agente pueda ejecutar sin preguntar es, literalmente, algo por lo que la sociedad responde.",
       },
       {
         type: "fields",
-        title: "Herramientas de Nexus Automatizada",
+        title: "Herramientas del constituidor de sociedades",
         intro: "En la documentación técnica, esta tabla va junto a la de datos de entrada.",
         columnas: ["Herramienta", "Qué hace", "¿Se puede deshacer?"],
         filas: [
           {
-            label: "Consultar BCRA",
-            origen: "Lee la situación crediticia de la persona",
+            label: "Consultar el padrón de ARCA",
+            origen: "Verifica que la sociedad madre existe y está activa",
             riesgo: "Sólo lectura. No modifica nada.",
             nivel: "ok",
           },
           {
-            label: "Consultar bureau privado",
-            origen: "Lee antecedentes en un servicio externo",
-            riesgo: "Sólo lectura, pero tiene costo por consulta y deja registro en el bureau.",
+            label: "Buscar modelo de contrato",
+            origen: "Lee la base de modelos del estudio",
+            riesgo: "Sólo lectura. Si el modelo está desactualizado, el error entra por acá.",
             nivel: "ok",
           },
           {
-            label: "Registrar la decisión",
-            origen: "Escribe el resultado y su justificación en la base",
-            riesgo: "Escritura, pero acumulativa: no pisa nada. Es la que te salva en un reclamo.",
+            label: "Generar el borrador",
+            origen: "Escribe el contrato y los anexos a partir de la plantilla",
+            riesgo: "Escritura, pero sobre un archivo nuevo: no pisa nada existente.",
             nivel: "ok",
           },
           {
-            label: "Notificar a la persona",
-            origen: "Envía el resultado por push o mail",
+            label: "Registrar el caso",
+            origen: "Guarda qué decidió, con qué datos y qué versión de plantilla usó",
+            riesgo: "Escritura acumulativa: no pisa nada. Es la que te salva si alguien impugna.",
+            nivel: "ok",
+          },
+          {
+            label: "Avisar que está listo",
+            origen: "Notifica al responsable que el expediente quedó armado",
             riesgo:
-              "No se puede deshacer: un mensaje enviado por error ya fue leído. Conviene ejecutarla última.",
+              "No se puede deshacer: un aviso enviado por error ya fue leído. Conviene ejecutarla última.",
             nivel: "atencion",
           },
           {
-            label: "Acreditar el dinero",
-            origen: "Transfiere el monto a la cuenta de la persona",
+            label: "Reservar la denominación",
+            origen: "Toma el nombre en el registro",
             riesgo:
-              "Irreversible y con efecto patrimonial directo. Es la herramienta que justifica todo el resto de la documentación.",
+              "Irreversible y con costo. Sólo aplica si la sociedad se va a inscribir — en la figura sin inscribir, esta herramienta directamente no existe.",
+            nivel: "alerta",
+          },
+          {
+            label: "Firmar y presentar",
+            origen: "Suscribe el documento y lo ingresa al registro",
+            riesgo:
+              "Irreversible, con efectos frente a terceros, y es ejercicio profesional. Esta no se le da al agente: arma el expediente y lo deja listo para que una persona lo revise y firme.",
             nivel: "alerta",
           },
         ],
@@ -883,8 +913,8 @@ Reescribilas con números y condiciones exactas, o movelas al criterio evaluativ
       {
         type: "note",
         tone: "legal",
-        title: "El criterio para la última columna",
-        text: "Ordená siempre las herramientas de menos a más reversible, y ejecutalas en ese orden. Consultar, después registrar, después notificar, y recién al final mover plata. Si algo falla, falla antes de la parte que no se puede deshacer.",
+        title: "La última fila es la que define el proyecto",
+        text: "Un agente que firma y presenta está haciendo ejercicio profesional, y además asume un acto con efectos frente a terceros que no puede deshacer. Un agente que deja el expediente armado para que una persona lo revise y firme hace el 90% del trabajo sin ninguno de los dos problemas. Fuera de eso, la regla general: ordená las herramientas de menos a más reversible y ejecutalas en ese orden, para que si algo falla, falle antes de la parte que no se puede deshacer.",
       },
       {
         type: "prompt",
@@ -928,7 +958,7 @@ Volvé a responder el punto 3 y nombrá al menos una herramienta que restringir�
     bloques: [
       {
         type: "prose",
-        text: "Imaginá el peor día: seis meses después de salir a producción, llega un reclamo por una solicitud rechazada. Te van a pedir que expliques esa decisión puntual, de esa fecha. Si tu sistema guardó únicamente “rechazado”, no tenés nada. Si guardó qué datos usó y qué peso tuvo cada uno, tenés una defensa.",
+        text: "Imaginá el peor día: dos años después, alguien impugna una de las sociedades que armaste. Te van a pedir que expliques por qué se eligió esa figura y no otra, en esa fecha, con la información que había entonces. Si tu sistema guardó únicamente el documento final, no tenés nada. Si guardó qué datos usó, qué alternativas descartó y por qué, tenés una defensa.",
       },
       {
         type: "checklist",
@@ -999,13 +1029,13 @@ Agregá a la estructura los campos de versión del sistema, versión del modelo 
         filas: [
           {
             label: "Revisión caso por caso",
-            origen: "El agente derivó una solicitud puntual por baja confianza o monto alto",
-            riesgo: "Analista de riesgo. Dentro de las 24 horas hábiles.",
+            origen: "El agente derivó un expediente puntual, o lo generó con observaciones",
+            riesgo: "Responsable legal del grupo. Antes de que el documento se firme.",
             nivel: "ok",
           },
           {
-            label: "Ajuste de parámetros",
-            origen: "La tasa de rechazo se desvía de lo esperado, o aparece un patrón raro",
+            label: "Ajuste de plantillas",
+            origen: "Cambió una norma, o el registro observó un expediente ya presentado",
             riesgo: "Responsable del sistema, con registro del cambio. Dentro de las 72 horas.",
             nivel: "atencion",
           },
@@ -1102,7 +1132,7 @@ Devolvé el protocolo completo corregido.`,
         type: "screen",
         url: "rpc.gob.ar › consulta-denominacion",
         caption: "Pantalla ilustrativa del trámite de consulta de nombre.",
-        filas: [{ label: "Nexus Automatizada S.A.", estado: "Disponible", cargado: true }],
+        filas: [{ label: "Paraná Logística Automatizada S.A.", estado: "Disponible", cargado: true }],
         cta: "Reservar nombre",
       },
       {

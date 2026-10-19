@@ -1,3 +1,5 @@
+import { CAUTELAR_COLEGIO_ABOGADOS_VILLA_MARIA_SECTIONS } from "@/data/novedades/cautelar-colegio-abogados-villa-maria-ley-27802.sections";
+
 export type NovedadKind = "news" | "document";
 
 export type NovedadSection = {
@@ -45,6 +47,64 @@ export type NovedadDocument = NovedadBase & {
 export type Novedad = NovedadNews | NovedadDocument;
 
 export const NOVEDADES: Novedad[] = [
+  {
+    kind: "document",
+    slug: "cautelar-colegio-abogados-villa-maria-ley-27802",
+    title: "Medida cautelar suspende los arts. 10 y 56 de la Ley 27.802 (pluspetición y pago en cuotas de sentencias laborales) - \"Colegio de Abogados de Villa María y otro c/ Estado Nacional\"",
+    excerpt:
+      "El Juzgado Contencioso Administrativo Federal N° 11 hizo lugar, por tres meses, a la medida cautelar colectiva de Colegios de Abogados de todo el país: suspende el artículo 10 de la Ley 27.802 (pluspetición objetiva en el art. 20 LCT) y el artículo 56 (pago en cuotas de sentencias en el art. 277 LCT), que se rigen por su redacción anterior.",
+    date: "2026-10-14",
+    metadata: {
+      jurisdiccion: "Nacional",
+      tipoNorma: "Jurisprudencia - Medida cautelar",
+      numeroNorma: "Cita IJ-VI-CDXIII-643",
+      emisor: "Juzgado de 1ª Instancia en lo Contencioso Administrativo Federal N° 11",
+      fechaSancion: "14-10-2026",
+      publicacionBO: "No aplica",
+    },
+    sections: CAUTELAR_COLEGIO_ABOGADOS_VILLA_MARIA_SECTIONS,
+    related: [
+      {
+        title: "Ley 27.802 (Modernización Laboral)",
+        href: "/novedades/ley-modernizacion-laboral-27802",
+      },
+      {
+        title: "Área: Derecho Laboral de Empresas",
+        href: "/areas/Derecho-Laboral-de-Empresas",
+      },
+    ],
+  },
+  {
+    kind: "document",
+    slug: "comunicacion-bcra-a-8490-2026",
+    title: "Comunicación BCRA \"A\" 8490/2026 - Inversión de entidades financieras en Fondos de Asistencia Laboral (FAL)",
+    excerpt:
+      "El BCRA habilita a las entidades financieras a ser titulares de cuotapartes de fondos comunes de inversión autorizados por la CNV mediante los cuales se instrumenten los Fondos de Asistencia Laboral (FAL) de la Ley 27.802, las exceptúa de la prohibición del punto 1.4.2. de Política de Crédito y dispone que su saldo se deduzca del capital ordinario de nivel uno (COn1).",
+    date: "2026-10-14",
+    metadata: {
+      jurisdiccion: "Nacional",
+      tipoNorma: "Comunicación",
+      numeroNorma: "8490",
+      emisor: "Poder Legislativo",
+      fechaSancion: "08-10-2026",
+      publicacionBO: "14-10-2026",
+    },
+    contentTextPath: "docs/novedades/Comunicacion-BCRA-A-8490-2026.txt",
+    related: [
+      {
+        title: "Decreto 408/2026 (Reglamentación del Fondo de Asistencia Laboral)",
+        href: "/novedades/decreto-fal-408-2026",
+      },
+      {
+        title: "Ley 27.802 (Modernización Laboral)",
+        href: "/novedades/ley-modernizacion-laboral-27802",
+      },
+      {
+        title: "Área: Derecho Laboral de Empresas",
+        href: "/areas/Derecho-Laboral-de-Empresas",
+      },
+    ],
+  },
   {
     kind: "document",
     slug: "resolucion-arca-5902-2026",

@@ -51,7 +51,10 @@ const pres = new pptxgen();
 pres.layout = "LAYOUT_WIDE";
 pres.author = "Moro Abogados";
 pres.company = "Moro Abogados";
-pres.title = "Guía Sociedad Automatizada";
+pres.title =
+  process.env.MODO === "tecnica"
+    ? "Anatomía de un agente de IA"
+    : "Guía Sociedad Automatizada";
 
 /** Segundos que cada lámina queda en pantalla al exportar a vídeo. */
 const segundos = { portada: 6, tituloPaso: 5, contenido: 9, prompt: 12, cierre: 7 };
@@ -62,6 +65,21 @@ const nuevaLamina = (secs: number) => {
 };
 
 const acento = (t: TrackId) => (t === "juridico" ? ORO : TEAL);
+
+/**
+ * "completa" arma los diez pasos de la guía.
+ * "tecnica" arma sólo la anatomía del agente: qué decide, con qué datos,
+ * qué hace con ellos, qué puede ejecutar y qué devuelve. Sale del mismo
+ * contenido, así que las dos versiones no se pueden desincronizar.
+ */
+const MODO = process.env.MODO === "tecnica" ? "tecnica" : "completa";
+const SOLO_TECNICOS = ["decision", "entradas", "proceso", "herramientas", "evidencia"];
+const PASOS_DECK =
+  MODO === "tecnica"
+    ? SOLO_TECNICOS.map((id) => PASOS_VISIBLES.find((p) => p.id === id)).filter(
+        (p): p is Paso => Boolean(p)
+      )
+    : PASOS_VISIBLES;
 
 /* ── Piezas reutilizables ───────────────────────────────────────── */
 
@@ -103,18 +121,25 @@ function recortar(t: string, max: number) {
 {
   const s = nuevaLamina(segundos.portada);
   s.background = { color: NAVY };
-  s.addText("GUÍA PASO A PASO", {
+  s.addText(MODO === "tecnica" ? "LA PARTE TÉCNICA" : "GUÍA PASO A PASO", {
     x: M, y: 2.2, w: 9, h: 0.32,
     isTextBox: true, margin: 0,
     fontFace: SANS, fontSize: 12, bold: true, charSpacing: 3, color: ORO,
   });
-  s.addText("Cómo constituir una\nSociedad Automatizada", {
-    x: M, y: 2.75, w: 10.5, h: 2.1,
-    isTextBox: true, margin: 0,
-    fontFace: SERIF, fontSize: 48, bold: true, color: BLANCO, lineSpacingMultiple: 0.95,
-  });
   s.addText(
-    "Diez pasos para entender el régimen, elegir qué automatizar y documentar el sistema que la sociedad va a operar.",
+    MODO === "tecnica"
+      ? "Anatomía de un\nagente de IA"
+      : "Cómo constituir una\nSociedad Automatizada",
+    {
+      x: M, y: 2.75, w: 10.5, h: 2.1,
+      isTextBox: true, margin: 0,
+      fontFace: SERIF, fontSize: 48, bold: true, color: BLANCO, lineSpacingMultiple: 0.95,
+    }
+  );
+  s.addText(
+    MODO === "tecnica"
+      ? "Qué datos necesita para decidir, qué herramientas conviene darle y qué tiene que devolver."
+      : "Diez pasos para entender el régimen, elegir qué automatizar y documentar el sistema que la sociedad va a operar.",
     {
       x: M, y: 5.0, w: 9, h: 0.8,
       isTextBox: true, margin: 0,
@@ -131,8 +156,78 @@ function recortar(t: string, max: number) {
   );
 }
 
-/* ═══════════════ 2. El recorrido ═══════════════ */
-{
+/* ═══════════════ 2a. La anatomía (sólo modo técnico) ═══════════════ */
+if (MODO === "tecnica") {
+  const s = nuevaLamina(segundos.contenido);
+  s.background = { color: PAPEL };
+  eyebrow(s, "La anatomía", TEAL_HONDO);
+  tituloLamina(s, "Entrada, proceso, salida");
+  s.addText(
+    "Un agente se describe con tres preguntas. Todo lo demás —el modelo, el proveedor, el framework— es implementación y se puede cambiar.",
+    {
+      x: M, y: 1.55, w: 10.6, h: 0.5,
+      isTextBox: true, margin: 0,
+      fontFace: SANS, fontSize: 13.5, color: TINTA_MEDIA,
+    }
+  );
+
+  const etapas = [
+    ["ENTRADA", "¿Qué sabe antes de decidir?", "De dónde sale cada dato, cuál decide la validez del resultado y qué hace el sistema si uno falta."],
+    ["PROCESO", "¿Qué hace con eso?", "Las reglas duras que se cumplen siempre, separadas del criterio que puede variar."],
+    ["SALIDA", "¿Qué devuelve y qué deja?", "El resultado, el motivo, lo que quedó sin resolver y el rastro para poder explicarlo después."],
+  ];
+  const ancho = (W - M * 2 - 0.5 * 2) / 3;
+  etapas.forEach(([clave, pregunta, detalle], i) => {
+    const x = M + i * (ancho + 0.5);
+    s.addShape(pres.ShapeType.roundRect, {
+      x, y: 2.35, w: ancho, h: 2.75, rectRadius: 0.1,
+      fill: { color: BLANCO }, line: { color: LINEA, width: 1 },
+    });
+    s.addText(clave, {
+      x: x + 0.35, y: 2.65, w: ancho - 0.7, h: 0.3,
+      isTextBox: true, margin: 0,
+      fontFace: SANS, fontSize: 11, bold: true, charSpacing: 2.2, color: TEAL,
+    });
+    s.addText(pregunta, {
+      x: x + 0.35, y: 3.05, w: ancho - 0.7, h: 0.6,
+      isTextBox: true, margin: 0,
+      fontFace: SERIF, fontSize: 19, bold: true, color: TINTA,
+    });
+    s.addText(detalle, {
+      x: x + 0.35, y: 3.75, w: ancho - 0.7, h: 1.2,
+      isTextBox: true, margin: 0,
+      fontFace: SANS, fontSize: 12, color: TINTA_MEDIA, lineSpacingMultiple: 1.25,
+    });
+    if (i < 2) {
+      s.addText("→", {
+        x: x + ancho + 0.1, y: 3.55, w: 0.3, h: 0.3,
+        isTextBox: true, margin: 0, align: "center",
+        fontFace: SANS, fontSize: 18, color: LINEA,
+      });
+    }
+  });
+
+  s.addShape(pres.ShapeType.roundRect, {
+    x: M, y: 5.35, w: W - M * 2, h: 0.95, rectRadius: 0.1,
+    fill: { color: NAVY },
+  });
+  s.addText(
+    "Y cruzando las tres: las herramientas. Son lo único que le permite al agente tocar el mundo real — y por lo tanto, lo único por lo que alguien puede reclamarte.",
+    {
+      x: M + 0.45, y: 5.35, w: W - M * 2 - 0.9, h: 0.95,
+      isTextBox: true, margin: 0, valign: "middle",
+      fontFace: SANS, fontSize: 13.5, color: "C6CEDA",
+    }
+  );
+  s.addText(`Ejemplo que atraviesa todo: ${EJEMPLO.nombre} — ${EJEMPLO.actividad}.`, {
+    x: M, y: 6.5, w: W - M * 2, h: 0.4,
+    isTextBox: true, margin: 0,
+    fontFace: SANS, fontSize: 12, italic: true, color: TINTA_SUAVE,
+  });
+}
+
+/* ═══════════════ 2b. El recorrido (sólo guía completa) ═══════════════ */
+if (MODO !== "tecnica") {
   const s = nuevaLamina(segundos.contenido);
   s.background = { color: PAPEL };
   eyebrow(s, "El recorrido", TEAL_HONDO);
@@ -482,7 +577,7 @@ function laminaPrompt(paso: Paso, indice: number, b: Extract<Bloque, { type: "pr
 }
 
 /* ── Recorrer los pasos ─────────────────────────────────────────── */
-PASOS_VISIBLES.forEach((paso, idx) => {
+PASOS_DECK.forEach((paso, idx) => {
   const n = idx + 1;
   laminaTituloPaso(paso, n);
 
@@ -507,24 +602,24 @@ PASOS_VISIBLES.forEach((paso, idx) => {
 {
   const s = nuevaLamina(segundos.cierre);
   s.background = { color: NAVY };
-  s.addText("La guía completa, paso a paso", {
-    x: M, y: 2.6, w: 10, h: 0.9,
-    isTextBox: true, margin: 0,
-    fontFace: SERIF, fontSize: 36, bold: true, color: BLANCO,
-  });
   s.addText(
-    "Con los prompts listos para copiar, el avance guardado y los enlaces directos a cada paso.",
+    MODO === "tecnica" ? "Tres preguntas, y el resto es implementación" : "La guía completa, paso a paso",
     {
-      x: M, y: 3.7, w: 9, h: 0.8,
+      x: M, y: 2.6, w: 10.5, h: 0.9,
+      isTextBox: true, margin: 0,
+      fontFace: SERIF, fontSize: 36, bold: true, color: BLANCO,
+    }
+  );
+  s.addText(
+    MODO === "tecnica"
+      ? "Si podés contestar qué datos entran, qué puede ejecutar y qué deja registrado, ya tenés el agente descripto. El modelo y el proveedor se cambian después sin tocar nada de esto."
+      : "Con los prompts listos para copiar, el avance guardado y los enlaces directos a cada paso.",
+    {
+      x: M, y: 3.7, w: 10, h: 1.1,
       isTextBox: true, margin: 0,
       fontFace: SANS, fontSize: 16, color: "AAB6C4", lineSpacingMultiple: 1.3,
     }
   );
-  s.addText("moroabogados.com.ar/sociedad-automatizada", {
-    x: M, y: 4.8, w: 9, h: 0.45,
-    isTextBox: true, margin: 0,
-    fontFace: MONO, fontSize: 16, color: ORO,
-  });
   s.addText(
     "Documento elaborado con fines informativos. Las pantallas de trámite que aparecen en la guía son ilustrativas. No constituye asesoramiento legal.",
     {

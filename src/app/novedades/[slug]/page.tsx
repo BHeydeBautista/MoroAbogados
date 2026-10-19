@@ -8,6 +8,7 @@ import { DECRETO_407_2026_RAW } from "@/data/novedades/decreto-407-2026.raw";
 import { RESOLUCION_IGJ_5_2026_RAW } from "@/data/novedades/resolucion-igj-5-2026.raw";
 import { DECRETO_612_2026_RAW } from "@/data/novedades/decreto-612-2026.raw";
 import { RESOLUCION_ARCA_5902_2026_RAW } from "@/data/novedades/resolucion-arca-5902-2026.raw";
+import { COMUNICACION_BCRA_A_8490_2026_RAW } from "@/data/novedades/comunicacion-bcra-a-8490-2026.raw";
 
 type Props = {
   params: Promise<{ slug: string }> | { slug: string };
@@ -51,6 +52,7 @@ export default async function NovedadDetailPage({ params }: Props) {
     "resolucion-igj-5-2026": RESOLUCION_IGJ_5_2026_RAW,
     "decreto-612-2026": DECRETO_612_2026_RAW,
     "resolucion-arca-5902-2026": RESOLUCION_ARCA_5902_2026_RAW,
+    "comunicacion-bcra-a-8490-2026": COMUNICACION_BCRA_A_8490_2026_RAW,
   };
 
   const documentSections =

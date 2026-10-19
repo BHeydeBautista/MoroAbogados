@@ -1,0 +1,21 @@
+export const COMUNICACION_BCRA_A_8490_2026_RAW = `Comunicación "A" 8490/2026
+
+A LAS ENTIDADES FINANCIERAS:
+
+Ref.: CONAU 1-1741, LISOL 1-1156, OPRAC 1-1321, RUNOR 1-1976. Operaciones al Contado a Liquidar y a Término, Pases, Cauciones, otros Derivados y con Fondos Comunes de Inversión. Política de Crédito. Capitales Mínimos de las Entidades Financieras. Distribución de Resultados. Adecuaciones.
+
+Nos dirigimos a Uds. para comunicarles que esta Institución adoptó la resolución que, en su parte pertinente, establece:
+
+"- Disponer que las entidades financieras podrán ser titulares de cuotapartes de fondos comunes de inversión autorizados por la Comisión Nacional de Valores (CNV), mediante los cuales se instrumenten los Fondos de Asistencia Laboral (FAL), en los términos de la Ley 27.802 y sus normas complementarias y modificatorias (TO sobre Operaciones al Contado a Liquidar y a Término, Pases, Cauciones, otros Derivados y con Fondos Comunes de Inversión, Secc. 7.).
+
+Las inversiones en cuotapartes de fondos comunes de inversión y certificados de participación de fideicomisos financieros, autorizados por la CNV, mediante los cuales se instrumenten los FAL, no estarán alcanzadas por la prohibición establecida en el punto 1.4.2. del texto ordenado sobre Política de Crédito.
+
+El saldo de esas inversiones deberá deducirse del capital ordinario de nivel uno (COn1). El resultado acumulado generado por esas inversiones, neto de la parte aplicada por las finalidades previstas por el régimen del FAL, no formará parte del resultado distribuible."
+
+Asimismo, les informamos que posteriormente les haremos llegar las hojas que, en reemplazo de las oportunamente provistas, corresponderá incorporar en los textos ordenados de la referencia.
+
+Saludamos a Uds. atentamente.
+
+BANCO CENTRAL DE LA REPUBLICA ARGENTINA
+
+Pablo D. Montero, Gerente de Emisión de Normas - Marina Ongaro, Subgerenta General de Regulación Financiera.`;

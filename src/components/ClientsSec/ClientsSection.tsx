@@ -12,6 +12,7 @@ import en from "@/locales/en/clients.json";
 
 type CategoryId =
   | "all"
+  | "audit"
   | "banking"
   | "industry"
   | "retail"
@@ -29,6 +30,7 @@ export default function ClientsSection() {
 
   const categories: Array<{ id: CategoryId; dataCategory?: string; label: string }> = [
     { id: "all",        label: t.categories.all },
+    { id: "audit",      dataCategory: "Auditoria",                    label: t.categories.audit },
     { id: "banking",    dataCategory: "Bancos y Finanzas",       label: t.categories.banking },
     { id: "technology", dataCategory: "Tecnología",              label: t.categories.technology },
     { id: "insurance",  dataCategory: "Seguros",                 label: t.categories.insurance },

@@ -65,6 +65,7 @@ export const clients: Client[] = [
   { name: "ICBC", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918937/icbc_j8u3ad.webp", featured: true },
   { name: "Standard Bank S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918959/standardbank_bce1b6.png" },
   { name: "Citibank", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918928/Citibank_eyi4oo.jpg" },
+  { name: "Estancias Chalbaud", category: "Bancos y Finanzas", logo:"https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1793385532/estancias_chalbaud_mvkwcn.png" },
 
   // ——— RETAIL Y CONSUMO ———
   { name: "CencoSud S.A.", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919927/CencoSud_S.A._ejh1zl.jpg", featured: true },

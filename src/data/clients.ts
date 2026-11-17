@@ -16,7 +16,7 @@ export const clients: Client[] = [
   { name: "Bulonera del Litoral S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919091/Bulonera_del_Litoral_S.A._dlxqep.jpg", featured: true },
   { name: "Consorcio de Exportación Avícola", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918942/Consorcio_de_Exportaci%C3%B3n_Av%C3%ADcola_leo2gv.png"},
   { name: "Dragados y Construcciones Argentina S.A. (DYCASA)", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919148/Dragados_y_Construcciones_Argentina_S.A._DYCASA_hlarrz.jpg" },
-  { name: "Estancias Chalbaud", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919177/Estancia_Chalbaud_jdnqj3.webp", featured: true },
+  { name: "Estancias Chalbaud", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1793385532/estancias_chalbaud_mvkwcn.png", featured: true },
   { name: "General Motors Argentina S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918934/gm_r6tnnx.webp", featured: true },
   { name: "Glencore Cereales S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1764605360/Dise%C3%B1o_sin_t%C3%ADtulo_1_xnptb1.png" },
   { name: "Las Margaritas S.A.", category: "Industria y Producción", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919253/Las_Margaritas_S.A._ciwalx.webp" },
@@ -65,7 +65,6 @@ export const clients: Client[] = [
   { name: "ICBC", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918937/icbc_j8u3ad.webp", featured: true },
   { name: "Standard Bank S.A.", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918959/standardbank_bce1b6.png" },
   { name: "Citibank", category: "Bancos y Finanzas", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763918928/Citibank_eyi4oo.jpg" },
-  { name: "Estancias Chalbaud", category: "Bancos y Finanzas", logo:"https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1793385532/estancias_chalbaud_mvkwcn.png" },
 
   // ——— RETAIL Y CONSUMO ———
   { name: "CencoSud S.A.", category: "Retail y Consumo", logo: "https://res.cloudinary.com/di2os0yqc/image/upload/f_auto,q_auto/v1763919927/CencoSud_S.A._ejh1zl.jpg", featured: true },
